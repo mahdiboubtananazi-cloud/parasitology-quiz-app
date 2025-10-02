@@ -1,19 +1,21 @@
+// screens/QuizScreen.js - نسخة Rork الكاملة
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, Alert, Animated, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo-linear-gradient';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Animated } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { CheckCircle2, AlertCircle, Book, Trophy } from 'lucide-react-native';
 import { sampleQuestions, topicLabels } from '../data/parasitology';
 
-function QuizScreen() {
+export default function QuizScreen() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
+  const [showExplanation, setShowExplanation] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [questions] = useState(sampleQuestions);
-  const [progress] = useState(new Animated.Value(0));
+  const [progressAnim] = useState(new Animated.Value(0));
 
   useEffect(() => {
-    Animated.timing(progress, {
+    Animated.timing(progressAnim, {
       toValue: ((currentQuestion + 1) / questions.length) * 100,
       duration: 300,
       useNativeDriver: false,
@@ -21,22 +23,21 @@ function QuizScreen() {
   }, [currentQuestion]);
 
   const handleAnswerSelect = (answerIndex) => {
+    if (showExplanation) return; // منع التغيير بعد الإجابة
+    
     setSelectedAnswer(answerIndex);
+    setShowExplanation(true);
+    
+    if (answerIndex === questions[currentQuestion].correctAnswer) {
+      setScore(score + 1);
+    }
   };
 
   const handleNextQuestion = () => {
-    if (selectedAnswer === null) {
-      Alert.alert('تنبيه', 'يرجى اختيار إجابة أولاً');
-      return;
-    }
-
-    if (selectedAnswer === questions[currentQuestion].correctAnswer) {
-      setScore(score + 1);
-    }
-
     if (currentQuestion + 1 < questions.length) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer(null);
+      setShowExplanation(false);
     } else {
       setShowResult(true);
     }
@@ -46,138 +47,202 @@ function QuizScreen() {
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setScore(0);
+    setShowExplanation(false);
     setShowResult(false);
-    progress.setValue(0);
+    progressAnim.setValue(0);
   };
 
+  // صفحة النتيجة
   if (showResult) {
     const percentage = Math.round((score / questions.length) * 100);
-    const getResultMessage = () => {
-      if (percentage >= 90) return { text: 'ممتاز! 🌟', color: '#4CAF50' };
-      if (percentage >= 70) return { text: 'جيد جداً! 👍', color: '#2196F3' };
-      if (percentage >= 50) return { text: 'جيد 👌', color: '#FF9800' };
-      return { text: 'تحتاج للمراجعة 📚', color: '#F44336' };
+    const getResultLevel = () => {
+      if (percentage >= 90) return { text: 'ممتاز!', emoji: '🌟', color: '#10b981' };
+      if (percentage >= 70) return { text: 'جيد جداً!', emoji: '👍', color: '#3b82f6' };
+      if (percentage >= 50) return { text: 'جيد', emoji: '👌', color: '#f59e0b' };
+      return { text: 'تحتاج للمراجعة', emoji: '📚', color: '#ef4444' };
     };
 
-    const result = getResultMessage();
+    const result = getResultLevel();
 
     return (
-      <SafeAreaView style={styles.container}>
-        <LinearGradient colors={['#667eea', '#764ba2']} style={styles.gradient}>
-          <View style={styles.resultContainer}>
-            <View style={styles.resultCard}>
-              <Ionicons name="trophy" size={60} color="#FFD700" />
-              <Text style={styles.resultTitle}>نتيجة الكويز</Text>
-              
-              <View style={styles.scoreContainer}>
-                <Text style={styles.scoreText}>
-                  {score} من {questions.length}
-                </Text>
-                <Text style={[styles.percentageText, { color: result.color }]}>
-                  {percentage}%
-                </Text>
+      <SafeAreaView style={styles.container} edges={['top']}>
+        <View style={styles.header}>
+          <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+        </View>
+
+        <ScrollView contentContainerStyle={styles.resultScrollContent}>
+          <View style={styles.resultCard}>
+            <Text style={styles.resultEmoji}>{result.emoji}</Text>
+            <Text style={[styles.resultLevel, { color: result.color }]}>
+              {result.text}
+            </Text>
+            
+            <View style={styles.scoreCircle}>
+              <Text style={styles.scorePercentage}>{percentage}%</Text>
+              <Text style={styles.scoreText}>
+                {score} / {questions.length}
+              </Text>
+            </View>
+
+            <View style={styles.resultStats}>
+              <View style={styles.resultStatItem}>
+                <CheckCircle2 size={24} color="#10b981" />
+                <Text style={styles.resultStatNumber}>{score}</Text>
+                <Text style={styles.resultStatLabel}>صحيحة</Text>
               </View>
 
-              <Text style={[styles.resultMessage, { color: result.color }]}>
-                {result.text}
-              </Text>
-              
-              <TouchableOpacity style={styles.resetButton} onPress={resetQuiz}>
-                <LinearGradient
-                  colors={['#FF6B6B', '#FF8E53']}
-                  style={styles.buttonGradient}
-                >
-                  <Ionicons name="refresh" size={20} color="white" />
-                  <Text style={styles.buttonText}>إعادة الكويز</Text>
-                </LinearGradient>
-              </TouchableOpacity>
+              <View style={styles.resultStatItem}>
+                <AlertCircle size={24} color="#ef4444" />
+                <Text style={styles.resultStatNumber}>{questions.length - score}</Text>
+                <Text style={styles.resultStatLabel}>خاطئة</Text>
+              </View>
             </View>
+
+            <TouchableOpacity
+              style={styles.resetButton}
+              onPress={resetQuiz}
+            >
+              <Text style={styles.resetButtonText}>إعادة الكويز</Text>
+            </TouchableOpacity>
           </View>
-        </LinearGradient>
+        </ScrollView>
       </SafeAreaView>
     );
   }
 
   const question = questions[currentQuestion];
+  const isCorrect = selectedAnswer === question.correctAnswer;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top']}>
+      {/* Header */}
       <View style={styles.header}>
-        <View style={styles.progressContainer}>
-          <View style={styles.progressBar}>
-            <Animated.View
-              style={[
-                styles.progressFill,
-                {
-                  width: progress.interpolate({
-                    inputRange: [0, 100],
-                    outputRange: ['0%', '100%'],
-                  }),
-                },
-              ]}
-            />
-          </View>
-          <Text style={styles.progressText}>
-            السؤال {currentQuestion + 1} من {questions.length}
-          </Text>
-        </View>
+        <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+      </View>
 
-        <View style={styles.topicBadge}>
-          <Text style={styles.topicText}>
-            {topicLabels[question.topic]}
+      {/* Progress Bar */}
+      <View style={styles.progressContainer}>
+        <View style={styles.progressInfo}>
+          <Text style={styles.progressText}>
+            Question {currentQuestion + 1} sur {questions.length}
           </Text>
+          <Text style={styles.scoreText}>Score : {score}</Text>
+        </View>
+        <View style={styles.progressBar}>
+          <Animated.View
+            style={[
+              styles.progressFill,
+              {
+                width: progressAnim.interpolate({
+                  inputRange: [0, 100],
+                  outputRange: ['0%', '100%'],
+                }),
+              },
+            ]}
+          />
         </View>
       </View>
 
-      <ScrollView style={styles.questionContainer} contentContainerStyle={styles.questionContent}>
-        <Text style={styles.questionText}>{question.question}</Text>
-        
+      <ScrollView 
+        style={styles.content}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}
+      >
+        {/* Badges */}
+        <View style={styles.badgesContainer}>
+          <View style={[styles.badge, styles.badgeGreen]}>
+            <Text style={styles.badgeText}>Débutant</Text>
+          </View>
+          <View style={[styles.badge, styles.badgeBlue]}>
+            <Text style={styles.badgeText}>{topicLabels[question.topic]}</Text>
+          </View>
+        </View>
+
+        {/* Question */}
+        <View style={styles.questionCard}>
+          <Text style={styles.questionText}>{question.question}</Text>
+        </View>
+
+        {/* Options */}
         <View style={styles.optionsContainer}>
-          {question.options.map((option, index) => (
-            <TouchableOpacity
-              key={index}
-              style={[
-                styles.optionButton,
-                selectedAnswer === index && styles.selectedOption
-              ]}
-              onPress={() => handleAnswerSelect(index)}
-              activeOpacity={0.7}
-            >
-              <View style={styles.optionContent}>
-                <View style={[
-                  styles.optionCircle,
-                  selectedAnswer === index && styles.selectedCircle
-                ]}>
-                  {selectedAnswer === index && (
-                    <Ionicons name="checkmark" size={16} color="white" />
-                  )}
-                </View>
+          {question.options.map((option, index) => {
+            const isSelected = selectedAnswer === index;
+            const isCorrectAnswer = index === question.correctAnswer;
+            const showCorrect = showExplanation && isCorrectAnswer;
+            const showWrong = showExplanation && isSelected && !isCorrect;
+
+            return (
+              <TouchableOpacity
+                key={index}
+                style={[
+                  styles.optionButton,
+                  showCorrect && styles.optionCorrect,
+                  showWrong && styles.optionWrong,
+                  isSelected && !showExplanation && styles.optionSelected,
+                ]}
+                onPress={() => handleAnswerSelect(index)}
+                disabled={showExplanation}
+                activeOpacity={0.7}
+              >
                 <Text style={[
                   styles.optionText,
-                  selectedAnswer === index && styles.selectedOptionText
+                  (showCorrect || (isSelected && !showExplanation)) && styles.optionTextSelected,
                 ]}>
                   {option}
                 </Text>
-              </View>
-            </TouchableOpacity>
-          ))}
+                {showCorrect && (
+                  <CheckCircle2 size={20} color="#10b981" style={styles.optionIcon} />
+                )}
+              </TouchableOpacity>
+            );
+          })}
         </View>
-      </ScrollView>
 
-      <TouchableOpacity
-        style={[styles.nextButton, selectedAnswer === null && styles.disabledButton]}
-        onPress={handleNextQuestion}
-        disabled={selectedAnswer === null}
-      >
-        <Text style={styles.buttonText}>
-          {currentQuestion + 1 === questions.length ? 'إنهاء الكويز' : 'السؤال التالي'}
-        </Text>
-        <Ionicons 
-          name={currentQuestion + 1 === questions.length ? "checkmark" : "arrow-forward"} 
-          size={20} 
-          color="white" 
-        />
-      </TouchableOpacity>
+        {/* Explanation */}
+        {showExplanation && (
+          <View style={[
+            styles.explanationCard,
+            isCorrect ? styles.explanationCorrect : styles.explanationWrong
+          ]}>
+            <View style={styles.explanationHeader}>
+              {isCorrect ? (
+                <CheckCircle2 size={20} color="#10b981" />
+              ) : (
+                <AlertCircle size={20} color="#ef4444" />
+              )}
+              <Text style={[
+                styles.explanationTitle,
+                isCorrect ? styles.explanationTitleCorrect : styles.explanationTitleWrong
+              ]}>
+                {isCorrect ? 'Réponse correcte !' : 'Temps écoulé ! Réponse correcte :'}
+              </Text>
+            </View>
+            
+            {!isCorrect && (
+              <Text style={styles.correctAnswerText}>
+                {question.options[question.correctAnswer]}
+              </Text>
+            )}
+
+            <View style={styles.explanationContent}>
+              <Text style={styles.explanationLabel}>Explication :</Text>
+              <Text style={styles.explanationText}>{question.explanation}</Text>
+            </View>
+          </View>
+        )}
+
+        {/* Next Button */}
+        {showExplanation && (
+          <TouchableOpacity
+            style={styles.nextButton}
+            onPress={handleNextQuestion}
+          >
+            <Text style={styles.nextButtonText}>
+              {currentQuestion + 1 === questions.length ? 'Terminer' : 'Question suivante'}
+            </Text>
+          </TouchableOpacity>
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -185,206 +250,275 @@ function QuizScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8f9fa',
-  },
-  gradient: {
-    flex: 1,
+    backgroundColor: '#f8fafc',
   },
   header: {
-    padding: 20,
-    paddingTop: 50,
-    backgroundColor: '#fff',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 3,
+    backgroundColor: '#ffffff',
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1f2937',
   },
   progressContainer: {
-    marginBottom: 15,
+    backgroundColor: '#ffffff',
+    paddingHorizontal: 20,
+    paddingBottom: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
   },
-  progressBar: {
-    height: 8,
-    backgroundColor: '#e0e0e0',
-    borderRadius: 4,
-    marginBottom: 10,
-  },
-  progressFill: {
-    height: 8,
-    backgroundColor: '#4CAF50',
-    borderRadius: 4,
+  progressInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 12,
   },
   progressText: {
     fontSize: 14,
-    color: '#666',
-    textAlign: 'center',
+    color: '#6b7280',
+    fontWeight: '500',
+  },
+  scoreText: {
+    fontSize: 14,
+    color: '#6b7280',
     fontWeight: '600',
   },
-  topicBadge: {
-    alignSelf: 'center',
-    backgroundColor: '#667eea',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 20,
+  progressBar: {
+    height: 6,
+    backgroundColor: '#e5e7eb',
+    borderRadius: 3,
+    overflow: 'hidden',
   },
-  topicText: {
-    color: 'white',
-    fontSize: 14,
-    fontWeight: 'bold',
+  progressFill: {
+    height: '100%',
+    backgroundColor: '#3b82f6',
+    borderRadius: 3,
   },
-  questionContainer: {
+  content: {
     flex: 1,
   },
-  questionContent: {
+  scrollContent: {
     padding: 20,
+    paddingBottom: 40,
   },
-  questionText: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 25,
-    lineHeight: 30,
-    textAlign: 'right',
+  badgesContainer: {
+    flexDirection: 'row',
+    gap: 8,
+    marginBottom: 20,
   },
-  optionsContainer: {
-    marginTop: 10,
+  badge: {
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 16,
   },
-  optionButton: {
-    backgroundColor: 'white',
-    marginBottom: 12,
+  badgeGreen: {
+    backgroundColor: '#d1fae5',
+  },
+  badgeBlue: {
+    backgroundColor: '#dbeafe',
+  },
+  badgeText: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#1f2937',
+  },
+  questionCard: {
+    backgroundColor: '#ffffff',
     borderRadius: 12,
-    borderWidth: 2,
-    borderColor: '#e0e0e0',
-    elevation: 2,
+    padding: 20,
+    marginBottom: 20,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.1,
+    shadowOpacity: 0.05,
     shadowRadius: 2,
+    elevation: 1,
   },
-  selectedOption: {
-    borderColor: '#667eea',
-    backgroundColor: '#f0f4ff',
-    elevation: 4,
+  questionText: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1f2937',
+    lineHeight: 26,
   },
-  optionContent: {
+  optionsContainer: {
+    gap: 12,
+    marginBottom: 20,
+  },
+  optionButton: {
+    backgroundColor: '#ffffff',
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 2,
+    borderColor: '#e5e7eb',
     flexDirection: 'row',
     alignItems: 'center',
-    padding: 16,
+    justifyContent: 'space-between',
   },
-  optionCircle: {
-    width: 24,
-    height: 24,
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor: '#e0e0e0',
-    marginRight: 12,
-    alignItems: 'center',
-    justifyContent: 'center',
+  optionSelected: {
+    borderColor: '#3b82f6',
+    backgroundColor: '#eff6ff',
   },
-  selectedCircle: {
-    backgroundColor: '#667eea',
-    borderColor: '#667eea',
+  optionCorrect: {
+    borderColor: '#10b981',
+    backgroundColor: '#d1fae5',
+  },
+  optionWrong: {
+    borderColor: '#ef4444',
+    backgroundColor: '#fee2e2',
   },
   optionText: {
     fontSize: 16,
-    color: '#333',
+    color: '#4b5563',
     flex: 1,
-    textAlign: 'right',
     lineHeight: 22,
   },
-  selectedOptionText: {
-    color: '#667eea',
+  optionTextSelected: {
+    color: '#1f2937',
+    fontWeight: '500',
+  },
+  optionIcon: {
+    marginLeft: 8,
+  },
+  explanationCard: {
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 20,
+    borderWidth: 1,
+  },
+  explanationCorrect: {
+    backgroundColor: '#d1fae5',
+    borderColor: '#10b981',
+  },
+  explanationWrong: {
+    backgroundColor: '#fee2e2',
+    borderColor: '#ef4444',
+  },
+  explanationHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 12,
+  },
+  explanationTitle: {
+    fontSize: 15,
     fontWeight: '600',
   },
+  explanationTitleCorrect: {
+    color: '#047857',
+  },
+  explanationTitleWrong: {
+    color: '#dc2626',
+  },
+  correctAnswerText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#1f2937',
+    marginBottom: 12,
+    paddingLeft: 28,
+  },
+  explanationContent: {
+    paddingLeft: 28,
+  },
+  explanationLabel: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#374151',
+    marginBottom: 6,
+  },
+  explanationText: {
+    fontSize: 14,
+    color: '#4b5563',
+    lineHeight: 20,
+  },
   nextButton: {
-    backgroundColor: '#667eea',
-    margin: 20,
-    paddingVertical: 16,
+    backgroundColor: '#3b82f6',
     borderRadius: 12,
-    flexDirection: 'row',
+    padding: 16,
     alignItems: 'center',
-    justifyContent: 'center',
-    gap: 8,
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
   },
-  disabledButton: {
-    backgroundColor: '#ccc',
-    elevation: 0,
-  },
-  buttonText: {
-    color: 'white',
+  nextButtonText: {
+    color: '#ffffff',
     fontSize: 16,
-    fontWeight: 'bold',
+    fontWeight: '600',
   },
-  buttonGradient: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 16,
-    paddingHorizontal: 24,
-    gap: 8,
-    borderRadius: 12,
-  },
-  resultContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 20,
+  // Result Screen Styles
+  resultScrollContent: {
+    flexGrow: 1,
+    padding: 20,
   },
   resultCard: {
-    backgroundColor: 'white',
-    borderRadius: 20,
+    backgroundColor: '#ffffff',
+    borderRadius: 16,
     padding: 30,
     alignItems: 'center',
-    elevation: 10,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.25,
-    shadowRadius: 10,
-    width: '100%',
-    maxWidth: 350,
-  },
-  resultTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#333',
-    marginTop: 20,
-    marginBottom: 20,
-  },
-  scoreContainer: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  scoreText: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#667eea',
-    marginBottom: 10,
-  },
-  percentageText: {
-    fontSize: 48,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  resultMessage: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 30,
-  },
-  resetButton: {
-    borderRadius: 12,
-    overflow: 'hidden',
-    elevation: 3,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+  },
+  resultEmoji: {
+    fontSize: 64,
+    marginBottom: 16,
+  },
+  resultLevel: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 24,
+  },
+  scoreCircle: {
+    width: 140,
+    height: 140,
+    borderRadius: 70,
+    backgroundColor: '#f0f9ff',
+    borderWidth: 8,
+    borderColor: '#3b82f6',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  scorePercentage: {
+    fontSize: 36,
+    fontWeight: 'bold',
+    color: '#1e40af',
+  },
+  scoreText: {
+    fontSize: 16,
+    color: '#6b7280',
+    marginTop: 4,
+  },
+  resultStats: {
+    flexDirection: 'row',
+    gap: 40,
+    marginBottom: 30,
+  },
+  resultStatItem: {
+    alignItems: 'center',
+    gap: 8,
+  },
+  resultStatNumber: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#1f2937',
+  },
+  resultStatLabel: {
+    fontSize: 14,
+    color: '#6b7280',
+  },
+  resetButton: {
+    backgroundColor: '#3b82f6',
+    paddingHorizontal: 32,
+    paddingVertical: 14,
+    borderRadius: 12,
+  },
+  resetButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
-export default QuizScreen;
