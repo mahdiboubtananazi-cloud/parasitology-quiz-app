@@ -4,7 +4,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { sampleQuestions, topicLabels } from '../data/parasitology';
 
-export default function QuizScreen() {
+function QuizScreen() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
@@ -387,3 +387,4 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
   },
 });
+export default QuizScreen;

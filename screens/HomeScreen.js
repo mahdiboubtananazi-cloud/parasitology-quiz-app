@@ -1,67 +1,76 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Ionicons } from '@expo/vector-icons';
+import { Home, PlayCircle, BookOpen, Trophy, Award } from 'lucide-react-native';
 
 export default function HomeScreen({ navigation }) {
   return (
-    <SafeAreaView style={styles.container}>
-      <LinearGradient colors={['#667eea', '#764ba2']} style={styles.gradient}>
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <LinearGradient
+        colors={['#3b82f6', '#1e40af']}
+        style={styles.gradient}
+      >
         <ScrollView contentContainerStyle={styles.scrollContent}>
+          {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.welcomeText}>مرحباً بك في</Text>
             <Text style={styles.title}>كويز علم الطفيليات</Text>
             <Text style={styles.subtitle}>اختبر معلوماتك في الطفيليات الطبية</Text>
           </View>
 
-          <TouchableOpacity 
+          {/* زر البدء الكبير */}
+          <TouchableOpacity
             style={styles.startButton}
             onPress={() => navigation.navigate('Quiz')}
             activeOpacity={0.8}
           >
             <LinearGradient
-              colors={['#FF6B6B', '#FF8E53']}
-              style={styles.buttonGradient}
+              colors={['#10b981', '#059669']}
+              style={styles.startGradient}
               start={{ x: 0, y: 0 }}
-              end={{ x: 1, y: 0 }}
+              end={{ x: 1, y: 1 }}
             >
-              <Ionicons name="play-circle" size={24} color="white" />
-              <Text style={styles.buttonText}>ابدأ الكويز</Text>
+              <PlayCircle size={32} color="white" />
+              <Text style={styles.startButtonText}>ابدأ الكويز الآن</Text>
             </LinearGradient>
           </TouchableOpacity>
 
+          {/* الإحصائيات */}
           <View style={styles.statsContainer}>
             <View style={styles.statCard}>
-              <View style={styles.statIcon}>
-                <Ionicons name="help-circle" size={24} color="#4ECDC4" />
+              <View style={styles.statIconContainer}>
+                <BookOpen size={24} color="#3b82f6" />
               </View>
               <Text style={styles.statNumber}>10</Text>
               <Text style={styles.statLabel}>أسئلة</Text>
             </View>
 
             <View style={styles.statCard}>
-              <View style={styles.statIcon}>
-                <Ionicons name="library" size={24} color="#45B7D1" />
+              <View style={styles.statIconContainer}>
+                <Award size={24} color="#10b981" />
               </View>
               <Text style={styles.statNumber}>8</Text>
               <Text style={styles.statLabel}>مواضيع</Text>
             </View>
 
             <View style={styles.statCard}>
-              <View style={styles.statIcon}>
-                <Ionicons name="checkmark-circle" size={24} color="#96CEB4" />
+              <View style={styles.statIconContainer}>
+                <Trophy size={24} color="#f59e0b" />
               </View>
               <Text style={styles.statNumber}>100%</Text>
               <Text style={styles.statLabel}>جودة</Text>
             </View>
           </View>
 
+          {/* معلومات إضافية */}
           <View style={styles.infoCard}>
-            <Ionicons name="information-circle" size={24} color="white" />
+            <View style={styles.infoIconContainer}>
+              <Home size={20} color="#3b82f6" />
+            </View>
             <View style={styles.infoTextContainer}>
-              <Text style={styles.infoTitle}>نصيحة</Text>
+              <Text style={styles.infoTitle}>نصيحة مهمة</Text>
               <Text style={styles.infoText}>
-                اقرأ كل سؤال بعناية قبل اختيار الإجابة
+                اقرأ كل سؤال بعناية قبل اختيار الإجابة للحصول على أفضل نتيجة
               </Text>
             </View>
           </View>
@@ -74,6 +83,7 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#3b82f6',
   },
   gradient: {
     flex: 1,
@@ -81,108 +91,110 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     paddingHorizontal: 20,
-    paddingBottom: 20,
+    paddingBottom: 30,
   },
   header: {
     alignItems: 'center',
-    paddingTop: 60,
+    paddingTop: 40,
     paddingBottom: 30,
   },
-  welcomeText: {
-    fontSize: 16,
-    color: 'rgba(255,255,255,0.8)',
-    marginBottom: 5,
-  },
   title: {
-    fontSize: 28,
+    fontSize: 32,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: 8,
   },
   subtitle: {
     fontSize: 16,
-    color: 'rgba(255,255,255,0.8)',
+    color: 'rgba(255,255,255,0.9)',
     textAlign: 'center',
     lineHeight: 24,
   },
   startButton: {
     marginVertical: 30,
-    borderRadius: 25,
+    borderRadius: 16,
     overflow: 'hidden',
-    elevation: 5,
+    elevation: 8,
     shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
   },
-  buttonGradient: {
+  startGradient: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingVertical: 18,
-    paddingHorizontal: 40,
-    gap: 10,
+    paddingVertical: 20,
+    gap: 12,
   },
-  buttonText: {
+  startButtonText: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 30,
+    gap: 10,
   },
   statCard: {
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    borderRadius: 15,
+    backgroundColor: 'white',
+    borderRadius: 16,
     padding: 20,
     alignItems: 'center',
     flex: 1,
-    marginHorizontal: 5,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)',
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
-  statIcon: {
-    marginBottom: 10,
+  statIconContainer: {
+    marginBottom: 12,
   },
   statNumber: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 5,
+    color: '#1f2937',
+    marginBottom: 4,
   },
   statLabel: {
-    fontSize: 12,
-    color: 'rgba(255,255,255,0.8)',
+    fontSize: 14,
+    color: '#6b7280',
     textAlign: 'center',
   },
   infoCard: {
-    backgroundColor: 'rgba(255,255,255,0.15)',
-    borderRadius: 15,
+    backgroundColor: 'rgba(255,255,255,0.95)',
+    borderRadius: 16,
     padding: 20,
     flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.2)',
+    alignItems: 'flex-start',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+  },
+  infoIconContainer: {
+    backgroundColor: '#dbeafe',
+    padding: 10,
+    borderRadius: 12,
+    marginRight: 15,
   },
   infoTextContainer: {
     flex: 1,
-    marginLeft: 15,
   },
   infoTitle: {
     fontSize: 16,
     fontWeight: 'bold',
-    color: 'white',
-    marginBottom: 5,
+    color: '#1f2937',
+    marginBottom: 6,
   },
   infoText: {
     fontSize: 14,
-    color: 'rgba(255,255,255,0.9)',
+    color: '#4b5563',
     lineHeight: 20,
   },
 });
