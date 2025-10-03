@@ -20,7 +20,7 @@ export default function App() {
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
-              if (route.name === 'Accueil') {
+              if (route.name === 'APropos') {
                 iconName = focused ? 'home' : 'home-outline';
               } else if (route.name === 'Quiz') {
                 iconName = focused ? 'help-circle' : 'help-circle-outline';
@@ -41,7 +41,7 @@ export default function App() {
           })}
         >
           <Tab.Screen name="Quiz" component={QuizScreen} options={{ title: 'Quiz' }} />
-          <Tab.Screen name="Accueil" component={HomeScreen} options={{ title: 'Accueil' }} />
+          <Tab.Screen name="APropos" component={HomeScreen} options={{ title: 'À propos' }} />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>

@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
-import { Home, PlayCircle, BookOpen, Trophy, Award } from 'lucide-react-native';
+import { PlayCircle, Target, Layers, Tags, BarChart3, Users } from 'lucide-react-native';
 
 export default function HomeScreen({ navigation }) {
   return (
@@ -14,8 +14,10 @@ export default function HomeScreen({ navigation }) {
         <ScrollView contentContainerStyle={styles.scrollContent}>
           {/* Header */}
           <View style={styles.header}>
-            <Text style={styles.title}>كويز علم الطفيليات</Text>
-            <Text style={styles.subtitle}>اختبر معلوماتك في الطفيليات الطبية</Text>
+            <Text style={styles.title}>🔬 Quiz de Parasitologie</Text>
+            <Text style={styles.subtitle}>
+              Application éducative pour les étudiants en parasitologie et médecine
+            </Text>
           </View>
 
           {/* زر البدء الكبير */}
@@ -31,47 +33,126 @@ export default function HomeScreen({ navigation }) {
               end={{ x: 1, y: 1 }}
             >
               <PlayCircle size={32} color="white" />
-              <Text style={styles.startButtonText}>ابدأ الكويز الآن</Text>
+              <Text style={styles.startButtonText}>Commencer le Quiz</Text>
             </LinearGradient>
           </TouchableOpacity>
 
-          {/* الإحصائيات */}
-          <View style={styles.statsContainer}>
-            <View style={styles.statCard}>
-              <View style={styles.statIconContainer}>
-                <BookOpen size={24} color="#3b82f6" />
+          {/* قسم الميزات */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>🎯 FONCTIONNALITÉS</Text>
+            <View style={styles.featuresGrid}>
+              {/* الميزة 1 */}
+              <View style={styles.featureCard}>
+                <View style={styles.featureIcon}>
+                  <Target size={28} color="#3b82f6" />
+                </View>
+                <Text style={styles.featureTitle}>Questions ciblées</Text>
+                <Text style={styles.featureDescription}>
+                  Plus de 20 questions couvrant tous les aspects de la parasitologie
+                </Text>
               </View>
-              <Text style={styles.statNumber}>10</Text>
-              <Text style={styles.statLabel}>أسئلة</Text>
-            </View>
 
-            <View style={styles.statCard}>
-              <View style={styles.statIconContainer}>
-                <Award size={24} color="#10b981" />
+              {/* الميزة 2 */}
+              <View style={styles.featureCard}>
+                <View style={styles.featureIcon}>
+                  <Layers size={28} color="#10b981" />
+                </View>
+                <Text style={styles.featureTitle}>3 niveaux</Text>
+                <Text style={styles.featureDescription}>
+                  Débutant, intermédiaire et avancé pour progresser à votre rythme
+                </Text>
               </View>
-              <Text style={styles.statNumber}>8</Text>
-              <Text style={styles.statLabel}>مواضيع</Text>
-            </View>
 
-            <View style={styles.statCard}>
-              <View style={styles.statIconContainer}>
-                <Trophy size={24} color="#f59e0b" />
+              {/* الميزة 3 */}
+              <View style={styles.featureCard}>
+                <View style={styles.featureIcon}>
+                  <Tags size={28} color="#f59e0b" />
+                </View>
+                <Text style={styles.featureTitle}>6 catégories</Text>
+                <Text style={styles.featureDescription}>
+                  Protozoaires, helminthes, diagnostic, thérapeutique et plus
+                </Text>
               </View>
-              <Text style={styles.statNumber}>100%</Text>
-              <Text style={styles.statLabel}>جودة</Text>
+
+              {/* الميزة 4 */}
+              <View style={styles.featureCard}>
+                <View style={styles.featureIcon}>
+                  <BarChart3 size={28} color="#ef4444" />
+                </View>
+                <Text style={styles.featureTitle}>Suivi des scores</Text>
+                <Text style={styles.featureDescription}>
+                  Évaluez vos connaissances et suivez vos progrès
+                </Text>
+              </View>
             </View>
           </View>
 
-          {/* معلومات إضافية */}
-          <View style={styles.infoCard}>
-            <View style={styles.infoIconContainer}>
-              <Home size={20} color="#3b82f6" />
+          {/* قسم الفئات */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>🦠 CATÉGORIES COUVERTES</Text>
+            <View style={styles.categoriesContainer}>
+              {/* الفئة 1 */}
+              <View style={styles.categoryCard}>
+                <Text style={styles.categoryEmoji}>🦠</Text>
+                <Text style={styles.categoryTitle}>Protozoaires</Text>
+                <Text style={styles.categoryItems}>
+                  Paludisme, leishmaniose, toxoplasmose, amibiase
+                </Text>
+              </View>
+
+              {/* الفئة 2 */}
+              <View style={styles.categoryCard}>
+                <Text style={styles.categoryEmoji}>🪱</Text>
+                <Text style={styles.categoryTitle}>Plathelminthes</Text>
+                <Text style={styles.categoryItems}>
+                  Schistosomiase, téniasis, cysticercose, échinococcose
+                </Text>
+              </View>
+
+              {/* الفئة 3 */}
+              <View style={styles.categoryCard}>
+                <Text style={styles.categoryEmoji}>🐛</Text>
+                <Text style={styles.categoryTitle}>Némathelminthes</Text>
+                <Text style={styles.categoryItems}>
+                  Ascaridiose, filarioses, ankylostomiase, oxyurose
+                </Text>
+              </View>
+
+              {/* الفئة 4 */}
+              <View style={styles.categoryCard}>
+                <Text style={styles.categoryEmoji}>🔬</Text>
+                <Text style={styles.categoryTitle}>Diagnostic</Text>
+                <Text style={styles.categoryItems}>
+                  Techniques de laboratoire, tests rapides, sérologie
+                </Text>
+              </View>
+
+              {/* الفئة 5 */}
+              <View style={styles.categoryCard}>
+                <Text style={styles.categoryEmoji}>💊</Text>
+                <Text style={styles.categoryTitle}>Thérapeutique</Text>
+                <Text style={styles.categoryItems}>
+                  Antiparasitaires, mécanismes d'action, résistances
+                </Text>
+              </View>
             </View>
-            <View style={styles.infoTextContainer}>
-              <Text style={styles.infoTitle}>نصيحة مهمة</Text>
-              <Text style={styles.infoText}>
-                اقرأ كل سؤال بعناية قبل اختيار الإجابة للحصول على أفضل نتيجة
-              </Text>
+          </View>
+
+          {/* قسم الجمهور المستهدف */}
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>🎓 PUBLIC CIBLE</Text>
+            <View style={styles.audienceCard}>
+              <View style={styles.audienceIcon}>
+                <Users size={24} color="#3b82f6" />
+              </View>
+              <View style={styles.audienceContent}>
+                <Text style={styles.audienceTitle}>Étudiants en Médecine</Text>
+                <Text style={styles.audienceDescription}>
+                  Application spécialement conçue pour les étudiants en médecine, 
+                  parasitologie et sciences biologiques pour renforcer leurs connaissances 
+                  en parasitologie médicale de manière interactive et efficace.
+                </Text>
+              </View>
             </View>
           </View>
         </ScrollView>
@@ -99,17 +180,18 @@ const styles = StyleSheet.create({
     paddingBottom: 30,
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
     color: 'white',
     textAlign: 'center',
-    marginBottom: 8,
+    marginBottom: 12,
   },
   subtitle: {
     fontSize: 16,
     color: 'rgba(255,255,255,0.9)',
     textAlign: 'center',
-    lineHeight: 24,
+    lineHeight: 22,
+    maxWidth: 300,
   },
   startButton: {
     marginVertical: 30,
@@ -130,42 +212,84 @@ const styles = StyleSheet.create({
   },
   startButtonText: {
     color: 'white',
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
   },
-  statsContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+  section: {
     marginBottom: 30,
-    gap: 10,
   },
-  statCard: {
-    backgroundColor: 'white',
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 16,
+    textAlign: 'center',
+  },
+  featuresGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    gap: 12,
+  },
+  featureCard: {
+    backgroundColor: 'rgba(255,255,255,0.95)',
     borderRadius: 16,
-    padding: 20,
-    alignItems: 'center',
-    flex: 1,
+    padding: 16,
+    width: '48%',
+    minHeight: 160,
     elevation: 4,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.1,
     shadowRadius: 4,
   },
-  statIconContainer: {
+  featureIcon: {
     marginBottom: 12,
   },
-  statNumber: {
+  featureTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#1f2937',
+    marginBottom: 8,
+  },
+  featureDescription: {
+    fontSize: 12,
+    color: '#4b5563',
+    lineHeight: 16,
+  },
+  categoriesContainer: {
+    gap: 12,
+  },
+  categoryCard: {
+    backgroundColor: 'rgba(255,255,255,0.95)',
+    borderRadius: 16,
+    padding: 16,
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+  },
+  categoryEmoji: {
     fontSize: 24,
+    marginRight: 12,
+    marginTop: 2,
+  },
+  categoryTitle: {
+    fontSize: 16,
     fontWeight: 'bold',
     color: '#1f2937',
     marginBottom: 4,
   },
-  statLabel: {
-    fontSize: 14,
-    color: '#6b7280',
-    textAlign: 'center',
+  categoryItems: {
+    fontSize: 12,
+    color: '#4b5563',
+    lineHeight: 16,
+    flex: 1,
   },
-  infoCard: {
+  audienceCard: {
     backgroundColor: 'rgba(255,255,255,0.95)',
     borderRadius: 16,
     padding: 20,
@@ -177,22 +301,22 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 2,
   },
-  infoIconContainer: {
+  audienceIcon: {
     backgroundColor: '#dbeafe',
     padding: 10,
     borderRadius: 12,
     marginRight: 15,
   },
-  infoTextContainer: {
+  audienceContent: {
     flex: 1,
   },
-  infoTitle: {
+  audienceTitle: {
     fontSize: 16,
     fontWeight: 'bold',
     color: '#1f2937',
     marginBottom: 6,
   },
-  infoText: {
+  audienceDescription: {
     fontSize: 14,
     color: '#4b5563',
     lineHeight: 20,
