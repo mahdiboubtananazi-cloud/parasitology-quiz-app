@@ -1,8 +1,8 @@
-// screens/QuizScreen.js - نسخة Rork الكاملة
+// screens/QuizScreen.js - النسخة المحسنة
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CheckCircle2, AlertCircle, Book, Trophy } from 'lucide-react-native';
+import { CheckCircle2, AlertCircle, Filter } from 'lucide-react-native';
 import { sampleQuestions, topicLabels } from '../data/parasitology';
 
 export default function QuizScreen() {
@@ -23,7 +23,7 @@ export default function QuizScreen() {
   }, [currentQuestion]);
 
   const handleAnswerSelect = (answerIndex) => {
-    if (showExplanation) return; // منع التغيير بعد الإجابة
+    if (showExplanation) return;
     
     setSelectedAnswer(answerIndex);
     setShowExplanation(true);
@@ -56,10 +56,10 @@ export default function QuizScreen() {
   if (showResult) {
     const percentage = Math.round((score / questions.length) * 100);
     const getResultLevel = () => {
-      if (percentage >= 90) return { text: 'ممتاز!', emoji: '🌟', color: '#10b981' };
-      if (percentage >= 70) return { text: 'جيد جداً!', emoji: '👍', color: '#3b82f6' };
-      if (percentage >= 50) return { text: 'جيد', emoji: '👌', color: '#f59e0b' };
-      return { text: 'تحتاج للمراجعة', emoji: '📚', color: '#ef4444' };
+      if (percentage >= 90) return { text: 'Excellent!', emoji: '🌟', color: '#10b981' };
+      if (percentage >= 70) return { text: 'Très bien!', emoji: '👍', color: '#3b82f6' };
+      if (percentage >= 50) return { text: 'Bien', emoji: '👌', color: '#f59e0b' };
+      return { text: 'Révision nécessaire', emoji: '📚', color: '#ef4444' };
     };
 
     const result = getResultLevel();
@@ -67,7 +67,7 @@ export default function QuizScreen() {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+          <Text style={styles.headerTitle}>🔬 Quiz de Parasitologie</Text>
         </View>
 
         <ScrollView contentContainerStyle={styles.resultScrollContent}>
@@ -88,13 +88,13 @@ export default function QuizScreen() {
               <View style={styles.resultStatItem}>
                 <CheckCircle2 size={24} color="#10b981" />
                 <Text style={styles.resultStatNumber}>{score}</Text>
-                <Text style={styles.resultStatLabel}>صحيحة</Text>
+                <Text style={styles.resultStatLabel}>Correctes</Text>
               </View>
 
               <View style={styles.resultStatItem}>
                 <AlertCircle size={24} color="#ef4444" />
                 <Text style={styles.resultStatNumber}>{questions.length - score}</Text>
-                <Text style={styles.resultStatLabel}>خاطئة</Text>
+                <Text style={styles.resultStatLabel}>Incorrectes</Text>
               </View>
             </View>
 
@@ -102,7 +102,7 @@ export default function QuizScreen() {
               style={styles.resetButton}
               onPress={resetQuiz}
             >
-              <Text style={styles.resetButtonText}>إعادة الكويز</Text>
+              <Text style={styles.resetButtonText}>Recommencer le Quiz</Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -111,35 +111,27 @@ export default function QuizScreen() {
   }
 
   const question = questions[currentQuestion];
-  const isCorrect = selectedAnswer === question.correctAnswer;
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Header */}
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+      {/* Header الرئيسي مع الأيموجي وزر الفلتر */}
+      <View style={styles.mainHeader}>
+        <Text style={styles.mainTitle}>🔬 Quiz de Parasitologie</Text>
+        <TouchableOpacity style={styles.filterButton}>
+          <Filter size={24} color="#3b82f6" />
+        </TouchableOpacity>
       </View>
 
-      {/* Progress Bar */}
-      <View style={styles.progressContainer}>
-        <View style={styles.progressInfo}>
-          <Text style={styles.progressText}>
-            Question {currentQuestion + 1} sur {questions.length}
-          </Text>
-          <Text style={styles.scoreText}>Score : {score}</Text>
+      {/* إطار رقم السؤال والنتيجة */}
+      <View style={styles.statsFrame}>
+        <View style={styles.statItem}>
+          <Text style={styles.statLabel}>Question</Text>
+          <Text style={styles.statValue}>{currentQuestion + 1}/{questions.length}</Text>
         </View>
-        <View style={styles.progressBar}>
-          <Animated.View
-            style={[
-              styles.progressFill,
-              {
-                width: progressAnim.interpolate({
-                  inputRange: [0, 100],
-                  outputRange: ['0%', '100%'],
-                }),
-              },
-            ]}
-          />
+        <View style={styles.statSeparator} />
+        <View style={styles.statItem}>
+          <Text style={styles.statLabel}>Score</Text>
+          <Text style={styles.statValue}>{score}</Text>
         </View>
       </View>
 
@@ -158,18 +150,18 @@ export default function QuizScreen() {
           </View>
         </View>
 
-        {/* Question */}
+        {/* السؤال */}
         <View style={styles.questionCard}>
           <Text style={styles.questionText}>{question.question}</Text>
         </View>
 
-        {/* Options */}
+        {/* الخيارات */}
         <View style={styles.optionsContainer}>
           {question.options.map((option, index) => {
             const isSelected = selectedAnswer === index;
             const isCorrectAnswer = index === question.correctAnswer;
             const showCorrect = showExplanation && isCorrectAnswer;
-            const showWrong = showExplanation && isSelected && !isCorrect;
+            const showWrong = showExplanation && isSelected && !isCorrectAnswer;
 
             return (
               <TouchableOpacity
@@ -186,7 +178,7 @@ export default function QuizScreen() {
               >
                 <Text style={[
                   styles.optionText,
-                  (showCorrect || (isSelected && !showExplanation)) && styles.optionTextSelected,
+                  (showCorrect || isSelected) && styles.optionTextSelected,
                 ]}>
                   {option}
                 </Text>
@@ -198,47 +190,34 @@ export default function QuizScreen() {
           })}
         </View>
 
-        {/* Explanation */}
+        {/* التبرير */}
         {showExplanation && (
-          <View style={[
-            styles.explanationCard,
-            isCorrect ? styles.explanationCorrect : styles.explanationWrong
-          ]}>
+          <View style={styles.explanationCard}>
             <View style={styles.explanationHeader}>
-              {isCorrect ? (
+              {selectedAnswer === question.correctAnswer ? (
                 <CheckCircle2 size={20} color="#10b981" />
               ) : (
                 <AlertCircle size={20} color="#ef4444" />
               )}
-              <Text style={[
-                styles.explanationTitle,
-                isCorrect ? styles.explanationTitleCorrect : styles.explanationTitleWrong
-              ]}>
-                {isCorrect ? 'Réponse correcte !' : 'Temps écoulé ! Réponse correcte :'}
+              <Text style={styles.explanationTitle}>
+                {selectedAnswer === question.correctAnswer ? 'Réponse correcte !' : 'Réponse incorrecte'}
               </Text>
             </View>
             
-            {!isCorrect && (
-              <Text style={styles.correctAnswerText}>
-                {question.options[question.correctAnswer]}
-              </Text>
-            )}
-
-            <View style={styles.explanationContent}>
-              <Text style={styles.explanationLabel}>Explication :</Text>
-              <Text style={styles.explanationText}>{question.explanation}</Text>
-            </View>
+            <Text style={styles.explanationText}>
+              {question.explanation}
+            </Text>
           </View>
         )}
 
-        {/* Next Button */}
+        {/* زر التمرير للسؤال التالي */}
         {showExplanation && (
           <TouchableOpacity
             style={styles.nextButton}
             onPress={handleNextQuestion}
           >
             <Text style={styles.nextButtonText}>
-              {currentQuestion + 1 === questions.length ? 'Terminer' : 'Question suivante'}
+              {currentQuestion + 1 === questions.length ? 'Voir les résultats' : 'Question suivante →'}
             </Text>
           </TouchableOpacity>
         )}
@@ -252,53 +231,56 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f8fafc',
   },
-  header: {
+  // Header الرئيسي
+  mainHeader: {
     backgroundColor: '#ffffff',
-    paddingVertical: 16,
+    paddingVertical: 20,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#e5e7eb',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
+  mainTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
     color: '#1f2937',
   },
-  progressContainer: {
+  filterButton: {
+    padding: 8,
+    borderRadius: 8,
+    backgroundColor: '#f3f4f6',
+  },
+  // إطار الإحصائيات
+  statsFrame: {
     backgroundColor: '#ffffff',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    paddingVertical: 20,
     paddingHorizontal: 20,
-    paddingBottom: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#e5e7eb',
   },
-  progressInfo: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 12,
+  statItem: {
+    alignItems: 'center',
   },
-  progressText: {
+  statLabel: {
     fontSize: 14,
     color: '#6b7280',
     fontWeight: '500',
+    marginBottom: 4,
   },
-  scoreText: {
-    fontSize: 14,
-    color: '#6b7280',
-    fontWeight: '600',
+  statValue: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#3b82f6',
   },
-  progressBar: {
-    height: 6,
+  statSeparator: {
+    width: 1,
+    height: 40,
     backgroundColor: '#e5e7eb',
-    borderRadius: 3,
-    overflow: 'hidden',
-  },
-  progressFill: {
-    height: '100%',
-    backgroundColor: '#3b82f6',
-    borderRadius: 3,
   },
   content: {
     flex: 1,
@@ -344,6 +326,7 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#1f2937',
     lineHeight: 26,
+    textAlign: 'center',
   },
   optionsContainer: {
     gap: 12,
@@ -385,18 +368,12 @@ const styles = StyleSheet.create({
     marginLeft: 8,
   },
   explanationCard: {
+    backgroundColor: '#f8fafc',
     borderRadius: 12,
     padding: 16,
     marginBottom: 20,
     borderWidth: 1,
-  },
-  explanationCorrect: {
-    backgroundColor: '#d1fae5',
-    borderColor: '#10b981',
-  },
-  explanationWrong: {
-    backgroundColor: '#fee2e2',
-    borderColor: '#ef4444',
+    borderColor: '#e5e7eb',
   },
   explanationHeader: {
     flexDirection: 'row',
@@ -405,30 +382,9 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   explanationTitle: {
-    fontSize: 15,
-    fontWeight: '600',
-  },
-  explanationTitleCorrect: {
-    color: '#047857',
-  },
-  explanationTitleWrong: {
-    color: '#dc2626',
-  },
-  correctAnswerText: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '600',
     color: '#1f2937',
-    marginBottom: 12,
-    paddingLeft: 28,
-  },
-  explanationContent: {
-    paddingLeft: 28,
-  },
-  explanationLabel: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#374151',
-    marginBottom: 6,
   },
   explanationText: {
     fontSize: 14,
@@ -440,6 +396,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     alignItems: 'center',
+    marginTop: 10,
   },
   nextButtonText: {
     color: '#ffffff',
@@ -447,6 +404,21 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   // Result Screen Styles
+  header: {
+    backgroundColor: '#ffffff',
+    paddingVertical: 16,
+    paddingHorizontal: 20,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: '600',
+    color: '#1f2937',
+  },
   resultScrollContent: {
     flexGrow: 1,
     padding: 20,

@@ -1,4 +1,5 @@
 import React from 'react';
+import ProposScreen from './screens/ProposScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
@@ -19,7 +20,7 @@ export default function App() {
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
-              if (route.name === 'Home') {
+              if (route.name === 'Accueil') {
                 iconName = focused ? 'home' : 'home-outline';
               } else if (route.name === 'Quiz') {
                 iconName = focused ? 'help-circle' : 'help-circle-outline';
@@ -39,8 +40,8 @@ export default function App() {
             },
           })}
         >
-          <Tab.Screen name="Home" component={HomeScreen} options={{ title: 'الرئيسية' }} />
-          <Tab.Screen name="Quiz" component={QuizScreen} options={{ title: 'الكويز' }} />
+          <Tab.Screen name="Quiz" component={QuizScreen} options={{ title: 'Quiz' }} />
+          <Tab.Screen name="Accueil" component={HomeScreen} options={{ title: 'Accueil' }} />
         </Tab.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
