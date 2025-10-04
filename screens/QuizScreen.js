@@ -1,4 +1,4 @@
-// screens/QuizScreen.js - النسخة المُصلحة
+// screens/QuizScreen.js - Version Améliorée (Phase 2)
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Animated, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -22,7 +22,6 @@ export default function QuizScreen() {
   });
   const [showNoQuestions, setShowNoQuestions] = useState(false);
 
-  // تطبيق الفلاتر على الأسئلة
   const applyFiltersToQuestions = (filters) => {
     let filtered = [...allQuestions];
     
@@ -162,38 +161,40 @@ export default function QuizScreen() {
     setTimeLeft(30);
   };
 
-  // صفحة لا توجد أسئلة
   if (showNoQuestions) {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>🔬 Quiz de Parasitologie</Text>
+          <View style={styles.headerContent}>
+            <Text style={styles.headerIcon}>🔬</Text>
+            <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+          </View>
           <TouchableOpacity 
             style={styles.filterButton}
             onPress={() => setShowFilterModal(true)}
           >
-            <Filter size={20} color="#3b82f6" />
+            <Filter size={22} color="#3b82f6" />
           </TouchableOpacity>
         </View>
 
         <View style={styles.noQuestionsContainer}>
-          <Text style={styles.noQuestionsEmoji}>😕</Text>
+          <Text style={styles.noQuestionsEmoji}>🔍</Text>
           <Text style={styles.noQuestionsTitle}>Aucune question trouvée</Text>
           <Text style={styles.noQuestionsText}>
-            Aucune question ne correspond aux filtres sélectionnés.
-            Veuillez modifier vos critères de filtrage.
+            Les filtres sélectionnés ne correspondent à aucune question.{'\n'}
+            Veuillez ajuster vos critères.
           </Text>
           <TouchableOpacity
-            style={styles.changeFilterButton}
+            style={styles.primaryButton}
             onPress={() => setShowFilterModal(true)}
           >
-            <Text style={styles.changeFilterButtonText}>Modifier les Filtres</Text>
+            <Text style={styles.primaryButtonText}>Modifier les filtres</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            style={styles.resetAllButton}
+            style={styles.secondaryButton}
             onPress={resetFilters}
           >
-            <Text style={styles.resetAllButtonText}>Réinitialiser tous les Filtres</Text>
+            <Text style={styles.secondaryButtonText}>Réinitialiser tout</Text>
           </TouchableOpacity>
         </View>
 
@@ -210,14 +211,13 @@ export default function QuizScreen() {
     );
   }
 
-  // صفحة النتيجة
   if (showResult) {
     const percentage = Math.round((score / filteredQuestions.length) * 100);
     const getResultLevel = () => {
-      if (percentage >= 90) return { text: 'Excellent!', emoji: '🌟', color: '#10b981' };
-      if (percentage >= 70) return { text: 'Très bien!', emoji: '👍', color: '#3b82f6' };
+      if (percentage >= 90) return { text: 'Excellent !', emoji: '🌟', color: '#10b981' };
+      if (percentage >= 70) return { text: 'Très bien !', emoji: '👍', color: '#3b82f6' };
       if (percentage >= 50) return { text: 'Bien', emoji: '👌', color: '#f59e0b' };
-      return { text: 'Révision nécessaire', emoji: '📚', color: '#ef4444' };
+      return { text: 'À réviser', emoji: '📚', color: '#ef4444' };
     };
 
     const result = getResultLevel();
@@ -225,12 +225,15 @@ export default function QuizScreen() {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>🔬 Quiz de Parasitologie</Text>
+          <View style={styles.headerContent}>
+            <Text style={styles.headerIcon}>🔬</Text>
+            <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+          </View>
           <TouchableOpacity 
             style={styles.filterButton}
             onPress={() => setShowFilterModal(true)}
           >
-            <Filter size={20} color="#3b82f6" />
+            <Filter size={22} color="#3b82f6" />
           </TouchableOpacity>
         </View>
 
@@ -241,8 +244,8 @@ export default function QuizScreen() {
               {result.text}
             </Text>
             
-            <View style={styles.scoreCircle}>
-              <Text style={styles.scorePercentage}>{percentage}%</Text>
+            <View style={[styles.scoreCircle, { borderColor: result.color }]}>
+              <Text style={[styles.scorePercentage, { color: result.color }]}>{percentage}%</Text>
               <Text style={styles.scoreText}>
                 {score} / {filteredQuestions.length}
               </Text>
@@ -250,13 +253,19 @@ export default function QuizScreen() {
 
             <View style={styles.resultStats}>
               <View style={styles.resultStatItem}>
-                <CheckCircle2 size={24} color="#10b981" />
+                <View style={styles.statIconContainer}>
+                  <CheckCircle2 size={20} color="#10b981" />
+                </View>
                 <Text style={styles.resultStatNumber}>{score}</Text>
                 <Text style={styles.resultStatLabel}>Correctes</Text>
               </View>
 
+              <View style={styles.resultDivider} />
+
               <View style={styles.resultStatItem}>
-                <AlertCircle size={24} color="#ef4444" />
+                <View style={styles.statIconContainer}>
+                  <AlertCircle size={20} color="#ef4444" />
+                </View>
                 <Text style={styles.resultStatNumber}>{filteredQuestions.length - score}</Text>
                 <Text style={styles.resultStatLabel}>Incorrectes</Text>
               </View>
@@ -264,16 +273,16 @@ export default function QuizScreen() {
 
             <View style={styles.resultActions}>
               <TouchableOpacity
-                style={styles.resetButton}
+                style={styles.primaryButton}
                 onPress={resetQuiz}
               >
-                <Text style={styles.resetButtonText}>Recommencer</Text>
+                <Text style={styles.primaryButtonText}>Recommencer</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.changeFilterButton}
+                style={styles.secondaryButton}
                 onPress={() => setShowFilterModal(true)}
               >
-                <Text style={styles.changeFilterButtonText}>Changer les Filtres</Text>
+                <Text style={styles.secondaryButtonText}>Changer filtres</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -294,12 +303,14 @@ export default function QuizScreen() {
 
   const question = filteredQuestions[currentQuestion];
 
-  // تحقق إضافي لمنع الأخطاء
   if (!question) {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
         <View style={styles.header}>
-          <Text style={styles.headerTitle}>🔬 Quiz de Parasitologie</Text>
+          <View style={styles.headerContent}>
+            <Text style={styles.headerIcon}>🔬</Text>
+            <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+          </View>
         </View>
         <View style={styles.noQuestionsContainer}>
           <Text style={styles.noQuestionsText}>Chargement...</Text>
@@ -308,39 +319,45 @@ export default function QuizScreen() {
     );
   }
 
+  const isCorrect = selectedAnswer === question.correctAnswer;
+
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Header الرئيسي مع الأيموجي وزر الفلتر */}
-      <View style={styles.mainHeader}>
-        <Text style={styles.mainTitle}>🔬 Quiz de Parasitologie</Text>
+      {/* Header Principal */}
+      <View style={styles.header}>
+        <View style={styles.headerContent}>
+          <Text style={styles.headerIcon}>🔬</Text>
+          <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+        </View>
         <TouchableOpacity 
           style={styles.filterButton}
           onPress={() => setShowFilterModal(true)}
         >
-          <Filter size={20} color="#3b82f6" />
+          <Filter size={22} color="#3b82f6" />
         </TouchableOpacity>
       </View>
 
-      {/* إطار رقم السؤال والنتيجة */}
-      <View style={styles.statsFrame}>
-        <View style={styles.statRow}>
-          <View style={styles.statItem}>
-            <Text style={styles.statLabel}>Question: </Text>
+      {/* Barre de Statistiques */}
+      <View style={styles.statsBar}>
+        <View style={styles.statsRow}>
+          <View style={styles.statBox}>
+            <Text style={styles.statLabel}>Question</Text>
             <Text style={styles.statValue}>{currentQuestion + 1}/{filteredQuestions.length}</Text>
           </View>
-          <View style={styles.statItem}>
-            <Text style={styles.statLabel}>Score: </Text>
+          
+          <View style={styles.statBox}>
+            <Text style={styles.statLabel}>Score</Text>
             <Text style={styles.statValue}>{score}</Text>
           </View>
-          <View style={styles.statItem}>
-            <Clock size={16} color="#ef4444" />
+          
+          <View style={[styles.statBox, styles.timerBox]}>
+            <Clock size={14} color={timeLeft <= 10 ? '#ef4444' : '#6b7280'} />
             <Text style={[styles.statValue, timeLeft <= 10 && styles.timeWarning]}>
               {timeLeft}s
             </Text>
           </View>
         </View>
         
-        {/* شريط التقدم */}
         <View style={styles.progressBar}>
           <Animated.View
             style={[
@@ -365,30 +382,30 @@ export default function QuizScreen() {
         <View style={styles.badgesContainer}>
           <View style={[styles.badge, 
             question.difficulty === 'easy' ? styles.badgeGreen : 
-            question.difficulty === 'medium' ? styles.badgeYellow : styles.badgeRed
+            question.difficulty === 'medium' ? styles.badgeOrange : styles.badgeRed
           ]}>
             <Text style={styles.badgeText}>
               {question.difficulty === 'easy' ? 'Débutant' : 
                question.difficulty === 'medium' ? 'Intermédiaire' : 'Avancé'}
             </Text>
           </View>
-          <View style={[styles.badge, styles.badgeBlue]}>
+          <View style={styles.badgeBlue}>
             <Text style={styles.badgeText}>{topicLabels[question.topic]}</Text>
           </View>
         </View>
 
-        {/* السؤال */}
+        {/* Question */}
         <View style={styles.questionCard}>
           <Text style={styles.questionText}>{question.question}</Text>
         </View>
 
-        {/* الخيارات */}
+        {/* Options */}
         <View style={styles.optionsContainer}>
           {question.options.map((option, index) => {
             const isSelected = selectedAnswer === index;
             const isCorrectAnswer = index === question.correctAnswer;
             const showCorrect = showExplanation && isCorrectAnswer;
-            const showWrong = showExplanation && isSelected && !isCorrectAnswer;
+            const showWrong = showExplanation && isSelected && !isCorrect;
 
             return (
               <TouchableOpacity
@@ -405,29 +422,35 @@ export default function QuizScreen() {
               >
                 <Text style={[
                   styles.optionText,
-                  (showCorrect || isSelected) && styles.optionTextSelected,
+                  (showCorrect || showWrong || isSelected) && styles.optionTextBold,
                 ]}>
                   {option}
                 </Text>
                 {showCorrect && (
-                  <CheckCircle2 size={18} color="#10b981" style={styles.optionIcon} />
+                  <CheckCircle2 size={20} color="#10b981" />
                 )}
               </TouchableOpacity>
             );
           })}
         </View>
 
-        {/* التبرير */}
+        {/* Explication */}
         {showExplanation && (
-          <View style={styles.explanationCard}>
+          <View style={[
+            styles.explanationCard,
+            isCorrect ? styles.explanationCorrect : styles.explanationWrong
+          ]}>
             <View style={styles.explanationHeader}>
-              {selectedAnswer === question.correctAnswer ? (
-                <CheckCircle2 size={18} color="#10b981" />
+              {isCorrect ? (
+                <CheckCircle2 size={20} color="#10b981" />
               ) : (
-                <AlertCircle size={18} color="#ef4444" />
+                <AlertCircle size={20} color="#ef4444" />
               )}
-              <Text style={styles.explanationTitle}>
-                {selectedAnswer === question.correctAnswer ? 'Réponse correcte !' : 'Réponse incorrecte'}
+              <Text style={[
+                styles.explanationTitle,
+                { color: isCorrect ? '#047857' : '#dc2626' }
+              ]}>
+                {isCorrect ? 'Bonne réponse !' : 'Réponse incorrecte'}
               </Text>
             </View>
             
@@ -437,20 +460,19 @@ export default function QuizScreen() {
           </View>
         )}
 
-        {/* زر التمرير للسؤال التالي */}
+        {/* Bouton Suivant */}
         {showExplanation && (
           <TouchableOpacity
             style={styles.nextButton}
             onPress={handleNextQuestion}
           >
             <Text style={styles.nextButtonText}>
-              {currentQuestion + 1 === filteredQuestions.length ? 'Voir les résultats' : 'Question suivante →'}
+              {currentQuestion + 1 === filteredQuestions.length ? 'Voir les résultats' : 'Question suivante'}
             </Text>
           </TouchableOpacity>
         )}
       </ScrollView>
 
-      {/* Modal الفلتر */}
       <FilterModal 
         showFilterModal={showFilterModal}
         setShowFilterModal={setShowFilterModal}
@@ -464,7 +486,6 @@ export default function QuizScreen() {
   );
 }
 
-// مكون منفصل للفلتر Modal
 const FilterModal = ({ 
   showFilterModal, 
   setShowFilterModal, 
@@ -489,7 +510,6 @@ const FilterModal = ({
         </View>
 
         <ScrollView style={styles.filterContent}>
-          {/* فلتر المستوى */}
           <View style={styles.filterSection}>
             <Text style={styles.filterSectionTitle}>Niveau de difficulté</Text>
             <View style={styles.filterOptions}>
@@ -497,14 +517,14 @@ const FilterModal = ({
                 <TouchableOpacity
                   key={difficulty}
                   style={[
-                    styles.filterOption,
-                    selectedFilters.difficulty.includes(difficulty) && styles.filterOptionSelected
+                    styles.filterChip,
+                    selectedFilters.difficulty.includes(difficulty) && styles.filterChipSelected
                   ]}
                   onPress={() => handleFilterSelect('difficulty', difficulty)}
                 >
                   <Text style={[
-                    styles.filterOptionText,
-                    selectedFilters.difficulty.includes(difficulty) && styles.filterOptionTextSelected
+                    styles.filterChipText,
+                    selectedFilters.difficulty.includes(difficulty) && styles.filterChipTextSelected
                   ]}>
                     {difficulty === 'easy' ? 'Débutant' : 
                      difficulty === 'medium' ? 'Intermédiaire' : 'Avancé'}
@@ -514,7 +534,6 @@ const FilterModal = ({
             </View>
           </View>
 
-          {/* فلتر المواضيع */}
           <View style={styles.filterSection}>
             <Text style={styles.filterSectionTitle}>Catégories</Text>
             <View style={styles.filterOptions}>
@@ -522,14 +541,14 @@ const FilterModal = ({
                 <TouchableOpacity
                   key={topic}
                   style={[
-                    styles.filterOption,
-                    selectedFilters.topics.includes(topic) && styles.filterOptionSelected
+                    styles.filterChip,
+                    selectedFilters.topics.includes(topic) && styles.filterChipSelected
                   ]}
                   onPress={() => handleFilterSelect('topics', topic)}
                 >
                   <Text style={[
-                    styles.filterOptionText,
-                    selectedFilters.topics.includes(topic) && styles.filterOptionTextSelected
+                    styles.filterChipText,
+                    selectedFilters.topics.includes(topic) && styles.filterChipTextSelected
                   ]}>
                     {topicLabels[topic]}
                   </Text>
@@ -538,50 +557,39 @@ const FilterModal = ({
             </View>
           </View>
 
-          {/* عرض الفلاتر المختارة */}
-          <View style={styles.selectedFiltersSection}>
-            <Text style={styles.selectedFiltersTitle}>Filtres appliqués:</Text>
-            <View style={styles.selectedFiltersList}>
-              {selectedFilters.difficulty.length === 0 && selectedFilters.topics.length === 0 ? (
-                <Text style={styles.noFiltersText}>Aucun filtre sélectionné</Text>
-              ) : (
-                <>
-                  {selectedFilters.difficulty.map(diff => (
-                    <View key={diff} style={styles.selectedFilterTag}>
-                      <Text style={styles.selectedFilterText}>
-                        {diff === 'easy' ? 'Débutant' : diff === 'medium' ? 'Intermédiaire' : 'Avancé'}
-                      </Text>
-                    </View>
-                  ))}
-                  {selectedFilters.topics.map(topic => (
-                    <View key={topic} style={styles.selectedFilterTag}>
-                      <Text style={styles.selectedFilterText}>{topicLabels[topic]}</Text>
-                    </View>
-                  ))}
-                </>
-              )}
+          {(selectedFilters.difficulty.length > 0 || selectedFilters.topics.length > 0) && (
+            <View style={styles.selectedFiltersSection}>
+              <Text style={styles.selectedFiltersTitle}>Filtres sélectionnés</Text>
+              <View style={styles.selectedFiltersList}>
+                {selectedFilters.difficulty.map(diff => (
+                  <View key={diff} style={styles.selectedFilterTag}>
+                    <Text style={styles.selectedFilterText}>
+                      {diff === 'easy' ? 'Débutant' : diff === 'medium' ? 'Intermédiaire' : 'Avancé'}
+                    </Text>
+                  </View>
+                ))}
+                {selectedFilters.topics.map(topic => (
+                  <View key={topic} style={styles.selectedFilterTag}>
+                    <Text style={styles.selectedFilterText}>{topicLabels[topic]}</Text>
+                  </View>
+                ))}
+              </View>
             </View>
-          </View>
+          )}
         </ScrollView>
 
         <View style={styles.modalActions}>
           <TouchableOpacity 
-            style={styles.resetAllButton}
+            style={styles.modalResetButton}
             onPress={resetFilters}
           >
-            <Text style={styles.resetAllButtonText}>Tout effacer</Text>
+            <Text style={styles.modalResetButtonText}>Réinitialiser</Text>
           </TouchableOpacity>
           <TouchableOpacity 
-            style={styles.cancelButton}
-            onPress={() => setShowFilterModal(false)}
-          >
-            <Text style={styles.cancelButtonText}>Annuler</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.applyButton}
+            style={styles.modalApplyButton}
             onPress={applyFilters}
           >
-            <Text style={styles.applyButtonText}>Appliquer</Text>
+            <Text style={styles.modalApplyButtonText}>Appliquer</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -592,12 +600,11 @@ const FilterModal = ({
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f8fafc',
+    backgroundColor: '#f9fafb',
   },
-  // Header الرئيسي - مضغوط
-  mainHeader: {
+  header: {
     backgroundColor: '#ffffff',
-    paddingVertical: 15,
+    paddingVertical: 16,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#e5e7eb',
@@ -605,124 +612,148 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  mainTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#1f2937',
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+  },
+  headerIcon: {
+    fontSize: 24,
+  },
+  headerTitle: {
+    fontSize: 19,
+    fontWeight: '700',
+    color: '#111827',
+    letterSpacing: -0.3,
   },
   filterButton: {
-    padding: 6,
-    borderRadius: 8,
+    padding: 8,
+    borderRadius: 10,
     backgroundColor: '#f3f4f6',
   },
-  // إطار الإحصائيات - مضغوط ومحسن
-  statsFrame: {
+  statsBar: {
     backgroundColor: '#ffffff',
-    paddingVertical: 12,
     paddingHorizontal: 20,
+    paddingVertical: 14,
     borderBottomWidth: 1,
     borderBottomColor: '#e5e7eb',
   },
-  statRow: {
+  statsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 12,
   },
-  statItem: {
-    flexDirection: 'row',
+  statBox: {
     alignItems: 'center',
+    flex: 1,
+  },
+  timerBox: {
+    flexDirection: 'row',
     gap: 4,
+    justifyContent: 'center',
   },
   statLabel: {
-    fontSize: 12,
-    color: '#6b7280',
-    fontWeight: '500',
+    fontSize: 11,
+    color: '#9ca3af',
+    fontWeight: '600',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+    marginBottom: 4,
   },
   statValue: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#3b82f6',
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#1f2937',
   },
   timeWarning: {
     color: '#ef4444',
   },
   progressBar: {
-    height: 4,
+    height: 5,
     backgroundColor: '#e5e7eb',
-    borderRadius: 2,
+    borderRadius: 3,
     overflow: 'hidden',
   },
   progressFill: {
     height: '100%',
     backgroundColor: '#3b82f6',
-    borderRadius: 2,
+    borderRadius: 3,
   },
   content: {
     flex: 1,
   },
   scrollContent: {
-    padding: 16,
-    paddingBottom: 20,
+    padding: 20,
+    paddingBottom: 30,
   },
   badgesContainer: {
     flexDirection: 'row',
     gap: 8,
-    marginBottom: 16,
+    marginBottom: 20,
   },
   badge: {
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: 16,
   },
   badgeGreen: {
     backgroundColor: '#d1fae5',
   },
-  badgeYellow: {
-    backgroundColor: '#fef3c7',
+  badgeOrange: {
+    backgroundColor: '#fed7aa',
   },
   badgeRed: {
     backgroundColor: '#fecaca',
   },
   badgeBlue: {
     backgroundColor: '#dbeafe',
+    paddingHorizontal: 14,
+    paddingVertical: 6,
+    borderRadius: 16,
   },
   badgeText: {
     fontSize: 12,
-    fontWeight: '600',
-    color: '#1f2937',
+    fontWeight: '700',
+    color: '#374151',
+    letterSpacing: 0.2,
   },
   questionCard: {
     backgroundColor: '#ffffff',
-    borderRadius: 12,
-    padding: 18,
-    marginBottom: 16,
+    borderRadius: 16,
+    padding: 24,
+    marginBottom: 20,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.04,
+    shadowRadius: 4,
+    elevation: 2,
   },
   questionText: {
-    fontSize: 17,
+    fontSize: 18,
     fontWeight: '600',
-    color: '#1f2937',
-    lineHeight: 24,
+    color: '#111827',
+    lineHeight: 28,
     textAlign: 'center',
+    letterSpacing: -0.2,
   },
   optionsContainer: {
-    gap: 10,
-    marginBottom: 16,
+    gap: 12,
+    marginBottom: 20,
   },
   optionButton: {
     backgroundColor: '#ffffff',
-    borderRadius: 12,
-    padding: 14,
+    borderRadius: 14,
+    padding: 18,
     borderWidth: 2,
     borderColor: '#e5e7eb',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.02,
+    shadowRadius: 2,
+    elevation: 1,
   },
   optionSelected: {
     borderColor: '#3b82f6',
@@ -737,165 +768,183 @@ const styles = StyleSheet.create({
     backgroundColor: '#fee2e2',
   },
   optionText: {
-    fontSize: 15,
+    fontSize: 16,
     color: '#4b5563',
     flex: 1,
-    lineHeight: 20,
+    lineHeight: 22,
+    letterSpacing: -0.1,
   },
-  optionTextSelected: {
-    color: '#1f2937',
-    fontWeight: '500',
-  },
-  optionIcon: {
-    marginLeft: 6,
+  optionTextBold: {
+    color: '#111827',
+    fontWeight: '600',
   },
   explanationCard: {
-    backgroundColor: '#f8fafc',
-    borderRadius: 12,
-    padding: 14,
+    borderRadius: 14,
+    padding: 18,
     marginBottom: 16,
-    borderWidth: 1,
-    borderColor: '#e5e7eb',
+    borderWidth: 1.5,
+  },
+  explanationCorrect: {
+    backgroundColor: '#ecfdf5',
+    borderColor: '#10b981',
+  },
+  explanationWrong: {
+    backgroundColor: '#fef2f2',
+    borderColor: '#ef4444',
   },
   explanationHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-    marginBottom: 10,
+    gap: 10,
+    marginBottom: 12,
   },
   explanationTitle: {
     fontSize: 15,
-    fontWeight: '600',
-    color: '#1f2937',
+    fontWeight: '700',
+    letterSpacing: -0.2,
   },
   explanationText: {
-    fontSize: 13,
-    color: '#4b5563',
-    lineHeight: 18,
+    fontSize: 14,
+    color: '#374151',
+    lineHeight: 22,
+    letterSpacing: -0.1,
   },
   nextButton: {
     backgroundColor: '#3b82f6',
-    borderRadius: 12,
-    padding: 14,
+    borderRadius: 14,
+    padding: 18,
     alignItems: 'center',
-    marginTop: 8,
+    shadowColor: '#3b82f6',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 4,
   },
   nextButtonText: {
     color: '#ffffff',
-    fontSize: 15,
-    fontWeight: '600',
-  },
-  // Result Screen Styles
-  header: {
-    backgroundColor: '#ffffff',
-    paddingVertical: 16,
-    paddingHorizontal: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    color: '#1f2937',
+    fontSize: 16,
+    fontWeight: '700',
+    letterSpacing: -0.2,
   },
   resultScrollContent: {
     flexGrow: 1,
-    padding: 20,
+    padding: 24,
+    justifyContent: 'center',
   },
   resultCard: {
     backgroundColor: '#ffffff',
-    borderRadius: 16,
-    padding: 30,
+    borderRadius: 20,
+    padding: 32,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8,
-    elevation: 4,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 6,
   },
   resultEmoji: {
-    fontSize: 64,
+    fontSize: 72,
     marginBottom: 16,
   },
   resultLevel: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 24,
+    fontSize: 26,
+    fontWeight: '800',
+    marginBottom: 28,
+    letterSpacing: -0.5,
   },
   scoreCircle: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
-    backgroundColor: '#f0f9ff',
-    borderWidth: 8,
-    borderColor: '#3b82f6',
+    width: 150,
+    height: 150,
+    borderRadius: 75,
+    backgroundColor: '#f9fafb',
+    borderWidth: 6,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 30,
+    marginBottom: 32,
   },
   scorePercentage: {
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#1e40af',
+    fontSize: 40,
+    fontWeight: '800',
+    letterSpacing: -1,
   },
   scoreText: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#6b7280',
-    marginTop: 4,
+    marginTop: 6,
+    fontWeight: '600',
   },
   resultStats: {
     flexDirection: 'row',
-    gap: 40,
-    marginBottom: 30,
+    alignItems: 'center',
+    marginBottom: 32,
+    gap: 16,
+  },
+  resultDivider: {
+    width: 1,
+    height: 60,
+    backgroundColor: '#e5e7eb',
   },
   resultStatItem: {
     alignItems: 'center',
-    gap: 8,
+    gap: 10,
+    paddingHorizontal: 24,
+  },
+  statIconContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#f9fafb',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   resultStatNumber: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1f2937',
+    fontSize: 28,
+    fontWeight: '800',
+    color: '#111827',
   },
   resultStatLabel: {
-    fontSize: 14,
+    fontSize: 13,
     color: '#6b7280',
+    fontWeight: '600',
   },
   resultActions: {
     flexDirection: 'row',
     gap: 12,
     width: '100%',
   },
-  resetButton: {
+  primaryButton: {
     flex: 1,
     backgroundColor: '#3b82f6',
-    paddingHorizontal: 20,
-    paddingVertical: 14,
-    borderRadius: 12,
+    paddingVertical: 16,
+    borderRadius: 14,
     alignItems: 'center',
+    shadowColor: '#3b82f6',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  resetButtonText: {
+  primaryButtonText: {
     color: '#ffffff',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '700',
+    letterSpacing: -0.2,
   },
-  changeFilterButton: {
+  secondaryButton: {
     flex: 1,
     backgroundColor: '#f3f4f6',
-    paddingHorizontal: 20,
-    paddingVertical: 14,
-    borderRadius: 12,
+    paddingVertical: 16,
+    borderRadius: 14,
     alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
   },
-  changeFilterButtonText: {
-    color: '#6b7280',
+  secondaryButtonText: {
+    color: '#4b5563',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '700',
+    letterSpacing: -0.2,
   },
-  // No Questions Styles
   noQuestionsContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -903,34 +952,34 @@ const styles = StyleSheet.create({
     padding: 40,
   },
   noQuestionsEmoji: {
-    fontSize: 64,
+    fontSize: 72,
     marginBottom: 20,
   },
   noQuestionsTitle: {
     fontSize: 24,
-    fontWeight: 'bold',
-    color: '#1f2937',
+    fontWeight: '800',
+    color: '#111827',
     marginBottom: 12,
     textAlign: 'center',
+    letterSpacing: -0.5,
   },
   noQuestionsText: {
     fontSize: 16,
     color: '#6b7280',
     textAlign: 'center',
     lineHeight: 24,
-    marginBottom: 30,
+    marginBottom: 32,
   },
-  // Filter Modal Styles
   modalOverlay: {
     flex: 1,
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'flex-end',
   },
   filterModal: {
-    backgroundColor: 'white',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    maxHeight: '80%',
+    backgroundColor: '#ffffff',
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    maxHeight: '85%',
   },
   modalHeader: {
     flexDirection: 'row',
@@ -941,58 +990,65 @@ const styles = StyleSheet.create({
     borderBottomColor: '#e5e7eb',
   },
   modalTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#1f2937',
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#111827',
+    letterSpacing: -0.5,
   },
   filterContent: {
     padding: 20,
   },
   filterSection: {
-    marginBottom: 24,
+    marginBottom: 28,
   },
   filterSectionTitle: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#1f2937',
-    marginBottom: 12,
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#111827',
+    marginBottom: 14,
+    letterSpacing: -0.2,
   },
   filterOptions: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    gap: 8,
+    gap: 10,
   },
-  filterOption: {
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+  filterChip: {
+    paddingHorizontal: 18,
+    paddingVertical: 10,
     borderRadius: 20,
     backgroundColor: '#f3f4f6',
-    borderWidth: 1,
+    borderWidth: 1.5,
     borderColor: '#e5e7eb',
   },
-  filterOptionSelected: {
+  filterChipSelected: {
     backgroundColor: '#3b82f6',
     borderColor: '#3b82f6',
   },
-  filterOptionText: {
+  filterChipText: {
     fontSize: 14,
     color: '#4b5563',
-    fontWeight: '500',
+    fontWeight: '600',
+    letterSpacing: -0.1,
   },
-  filterOptionTextSelected: {
-    color: 'white',
+  filterChipTextSelected: {
+    color: '#ffffff',
   },
   selectedFiltersSection: {
-    marginTop: 20,
-    padding: 16,
-    backgroundColor: '#f8fafc',
-    borderRadius: 12,
+    marginTop: 24,
+    padding: 18,
+    backgroundColor: '#f9fafb',
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: '#e5e7eb',
   },
   selectedFiltersTitle: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#374151',
-    marginBottom: 8,
+    fontSize: 13,
+    fontWeight: '700',
+    color: '#6b7280',
+    marginBottom: 12,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
   selectedFiltersList: {
     flexDirection: 'row',
@@ -1001,19 +1057,15 @@ const styles = StyleSheet.create({
   },
   selectedFilterTag: {
     backgroundColor: '#3b82f6',
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
     paddingVertical: 6,
-    borderRadius: 16,
+    borderRadius: 14,
   },
   selectedFilterText: {
     fontSize: 12,
-    color: 'white',
-    fontWeight: '500',
-  },
-  noFiltersText: {
-    fontSize: 14,
-    color: '#6b7280',
-    fontStyle: 'italic',
+    color: '#ffffff',
+    fontWeight: '700',
+    letterSpacing: 0.2,
   },
   modalActions: {
     flexDirection: 'row',
@@ -1022,40 +1074,37 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     borderTopColor: '#e5e7eb',
   },
-  resetAllButton: {
-    padding: 14,
-    borderRadius: 12,
+  modalResetButton: {
+    flex: 1,
+    padding: 16,
+    borderRadius: 14,
     backgroundColor: '#fef2f2',
     alignItems: 'center',
-    flex: 1,
+    borderWidth: 1,
+    borderColor: '#fecaca',
   },
-  resetAllButtonText: {
+  modalResetButtonText: {
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '700',
     color: '#dc2626',
+    letterSpacing: -0.2,
   },
-  cancelButton: {
-    padding: 14,
-    borderRadius: 12,
-    backgroundColor: '#f3f4f6',
-    alignItems: 'center',
-    flex: 1,
-  },
-  cancelButtonText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#6b7280',
-  },
-  applyButton: {
-    padding: 14,
-    borderRadius: 12,
+  modalApplyButton: {
+    flex: 2,
+    padding: 16,
+    borderRadius: 14,
     backgroundColor: '#3b82f6',
     alignItems: 'center',
-    flex: 1,
+    shadowColor: '#3b82f6',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  applyButtonText: {
+  modalApplyButtonText: {
     fontSize: 16,
-    fontWeight: '600',
-    color: 'white',
+    fontWeight: '700',
+    color: '#ffffff',
+    letterSpacing: -0.2,
   },
 });
