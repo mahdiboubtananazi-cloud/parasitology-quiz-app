@@ -1,5 +1,5 @@
-// screens/QuizScreen.js - Version Améliorée (Phase 2)
-import React, { useState, useEffect } from 'react';
+// screens/QuizScreen.js - Version avec animations
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Animated, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { CheckCircle2, AlertCircle, Filter, X, Clock } from 'lucide-react-native';
@@ -21,6 +21,78 @@ export default function QuizScreen() {
     topics: []
   });
   const [showNoQuestions, setShowNoQuestions] = useState(false);
+
+  // Animations
+  const slideAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+  const timerPulseAnim = useRef(new Animated.Value(1)).current;
+  const explanationFadeAnim = useRef(new Animated.Value(0)).current;
+  const explanationSlideAnim = useRef(new Animated.Value(30)).current;
+
+  // Animation de la carte lors du changement de question
+  useEffect(() => {
+    slideAnim.setValue(50);
+    scaleAnim.setValue(0.95);
+
+    Animated.parallel([
+      Animated.spring(slideAnim, {
+        toValue: 0,
+        tension: 80,
+        friction: 10,
+        useNativeDriver: true,
+      }),
+      Animated.spring(scaleAnim, {
+        toValue: 1,
+        tension: 80,
+        friction: 10,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [currentQuestion]);
+
+  // Animation du timer (pulse quand < 10s)
+  useEffect(() => {
+    if (timeLeft <= 10 && timeLeft > 0) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(timerPulseAnim, {
+            toValue: 1.15,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+          Animated.timing(timerPulseAnim, {
+            toValue: 1,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    } else {
+      timerPulseAnim.setValue(1);
+    }
+  }, [timeLeft]);
+
+  // Animation de l'explication
+  useEffect(() => {
+    if (showExplanation) {
+      explanationFadeAnim.setValue(0);
+      explanationSlideAnim.setValue(30);
+
+      Animated.parallel([
+        Animated.timing(explanationFadeAnim, {
+          toValue: 1,
+          duration: 400,
+          useNativeDriver: true,
+        }),
+        Animated.spring(explanationSlideAnim, {
+          toValue: 0,
+          tension: 80,
+          friction: 10,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }
+  }, [showExplanation]);
 
   const applyFiltersToQuestions = (filters) => {
     let filtered = [...allQuestions];
@@ -323,7 +395,6 @@ export default function QuizScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Header Principal */}
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Text style={styles.headerIcon}>🔬</Text>
@@ -337,7 +408,6 @@ export default function QuizScreen() {
         </TouchableOpacity>
       </View>
 
-      {/* Barre de Statistiques */}
       <View style={styles.statsBar}>
         <View style={styles.statsRow}>
           <View style={styles.statBox}>
@@ -350,12 +420,12 @@ export default function QuizScreen() {
             <Text style={styles.statValue}>{score}</Text>
           </View>
           
-          <View style={[styles.statBox, styles.timerBox]}>
+          <Animated.View style={[styles.statBox, styles.timerBox, { transform: [{ scale: timerPulseAnim }] }]}>
             <Clock size={14} color={timeLeft <= 10 ? '#ef4444' : '#6b7280'} />
             <Text style={[styles.statValue, timeLeft <= 10 && styles.timeWarning]}>
               {timeLeft}s
             </Text>
-          </View>
+          </Animated.View>
         </View>
         
         <View style={styles.progressBar}>
@@ -378,7 +448,6 @@ export default function QuizScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Badges */}
         <View style={styles.badgesContainer}>
           <View style={[styles.badge, 
             question.difficulty === 'easy' ? styles.badgeGreen : 
@@ -394,12 +463,20 @@ export default function QuizScreen() {
           </View>
         </View>
 
-        {/* Question */}
-        <View style={styles.questionCard}>
+        <Animated.View 
+          style={[
+            styles.questionCard,
+            {
+              transform: [
+                { translateX: slideAnim },
+                { scale: scaleAnim }
+              ]
+            }
+          ]}
+        >
           <Text style={styles.questionText}>{question.question}</Text>
-        </View>
+        </Animated.View>
 
-        {/* Options */}
         <View style={styles.optionsContainer}>
           {question.options.map((option, index) => {
             const isSelected = selectedAnswer === index;
@@ -408,38 +485,30 @@ export default function QuizScreen() {
             const showWrong = showExplanation && isSelected && !isCorrect;
 
             return (
-              <TouchableOpacity
+              <AnimatedOption
                 key={index}
-                style={[
-                  styles.optionButton,
-                  showCorrect && styles.optionCorrect,
-                  showWrong && styles.optionWrong,
-                  isSelected && !showExplanation && styles.optionSelected,
-                ]}
+                option={option}
+                isSelected={isSelected}
+                showCorrect={showCorrect}
+                showWrong={showWrong}
+                showExplanation={showExplanation}
                 onPress={() => handleAnswerSelect(index)}
-                disabled={showExplanation}
-                activeOpacity={0.7}
-              >
-                <Text style={[
-                  styles.optionText,
-                  (showCorrect || showWrong || isSelected) && styles.optionTextBold,
-                ]}>
-                  {option}
-                </Text>
-                {showCorrect && (
-                  <CheckCircle2 size={20} color="#10b981" />
-                )}
-              </TouchableOpacity>
+              />
             );
           })}
         </View>
 
-        {/* Explication */}
         {showExplanation && (
-          <View style={[
-            styles.explanationCard,
-            isCorrect ? styles.explanationCorrect : styles.explanationWrong
-          ]}>
+          <Animated.View 
+            style={[
+              styles.explanationCard,
+              isCorrect ? styles.explanationCorrect : styles.explanationWrong,
+              {
+                opacity: explanationFadeAnim,
+                transform: [{ translateY: explanationSlideAnim }]
+              }
+            ]}
+          >
             <View style={styles.explanationHeader}>
               {isCorrect ? (
                 <CheckCircle2 size={20} color="#10b981" />
@@ -457,19 +526,25 @@ export default function QuizScreen() {
             <Text style={styles.explanationText}>
               {question.explanation}
             </Text>
-          </View>
+          </Animated.View>
         )}
 
-        {/* Bouton Suivant */}
         {showExplanation && (
-          <TouchableOpacity
-            style={styles.nextButton}
-            onPress={handleNextQuestion}
+          <Animated.View
+            style={{
+              opacity: explanationFadeAnim,
+              transform: [{ translateY: explanationSlideAnim }]
+            }}
           >
-            <Text style={styles.nextButtonText}>
-              {currentQuestion + 1 === filteredQuestions.length ? 'Voir les résultats' : 'Question suivante'}
-            </Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.nextButton}
+              onPress={handleNextQuestion}
+            >
+              <Text style={styles.nextButtonText}>
+                {currentQuestion + 1 === filteredQuestions.length ? 'Voir les résultats' : 'Question suivante'}
+              </Text>
+            </TouchableOpacity>
+          </Animated.View>
         )}
       </ScrollView>
 
@@ -485,6 +560,55 @@ export default function QuizScreen() {
     </SafeAreaView>
   );
 }
+
+// Composant option animé
+const AnimatedOption = ({ option, isSelected, showCorrect, showWrong, showExplanation, onPress }) => {
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+
+  const handlePressIn = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 0.96,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  const handlePressOut = () => {
+    Animated.spring(scaleAnim, {
+      toValue: 1,
+      tension: 100,
+      friction: 8,
+      useNativeDriver: true,
+    }).start();
+  };
+
+  return (
+    <Animated.View style={{ transform: [{ scale: scaleAnim }] }}>
+      <TouchableOpacity
+        style={[
+          styles.optionButton,
+          showCorrect && styles.optionCorrect,
+          showWrong && styles.optionWrong,
+          isSelected && !showExplanation && styles.optionSelected,
+        ]}
+        onPress={onPress}
+        onPressIn={handlePressIn}
+        onPressOut={handlePressOut}
+        disabled={showExplanation}
+        activeOpacity={0.8}
+      >
+        <Text style={[
+          styles.optionText,
+          (showCorrect || showWrong || isSelected) && styles.optionTextBold,
+        ]}>
+          {option}
+        </Text>
+        {showCorrect && (
+          <CheckCircle2 size={20} color="#10b981" />
+        )}
+      </TouchableOpacity>
+    </Animated.View>
+  );
+};
 
 const FilterModal = ({ 
   showFilterModal, 
@@ -604,7 +728,7 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#ffffff',
-    paddingVertical: 16,
+    paddingVertical: 14,
     paddingHorizontal: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#e5e7eb',
@@ -634,14 +758,14 @@ const styles = StyleSheet.create({
   statsBar: {
     backgroundColor: '#ffffff',
     paddingHorizontal: 20,
-    paddingVertical: 14,
+    paddingVertical: 12,
     borderBottomWidth: 1,
     borderBottomColor: '#e5e7eb',
   },
   statsRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 12,
+    marginBottom: 10,
   },
   statBox: {
     alignItems: 'center',
@@ -683,18 +807,18 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollContent: {
-    padding: 20,
-    paddingBottom: 30,
+    padding: 18,
+    paddingBottom: 100,
   },
   badgesContainer: {
     flexDirection: 'row',
     gap: 8,
-    marginBottom: 20,
+    marginBottom: 16,
   },
   badge: {
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    borderRadius: 14,
   },
   badgeGreen: {
     backgroundColor: '#d1fae5',
@@ -707,21 +831,21 @@ const styles = StyleSheet.create({
   },
   badgeBlue: {
     backgroundColor: '#dbeafe',
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    borderRadius: 14,
   },
   badgeText: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: '700',
     color: '#374151',
     letterSpacing: 0.2,
   },
   questionCard: {
     backgroundColor: '#ffffff',
-    borderRadius: 16,
-    padding: 24,
-    marginBottom: 20,
+    borderRadius: 14,
+    padding: 20,
+    marginBottom: 16,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.04,
@@ -729,21 +853,21 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   questionText: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: '600',
     color: '#111827',
-    lineHeight: 28,
+    lineHeight: 26,
     textAlign: 'center',
     letterSpacing: -0.2,
   },
   optionsContainer: {
-    gap: 12,
-    marginBottom: 20,
+    gap: 10,
+    marginBottom: 16,
   },
   optionButton: {
     backgroundColor: '#ffffff',
-    borderRadius: 14,
-    padding: 18,
+    borderRadius: 12,
+    padding: 16,
     borderWidth: 2,
     borderColor: '#e5e7eb',
     flexDirection: 'row',
@@ -768,10 +892,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#fee2e2',
   },
   optionText: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#4b5563',
     flex: 1,
-    lineHeight: 22,
+    lineHeight: 20,
     letterSpacing: -0.1,
   },
   optionTextBold: {
@@ -779,9 +903,9 @@ const styles = StyleSheet.create({
     fontWeight: '600',
   },
   explanationCard: {
-    borderRadius: 14,
-    padding: 18,
-    marginBottom: 16,
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 14,
     borderWidth: 1.5,
   },
   explanationCorrect: {
@@ -795,8 +919,8 @@ const styles = StyleSheet.create({
   explanationHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
-    marginBottom: 12,
+    gap: 8,
+    marginBottom: 10,
   },
   explanationTitle: {
     fontSize: 15,
@@ -806,18 +930,18 @@ const styles = StyleSheet.create({
   explanationText: {
     fontSize: 14,
     color: '#374151',
-    lineHeight: 22,
+    lineHeight: 20,
     letterSpacing: -0.1,
   },
   nextButton: {
     backgroundColor: '#3b82f6',
-    borderRadius: 14,
-    padding: 18,
+    borderRadius: 12,
+    padding: 16,
     alignItems: 'center',
     shadowColor: '#3b82f6',
-    shadowOffset: { width: 0, height: 4 },
+    shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.2,
-    shadowRadius: 6,
+    shadowRadius: 5,
     elevation: 4,
   },
   nextButtonText: {

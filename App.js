@@ -1,4 +1,4 @@
-// App.js - النسخة الأصلية
+// App.js - مع شريط التنقل المحسن
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -20,39 +20,64 @@ export default function App() {
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
+              
               if (route.name === 'Quiz') {
-                iconName = focused ? 'help-circle' : 'help-circle-outline';
+                // أيقونة أكثر حداثة للاختبار
+                iconName = focused ? 'play-circle' : 'play-circle-outline';
               } else if (route.name === 'Propos') {
                 iconName = focused ? 'information-circle' : 'information-circle-outline';
               }
+              
               return <Ionicons name={iconName} size={size} color={color} />;
             },
             tabBarActiveTintColor: '#3b82f6',
             tabBarInactiveTintColor: '#9ca3af',
             headerShown: false,
             tabBarStyle: {
-              height: 60,
-              paddingBottom: 8,
+              // التصميم الجديد
+              height: 70,
+              paddingBottom: 12,
               paddingTop: 8,
-              borderTopWidth: 1,
-              borderTopColor: '#e5e7eb',
+              borderTopWidth: 0, // إزالة الحد العلوي
               backgroundColor: '#ffffff',
+              // الظلال الجديدة
+              shadowColor: '#000',
+              shadowOffset: {
+                width: 0,
+                height: -4, // ظلال للأعلى
+              },
+              shadowOpacity: 0.1,
+              shadowRadius: 12,
+              elevation: 8,
+              // الحواف المدورة
+              borderTopLeftRadius: 20,
+              borderTopRightRadius: 20,
+              // لجعل الشريط يبدو عائماً
+              position: 'absolute',
             },
             tabBarLabelStyle: {
-              fontSize: 12,
-              fontWeight: '600',
+              fontSize: 11,
+              fontWeight: '700',
+              marginTop: 2,
+              letterSpacing: -0.2,
             },
           })}
         >
           <Tab.Screen 
             name="Quiz" 
             component={QuizScreen}
-            options={{ title: 'Quiz' }}
+            options={{ 
+              title: 'Quiz',
+              tabBarLabel: 'Quiz',
+            }}
           />
           <Tab.Screen 
             name="Propos" 
             component={ProposScreen}
-            options={{ title: 'À propos' }}
+            options={{ 
+              title: 'À propos',
+              tabBarLabel: 'À propos',
+            }}
           />
         </Tab.Navigator>
       </NavigationContainer>
