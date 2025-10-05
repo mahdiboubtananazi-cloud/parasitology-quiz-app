@@ -1,4 +1,4 @@
-// components/HorizontalFilter.js - معدل ليفتح للأسفل أكثر
+// components/HorizontalFilter.js - مع الفئات الجديدة
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Animated, ScrollView, Modal, StyleSheet, Dimensions } from 'react-native';
 import { X, Filter, RotateCcw, Check } from 'lucide-react-native';
@@ -11,7 +11,14 @@ const HorizontalFilter = ({
   selectedFilters,
   onFilterSelect,
   onApplyFilters,
-  topicLabels = {}
+  topicLabels = {
+    protozoaires: 'Les protozoaires',
+    helminthes: 'Les helminthes', 
+    cycle: 'Cycle de vie',
+    diagnostic: 'Diagnostic',
+    traitement: 'Traitement et prévention',
+    general: 'Quiz général'
+  }
 }) => {
   const [tempFilters, setTempFilters] = useState(selectedFilters);
   // زيادة قيمة الانزلاق لجعل النافذة تنفتح أكثر للأسفل
@@ -124,7 +131,7 @@ const HorizontalFilter = ({
               </View>
             </View>
 
-            {/* التصنيفات */}
+            {/* التصنيفات - الفئات الجديدة */}
             <View style={styles.section}>
               <Text style={styles.sectionTitle}>Catégories de Parasitologie</Text>
               <View style={styles.filtersGrid}>
