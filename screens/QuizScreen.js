@@ -1,9 +1,10 @@
-// screens/QuizScreen.js - Version avec animations
+// screens/QuizScreen.js - الإصدار المصحح
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Animated, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CheckCircle2, AlertCircle, Filter, X, Clock } from 'lucide-react-native';
+import { CheckCircle2, AlertCircle, Filter, X, Clock, RotateCcw } from 'lucide-react-native';
 import { sampleQuestions, topicLabels } from '../data/parasitology';
+import HorizontalFilter from '../components/HorizontalFilter';
 
 export default function QuizScreen() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -178,23 +179,12 @@ export default function QuizScreen() {
     setTimeLeft(30);
   };
 
-  const handleFilterSelect = (type, value) => {
-    setSelectedFilters(prev => {
-      const currentArray = prev[type];
-      const isSelected = currentArray.includes(value);
-      
-      if (isSelected) {
-        return {
-          ...prev,
-          [type]: currentArray.filter(item => item !== value)
-        };
-      } else {
-        return {
-          ...prev,
-          [type]: [...currentArray, value]
-        };
-      }
-    });
+  // ✅ الدالة المعدلة للفلتر الجديد
+  const handleFilterSelect = (type, values) => {
+    setSelectedFilters(prev => ({
+      ...prev,
+      [type]: values
+    }));
   };
 
   const applyFilters = () => {
@@ -208,7 +198,6 @@ export default function QuizScreen() {
       setShowNoQuestions(false);
     }
     
-    setShowFilterModal(false);
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setScore(0);
@@ -217,14 +206,13 @@ export default function QuizScreen() {
     setTimeLeft(30);
   };
 
-  const resetFilters = () => {
+  const resetAllFilters = () => {
     setSelectedFilters({
       difficulty: [],
       topics: []
     });
     setFilteredQuestions(allQuestions);
     setShowNoQuestions(false);
-    setShowFilterModal(false);
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setScore(0);
@@ -264,19 +252,18 @@ export default function QuizScreen() {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.secondaryButton}
-            onPress={resetFilters}
+            onPress={resetAllFilters}
           >
             <Text style={styles.secondaryButtonText}>Réinitialiser tout</Text>
           </TouchableOpacity>
         </View>
 
-        <FilterModal 
-          showFilterModal={showFilterModal}
-          setShowFilterModal={setShowFilterModal}
+        <HorizontalFilter
+          visible={showFilterModal}
+          onClose={() => setShowFilterModal(false)}
           selectedFilters={selectedFilters}
-          handleFilterSelect={handleFilterSelect}
-          applyFilters={applyFilters}
-          resetFilters={resetFilters}
+          onFilterSelect={handleFilterSelect}
+          onApplyFilters={applyFilters}
           topicLabels={topicLabels}
         />
       </SafeAreaView>
@@ -360,13 +347,12 @@ export default function QuizScreen() {
           </View>
         </ScrollView>
 
-        <FilterModal 
-          showFilterModal={showFilterModal}
-          setShowFilterModal={setShowFilterModal}
+        <HorizontalFilter
+          visible={showFilterModal}
+          onClose={() => setShowFilterModal(false)}
           selectedFilters={selectedFilters}
-          handleFilterSelect={handleFilterSelect}
-          applyFilters={applyFilters}
-          resetFilters={resetFilters}
+          onFilterSelect={handleFilterSelect}
+          onApplyFilters={applyFilters}
           topicLabels={topicLabels}
         />
       </SafeAreaView>
@@ -548,13 +534,12 @@ export default function QuizScreen() {
         )}
       </ScrollView>
 
-      <FilterModal 
-        showFilterModal={showFilterModal}
-        setShowFilterModal={setShowFilterModal}
+      <HorizontalFilter
+        visible={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
         selectedFilters={selectedFilters}
-        handleFilterSelect={handleFilterSelect}
-        applyFilters={applyFilters}
-        resetFilters={resetFilters}
+        onFilterSelect={handleFilterSelect}
+        onApplyFilters={applyFilters}
         topicLabels={topicLabels}
       />
     </SafeAreaView>
@@ -609,117 +594,6 @@ const AnimatedOption = ({ option, isSelected, showCorrect, showWrong, showExplan
     </Animated.View>
   );
 };
-
-const FilterModal = ({ 
-  showFilterModal, 
-  setShowFilterModal, 
-  selectedFilters, 
-  handleFilterSelect, 
-  applyFilters, 
-  resetFilters,
-  topicLabels 
-}) => (
-  <Modal
-    visible={showFilterModal}
-    animationType="slide"
-    transparent={true}
-  >
-    <View style={styles.modalOverlay}>
-      <View style={styles.filterModal}>
-        <View style={styles.modalHeader}>
-          <Text style={styles.modalTitle}>Filtres</Text>
-          <TouchableOpacity onPress={() => setShowFilterModal(false)}>
-            <X size={24} color="#6b7280" />
-          </TouchableOpacity>
-        </View>
-
-        <ScrollView style={styles.filterContent}>
-          <View style={styles.filterSection}>
-            <Text style={styles.filterSectionTitle}>Niveau de difficulté</Text>
-            <View style={styles.filterOptions}>
-              {['easy', 'medium', 'hard'].map(difficulty => (
-                <TouchableOpacity
-                  key={difficulty}
-                  style={[
-                    styles.filterChip,
-                    selectedFilters.difficulty.includes(difficulty) && styles.filterChipSelected
-                  ]}
-                  onPress={() => handleFilterSelect('difficulty', difficulty)}
-                >
-                  <Text style={[
-                    styles.filterChipText,
-                    selectedFilters.difficulty.includes(difficulty) && styles.filterChipTextSelected
-                  ]}>
-                    {difficulty === 'easy' ? 'Débutant' : 
-                     difficulty === 'medium' ? 'Intermédiaire' : 'Avancé'}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-
-          <View style={styles.filterSection}>
-            <Text style={styles.filterSectionTitle}>Catégories</Text>
-            <View style={styles.filterOptions}>
-              {Object.keys(topicLabels).map(topic => (
-                <TouchableOpacity
-                  key={topic}
-                  style={[
-                    styles.filterChip,
-                    selectedFilters.topics.includes(topic) && styles.filterChipSelected
-                  ]}
-                  onPress={() => handleFilterSelect('topics', topic)}
-                >
-                  <Text style={[
-                    styles.filterChipText,
-                    selectedFilters.topics.includes(topic) && styles.filterChipTextSelected
-                  ]}>
-                    {topicLabels[topic]}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-
-          {(selectedFilters.difficulty.length > 0 || selectedFilters.topics.length > 0) && (
-            <View style={styles.selectedFiltersSection}>
-              <Text style={styles.selectedFiltersTitle}>Filtres sélectionnés</Text>
-              <View style={styles.selectedFiltersList}>
-                {selectedFilters.difficulty.map(diff => (
-                  <View key={diff} style={styles.selectedFilterTag}>
-                    <Text style={styles.selectedFilterText}>
-                      {diff === 'easy' ? 'Débutant' : diff === 'medium' ? 'Intermédiaire' : 'Avancé'}
-                    </Text>
-                  </View>
-                ))}
-                {selectedFilters.topics.map(topic => (
-                  <View key={topic} style={styles.selectedFilterTag}>
-                    <Text style={styles.selectedFilterText}>{topicLabels[topic]}</Text>
-                  </View>
-                ))}
-              </View>
-            </View>
-          )}
-        </ScrollView>
-
-        <View style={styles.modalActions}>
-          <TouchableOpacity 
-            style={styles.modalResetButton}
-            onPress={resetFilters}
-          >
-            <Text style={styles.modalResetButtonText}>Réinitialiser</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.modalApplyButton}
-            onPress={applyFilters}
-          >
-            <Text style={styles.modalApplyButtonText}>Appliquer</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  </Modal>
-);
 
 const styles = StyleSheet.create({
   container: {
@@ -1093,142 +967,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 24,
     marginBottom: 32,
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'flex-end',
-  },
-  filterModal: {
-    backgroundColor: '#ffffff',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    maxHeight: '85%',
-  },
-  modalHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: '#111827',
-    letterSpacing: -0.5,
-  },
-  filterContent: {
-    padding: 20,
-  },
-  filterSection: {
-    marginBottom: 28,
-  },
-  filterSectionTitle: {
-    fontSize: 15,
-    fontWeight: '700',
-    color: '#111827',
-    marginBottom: 14,
-    letterSpacing: -0.2,
-  },
-  filterOptions: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
-  },
-  filterChip: {
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-    borderRadius: 20,
-    backgroundColor: '#f3f4f6',
-    borderWidth: 1.5,
-    borderColor: '#e5e7eb',
-  },
-  filterChipSelected: {
-    backgroundColor: '#3b82f6',
-    borderColor: '#3b82f6',
-  },
-  filterChipText: {
-    fontSize: 14,
-    color: '#4b5563',
-    fontWeight: '600',
-    letterSpacing: -0.1,
-  },
-  filterChipTextSelected: {
-    color: '#ffffff',
-  },
-  selectedFiltersSection: {
-    marginTop: 24,
-    padding: 18,
-    backgroundColor: '#f9fafb',
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: '#e5e7eb',
-  },
-  selectedFiltersTitle: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#6b7280',
-    marginBottom: 12,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-  },
-  selectedFiltersList: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-  },
-  selectedFilterTag: {
-    backgroundColor: '#3b82f6',
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 14,
-  },
-  selectedFilterText: {
-    fontSize: 12,
-    color: '#ffffff',
-    fontWeight: '700',
-    letterSpacing: 0.2,
-  },
-  modalActions: {
-    flexDirection: 'row',
-    padding: 20,
-    gap: 12,
-    borderTopWidth: 1,
-    borderTopColor: '#e5e7eb',
-  },
-  modalResetButton: {
-    flex: 1,
-    padding: 16,
-    borderRadius: 14,
-    backgroundColor: '#fef2f2',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#fecaca',
-  },
-  modalResetButtonText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#dc2626',
-    letterSpacing: -0.2,
-  },
-  modalApplyButton: {
-    flex: 2,
-    padding: 16,
-    borderRadius: 14,
-    backgroundColor: '#3b82f6',
-    alignItems: 'center',
-    shadowColor: '#3b82f6',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  modalApplyButtonText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#ffffff',
-    letterSpacing: -0.2,
   },
 });
