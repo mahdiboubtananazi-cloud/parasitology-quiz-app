@@ -1,8 +1,8 @@
-// screens/QuizScreen.js - الإصدار المحسن والمصحح
+// screens/QuizScreen.js - الإصدار النهائي المحسن
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Animated, Modal, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CheckCircle2, AlertCircle, Filter, X, Clock, RotateCcw, Star, Trophy, Target } from 'lucide-react-native';
+import { CheckCircle2, AlertCircle, Filter, X, Clock, RotateCcw, Star, Trophy, Target, Home } from 'lucide-react-native';
 import { sampleQuestions, topicLabels } from '../data/parasitology';
 import HorizontalFilter from '../components/HorizontalFilter';
 
@@ -32,6 +32,11 @@ export default function QuizScreen() {
   const explanationFadeAnim = useRef(new Animated.Value(0)).current;
   const explanationSlideAnim = useRef(new Animated.Value(30)).current;
   const resultScaleAnim = useRef(new Animated.Value(0.8)).current;
+
+  // ✅ إصلاح الفلتر - استخدام useEffect للتتبع
+  useEffect(() => {
+    console.log('Selected filters updated:', selectedFilters);
+  }, [selectedFilters]);
 
   // Animation de la carte lors du changement de question
   useEffect(() => {
@@ -195,18 +200,19 @@ export default function QuizScreen() {
     resultScaleAnim.setValue(0.8);
   };
 
-  // ✅ إصلاح الفلتر - التحديث المباشر للحالة
+  // ✅ ✅ ✅ الإصلاح النهائي للفلتر - استخدام functional update
   const handleFilterSelect = (type, values) => {
-    const newFilters = {
-      ...selectedFilters,
+    setSelectedFilters(prev => ({
+      ...prev,
       [type]: values
-    };
-    setSelectedFilters(newFilters);
+    }));
   };
 
-  const applyFilters = () => {
-    // استخدام الحالة المحدثة مباشرة
-    const newFilteredQuestions = applyFiltersToQuestions(selectedFilters);
+  // ✅ ✅ ✅ الإصلاح النهائي - تمرير الفلاتر مباشرة
+  const handleApplyFilters = (filters) => {
+    console.log('Applying filters directly:', filters);
+    
+    const newFilteredQuestions = applyFiltersToQuestions(filters);
     
     if (newFilteredQuestions.length === 0) {
       setShowNoQuestions(true);
@@ -216,13 +222,16 @@ export default function QuizScreen() {
       setShowNoQuestions(false);
     }
     
+    // تحديث selectedFilters مع الفلاتر المطبقة
+    setSelectedFilters(filters);
+    
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setScore(0);
     setShowExplanation(false);
     setShowResult(false);
     setTimeLeft(30);
-    setShowFilterModal(false); // إغلاق الفلتر بعد التطبيق
+    setShowFilterModal(false);
   };
 
   const resetAllFilters = () => {
@@ -282,7 +291,7 @@ export default function QuizScreen() {
           onClose={() => setShowFilterModal(false)}
           selectedFilters={selectedFilters}
           onFilterSelect={handleFilterSelect}
-          onApplyFilters={applyFilters}
+          onApplyFilters={handleApplyFilters}
           topicLabels={topicLabels}
         />
       </SafeAreaView>
@@ -291,11 +300,36 @@ export default function QuizScreen() {
 
   if (showResult) {
     const percentage = Math.round((score / filteredQuestions.length) * 100);
+    
     const getResultLevel = () => {
-      if (percentage >= 90) return { text: 'Excellent !', emoji: '🏆', color: '#f59e0b', icon: <Trophy size={32} color="#f59e0b" /> };
-      if (percentage >= 70) return { text: 'Très bien !', emoji: '⭐', color: '#3b82f6', icon: <Star size={32} color="#3b82f6" /> };
-      if (percentage >= 50) return { text: 'Bien', emoji: '👍', color: '#10b981', icon: <CheckCircle2 size={32} color="#10b981" /> };
-      return { text: 'À réviser', emoji: '📚', color: '#ef4444', icon: <Target size={32} color="#ef4444" /> };
+      if (percentage >= 90) return { 
+        text: 'Excellent !', 
+        emoji: '🏆', 
+        color: '#f59e0b', 
+        icon: <Trophy size={32} color="#f59e0b" />,
+        advice: 'Maîtrise exceptionnelle ! Continuez à maintenir ce niveau d\'excellence.'
+      };
+      if (percentage >= 70) return { 
+        text: 'Très bien !', 
+        emoji: '⭐', 
+        color: '#3b82f6', 
+        icon: <Star size={32} color="#3b82f6" />,
+        advice: 'Très bon niveau ! Quelques révisions pour atteindre l\'excellence.'
+      };
+      if (percentage >= 50) return { 
+        text: 'Bien', 
+        emoji: '👍', 
+        color: '#10b981', 
+        icon: <CheckCircle2 size={32} color="#10b981" />,
+        advice: 'Niveau correct. Concentrez-vous sur vos points faibles pour progresser.'
+      };
+      return { 
+        text: 'À réviser', 
+        emoji: '📚', 
+        color: '#ef4444', 
+        icon: <Target size={32} color="#ef4444" />,
+        advice: 'Des révisions sont nécessaires. Recommencez le quiz pour améliorer votre score.'
+      };
     };
 
     const result = getResultLevel();
@@ -362,10 +396,16 @@ export default function QuizScreen() {
                 <Text style={styles.resultStatLabel}>Incorrectes</Text>
               </View>
             </View>
+
+            {/* ✅ قسم النصيحة الجديد */}
+            <View style={styles.adviceContainer}>
+              <Text style={styles.adviceTitle}>Conseil</Text>
+              <Text style={styles.adviceText}>{result.advice}</Text>
+            </View>
           </Animated.View>
         </ScrollView>
 
-        {/* ✅ الأزرار في الأسفل - محسنة وجميلة */}
+        {/* ✅ الأزرار المحسنة مع زر العودة */}
         <View style={styles.resultActionsContainer}>
           <View style={styles.resultActions}>
             <TouchableOpacity
@@ -375,12 +415,34 @@ export default function QuizScreen() {
               <RotateCcw size={20} color="#ffffff" />
               <Text style={styles.primaryButtonText}>Recommencer</Text>
             </TouchableOpacity>
+            
             <TouchableOpacity
-              style={[styles.secondaryButton, styles.resultButton]}
+              style={[styles.homeButton, styles.resultButton]}
+              onPress={() => {
+                // العودة للشاشة الرئيسية - إعادة تعيين كامل
+                setCurrentQuestion(0);
+                setSelectedAnswer(null);
+                setScore(0);
+                setShowExplanation(false);
+                setShowResult(false);
+                setShowNoQuestions(false);
+                setSelectedFilters({ difficulty: [], topics: [] });
+                setFilteredQuestions(allQuestions);
+                setTimeLeft(30);
+              }}
+            >
+              <Home size={20} color="#ffffff" />
+              <Text style={styles.homeButtonText}>Accueil</Text>
+            </TouchableOpacity>
+          </View>
+          
+          <View style={styles.resultActionsRow}>
+            <TouchableOpacity
+              style={[styles.tertiaryButton, styles.resultButton]}
               onPress={() => setShowFilterModal(true)}
             >
-              <Filter size={20} color="#3b82f6" />
-              <Text style={styles.secondaryButtonText}>Changer filtres</Text>
+              <Filter size={20} color="#6b7280" />
+              <Text style={styles.tertiaryButtonText}>Changer filtres</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -390,7 +452,7 @@ export default function QuizScreen() {
           onClose={() => setShowFilterModal(false)}
           selectedFilters={selectedFilters}
           onFilterSelect={handleFilterSelect}
-          onApplyFilters={applyFilters}
+          onApplyFilters={handleApplyFilters}
           topicLabels={topicLabels}
         />
       </SafeAreaView>
@@ -577,7 +639,7 @@ export default function QuizScreen() {
         onClose={() => setShowFilterModal(false)}
         selectedFilters={selectedFilters}
         onFilterSelect={handleFilterSelect}
-        onApplyFilters={applyFilters}
+        onApplyFilters={handleApplyFilters}
         topicLabels={topicLabels}
       />
     </SafeAreaView>
@@ -966,6 +1028,30 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 0.5,
   },
+  // ✅ الأنماط الجديدة للنتائج المحسنة
+  adviceContainer: {
+    backgroundColor: '#f8fafc',
+    borderRadius: 16,
+    padding: 20,
+    marginTop: 20,
+    borderLeftWidth: 4,
+    borderLeftColor: '#3b82f6',
+    width: '100%',
+  },
+  adviceTitle: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#1e293b',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  adviceText: {
+    fontSize: 14,
+    color: '#475569',
+    lineHeight: 20,
+    textAlign: 'center',
+    fontWeight: '500',
+  },
   resultActionsContainer: {
     backgroundColor: '#ffffff',
     paddingHorizontal: 24,
@@ -982,6 +1068,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     gap: 12,
     width: '100%',
+  },
+  resultActionsRow: {
+    flexDirection: 'row',
+    gap: 12,
+    width: '100%',
+    marginTop: 12,
   },
   resultButton: {
     flexDirection: 'row',
@@ -1004,6 +1096,33 @@ const styles = StyleSheet.create({
     color: '#ffffff',
     fontSize: 16,
     fontWeight: '800',
+    letterSpacing: -0.2,
+  },
+  homeButton: {
+    flex: 1,
+    backgroundColor: '#10b981',
+    shadowColor: '#10b981',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 4,
+  },
+  homeButtonText: {
+    color: '#ffffff',
+    fontSize: 16,
+    fontWeight: '800',
+    letterSpacing: -0.2,
+  },
+  tertiaryButton: {
+    flex: 1,
+    backgroundColor: '#ffffff',
+    borderWidth: 2,
+    borderColor: '#e5e7eb',
+  },
+  tertiaryButtonText: {
+    color: '#6b7280',
+    fontSize: 16,
+    fontWeight: '700',
     letterSpacing: -0.2,
   },
   secondaryButton: {

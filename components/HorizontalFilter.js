@@ -1,4 +1,4 @@
-// components/HorizontalFilter.js - مع الفئات الجديدة
+// components/HorizontalFilter.js - الإصدار المصحح نهائياً
 import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, Animated, ScrollView, Modal, StyleSheet, Dimensions } from 'react-native';
 import { X, Filter, RotateCcw, Check } from 'lucide-react-native';
@@ -51,10 +51,12 @@ const HorizontalFilter = ({
     }));
   };
 
+  // ✅ ✅ ✅ الإصلاح النهائي - تمرير الفلاتر إلى onApplyFilters
   const handleApply = () => {
-    onFilterSelect('difficulty', tempFilters.difficulty);
-    onFilterSelect('topics', tempFilters.topics);
-    onApplyFilters();
+    console.log('Applying temp filters:', tempFilters);
+    
+    // ✅ تمرير الفلاتر كمعامل للدالة
+    onApplyFilters(tempFilters);
     onClose();
   };
 
