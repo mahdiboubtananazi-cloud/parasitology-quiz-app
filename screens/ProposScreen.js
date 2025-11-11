@@ -1,123 +1,211 @@
-// screens/ProposScreen.js - Version Améliorée (Phase 3)
+﻿// screens/ProposScreen.js - النسخة المبسطة العاملة
 import React from 'react';
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Animated } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { BookOpen, Target, Award, TrendingUp, Stethoscope, Microscope } from 'lucide-react-native';
+import { Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 
 export default function ProposScreen() {
+  const fadeAnim = React.useRef(new Animated.Value(0)).current;
+  const slideAnim = React.useRef(new Animated.Value(50)).current;
+
+  React.useEffect(() => {
+    Animated.parallel([
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 800,
+        useNativeDriver: true,
+      }),
+      Animated.timing(slideAnim, {
+        toValue: 0,
+        duration: 600,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, []);
+
   const features = [
     {
-      icon: <Target size={22} color="#3b82f6" />,
-      title: 'Questions ciblées',
-      description: 'Plus de 50 questions couvrant tous les aspects essentiels de la parasitologie',
-      color: '#eff6ff',
+      icon: 'help-circle',
+      title: 'Banque de questions (150+)',
+      description: 'Plus de 150 questions révisées et classées par thème avec explications détaillées.',
     },
     {
-      icon: <Award size={22} color="#10b981" />,
-      title: '3 niveaux',
-      description: 'Débutant, Intermédiaire et Avancé pour progresser à votre rythme',
-      color: '#ecfdf5',
+      icon: 'trophy',
+      title: 'Niveaux adaptatifs',
+      description: "Mode d'entraînement par niveaux et répartition équilibrée pour progresser.",
     },
     {
-      icon: <BookOpen size={22} color="#f59e0b" />,
-      title: '6 catégories',
-      description: 'Protozoaires, Helminthes, Diagnostic, Thérapeutique, Œufs, Cycle de vie',
-      color: '#fef3c7',
+      icon: 'book',
+      title: 'Révisions guidées',
+      description: "Explications concises après chaque question pour mémorisation.",
     },
     {
-      icon: <TrendingUp size={22} color="#8b5cf6" />,
-      title: 'Suivi des scores',
-      description: 'Évaluez votre progression et identifiez vos points à améliorer',
-      color: '#f5f3ff',
+      icon: 'trending-up',
+      title: 'Suivi & statistiques',
+      description: 'Historique des scores et progression par catégorie.',
+    },
+    {
+      icon: 'download',
+      title: 'Mode hors-ligne',
+      description: "Révisez sans connexion (pratique en déplacement).",
+    },
+    {
+      icon: 'star',
+      title: 'Favoris & révisions',
+      description: "Marquez les questions importantes.",
     },
   ];
 
   const categories = [
-    { name: 'Protozoaires', icon: '🦠', color: '#dbeafe' },
-    { name: 'Helminthes', icon: '🪱', color: '#dcfce7' },
-    { name: 'Diagnostic', icon: '🔬', color: '#fef3c7' },
-    { name: 'Thérapeutique', icon: '💊', color: '#fce7f3' },
-    { name: 'Œufs', icon: '🥚', color: '#e0e7ff' },
-    { name: 'Cycle de vie', icon: '🔄', color: '#fae8ff' },
+    {
+      name: 'PROTOZOAIRES',
+      icon: '🦠',
+      desc: "Étudiez les protozoaires pathogènes : classification, morphologie, pathogénie."
+    },
+    {
+      name: 'HELMINTHES',
+      icon: '🪱',
+      desc: "Explorez les nématodes, cestodes et trématodes — cycles de vie, clinique."
+    },
+    {
+      name: 'ARTHROPODES',
+      icon: '🦟',
+      desc: "Apprenez sur les ectoparasites et vecteurs : identification, rôle médical."
+    }
   ];
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
+    <SafeAreaView style={styles.container}>
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Header avec titre */}
+        {/* Header */}
         <View style={styles.header}>
-          <Text style={styles.microscope}>🔬</Text>
-          <Text style={styles.title}>Parasitology Quiz</Text>
-          
-          {/* Description en arabe avec style unique */}
-          <View style={styles.arabicTextContainer}>
-            <Text style={styles.arabicText}>
-              تطبيق موجه لطلبة علم الطفيليات والطب{'\n'}
-              لتسهيل مراجعة المفاهيم الأساسية
-            </Text>
+          <View style={styles.headerContent}>
+            <Text style={styles.headerIcon}>🔬</Text>
+            <Text style={styles.headerTitle}>À propos</Text>
           </View>
         </View>
 
-        {/* Fonctionnalités principales */}
+        {/* Intro */}
+        <Animated.View 
+          style={[
+            styles.introCard,
+            {
+              opacity: fadeAnim,
+              transform: [{ translateY: slideAnim }]
+            }
+          ]}
+        >
+          <Text style={styles.introTitle}>Application de Parasitologie</Text>
+          <Text style={styles.introText}>
+            "اللهم علّمنا ما ينفعنا وانفعنا بما علمتنا 🇩🇿"
+          </Text>
+        </Animated.View>
+
+        {/* Features */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Fonctionnalités</Text>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>Fonctionnalités principales</Text>
+            <View style={styles.titleLine} />
+          </View>
           <View style={styles.featuresGrid}>
             {features.map((feature, index) => (
-              <View key={index} style={[styles.featureCard, { backgroundColor: feature.color }]}>
+              <Animated.View
+                key={index}
+                style={[
+                  styles.featureCard,
+                  {
+                    opacity: fadeAnim,
+                    transform: [{ translateY: slideAnim }]
+                  }
+                ]}
+              >
                 <View style={styles.featureIconContainer}>
-                  {feature.icon}
+                  <Ionicons name={feature.icon} size={24} color="#004643" />
                 </View>
                 <Text style={styles.featureTitle}>{feature.title}</Text>
                 <Text style={styles.featureDescription}>{feature.description}</Text>
-              </View>
+              </Animated.View>
             ))}
           </View>
         </View>
 
-        {/* Catégories couvertes */}
+        {/* Categories */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Catégories couvertes</Text>
+          <View style={styles.sectionHeader}>
+            <Text style={styles.sectionTitle}>📚 Catégories couvertes</Text>
+            <View style={styles.titleLine} />
+          </View>
           <View style={styles.categoriesGrid}>
             {categories.map((category, index) => (
-              <View key={index} style={[styles.categoryCard, { backgroundColor: category.color }]}>
-                <Text style={styles.categoryIcon}>{category.icon}</Text>
+              <Animated.View 
+                key={index}
+                style={[
+                  styles.categoryCard,
+                  {
+                    opacity: fadeAnim,
+                    transform: [{ translateY: slideAnim }]
+                  }
+                ]}
+              >
+                <View style={styles.categoryIconContainer}>
+                  <Text style={styles.categoryIcon}>{category.icon}</Text>
+                </View>
                 <Text style={styles.categoryName}>{category.name}</Text>
-              </View>
+                <Text style={styles.categoryDesc}>{category.desc}</Text>
+              </Animated.View>
             ))}
           </View>
         </View>
 
-        {/* Section Crédits */}
-        <View style={styles.creditsSection}>
+        {/* Credits */}
+        <Animated.View 
+          style={[
+            styles.creditsSection,
+            {
+              opacity: fadeAnim,
+              transform: [{ translateY: slideAnim }]
+            }
+          ]}
+        >
           <View style={styles.creditsHeader}>
-            <Stethoscope size={24} color="#3b82f6" />
-            <Text style={styles.creditsTitle}>Crédits</Text>
+            <View style={styles.creditsIconContainer}>
+              <Text style={styles.developerEmoji}>👨‍💻</Text>
+            </View>
+            <Text style={styles.creditsTitle}>Développeur</Text>
           </View>
-          
           <View style={styles.creditsContent}>
-            <Text style={styles.developerName}>Développé par Mehdi Boubetana</Text>
-            <Text style={styles.developerRole}>Étudiant en biologie – spécialité parasitologie</Text>
-            
-            <View style={styles.divider} />
-            
-            <View style={styles.targetAudienceContainer}>
-              <Microscope size={20} color="#6b7280" />
-              <Text style={styles.targetAudienceText}>
-                Application destinée aux étudiants{'\n'}
-                en parasitologie et en médecine
+            <View style={styles.developerInfo}>
+              <Text style={styles.developerName}>Application de Parasitologie</Text>
+              <Text style={styles.developerRole}>
+                Destinée aux étudiants en médecine, pharmacie et sciences biologiques
               </Text>
             </View>
+            <View style={styles.divider} />
+            <View style={styles.targetAudienceContainer}>
+              <View style={styles.audienceIcon}>
+                <Ionicons name="school" size={20} color="#004643" />
+              </View>
+              <View style={styles.audienceText}>
+                <Text style={styles.audienceTitle}>Public cible</Text>
+                <Text style={styles.audienceDescription}>
+                  Étudiants en médecine, pharmacie, et sciences de la vie
+                </Text>
+              </View>
+            </View>
+            <View style={styles.thanksContainer}>
+              <Ionicons name="heart" size={16} color="#dc2626" />
+              <Text style={styles.thanksText}>Merci d'utiliser ParaQuiz</Text>
+            </View>
           </View>
-        </View>
+        </Animated.View>
 
-        {/* Footer note */}
+        {/* Footer */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>
-            Version 1.0.0 • Développé avec React Native
-          </Text>
+          <Text style={styles.footerText}>Version 1.0.0 • Développé avec React Native</Text>
+          <Text style={styles.footerSubText}>© 2024 Application de Parasitologie</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -127,196 +215,269 @@ export default function ProposScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f9fafb',
+    backgroundColor: '#EFF0F3',
   },
   scrollContent: {
+    paddingVertical: 20,
     paddingBottom: 40,
   },
   header: {
-    alignItems: 'center',
-    paddingTop: 40,
-    paddingBottom: 30,
-    paddingHorizontal: 20,
-  },
-  microscope: {
-    fontSize: 56,
-    marginBottom: 16,
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: '800',
-    color: '#111827',
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: '#e5e7eb',
     marginBottom: 20,
-    letterSpacing: -0.8,
   },
-  arabicTextContainer: {
-    backgroundColor: '#ffffff',
-    borderRadius: 16,
-    padding: 20,
-    borderWidth: 1,
-    borderColor: '#e5e7eb',
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  headerIcon: {
+    fontSize: 20,
+  },
+  headerTitle: {
+    fontSize: 16,
+    fontWeight: '700',
+    color: '#000000',
+  },
+  introCard: {
+    backgroundColor: '#FFFFFF',
+    borderRadius: 20,
+    padding: 24,
+    marginHorizontal: 16,
+    marginBottom: 30,
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08,
+    shadowRadius: 12,
+    elevation: 4,
   },
-  arabicText: {
-    fontSize: 17,
-    lineHeight: 28,
+  introTitle: {
+    fontSize: 24,
+    fontWeight: '900',
+    color: '#004643',
     textAlign: 'center',
-    color: '#374151',
-    fontWeight: '600',
-    fontFamily: 'System',
-    letterSpacing: 0.3,
+    marginBottom: 12,
+  },
+  introText: {
+    fontSize: 15,
+    color: '#475569',
+    lineHeight: 24,
+    textAlign: 'center',
+    fontWeight: '500',
   },
   section: {
-    paddingHorizontal: 20,
-    marginBottom: 32,
+    paddingHorizontal: 16,
+    marginBottom: 25,
+  },
+  sectionHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    marginBottom: 18,
   },
   sectionTitle: {
     fontSize: 20,
     fontWeight: '800',
-    color: '#111827',
-    marginBottom: 16,
-    letterSpacing: -0.5,
+    color: '#004643',
+  },
+  titleLine: {
+    flex: 1,
+    height: 2,
+    backgroundColor: '#ABD1C6',
+    borderRadius: 1,
   },
   featuresGrid: {
-    gap: 12,
+    gap: 16,
   },
   featureCard: {
     borderRadius: 16,
     padding: 20,
+    backgroundColor: '#F0F5F4',
     borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.04)',
+    borderColor: '#D0E7E2',
   },
   featureIconContainer: {
-    width: 44,
-    height: 44,
+    width: 50,
+    height: 50,
     borderRadius: 12,
-    backgroundColor: '#ffffff',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 14,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 2,
-    elevation: 1,
+    backgroundColor: '#ABD1C6',
   },
   featureTitle: {
-    fontSize: 17,
+    fontSize: 16,
     fontWeight: '700',
-    color: '#111827',
+    color: '#004643',
     marginBottom: 6,
-    letterSpacing: -0.3,
   },
   featureDescription: {
     fontSize: 14,
-    color: '#4b5563',
-    lineHeight: 21,
-    letterSpacing: -0.1,
+    color: '#475569',
+    lineHeight: 22,
   },
   categoriesGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
+    gap: 16,
   },
   categoryCard: {
-    width: '48%',
-    borderRadius: 14,
-    padding: 16,
+    borderRadius: 16,
+    padding: 18,
     alignItems: 'center',
+    backgroundColor: '#CFE7DF',
     borderWidth: 1,
-    borderColor: 'rgba(0,0,0,0.04)',
+    borderColor: '#C0E0D8',
+  },
+  categoryIconContainer: {
+    width: 46,
+    height: 46,
+    borderRadius: 12,
+    backgroundColor: '#F0F5F4',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 12,
   },
   categoryIcon: {
-    fontSize: 32,
-    marginBottom: 8,
+    fontSize: 26,
   },
   categoryName: {
-    fontSize: 14,
+    fontSize: 16,
     fontWeight: '700',
-    color: '#374151',
+    color: '#004643',
     textAlign: 'center',
-    letterSpacing: -0.2,
+    marginBottom: 4,
+  },
+  categoryDesc: {
+    fontSize: 13,
+    color: '#2f3e46',
+    textAlign: 'center',
+    fontWeight: '500',
   },
   creditsSection: {
-    marginHorizontal: 20,
-    backgroundColor: '#ffffff',
-    borderRadius: 20,
-    padding: 24,
+    marginHorizontal: 16,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 18,
     borderWidth: 1,
-    borderColor: '#e5e7eb',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.06,
-    shadowRadius: 8,
-    elevation: 4,
-    marginBottom: 24,
+    borderColor: '#D0E7E2',
+    marginBottom: 25,
+    overflow: 'hidden',
   },
   creditsHeader: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
-    marginBottom: 20,
-    paddingBottom: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: '#f3f4f6',
+    padding: 20,
+    backgroundColor: '#ABD1C6',
+  },
+  creditsIconContainer: {
+    width: 46,
+    height: 46,
+    borderRadius: 12,
+    backgroundColor: 'rgba(0,70,67,0.1)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  developerEmoji: {
+    fontSize: 26,
   },
   creditsTitle: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: '#111827',
-    letterSpacing: -0.5,
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#004643',
+    flex: 1,
   },
   creditsContent: {
+    padding: 20,
+  },
+  developerInfo: {
     alignItems: 'center',
+    marginBottom: 18,
   },
   developerName: {
     fontSize: 18,
     fontWeight: '700',
-    color: '#3b82f6',
-    marginBottom: 8,
-    letterSpacing: -0.3,
+    color: '#004643',
+    marginBottom: 4,
   },
   developerRole: {
-    fontSize: 15,
-    color: '#6b7280',
-    marginBottom: 20,
-    textAlign: 'center',
-    lineHeight: 22,
-  },
-  divider: {
-    width: 60,
-    height: 3,
-    backgroundColor: '#e5e7eb',
-    borderRadius: 2,
-    marginBottom: 20,
-  },
-  targetAudienceContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 10,
-    backgroundColor: '#f9fafb',
-    paddingVertical: 14,
-    paddingHorizontal: 18,
-    borderRadius: 12,
-  },
-  targetAudienceText: {
     fontSize: 14,
-    color: '#4b5563',
+    color: '#475569',
     textAlign: 'center',
     lineHeight: 20,
     fontWeight: '500',
   },
+  divider: {
+    width: 70,
+    height: 2,
+    backgroundColor: '#D0E7E2',
+    borderRadius: 1,
+    marginBottom: 20,
+    alignSelf: 'center',
+  },
+  targetAudienceContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    gap: 14,
+    backgroundColor: '#F0F5F4',
+    padding: 18,
+    borderRadius: 14,
+    marginBottom: 18,
+  },
+  audienceIcon: {
+    width: 40,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: '#ABD1C6',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  audienceText: {
+    flex: 1,
+  },
+  audienceTitle: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#004643',
+    marginBottom: 5,
+  },
+  audienceDescription: {
+    fontSize: 13,
+    color: '#475569',
+    lineHeight: 19,
+  },
+  thanksContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 10,
+    backgroundColor: '#F0F5F4',
+    borderRadius: 10,
+    borderWidth: 1,
+    borderColor: '#D0E7E2',
+  },
+  thanksText: {
+    fontSize: 13,
+    color: '#004643',
+    fontWeight: '600',
+  },
   footer: {
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 16,
+    marginTop: 15,
   },
   footerText: {
-    fontSize: 12,
-    color: '#9ca3af',
+    fontSize: 13,
+    color: '#475569',
+    textAlign: 'center',
+    fontWeight: '600',
+    marginBottom: 3,
+  },
+  footerSubText: {
+    fontSize: 11,
+    color: '#64748b',
     textAlign: 'center',
     fontWeight: '500',
   },

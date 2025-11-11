@@ -1,54 +1,232 @@
-// screens/QuizScreen.js - Version Améliorée (Phase 2)
-import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Animated, Modal } from 'react-native';
+﻿// screens/QuizScreen.js - النسخة المحدثة والمصلحة
+import React, { useState, useEffect, useRef, useMemo } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, Animated, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { CheckCircle2, AlertCircle, Filter, X, Clock } from 'lucide-react-native';
-import { sampleQuestions, topicLabels } from '../data/parasitology';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { protozoaQuestions, protozoaLabels, helminthsQuestions, helminthsLabels, arthropodsQuestions, arthropodsLabels } from '../data/categories';
+import HorizontalFilter from '../components/HorizontalFilter';
+import AnimatedOption from './QuizScreen_components/AnimatedOption';
 
-export default function QuizScreen() {
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
+
+// استبدال أيقونات lucide بأيقونات بسيطة
+const CheckCircle2 = ({ size, color }) => <Ionicons name="checkmark-circle" size={size} color={color} />;
+const AlertCircle = ({ size, color }) => <Ionicons name="alert-circle" size={size} color={color} />;
+const Filter = ({ size, color }) => <Ionicons name="filter" size={size} color={color} />;
+const Clock = ({ size, color }) => <Ionicons name="time" size={size} color={color} />;
+const RotateCcw = ({ size, color }) => <Ionicons name="refresh" size={size} color={color} />;
+const Star = ({ size, color }) => <Ionicons name="star" size={size} color={color} />;
+const Trophy = ({ size, color }) => <Ionicons name="trophy" size={size} color={color} />;
+const Target = ({ size, color }) => <MaterialIcons name="track-changes" size={size} color={color} />;
+const Home = ({ size, color }) => <Ionicons name="home" size={size} color={color} />;
+
+export default function QuizScreen({ route, navigation }) {
+  const { categoryId, categoryName, questions: categoryQuestions } = route?.params || {};
+  
+  // ✅ تحديد الفئة بناءً على categoryId باستخدام useMemo للتحديث الصحيح
+  const { allQuestionsData, currentLabels } = useMemo(() => {
+    if (categoryId === 'helminths') {
+      return {
+        allQuestionsData: helminthsQuestions,
+        currentLabels: helminthsLabels
+      };
+    } else if (categoryId === 'arthropods') {
+      return {
+        allQuestionsData: arthropodsQuestions,
+        currentLabels: arthropodsLabels
+      };
+    } else {
+      return {
+        allQuestionsData: protozoaQuestions,
+        currentLabels: protozoaLabels
+      };
+    }
+  }, [categoryId]);
+
+  // تحويل البيانات إلى مصفوفة أسئلة
+  const convertToQuestions = (data) => {
+    const questions = [];
+    Object.keys(data).forEach(topic => {
+      if (Array.isArray(data[topic]) && data[topic].length > 0) {
+        data[topic].forEach(q => {
+          questions.push({
+            ...q,
+            topic: topic,
+            question: q.question,
+            options: q.options,
+            correctAnswer: q.correct,
+            explanation: q.explanation
+          });
+        });
+      }
+    });
+    return questions;
+  };
+
+  // State
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
   const [showExplanation, setShowExplanation] = useState(false);
   const [showResult, setShowResult] = useState(false);
-  const [allQuestions] = useState(sampleQuestions);
-  const [filteredQuestions, setFilteredQuestions] = useState(sampleQuestions);
+  const [allQuestions, setAllQuestions] = useState(convertToQuestions(allQuestionsData));
+  const [filteredQuestions, setFilteredQuestions] = useState(convertToQuestions(allQuestionsData));
   const [progressAnim] = useState(new Animated.Value(0));
   const [timeLeft, setTimeLeft] = useState(30);
   const [showFilterModal, setShowFilterModal] = useState(false);
-  const [selectedFilters, setSelectedFilters] = useState({
-    difficulty: [],
-    topics: []
-  });
+  const [selectedFilters, setSelectedFilters] = useState({ topics: [] });
   const [showNoQuestions, setShowNoQuestions] = useState(false);
 
-  const applyFiltersToQuestions = (filters) => {
-    let filtered = [...allQuestions];
-    
-    if (filters.difficulty.length > 0) {
-      filtered = filtered.filter(q => filters.difficulty.includes(q.difficulty));
+  // Animations
+  const slideAnim = useRef(new Animated.Value(0)).current;
+  const scaleAnim = useRef(new Animated.Value(1)).current;
+  const timerPulseAnim = useRef(new Animated.Value(1)).current;
+  const explanationFadeAnim = useRef(new Animated.Value(0)).current;
+  const explanationSlideAnim = useRef(new Animated.Value(30)).current;
+  const resultScaleAnim = useRef(new Animated.Value(0.8)).current;
+
+  // ✅ تحديث الأسئلة عند تغيير الفئة
+  useEffect(() => {
+    const newQuestions = convertToQuestions(allQuestionsData);
+    setAllQuestions(newQuestions);
+    setFilteredQuestions(newQuestions);
+    setCurrentQuestion(0);
+    setSelectedAnswer(null);
+    setScore(0);
+    setShowExplanation(false);
+    setShowResult(false);
+    setShowNoQuestions(false);
+    setSelectedFilters({ topics: [] });
+  }, [categoryId, categoryName, allQuestionsData]);
+
+  // ✅ دالة تطبيق الفلاتر
+  const handleApplyFilters = (filters) => {
+    if (!allQuestions || allQuestions.length === 0) {
+      setShowNoQuestions(true);
+      setFilteredQuestions([]);
+      return;
     }
-    
-    if (filters.topics.length > 0) {
-      filtered = filtered.filter(q => filters.topics.includes(q.topic));
+
+    if (!filters.topics || filters.topics.length === 0) {
+      setFilteredQuestions(allQuestions);
+      setShowNoQuestions(false);
+      setSelectedFilters({ topics: [] });
+    } else {
+      const selectedTopics = filters.topics.map(t => t.toLowerCase().trim());
+      const filtered = allQuestions.filter(question => {
+        const questionTopic = question.topic?.toLowerCase().trim();
+        return selectedTopics.includes(questionTopic);
+      });
+
+      if (filtered.length === 0) {
+        setShowNoQuestions(true);
+        setFilteredQuestions([]);
+      } else {
+        setShowNoQuestions(false);
+        setFilteredQuestions(filtered);
+      }
+      
+      setSelectedFilters(filters);
     }
-    
-    return filtered;
+
+    setCurrentQuestion(0);
+    setSelectedAnswer(null);
+    setScore(0);
+    setShowExplanation(false);
+    setShowResult(false);
+    setShowFilterModal(false);
+    setTimeLeft(30);
   };
+
+  // باقي الكود نفسه... (Animations, Timer, Handlers)
+  useEffect(() => {
+    slideAnim.setValue(50);
+    scaleAnim.setValue(0.95);
+
+    Animated.parallel([
+      Animated.spring(slideAnim, {
+        toValue: 0,
+        tension: 80,
+        friction: 10,
+        useNativeDriver: true,
+      }),
+      Animated.spring(scaleAnim, {
+        toValue: 1,
+        tension: 80,
+        friction: 10,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [currentQuestion]);
+
+  useEffect(() => {
+    if (timeLeft <= 10 && timeLeft > 0) {
+      Animated.loop(
+        Animated.sequence([
+          Animated.timing(timerPulseAnim, {
+            toValue: 1.15,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+          Animated.timing(timerPulseAnim, {
+            toValue: 1,
+            duration: 400,
+            useNativeDriver: true,
+          }),
+        ])
+      ).start();
+    } else {
+      timerPulseAnim.setValue(1);
+    }
+  }, [timeLeft]);
+
+  useEffect(() => {
+    if (showExplanation) {
+      explanationFadeAnim.setValue(0);
+      explanationSlideAnim.setValue(30);
+
+      Animated.parallel([
+        Animated.timing(explanationFadeAnim, {
+          toValue: 1,
+          duration: 400,
+          useNativeDriver: true,
+        }),
+        Animated.spring(explanationSlideAnim, {
+          toValue: 0,
+          tension: 80,
+          friction: 10,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }
+  }, [showExplanation]);
+
+  useEffect(() => {
+    if (showResult) {
+      Animated.spring(resultScaleAnim, {
+        toValue: 1,
+        tension: 60,
+        friction: 7,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [showResult]);
 
   useEffect(() => {
     if (filteredQuestions.length === 0) {
       setShowNoQuestions(true);
       return;
     }
-    
+
     setTimeLeft(30);
-    
+
     const timer = setInterval(() => {
       setTimeLeft(prevTime => {
         if (prevTime <= 1) {
           clearInterval(timer);
-          handleTimeUp();
+          if (!showExplanation) {
+            setShowExplanation(true);
+          }
           return 0;
         }
         return prevTime - 1;
@@ -58,28 +236,12 @@ export default function QuizScreen() {
     return () => clearInterval(timer);
   }, [currentQuestion, filteredQuestions]);
 
-  useEffect(() => {
-    if (filteredQuestions.length > 0) {
-      Animated.timing(progressAnim, {
-        toValue: ((currentQuestion + 1) / filteredQuestions.length) * 100,
-        duration: 300,
-        useNativeDriver: false,
-      }).start();
-    }
-  }, [currentQuestion, filteredQuestions]);
-
-  const handleTimeUp = () => {
-    if (!showExplanation && filteredQuestions.length > 0) {
-      setShowExplanation(true);
-    }
-  };
-
   const handleAnswerSelect = (answerIndex) => {
     if (showExplanation || filteredQuestions.length === 0) return;
-    
+
     setSelectedAnswer(answerIndex);
     setShowExplanation(true);
-    
+
     if (answerIndex === filteredQuestions[currentQuestion].correctAnswer) {
       setScore(score + 1);
     }
@@ -102,57 +264,14 @@ export default function QuizScreen() {
     setShowExplanation(false);
     setShowResult(false);
     setShowNoQuestions(false);
-    progressAnim.setValue(0);
     setTimeLeft(30);
+    resultScaleAnim.setValue(0.8);
   };
 
-  const handleFilterSelect = (type, value) => {
-    setSelectedFilters(prev => {
-      const currentArray = prev[type];
-      const isSelected = currentArray.includes(value);
-      
-      if (isSelected) {
-        return {
-          ...prev,
-          [type]: currentArray.filter(item => item !== value)
-        };
-      } else {
-        return {
-          ...prev,
-          [type]: [...currentArray, value]
-        };
-      }
-    });
-  };
-
-  const applyFilters = () => {
-    const newFilteredQuestions = applyFiltersToQuestions(selectedFilters);
-    
-    if (newFilteredQuestions.length === 0) {
-      setShowNoQuestions(true);
-      setFilteredQuestions([]);
-    } else {
-      setFilteredQuestions(newFilteredQuestions);
-      setShowNoQuestions(false);
-    }
-    
-    setShowFilterModal(false);
-    setCurrentQuestion(0);
-    setSelectedAnswer(null);
-    setScore(0);
-    setShowExplanation(false);
-    setShowResult(false);
-    setTimeLeft(30);
-  };
-
-  const resetFilters = () => {
-    setSelectedFilters({
-      difficulty: [],
-      topics: []
-    });
+  const resetAllFilters = () => {
+    setSelectedFilters({ topics: [] });
     setFilteredQuestions(allQuestions);
     setShowNoQuestions(false);
-    setShowFilterModal(false);
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setScore(0);
@@ -161,19 +280,28 @@ export default function QuizScreen() {
     setTimeLeft(30);
   };
 
+  const goHome = () => {
+    if (navigation) {
+      navigation.navigate('Home');
+    }
+  };
+
+  // ============ NO QUESTIONS SCREEN ============
   if (showNoQuestions) {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
         <View style={styles.header}>
           <View style={styles.headerContent}>
             <Text style={styles.headerIcon}>🔬</Text>
-            <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+            <Text style={styles.headerTitle}>
+              {categoryName ? `Quiz ${categoryName}` : 'Quiz de Parasitologie'}
+            </Text>
           </View>
           <TouchableOpacity 
             style={styles.filterButton}
             onPress={() => setShowFilterModal(true)}
           >
-            <Filter size={22} color="#3b82f6" />
+            <Filter size={22} color="#004643" />
           </TouchableOpacity>
         </View>
 
@@ -192,32 +320,57 @@ export default function QuizScreen() {
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.secondaryButton}
-            onPress={resetFilters}
+            onPress={resetAllFilters}
           >
             <Text style={styles.secondaryButtonText}>Réinitialiser tout</Text>
           </TouchableOpacity>
         </View>
 
-        <FilterModal 
-          showFilterModal={showFilterModal}
-          setShowFilterModal={setShowFilterModal}
+        <HorizontalFilter
+          key={`filter-${categoryId}`}
+          visible={showFilterModal}
+          onClose={() => setShowFilterModal(false)}
           selectedFilters={selectedFilters}
-          handleFilterSelect={handleFilterSelect}
-          applyFilters={applyFilters}
-          resetFilters={resetFilters}
-          topicLabels={topicLabels}
+          onApplyFilters={handleApplyFilters}
+          topicLabels={currentLabels}
         />
       </SafeAreaView>
     );
   }
 
+  // ============ RESULTS SCREEN ============
   if (showResult) {
     const percentage = Math.round((score / filteredQuestions.length) * 100);
+
     const getResultLevel = () => {
-      if (percentage >= 90) return { text: 'Excellent !', emoji: '🌟', color: '#10b981' };
-      if (percentage >= 70) return { text: 'Très bien !', emoji: '👍', color: '#3b82f6' };
-      if (percentage >= 50) return { text: 'Bien', emoji: '👌', color: '#f59e0b' };
-      return { text: 'À réviser', emoji: '📚', color: '#ef4444' };
+      if (percentage >= 90) return { 
+        text: 'Excellent !', 
+        emoji: '🏆', 
+        color: '#004643', 
+        icon: <Trophy size={32} color="#004643" />,
+        advice: 'Maîtrise exceptionnelle ! Continuez à maintenir ce niveau d\'excellence.'
+      };
+      if (percentage >= 70) return { 
+        text: 'Très bien !', 
+        emoji: '⭐', 
+        color: '#004643', 
+        icon: <Star size={32} color="#004643" />,
+        advice: 'Très bon niveau ! Quelques révisions pour atteindre l\'excellence.'
+      };
+      if (percentage >= 50) return { 
+        text: 'Bien', 
+        emoji: '👍', 
+        color: '#004643', 
+        icon: <CheckCircle2 size={32} color="#004643" />,
+        advice: 'Niveau correct. Concentrez-vous sur vos points faibles pour progresser.'
+      };
+      return { 
+        text: 'À réviser', 
+        emoji: '📚', 
+        color: '#004643', 
+        icon: <Target size={32} color="#004643" />,
+        advice: 'Des révisions sont nécessaires. Recommencez le quiz pour améliorer votre score.'
+      };
     };
 
     const result = getResultLevel();
@@ -227,19 +380,35 @@ export default function QuizScreen() {
         <View style={styles.header}>
           <View style={styles.headerContent}>
             <Text style={styles.headerIcon}>🔬</Text>
-            <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+            <Text style={styles.headerTitle}>
+              {categoryName ? `Quiz ${categoryName}` : 'Quiz de Parasitologie'}
+            </Text>
           </View>
           <TouchableOpacity 
             style={styles.filterButton}
             onPress={() => setShowFilterModal(true)}
           >
-            <Filter size={22} color="#3b82f6" />
+            <Filter size={22} color="#004643" />
           </TouchableOpacity>
         </View>
 
-        <ScrollView contentContainerStyle={styles.resultScrollContent}>
-          <View style={styles.resultCard}>
-            <Text style={styles.resultEmoji}>{result.emoji}</Text>
+        <ScrollView 
+          contentContainerStyle={styles.resultScrollContent}
+          showsVerticalScrollIndicator={false}
+        >
+          <Animated.View 
+            style={[
+              styles.resultCard,
+              { transform: [{ scale: resultScaleAnim }] }
+            ]}
+          >
+            <View style={styles.resultHeader}>
+              <View style={[styles.resultIconContainer, { backgroundColor: '#ABD1C6' }]}>
+                {result.icon}
+              </View>
+              <Text style={styles.resultEmoji}>{result.emoji}</Text>
+            </View>
+            
             <Text style={[styles.resultLevel, { color: result.color }]}>
               {result.text}
             </Text>
@@ -253,8 +422,8 @@ export default function QuizScreen() {
 
             <View style={styles.resultStats}>
               <View style={styles.resultStatItem}>
-                <View style={styles.statIconContainer}>
-                  <CheckCircle2 size={20} color="#10b981" />
+                <View style={[styles.statIconContainer, { backgroundColor: '#ABD1C6' }]}>
+                  <CheckCircle2 size={24} color="#004643" />
                 </View>
                 <Text style={styles.resultStatNumber}>{score}</Text>
                 <Text style={styles.resultStatLabel}>Correctes</Text>
@@ -263,39 +432,68 @@ export default function QuizScreen() {
               <View style={styles.resultDivider} />
 
               <View style={styles.resultStatItem}>
-                <View style={styles.statIconContainer}>
-                  <AlertCircle size={20} color="#ef4444" />
+                <View style={[styles.statIconContainer, { backgroundColor: '#ABD1C6' }]}>
+                  <AlertCircle size={24} color="#004643" />
                 </View>
                 <Text style={styles.resultStatNumber}>{filteredQuestions.length - score}</Text>
                 <Text style={styles.resultStatLabel}>Incorrectes</Text>
               </View>
             </View>
 
-            <View style={styles.resultActions}>
-              <TouchableOpacity
-                style={styles.primaryButton}
-                onPress={resetQuiz}
-              >
-                <Text style={styles.primaryButtonText}>Recommencer</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.secondaryButton}
-                onPress={() => setShowFilterModal(true)}
-              >
-                <Text style={styles.secondaryButtonText}>Changer filtres</Text>
-              </TouchableOpacity>
+            <View style={styles.adviceContainer}>
+              <Text style={styles.adviceTitle}>Conseil</Text>
+              <Text style={styles.adviceText}>{result.advice}</Text>
             </View>
-          </View>
+          </Animated.View>
         </ScrollView>
 
-        <FilterModal 
-          showFilterModal={showFilterModal}
-          setShowFilterModal={setShowFilterModal}
+        <View style={styles.resultActionsContainer}>
+          <View style={styles.resultActions}>
+            <TouchableOpacity
+              style={[styles.primaryButton, styles.resultButton]}
+              onPress={resetQuiz}
+            >
+              <RotateCcw size={20} color="#ffffff" />
+              <Text style={styles.primaryButtonText}>Recommencer</Text>
+            </TouchableOpacity>
+            
+            <TouchableOpacity
+              style={[styles.homeButton, styles.resultButton]}
+              onPress={() => {
+                setCurrentQuestion(0);
+                setSelectedAnswer(null);
+                setScore(0);
+                setShowExplanation(false);
+                setShowResult(false);
+                setShowNoQuestions(false);
+                setSelectedFilters({ topics: [] });
+                setFilteredQuestions(allQuestions);
+                setTimeLeft(30);
+              }}
+            >
+              <Home size={20} color="#ffffff" />
+              <Text style={styles.homeButtonText}>Accueil</Text>
+            </TouchableOpacity>
+          </View>
+          
+          <View style={styles.resultActionsRow}>
+            <TouchableOpacity
+              style={[styles.tertiaryButton, styles.resultButton]}
+              onPress={() => setShowFilterModal(true)}
+            >
+              <Filter size={20} color="#004643" />
+              <Text style={styles.tertiaryButtonText}>Changer filtres</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        <HorizontalFilter
+          key={`filter-${categoryId}`}
+          visible={showFilterModal}
+          onClose={() => setShowFilterModal(false)}
           selectedFilters={selectedFilters}
-          handleFilterSelect={handleFilterSelect}
-          applyFilters={applyFilters}
-          resetFilters={resetFilters}
-          topicLabels={topicLabels}
+          onApplyFilters={handleApplyFilters}
+          topicLabels={currentLabels}
         />
       </SafeAreaView>
     );
@@ -309,7 +507,9 @@ export default function QuizScreen() {
         <View style={styles.header}>
           <View style={styles.headerContent}>
             <Text style={styles.headerIcon}>🔬</Text>
-            <Text style={styles.headerTitle}>Quiz de Parasitologie</Text>
+            <Text style={styles.headerTitle}>
+              {categoryName ? `Quiz ${categoryName}` : 'Quiz de Parasitologie'}
+            </Text>
           </View>
         </View>
         <View style={styles.noQuestionsContainer}>
@@ -323,7 +523,6 @@ export default function QuizScreen() {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Header Principal */}
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <Text style={styles.headerIcon}>🔬</Text>
@@ -333,44 +532,8 @@ export default function QuizScreen() {
           style={styles.filterButton}
           onPress={() => setShowFilterModal(true)}
         >
-          <Filter size={22} color="#3b82f6" />
+          <Filter size={22} color="#004643" />
         </TouchableOpacity>
-      </View>
-
-      {/* Barre de Statistiques */}
-      <View style={styles.statsBar}>
-        <View style={styles.statsRow}>
-          <View style={styles.statBox}>
-            <Text style={styles.statLabel}>Question</Text>
-            <Text style={styles.statValue}>{currentQuestion + 1}/{filteredQuestions.length}</Text>
-          </View>
-          
-          <View style={styles.statBox}>
-            <Text style={styles.statLabel}>Score</Text>
-            <Text style={styles.statValue}>{score}</Text>
-          </View>
-          
-          <View style={[styles.statBox, styles.timerBox]}>
-            <Clock size={14} color={timeLeft <= 10 ? '#ef4444' : '#6b7280'} />
-            <Text style={[styles.statValue, timeLeft <= 10 && styles.timeWarning]}>
-              {timeLeft}s
-            </Text>
-          </View>
-        </View>
-        
-        <View style={styles.progressBar}>
-          <Animated.View
-            style={[
-              styles.progressFill,
-              {
-                width: progressAnim.interpolate({
-                  inputRange: [0, 100],
-                  outputRange: ['0%', '100%'],
-                }),
-              },
-            ]}
-          />
-        </View>
       </View>
 
       <ScrollView 
@@ -378,26 +541,52 @@ export default function QuizScreen() {
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
       >
-        {/* Badges */}
-        <View style={styles.badgesContainer}>
-          <View style={[styles.badge, 
-            question.difficulty === 'easy' ? styles.badgeGreen : 
-            question.difficulty === 'medium' ? styles.badgeOrange : styles.badgeRed
-          ]}>
-            <Text style={styles.badgeText}>
-              {question.difficulty === 'easy' ? 'Débutant' : 
-               question.difficulty === 'medium' ? 'Intermédiaire' : 'Avancé'}
+        {/* Question Header with Timer and Category */}
+        <View style={styles.questionHeader}>
+          <View style={styles.questionInfo}>
+            <Text style={styles.questionNumber}>
+              Question {currentQuestion + 1}/{filteredQuestions.length}
             </Text>
+            <View style={styles.categoryBadge}>
+              <Text style={styles.categoryText}>
+                {currentLabels[question.topic] || question.topic}
+              </Text>
+            </View>
           </View>
-          <View style={styles.badgeBlue}>
-            <Text style={styles.badgeText}>{topicLabels[question.topic]}</Text>
-          </View>
+          
+          {/* Timer Circle */}
+          <Animated.View 
+            style={[
+              styles.timerCircle,
+              { transform: [{ scale: timerPulseAnim }] }
+            ]}
+          >
+            <View style={styles.timerCircleInner}>
+              <Clock size={16} color={timeLeft <= 10 ? "#dc2626" : "#004643"} />
+              <Text style={[
+                styles.timerText,
+                timeLeft <= 10 && styles.timerWarning
+              ]}>
+                {timeLeft}s
+              </Text>
+            </View>
+          </Animated.View>
         </View>
 
-        {/* Question */}
-        <View style={styles.questionCard}>
+        {/* Question Card */}
+        <Animated.View 
+          style={[
+            styles.questionCard,
+            {
+              transform: [
+                { translateX: slideAnim },
+                { scale: scaleAnim }
+              ]
+            }
+          ]}
+        >
           <Text style={styles.questionText}>{question.question}</Text>
-        </View>
+        </Animated.View>
 
         {/* Options */}
         <View style={styles.optionsContainer}>
@@ -408,47 +597,41 @@ export default function QuizScreen() {
             const showWrong = showExplanation && isSelected && !isCorrect;
 
             return (
-              <TouchableOpacity
+              <AnimatedOption
                 key={index}
-                style={[
-                  styles.optionButton,
-                  showCorrect && styles.optionCorrect,
-                  showWrong && styles.optionWrong,
-                  isSelected && !showExplanation && styles.optionSelected,
-                ]}
+                option={option}
+                isSelected={isSelected}
+                showCorrect={showCorrect}
+                showWrong={showWrong}
+                showExplanation={showExplanation}
                 onPress={() => handleAnswerSelect(index)}
-                disabled={showExplanation}
-                activeOpacity={0.7}
-              >
-                <Text style={[
-                  styles.optionText,
-                  (showCorrect || showWrong || isSelected) && styles.optionTextBold,
-                ]}>
-                  {option}
-                </Text>
-                {showCorrect && (
-                  <CheckCircle2 size={20} color="#10b981" />
-                )}
-              </TouchableOpacity>
+                styles={styles}
+              />
             );
           })}
         </View>
 
-        {/* Explication */}
+        {/* Explanation */}
         {showExplanation && (
-          <View style={[
-            styles.explanationCard,
-            isCorrect ? styles.explanationCorrect : styles.explanationWrong
-          ]}>
+          <Animated.View 
+            style={[
+              styles.explanationCard,
+              isCorrect ? styles.explanationCorrect : styles.explanationWrong,
+              {
+                opacity: explanationFadeAnim,
+                transform: [{ translateY: explanationSlideAnim }]
+              }
+            ]}
+          >
             <View style={styles.explanationHeader}>
               {isCorrect ? (
                 <CheckCircle2 size={20} color="#10b981" />
               ) : (
-                <AlertCircle size={20} color="#ef4444" />
+                <AlertCircle size={20} color="#dc2626" />
               )}
               <Text style={[
                 styles.explanationTitle,
-                { color: isCorrect ? '#047857' : '#dc2626' }
+                { color: isCorrect ? '#10b981' : '#dc2626' }
               ]}>
                 {isCorrect ? 'Bonne réponse !' : 'Réponse incorrecte'}
               </Text>
@@ -457,155 +640,49 @@ export default function QuizScreen() {
             <Text style={styles.explanationText}>
               {question.explanation}
             </Text>
-          </View>
+          </Animated.View>
         )}
 
-        {/* Bouton Suivant */}
+        {/* Next Button */}
         {showExplanation && (
-          <TouchableOpacity
-            style={styles.nextButton}
-            onPress={handleNextQuestion}
+          <Animated.View
+            style={{
+              opacity: explanationFadeAnim,
+              transform: [{ translateY: explanationSlideAnim }]
+            }}
           >
-            <Text style={styles.nextButtonText}>
-              {currentQuestion + 1 === filteredQuestions.length ? 'Voir les résultats' : 'Question suivante'}
-            </Text>
-          </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.nextButton}
+              onPress={handleNextQuestion}
+            >
+              <Text style={styles.nextButtonText}>
+                {currentQuestion + 1 === filteredQuestions.length ? 'Voir les résultats' : 'Question suivante'}
+              </Text>
+            </TouchableOpacity>
+          </Animated.View>
         )}
       </ScrollView>
 
-      <FilterModal 
-        showFilterModal={showFilterModal}
-        setShowFilterModal={setShowFilterModal}
+      <HorizontalFilter
+        visible={showFilterModal}
+        onClose={() => setShowFilterModal(false)}
         selectedFilters={selectedFilters}
-        handleFilterSelect={handleFilterSelect}
-        applyFilters={applyFilters}
-        resetFilters={resetFilters}
-        topicLabels={topicLabels}
+        onApplyFilters={handleApplyFilters}
+        topicLabels={currentLabels}
       />
     </SafeAreaView>
   );
 }
 
-const FilterModal = ({ 
-  showFilterModal, 
-  setShowFilterModal, 
-  selectedFilters, 
-  handleFilterSelect, 
-  applyFilters, 
-  resetFilters,
-  topicLabels 
-}) => (
-  <Modal
-    visible={showFilterModal}
-    animationType="slide"
-    transparent={true}
-  >
-    <View style={styles.modalOverlay}>
-      <View style={styles.filterModal}>
-        <View style={styles.modalHeader}>
-          <Text style={styles.modalTitle}>Filtres</Text>
-          <TouchableOpacity onPress={() => setShowFilterModal(false)}>
-            <X size={24} color="#6b7280" />
-          </TouchableOpacity>
-        </View>
-
-        <ScrollView style={styles.filterContent}>
-          <View style={styles.filterSection}>
-            <Text style={styles.filterSectionTitle}>Niveau de difficulté</Text>
-            <View style={styles.filterOptions}>
-              {['easy', 'medium', 'hard'].map(difficulty => (
-                <TouchableOpacity
-                  key={difficulty}
-                  style={[
-                    styles.filterChip,
-                    selectedFilters.difficulty.includes(difficulty) && styles.filterChipSelected
-                  ]}
-                  onPress={() => handleFilterSelect('difficulty', difficulty)}
-                >
-                  <Text style={[
-                    styles.filterChipText,
-                    selectedFilters.difficulty.includes(difficulty) && styles.filterChipTextSelected
-                  ]}>
-                    {difficulty === 'easy' ? 'Débutant' : 
-                     difficulty === 'medium' ? 'Intermédiaire' : 'Avancé'}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-
-          <View style={styles.filterSection}>
-            <Text style={styles.filterSectionTitle}>Catégories</Text>
-            <View style={styles.filterOptions}>
-              {Object.keys(topicLabels).map(topic => (
-                <TouchableOpacity
-                  key={topic}
-                  style={[
-                    styles.filterChip,
-                    selectedFilters.topics.includes(topic) && styles.filterChipSelected
-                  ]}
-                  onPress={() => handleFilterSelect('topics', topic)}
-                >
-                  <Text style={[
-                    styles.filterChipText,
-                    selectedFilters.topics.includes(topic) && styles.filterChipTextSelected
-                  ]}>
-                    {topicLabels[topic]}
-                  </Text>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-
-          {(selectedFilters.difficulty.length > 0 || selectedFilters.topics.length > 0) && (
-            <View style={styles.selectedFiltersSection}>
-              <Text style={styles.selectedFiltersTitle}>Filtres sélectionnés</Text>
-              <View style={styles.selectedFiltersList}>
-                {selectedFilters.difficulty.map(diff => (
-                  <View key={diff} style={styles.selectedFilterTag}>
-                    <Text style={styles.selectedFilterText}>
-                      {diff === 'easy' ? 'Débutant' : diff === 'medium' ? 'Intermédiaire' : 'Avancé'}
-                    </Text>
-                  </View>
-                ))}
-                {selectedFilters.topics.map(topic => (
-                  <View key={topic} style={styles.selectedFilterTag}>
-                    <Text style={styles.selectedFilterText}>{topicLabels[topic]}</Text>
-                  </View>
-                ))}
-              </View>
-            </View>
-          )}
-        </ScrollView>
-
-        <View style={styles.modalActions}>
-          <TouchableOpacity 
-            style={styles.modalResetButton}
-            onPress={resetFilters}
-          >
-            <Text style={styles.modalResetButtonText}>Réinitialiser</Text>
-          </TouchableOpacity>
-          <TouchableOpacity 
-            style={styles.modalApplyButton}
-            onPress={applyFilters}
-          >
-            <Text style={styles.modalApplyButtonText}>Appliquer</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    </View>
-  </Modal>
-);
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f9fafb',
+    backgroundColor: '#EFF0F3',
   },
   header: {
-    backgroundColor: '#ffffff',
-    paddingVertical: 16,
-    paddingHorizontal: 20,
+    backgroundColor: '#FFFFFF',
+    paddingVertical: 12, // تصغير
+    paddingHorizontal: 16, // تصغير
     borderBottomWidth: 1,
     borderBottomColor: '#e5e7eb',
     flexDirection: 'row',
@@ -615,145 +692,115 @@ const styles = StyleSheet.create({
   headerContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    gap: 8, // تصغير
   },
   headerIcon: {
-    fontSize: 24,
+    fontSize: 20, // تصغير
   },
   headerTitle: {
-    fontSize: 19,
+    fontSize: 16, // تصغير
     fontWeight: '700',
-    color: '#111827',
-    letterSpacing: -0.3,
+    color: '#000000',
   },
   filterButton: {
-    padding: 8,
-    borderRadius: 10,
-    backgroundColor: '#f3f4f6',
-  },
-  statsBar: {
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 20,
-    paddingVertical: 14,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
-  },
-  statsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 12,
-  },
-  statBox: {
-    alignItems: 'center',
-    flex: 1,
-  },
-  timerBox: {
-    flexDirection: 'row',
-    gap: 4,
-    justifyContent: 'center',
-  },
-  statLabel: {
-    fontSize: 11,
-    color: '#9ca3af',
-    fontWeight: '600',
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-    marginBottom: 4,
-  },
-  statValue: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#1f2937',
-  },
-  timeWarning: {
-    color: '#ef4444',
-  },
-  progressBar: {
-    height: 5,
-    backgroundColor: '#e5e7eb',
-    borderRadius: 3,
-    overflow: 'hidden',
-  },
-  progressFill: {
-    height: '100%',
-    backgroundColor: '#3b82f6',
-    borderRadius: 3,
+    padding: 6, // تصغير
+    borderRadius: 8,
+    backgroundColor: '#ABD1C6',
   },
   content: {
     flex: 1,
   },
   scrollContent: {
-    padding: 20,
-    paddingBottom: 30,
+    padding: 12, // تصغير
+    paddingBottom: 80, // تقليل لرفع المحتوى
   },
-  badgesContainer: {
+  // Question Header - تصغير كبير
+  questionHeader: {
     flexDirection: 'row',
-    gap: 8,
-    marginBottom: 20,
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 8, // تصغير
   },
-  badge: {
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 16,
+  questionInfo: {
+    flex: 1,
   },
-  badgeGreen: {
-    backgroundColor: '#d1fae5',
-  },
-  badgeOrange: {
-    backgroundColor: '#fed7aa',
-  },
-  badgeRed: {
-    backgroundColor: '#fecaca',
-  },
-  badgeBlue: {
-    backgroundColor: '#dbeafe',
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 16,
-  },
-  badgeText: {
-    fontSize: 12,
+  questionNumber: {
+    fontSize: 14, // تصغير
     fontWeight: '700',
-    color: '#374151',
-    letterSpacing: 0.2,
+    color: '#004643',
+    marginBottom: 4, // تصغير
   },
+  categoryBadge: {
+    backgroundColor: '#ABD1C6',
+    paddingHorizontal: 10, // تصغير
+    paddingVertical: 3, // تصغير
+    borderRadius: 10,
+    alignSelf: 'flex-start',
+  },
+  categoryText: {
+    fontSize: 11, // تصغير
+    fontWeight: '600',
+    color: '#004643',
+  },
+  // Timer Circle - تصغير كبير
+  timerCircle: {
+    width: 50, // تصغير من 60
+    height: 50, // تصغير من 60
+    borderRadius: 25, // تصغير
+    backgroundColor: '#FFFFFF',
+    borderWidth: 2, // تصغير
+    borderColor: '#ABD1C6',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 8, // تصغير
+  },
+  timerCircleInner: {
+    alignItems: 'center',
+  },
+  timerText: {
+    fontSize: 12, // تصغير
+    fontWeight: '700',
+    color: '#004643',
+    marginTop: 1, // تصغير
+  },
+  timerWarning: {
+    color: '#dc2626',
+  },
+  // Question Card - تصغير
   questionCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 16,
-    padding: 24,
-    marginBottom: 20,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 14, // تصغير
+    padding: 16, // تصغير
+    marginBottom: 12, // تصغير
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.04,
-    shadowRadius: 4,
-    elevation: 2,
+    shadowOffset: { width: 0, height: 2 }, // تصغير
+    shadowOpacity: 0.08, // تصغير
+    shadowRadius: 6, // تصغير
+    elevation: 3, // تصغير
+    minHeight: 100, // تصغير من 137
   },
   questionText: {
-    fontSize: 18,
+    fontSize: 15, // تصغير
     fontWeight: '600',
-    color: '#111827',
-    lineHeight: 28,
+    color: '#000000',
+    lineHeight: 22, // تصغير
     textAlign: 'center',
-    letterSpacing: -0.2,
   },
+  // Options - تصغير
   optionsContainer: {
-    gap: 12,
-    marginBottom: 20,
+    gap: 6, // تصغير
+    marginBottom: 12, // تصغير
   },
   optionButton: {
-    backgroundColor: '#ffffff',
-    borderRadius: 14,
-    padding: 18,
-    borderWidth: 2,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 10, // تصغير
+    padding: 12, // تصغير
+    borderWidth: 1.5, // تصغير
     borderColor: '#e5e7eb',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.02,
-    shadowRadius: 2,
-    elevation: 1,
+    minHeight: 45, // تصغير من 53
   },
   optionSelected: {
     borderColor: '#3b82f6',
@@ -764,24 +811,24 @@ const styles = StyleSheet.create({
     backgroundColor: '#d1fae5',
   },
   optionWrong: {
-    borderColor: '#ef4444',
+    borderColor: '#dc2626',
     backgroundColor: '#fee2e2',
   },
   optionText: {
-    fontSize: 16,
+    fontSize: 13, // تصغير
     color: '#4b5563',
     flex: 1,
-    lineHeight: 22,
-    letterSpacing: -0.1,
+    lineHeight: 18, // تصغير
   },
   optionTextBold: {
     color: '#111827',
     fontWeight: '600',
   },
+  // Explanation - تصغير
   explanationCard: {
-    borderRadius: 14,
-    padding: 18,
-    marginBottom: 16,
+    borderRadius: 10, // تصغير
+    padding: 14, // تصغير
+    marginBottom: 10, // تصغير
     borderWidth: 1.5,
   },
   explanationCorrect: {
@@ -790,93 +837,108 @@ const styles = StyleSheet.create({
   },
   explanationWrong: {
     backgroundColor: '#fef2f2',
-    borderColor: '#ef4444',
+    borderColor: '#dc2626',
   },
   explanationHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
-    marginBottom: 12,
+    gap: 6, // تصغير
+    marginBottom: 6, // تصغير
   },
   explanationTitle: {
-    fontSize: 15,
+    fontSize: 13, // تصغير
     fontWeight: '700',
-    letterSpacing: -0.2,
   },
   explanationText: {
-    fontSize: 14,
+    fontSize: 12, // تصغير
     color: '#374151',
-    lineHeight: 22,
-    letterSpacing: -0.1,
+    lineHeight: 16, // تصغير
   },
+  // Next Button - تصغير
   nextButton: {
-    backgroundColor: '#3b82f6',
-    borderRadius: 14,
-    padding: 18,
+    backgroundColor: '#004643',
+    borderRadius: 10, // تصغير
+    padding: 12, // تصغير
     alignItems: 'center',
-    shadowColor: '#3b82f6',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 6,
-    elevation: 4,
+    marginTop: 8, // إضافة مسافة علوية
   },
   nextButtonText: {
-    color: '#ffffff',
-    fontSize: 16,
+    color: '#FFFFFF',
+    fontSize: 15, // تصغير
     fontWeight: '700',
-    letterSpacing: -0.2,
   },
+  // Results Screen (بقيت كما هي)
   resultScrollContent: {
     flexGrow: 1,
     padding: 24,
     justifyContent: 'center',
   },
   resultCard: {
-    backgroundColor: '#ffffff',
-    borderRadius: 20,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 24,
     padding: 32,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
-    elevation: 6,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.12,
+    shadowRadius: 16,
+    elevation: 8,
+    marginBottom: 20,
+  },
+  resultHeader: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    gap: 16,
+  },
+  resultIconContainer: {
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   resultEmoji: {
-    fontSize: 72,
-    marginBottom: 16,
+    fontSize: 48,
   },
   resultLevel: {
-    fontSize: 26,
-    fontWeight: '800',
+    fontSize: 28,
+    fontWeight: '900',
     marginBottom: 28,
-    letterSpacing: -0.5,
+    letterSpacing: -0.8,
+    textAlign: 'center',
   },
   scoreCircle: {
-    width: 150,
-    height: 150,
-    borderRadius: 75,
-    backgroundColor: '#f9fafb',
-    borderWidth: 6,
+    width: 160,
+    height: 160,
+    borderRadius: 80,
+    backgroundColor: '#FFFFFF',
+    borderWidth: 8,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 32,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
   },
   scorePercentage: {
-    fontSize: 40,
-    fontWeight: '800',
+    fontSize: 42,
+    fontWeight: '900',
     letterSpacing: -1,
   },
   scoreText: {
-    fontSize: 15,
-    color: '#6b7280',
+    fontSize: 16,
+    color: '#000000',
     marginTop: 6,
     fontWeight: '600',
   },
   resultStats: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 32,
+    marginBottom: 8,
     gap: 16,
   },
   resultDivider: {
@@ -886,64 +948,115 @@ const styles = StyleSheet.create({
   },
   resultStatItem: {
     alignItems: 'center',
-    gap: 10,
+    gap: 12,
     paddingHorizontal: 24,
   },
   statIconContainer: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#f9fafb',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
     justifyContent: 'center',
     alignItems: 'center',
   },
   resultStatNumber: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: '#111827',
+    fontSize: 32,
+    fontWeight: '900',
+    color: '#000000',
   },
   resultStatLabel: {
-    fontSize: 13,
-    color: '#6b7280',
-    fontWeight: '600',
+    fontSize: 14,
+    color: '#000000',
+    fontWeight: '700',
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  adviceContainer: {
+    backgroundColor: '#ABD1C6',
+    borderRadius: 16,
+    padding: 20,
+    marginTop: 20,
+    width: '100%',
+  },
+  adviceTitle: {
+    fontSize: 16,
+    fontWeight: '800',
+    color: '#004643',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  adviceText: {
+    fontSize: 14,
+    color: '#004643',
+    lineHeight: 20,
+    textAlign: 'center',
+    fontWeight: '500',
+  },
+  resultActionsContainer: {
+    backgroundColor: '#FFFFFF',
+    paddingHorizontal: 24,
+    paddingVertical: 20,
+    borderTopWidth: 1,
+    borderTopColor: '#e5e7eb',
   },
   resultActions: {
     flexDirection: 'row',
     gap: 12,
     width: '100%',
   },
+  resultActionsRow: {
+    flexDirection: 'row',
+    gap: 12,
+    width: '100%',
+    marginTop: 12,
+  },
+  resultButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    paddingVertical: 16,
+    borderRadius: 16,
+  },
   primaryButton: {
     flex: 1,
-    backgroundColor: '#3b82f6',
-    paddingVertical: 16,
-    borderRadius: 14,
-    alignItems: 'center',
-    shadowColor: '#3b82f6',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: '#004643',
+    borderRadius: 12,
   },
   primaryButtonText: {
-    color: '#ffffff',
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '800',
+  },
+  homeButton: {
+    flex: 1,
+    backgroundColor: '#004643',
+    borderRadius: 12,
+  },
+  homeButtonText: {
+    color: '#FFFFFF',
+    fontSize: 16,
+    fontWeight: '800',
+  },
+  tertiaryButton: {
+    flex: 1,
+    backgroundColor: '#ABD1C6',
+    borderRadius: 12,
+  },
+  tertiaryButtonText: {
+    color: '#004643',
     fontSize: 16,
     fontWeight: '700',
-    letterSpacing: -0.2,
   },
   secondaryButton: {
     flex: 1,
-    backgroundColor: '#f3f4f6',
-    paddingVertical: 16,
-    borderRadius: 14,
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#e5e7eb',
+    backgroundColor: '#ABD1C6',
+    borderRadius: 12,
+    marginTop: 12,
   },
   secondaryButtonText: {
-    color: '#4b5563',
+    color: '#004643',
     fontSize: 16,
-    fontWeight: '700',
-    letterSpacing: -0.2,
+    fontWeight: '800',
   },
   noQuestionsContainer: {
     flex: 1,
@@ -958,153 +1071,16 @@ const styles = StyleSheet.create({
   noQuestionsTitle: {
     fontSize: 24,
     fontWeight: '800',
-    color: '#111827',
+    color: '#000000',
     marginBottom: 12,
     textAlign: 'center',
     letterSpacing: -0.5,
   },
   noQuestionsText: {
     fontSize: 16,
-    color: '#6b7280',
+    color: '#000000',
     textAlign: 'center',
     lineHeight: 24,
     marginBottom: 32,
-  },
-  modalOverlay: {
-    flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.5)',
-    justifyContent: 'flex-end',
-  },
-  filterModal: {
-    backgroundColor: '#ffffff',
-    borderTopLeftRadius: 24,
-    borderTopRightRadius: 24,
-    maxHeight: '85%',
-  },
-  modalHeader: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e5e7eb',
-  },
-  modalTitle: {
-    fontSize: 20,
-    fontWeight: '800',
-    color: '#111827',
-    letterSpacing: -0.5,
-  },
-  filterContent: {
-    padding: 20,
-  },
-  filterSection: {
-    marginBottom: 28,
-  },
-  filterSectionTitle: {
-    fontSize: 15,
-    fontWeight: '700',
-    color: '#111827',
-    marginBottom: 14,
-    letterSpacing: -0.2,
-  },
-  filterOptions: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 10,
-  },
-  filterChip: {
-    paddingHorizontal: 18,
-    paddingVertical: 10,
-    borderRadius: 20,
-    backgroundColor: '#f3f4f6',
-    borderWidth: 1.5,
-    borderColor: '#e5e7eb',
-  },
-  filterChipSelected: {
-    backgroundColor: '#3b82f6',
-    borderColor: '#3b82f6',
-  },
-  filterChipText: {
-    fontSize: 14,
-    color: '#4b5563',
-    fontWeight: '600',
-    letterSpacing: -0.1,
-  },
-  filterChipTextSelected: {
-    color: '#ffffff',
-  },
-  selectedFiltersSection: {
-    marginTop: 24,
-    padding: 18,
-    backgroundColor: '#f9fafb',
-    borderRadius: 14,
-    borderWidth: 1,
-    borderColor: '#e5e7eb',
-  },
-  selectedFiltersTitle: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#6b7280',
-    marginBottom: 12,
-    textTransform: 'uppercase',
-    letterSpacing: 0.5,
-  },
-  selectedFiltersList: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-  },
-  selectedFilterTag: {
-    backgroundColor: '#3b82f6',
-    paddingHorizontal: 14,
-    paddingVertical: 6,
-    borderRadius: 14,
-  },
-  selectedFilterText: {
-    fontSize: 12,
-    color: '#ffffff',
-    fontWeight: '700',
-    letterSpacing: 0.2,
-  },
-  modalActions: {
-    flexDirection: 'row',
-    padding: 20,
-    gap: 12,
-    borderTopWidth: 1,
-    borderTopColor: '#e5e7eb',
-  },
-  modalResetButton: {
-    flex: 1,
-    padding: 16,
-    borderRadius: 14,
-    backgroundColor: '#fef2f2',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: '#fecaca',
-  },
-  modalResetButtonText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#dc2626',
-    letterSpacing: -0.2,
-  },
-  modalApplyButton: {
-    flex: 2,
-    padding: 16,
-    borderRadius: 14,
-    backgroundColor: '#3b82f6',
-    alignItems: 'center',
-    shadowColor: '#3b82f6',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 4,
-    elevation: 3,
-  },
-  modalApplyButtonText: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#ffffff',
-    letterSpacing: -0.2,
   },
 });
