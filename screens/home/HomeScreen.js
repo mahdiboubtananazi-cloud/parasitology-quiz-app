@@ -1,4 +1,4 @@
-﻿// screens/home/HomeScreen.js - النسخة النهائية المحسّنة
+﻿// screens/home/HomeScreen.js - النسخة النهائية المصححة
 import React, { useRef, useEffect, useMemo, useCallback, useState } from 'react';
 import { 
   View, 
@@ -59,7 +59,7 @@ const HomeScreen = () => {
     Array.from({ length: 3 }, () => new Animated.Value(0))
   ).current;
 
-  // ✅ قائمة الفئات مع ألوان احترافية
+  // ✅ قائمة الفئات مع خلفيات بيضاء للإيموجيات
   const categories = useMemo(() => [
     {
       id: 'protozoa',
@@ -68,7 +68,8 @@ const HomeScreen = () => {
       description: 'Organismes unicellulaires',
       questions: protozoaQuestions,
       color: '#1E40AF',      // أزرق داكن احترافي
-      bgColor: '#FFFFFF',
+      bgColor: '#FFFFFF',    // ✅ خلفية بيضاء
+      iconBgColor: '#FFFFFF', // ✅ خلفية بيضاء للإيموجي
       icon: <Microscope size={24} color="#FFFFFF" />,
     },
     {
@@ -78,7 +79,8 @@ const HomeScreen = () => {
       description: 'Vers parasitaires',
       questions: helminthsQuestions,
       color: '#065F46',      // أخضر داكن احترافي
-      bgColor: '#FFFFFF',
+      bgColor: '#FFFFFF',    // ✅ خلفية بيضاء
+      iconBgColor: '#FFFFFF', // ✅ خلفية بيضاء للإيموجي
       icon: <BookOpen size={24} color="#FFFFFF" />,
     },
     {
@@ -88,59 +90,45 @@ const HomeScreen = () => {
       description: 'Vecteurs & Ectoparasites',
       questions: arthropodsQuestions,
       color: '#C2410C',      // برتقالي داكن احترافي
-      bgColor: '#FFFFFF',
+      bgColor: '#FFFFFF',    // ✅ خلفية بيضاء
+      iconBgColor: '#FFFFFF', // ✅ خلفية بيضاء للإيموجي
       icon: <Target size={24} color="#FFFFFF" />,
     }
   ], []);
 
-  // ✅ إصلاح navigation مع categoryId
-  const handleCategoryPress = useCallback((category) => {
-    let subCategories = {};
-    
-    switch (category.id) {
-      case 'protozoa':
-        subCategories = {
-          classification: protozoaLabels?.classification || 'Classification',
-          morphology: protozoaLabels?.morphology || 'Morphologie',
-          pathogenesis: protozoaLabels?.pathogenesis || 'Pathogénie',
-          diagnosis: protozoaLabels?.diagnosis || 'Diagnostic',
-          treatment: protozoaLabels?.treatment || 'Traitement'
-        };
-        break;
-      case 'helminths':
-        subCategories = {
-          nematodes: helminthsLabels?.nematodes || 'Nématodes',
-          cestodes: helminthsLabels?.cestodes || 'Cestodes',
-          trematodes: helminthsLabels?.trematodes || 'Trématodes',
-          lifecycle: helminthsLabels?.lifecycle || 'Cycle de vie',
-          clinical: helminthsLabels?.clinical || 'Clinique'
-        };
-        break;
-      case 'arthropods':
-        subCategories = {
-          ectoparasites: arthropodsLabels?.ectoparasites || 'Ectoparasites',
-          vectors: arthropodsLabels?.vectors || 'Vecteurs',
-          control: arthropodsLabels?.control || 'Contrôle',
-          identification: arthropodsLabels?.identification || 'Identification',
-          medical: arthropodsLabels?.medical || 'Importance médicale'
-        };
-        break;
-      default:
-        subCategories = {};
-    }
+// في HomeScreen.js - غيّر دالة handleCategoryPress
 
-    console.log('🚀 Navigation avec categoryId:', category.id);
-    console.log('📝 Topics disponibles:', Object.keys(subCategories));
+const handleCategoryPress = useCallback((category) => {
+  let labels = {};
+  
+  switch (category.id) {
+    case 'protozoa':
+      labels = protozoaLabels;
+      break;
+    case 'helminths':
+      labels = helminthsLabels;
+      break;
+    case 'arthropods':
+      labels = arthropodsLabels;
+      break;
+    default:
+      labels = {};
+  }
 
-    navigation.navigate('Quiz', {
-      categoryId: category.id,        // ✅ هذا مهم جداً
+  console.log('🚀 Navigation avec categoryId:', category.id);
+  console.log('📝 Topics disponibles:', Object.keys(labels));
+
+  // ✅ الحل: الانتقال إلى Quiz Tab وتمرير الـ params
+  navigation.navigate('Quiz', {
+    screen: 'QuizMain',
+    params: {
+      categoryId: category.id,
       categoryName: category.name,
       questions: category.questions,
-      subCategories: subCategories,
-      topicLabels: subCategories
-    });
-  }, [navigation]);
-
+      topicLabels: labels
+    }
+  });
+}, [navigation]);
   // ✅ تحميل البيانات الحقيقية
   const loadRealData = useCallback(async () => {
     try {
@@ -366,7 +354,11 @@ const HomeScreen = () => {
                   <View 
                     style={[
                       styles.categoryIconContainer,
-                      { backgroundColor: category.color }
+                      { 
+                        backgroundColor: category.iconBgColor, // ✅ خلفية بيضاء للإيموجي
+                        borderWidth: 2,
+                        borderColor: category.color
+                      }
                     ]}
                   >
                     <Text style={styles.categoryEmoji}>{category.emoji}</Text>
@@ -725,6 +717,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 12,
+    backgroundColor: '#FFFFFF', // ✅ خلفية بيضاء ثابتة
   },
   categoryEmoji: {
     fontSize: 28,

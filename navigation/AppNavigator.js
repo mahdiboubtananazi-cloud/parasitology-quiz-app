@@ -1,4 +1,4 @@
-// navigation/AppNavigator.js
+// navigation/AppNavigator.js - الحل الصحيح النهائي ✅
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -13,7 +13,7 @@ import ProposScreen from '../screens/ProposScreen';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// Stack للصفحة الرئيسية
+// ✅ HomeStack - بدون QuizScreen
 function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -22,7 +22,7 @@ function HomeStack() {
   );
 }
 
-// Stack للكويز
+// ✅ QuizStack - الكويز الأصلي
 function QuizStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -32,7 +32,7 @@ function QuizStack() {
   );
 }
 
-// Bottom Navigation - 3 تابات فقط
+// Bottom Navigation
 export default function AppNavigator() {
   return (
     <Tab.Navigator

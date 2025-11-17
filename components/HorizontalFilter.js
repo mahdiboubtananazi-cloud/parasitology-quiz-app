@@ -1,15 +1,10 @@
-﻿// components/HorizontalFilter.js - النسخة المحسنة
-import React, { useState } from 'react';
-import { 
-  View, 
-  Text, 
-  Modal, 
-  TouchableOpacity, 
-  StyleSheet, 
-  ScrollView,
-  Animated
-} from 'react-native';
+﻿// components/HorizontalFilter.js - الإصلاح النهائي الكامل
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Modal, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+
+const Close = ({ size, color }) => <Ionicons name="close" size={size} color={color} />;
+const Check = ({ size, color }) => <Ionicons name="checkmark" size={size} color={color} />;
 
 export default function HorizontalFilter({ 
   visible, 
@@ -18,326 +13,261 @@ export default function HorizontalFilter({
   onApplyFilters, 
   topicLabels 
 }) {
-  const [tempFilters, setTempFilters] = useState([]);
-  const slideAnim = React.useRef(new Animated.Value(300)).current;
+  const [tempFilters, setTempFilters] = useState({ topics: [] });
 
-  // ✅ تحديث tempFilters عند تغيير topicLabels أو selectedFilters
-  React.useEffect(() => {
-    if (topicLabels) {
-      const availableTopics = Object.keys(topicLabels);
-      // تصفية selectedFilters لإزالة المواضيع غير الموجودة في الفئة الحالية
-      const filtered = (selectedFilters?.topics || []).filter(topic => 
-        availableTopics.includes(topic)
-      );
-      setTempFilters(filtered);
-    } else {
-      setTempFilters([]);
-    }
-  }, [topicLabels, selectedFilters]);
-
-  // ✅ Animation عند فتح/إغلاق الفلتر
-  React.useEffect(() => {
+  // ✅ الإصلاح: تحديث tempFilters كلما فتحنا الـ modal أو تغيرت البيانات
+  useEffect(() => {
     if (visible) {
-      Animated.spring(slideAnim, {
-        toValue: 0,
-        tension: 65,
-        friction: 11,
-        useNativeDriver: true,
-      }).start();
-    } else {
-      Animated.timing(slideAnim, {
-        toValue: 300,
-        duration: 200,
-        useNativeDriver: true,
-      }).start();
+      console.log('🔄 HorizontalFilter opened');
+      console.log('📋 Received topicLabels:', topicLabels);
+      console.log('📋 Available topics:', topicLabels ? Object.keys(topicLabels) : 'NONE');
+      
+      // إعادة تعيين الفلاتر المؤقتة
+      setTempFilters(selectedFilters || { topics: [] });
     }
-  }, [visible]);
+  }, [visible, topicLabels, selectedFilters]);
 
+  const allTopics = topicLabels ? Object.keys(topicLabels) : [];
+  
   const toggleTopic = (topic) => {
-    if (tempFilters.includes(topic)) {
-      setTempFilters(tempFilters.filter(t => t !== topic));
-    } else {
-      setTempFilters([...tempFilters, topic]);
-    }
+    console.log('🔘 Toggling topic:', topic);
+    setTempFilters(prev => {
+      const topics = prev.topics.includes(topic)
+        ? prev.topics.filter(t => t !== topic)
+        : [...prev.topics, topic];
+      console.log('✅ New selection:', topics);
+      return { ...prev, topics };
+    });
   };
 
   const handleApply = () => {
-    onApplyFilters({ topics: tempFilters });
+    console.log('✅ Applying filters:', tempFilters);
+    onApplyFilters(tempFilters);
   };
 
   const handleReset = () => {
-    setTempFilters([]);
-    onApplyFilters({ topics: [] });
+    console.log('🔄 Resetting filters');
+    setTempFilters({ topics: [] });
   };
 
   const handleSelectAll = () => {
-    if (topicLabels) {
-      const allTopics = Object.keys(topicLabels);
-      setTempFilters(allTopics);
-    }
+    console.log('✅ Selecting all topics:', allTopics);
+    setTempFilters({ topics: [...allTopics] });
   };
 
   if (!visible) return null;
 
-  const allTopics = topicLabels ? Object.keys(topicLabels) : [];
-
   return (
     <Modal
       visible={visible}
-      transparent
-      animationType="fade"
+      animationType="slide"
+      transparent={true}
       onRequestClose={onClose}
     >
-      <TouchableOpacity 
-        style={styles.overlay}
-        activeOpacity={1}
-        onPress={onClose}
-      >
-        <Animated.View 
-          style={[
-            styles.modalContent,
-            { transform: [{ translateY: slideAnim }] }
-          ]}
-        >
-          <TouchableOpacity 
-            activeOpacity={1}
-            onPress={(e) => e.stopPropagation()}
-          >
-            {/* Header */}
-            <View style={styles.header}>
-              <View style={styles.headerLeft}>
-                <Ionicons name="filter" size={24} color="#004643" />
-                <Text style={styles.title}>Filtrer par sujet</Text>
+      <View style={styles.modalOverlay}>
+        <View style={styles.modalContent}>
+          <View style={styles.modalHeader}>
+            <Text style={styles.modalTitle}>Filtrer par sujet</Text>
+            <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+              <Close size={24} color="#666" />
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.filterSection}>
+            <Text style={styles.sectionTitle}>Sujets disponibles</Text>
+            
+            {allTopics.length === 0 ? (
+              <View style={styles.emptyContainer}>
+                <Text style={styles.emptyText}>❌ Aucun sujet disponible</Text>
+                <Text style={styles.emptySubtext}>Vérifiez la configuration de la catégorie</Text>
               </View>
-              <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-                <Ionicons name="close" size={24} color="#666" />
-              </TouchableOpacity>
-            </View>
-
-            {/* Counter */}
-            <View style={styles.counterContainer}>
-              <Text style={styles.counterText}>
-                {tempFilters.length} sujet{tempFilters.length !== 1 ? 's' : ''} sélectionné{tempFilters.length !== 1 ? 's' : ''}
-              </Text>
-              <TouchableOpacity onPress={handleSelectAll} style={styles.selectAllButton}>
-                <Text style={styles.selectAllText}>Tout sélectionner</Text>
-              </TouchableOpacity>
-            </View>
-
-            {/* Topics List */}
-            <ScrollView style={styles.content} showsVerticalScrollIndicator={false}>
-              {allTopics.map((topic) => {
-                const isSelected = tempFilters.includes(topic);
-                
-                return (
-                  <TouchableOpacity
-                    key={topic}
-                    style={[
-                      styles.topicItem,
-                      isSelected && styles.topicItemSelected
-                    ]}
-                    onPress={() => toggleTopic(topic)}
-                    activeOpacity={0.7}
-                  >
-                    <View style={styles.topicContent}>
-                      <View style={[
-                        styles.checkbox,
-                        isSelected && styles.checkboxSelected
-                      ]}>
+            ) : (
+              <ScrollView style={styles.topicsScroll} showsVerticalScrollIndicator={false}>
+                <View style={styles.topicsGrid}>
+                  {allTopics.map(topic => {
+                    const isSelected = tempFilters.topics.includes(topic);
+                    return (
+                      <TouchableOpacity
+                        key={topic}
+                        style={[
+                          styles.topicItem,
+                          isSelected && styles.topicItemSelected
+                        ]}
+                        onPress={() => toggleTopic(topic)}
+                      >
+                        <Text style={[
+                          styles.topicText,
+                          isSelected && styles.topicTextSelected
+                        ]}>
+                          {topicLabels[topic]}
+                        </Text>
                         {isSelected && (
-                          <Ionicons name="checkmark" size={18} color="#fff" />
+                          <Check size={16} color="#004643" />
                         )}
-                      </View>
-                      <Text style={[
-                        styles.topicText,
-                        isSelected && styles.topicTextSelected
-                      ]}>
-                        {topicLabels[topic]}
-                      </Text>
-                    </View>
-                    {isSelected && (
-                      <Ionicons name="checkmark-circle" size={20} color="#004643" />
-                    )}
-                  </TouchableOpacity>
-                );
-              })}
-            </ScrollView>
+                      </TouchableOpacity>
+                    );
+                  })}
+                </View>
+              </ScrollView>
+            )}
+          </View>
 
-            {/* Footer Buttons */}
-            <View style={styles.footer}>
+          <View style={styles.modalActions}>
+            <TouchableOpacity 
+              style={styles.resetButton} 
+              onPress={handleReset}
+            >
+              <Text style={styles.resetButtonText}>Réinitialiser</Text>
+            </TouchableOpacity>
+            
+            {allTopics.length > 0 && (
               <TouchableOpacity 
-                style={styles.resetButton} 
-                onPress={handleReset}
+                style={styles.selectAllButton} 
+                onPress={handleSelectAll}
               >
-                <Ionicons name="refresh" size={18} color="#666" />
-                <Text style={styles.resetButtonText}>Réinitialiser</Text>
+                <Text style={styles.selectAllButtonText}>Tout sélectionner</Text>
               </TouchableOpacity>
-              
-              <TouchableOpacity 
-                style={styles.applyButton} 
-                onPress={handleApply}
-              >
-                <Ionicons name="checkmark" size={18} color="#fff" />
-                <Text style={styles.applyButtonText}>
-                  Appliquer {tempFilters.length > 0 && `(${tempFilters.length})`}
-                </Text>
-              </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
-        </Animated.View>
-      </TouchableOpacity>
+            )}
+            
+            <TouchableOpacity 
+              style={styles.applyButton} 
+              onPress={handleApply}
+            >
+              <Text style={styles.applyButtonText}>Appliquer</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </View>
     </Modal>
   );
 }
 
 const styles = StyleSheet.create({
-  overlay: {
+  modalOverlay: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'flex-end',
   },
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
+    paddingTop: 20,
+    paddingBottom: 30,
     maxHeight: '80%',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: -4 },
-    shadowOpacity: 0.1,
-    shadowRadius: 12,
-    elevation: 8,
   },
-  header: {
+  modalHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 20,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F0F0F0',
+    marginBottom: 20,
   },
-  headerLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  title: {
+  modalTitle: {
     fontSize: 20,
     fontWeight: '700',
-    color: '#004643',
+    color: '#1E293B',
   },
   closeButton: {
     padding: 4,
   },
-  counterContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+  filterSection: {
     paddingHorizontal: 20,
-    paddingVertical: 12,
-    backgroundColor: '#F8F9FA',
+    marginBottom: 20,
   },
-  counterText: {
+  sectionTitle: {
     fontSize: 14,
-    color: '#666',
     fontWeight: '600',
+    color: '#64748B',
+    marginBottom: 12,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
   },
-  selectAllButton: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    backgroundColor: '#E8F5E9',
-    borderRadius: 12,
-  },
-  selectAllText: {
-    fontSize: 12,
-    color: '#004643',
-    fontWeight: '600',
-  },
-  content: {
-    padding: 20,
+  topicsScroll: {
     maxHeight: 400,
+  },
+  topicsGrid: {
+    gap: 10,
   },
   topicItem: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
+    justifyContent: 'space-between',
     padding: 16,
-    backgroundColor: '#F8F9FA',
+    backgroundColor: '#F8FAFC',
     borderRadius: 12,
-    marginBottom: 10,
     borderWidth: 2,
     borderColor: 'transparent',
   },
   topicItemSelected: {
-    backgroundColor: '#E8F5E9',
-    borderColor: '#ABD1C6',
-  },
-  topicContent: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    flex: 1,
-  },
-  checkbox: {
-    width: 24,
-    height: 24,
-    borderRadius: 6,
-    borderWidth: 2,
-    borderColor: '#CCC',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  checkboxSelected: {
-    backgroundColor: '#004643',
+    backgroundColor: '#E0F2FE',
     borderColor: '#004643',
   },
   topicText: {
     fontSize: 15,
-    color: '#333',
     fontWeight: '500',
+    color: '#475569',
     flex: 1,
   },
   topicTextSelected: {
-    fontWeight: '700',
     color: '#004643',
+    fontWeight: '600',
   },
-  footer: {
+  emptyContainer: {
+    padding: 40,
+    alignItems: 'center',
+  },
+  emptyText: {
+    fontSize: 16,
+    fontWeight: '600',
+    color: '#EF4444',
+    textAlign: 'center',
+    marginBottom: 8,
+  },
+  emptySubtext: {
+    fontSize: 14,
+    color: '#64748B',
+    textAlign: 'center',
+  },
+  modalActions: {
     flexDirection: 'row',
-    padding: 20,
-    gap: 12,
-    borderTopWidth: 1,
-    borderTopColor: '#F0F0F0',
-    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    gap: 10,
   },
   resetButton: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 6,
-    padding: 16,
-    backgroundColor: '#F0F0F0',
+    paddingVertical: 14,
+    backgroundColor: '#F1F5F9',
     borderRadius: 12,
+    alignItems: 'center',
   },
   resetButtonText: {
     fontSize: 15,
-    fontWeight: '700',
-    color: '#666',
+    fontWeight: '600',
+    color: '#64748B',
+  },
+  selectAllButton: {
+    flex: 1,
+    paddingVertical: 14,
+    backgroundColor: '#E0F2FE',
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  selectAllButtonText: {
+    fontSize: 15,
+    fontWeight: '600',
+    color: '#0369A1',
   },
   applyButton: {
-    flex: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 6,
-    padding: 16,
+    flex: 1,
+    paddingVertical: 14,
     backgroundColor: '#004643',
     borderRadius: 12,
+    alignItems: 'center',
   },
   applyButtonText: {
     fontSize: 15,
-    fontWeight: '700',
-    color: '#fff',
+    fontWeight: '600',
+    color: '#FFFFFF',
   },
 });
