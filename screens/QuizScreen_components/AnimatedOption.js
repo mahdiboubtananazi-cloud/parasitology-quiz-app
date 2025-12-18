@@ -1,7 +1,8 @@
-// screens/QuizScreen_components/AnimatedOption.js - النسخة الصحيحة
+// screens/QuizScreen_components/AnimatedOption.js
 import React, { useEffect, useRef } from 'react';
-import { TouchableOpacity, Text, Animated, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, Animated, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { styles } from '../QuizScreen_styles/styles'; // ✅ استيراد الأنماط من styles.js
 
 export default function AnimatedOption({ 
   option, 
@@ -13,9 +14,29 @@ export default function AnimatedOption({
 }) {
   const scaleAnim = useRef(new Animated.Value(1)).current;
   const opacityAnim = useRef(new Animated.Value(1)).current;
+  const slideAnim = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    // أنيميشن الظهور الأولي
+    Animated.parallel([
+      Animated.timing(slideAnim, {
+        toValue: 1,
+        duration: 300,
+        delay: index * 50, // تأخير تدريجي لكل خيار
+        useNativeDriver: true,
+      }),
+      Animated.spring(opacityAnim, {
+        toValue: 1,
+        tension: 100,
+        friction: 10,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  }, [index]);
 
   useEffect(() => {
     if (isSelected && showResult) {
+      // أنيميشن عند إظهار النتيجة
       Animated.sequence([
         Animated.spring(scaleAnim, {
           toValue: 1.05,
@@ -31,95 +52,128 @@ export default function AnimatedOption({
         }),
       ]).start();
     }
-  }, [isSelected, showResult]);
+  }, [isSelected, showResult, scaleAnim]);
 
+  // تحديد نمط الزر حسب الحالة
   const getButtonStyle = () => {
     if (showResult) {
+      // عند إظهار النتائج
       if (isSelected && isCorrect) {
-        return styles.correctButton;
+        return styles.optionCorrect; // إجابة صحيحة محددة
       }
       if (isSelected && !isCorrect) {
-        return styles.incorrectButton;
+        return styles.optionWrong; // إجابة خاطئة محددة
       }
       if (!isSelected && isCorrect) {
-        return styles.correctButton;
+        return styles.optionCorrect; // الإجابة الصحيحة (غير محددة)
       }
     }
+    // قبل إظهار النتائج
     if (isSelected) {
-      return styles.selectedButton;
+      return styles.optionSelected; // الخيار المحدد
     }
-    return styles.defaultButton;
+    return styles.optionDefault; // الحالة الافتراضية
   };
 
+  // تحديد الأيقونة حسب الحالة
   const getIcon = () => {
     if (showResult) {
       if (isCorrect) {
-        return <Ionicons name="checkmark-circle" size={24} color="#10B981" />;
+        return (
+          <View style={styles.optionIconContainer}>
+            <Ionicons name="checkmark-circle" size={22} color="#10B981" />
+          </View>
+        );
       }
       if (isSelected && !isCorrect) {
-        return <Ionicons name="close-circle" size={24} color="#EF4444" />;
+        return (
+          <View style={styles.optionIconContainer}>
+            <Ionicons name="close-circle" size={22} color="#EF4444" />
+          </View>
+        );
       }
     }
     return null;
   };
 
+  // تحديد نمط التسمية (A, B, C, D)
+  const getLabelStyle = () => {
+    if (showResult && isCorrect) {
+      return [styles.optionLabel, styles.optionLabelCorrect];
+    }
+    if (showResult && isSelected && !isCorrect) {
+      return [styles.optionLabel, styles.optionLabelWrong];
+    }
+    if (isSelected) {
+      return [styles.optionLabel, styles.optionLabelSelected];
+    }
+    return styles.optionLabel;
+  };
+
+  // تحديد نمط حاوية التسمية
+  const getLabelContainerStyle = () => {
+    if (showResult && isCorrect) {
+      return [styles.optionLabelContainer, styles.optionLabelContainerCorrect];
+    }
+    if (showResult && isSelected && !isCorrect) {
+      return [styles.optionLabelContainer, styles.optionLabelContainerWrong];
+    }
+    if (isSelected) {
+      return [styles.optionLabelContainer, styles.optionLabelContainerSelected];
+    }
+    return styles.optionLabelContainer;
+  };
+
+  // تحديد نمط النص
+  const getTextStyle = () => {
+    if (showResult && isCorrect) {
+      return [styles.optionText, styles.optionTextCorrect];
+    }
+    if (showResult && isSelected && !isCorrect) {
+      return [styles.optionText, styles.optionTextWrong];
+    }
+    if (isSelected) {
+      return [styles.optionText, styles.optionTextSelected];
+    }
+    return styles.optionText;
+  };
+
   return (
     <Animated.View
       style={{
-        transform: [{ scale: scaleAnim }],
-        opacity: opacityAnim,
+        transform: [
+          { scale: scaleAnim },
+          {
+            translateX: slideAnim.interpolate({
+              inputRange: [0, 1],
+              outputRange: [-50, 0],
+            }),
+          },
+        ],
+        opacity: slideAnim,
       }}
     >
       <TouchableOpacity
         style={[styles.optionButton, getButtonStyle()]}
         onPress={() => !showResult && onPress()}
         disabled={showResult}
-        activeOpacity={0.7}
+        activeOpacity={0.85}
       >
-        <Text style={styles.optionLabel}>{String.fromCharCode(65 + index)}.</Text>
-        <Text style={styles.optionText}>{option}</Text>
+        {/* التسمية (A, B, C, D) */}
+        <View style={getLabelContainerStyle()}>
+          <Text style={getLabelStyle()}>
+            {String.fromCharCode(65 + index)}
+          </Text>
+        </View>
+
+        {/* نص الخيار */}
+        <Text style={getTextStyle()}>
+          {option}
+        </Text>
+
+        {/* الأيقونة (صح أو خطأ) */}
         {getIcon()}
       </TouchableOpacity>
     </Animated.View>
   );
 }
-
-const styles = StyleSheet.create({
-  optionButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    padding: 16,
-    borderRadius: 12,
-    borderWidth: 2,
-    backgroundColor: '#FFFFFF',
-    marginBottom: 12,
-  },
-  defaultButton: {
-    borderColor: '#E2E8F0',
-  },
-  selectedButton: {
-    borderColor: '#004643',
-    backgroundColor: '#E0F2FE',
-  },
-  correctButton: {
-    borderColor: '#10B981',
-    backgroundColor: '#D1FAE5',
-  },
-  incorrectButton: {
-    borderColor: '#EF4444',
-    backgroundColor: '#FEE2E2',
-  },
-  optionLabel: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: '#64748B',
-    marginRight: 12,
-    minWidth: 24,
-  },
-  optionText: {
-    flex: 1,
-    fontSize: 16,
-    color: '#1E293B',
-    lineHeight: 22,
-  },
-});

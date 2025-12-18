@@ -29,3 +29,11 @@ export const Award = ({ size = 24, color = '#000' }) => (
 export const X = ({ size = 24, color = '#000' }) => (
   <Ionicons name="close" size={size} color={color} />
 );
+
+export const CheckCircle = ({ size = 24, color = '#000' }) => (
+  <Ionicons name="checkmark-circle" size={size} color={color} />
+);
+
+export const Zap = ({ size = 24, color = '#000' }) => (
+  <Ionicons name="flash" size={size} color={color} />
+);

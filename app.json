@@ -1,6 +1,9 @@
 {
-    "expo": {
-      "name": "Parasitology Quiz",
-      "slug": "parasitology-quiz"
+  "expo": {
+    "name": "Parasitology Quiz",
+    "slug": "parasitology-quiz",
+    "android": {
+      "package": "com.mahdib.parasitologyquiz"
     }
   }
+}

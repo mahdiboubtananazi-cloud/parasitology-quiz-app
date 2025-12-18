@@ -1,4 +1,4 @@
-﻿// screens/home/HomeScreen.js - النسخة النهائية المصححة
+﻿// screens/home/HomeScreen.js - النسخة النهائية الكاملة المحسّنة
 import React, { useRef, useEffect, useMemo, useCallback, useState } from 'react';
 import { 
   View, 
@@ -9,7 +9,8 @@ import {
   Animated, 
   Dimensions,
   StatusBar,
-  ActivityIndicator
+  ActivityIndicator,
+  Platform
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
@@ -20,7 +21,9 @@ import {
   TrendingUp,
   Star,
   Award,
-  X
+  X,
+  CheckCircle,
+  Zap
 } from '../../components/Icons';
 
 import { 
@@ -34,7 +37,7 @@ import {
 
 import { storage } from '../../utils/storage.js';
 
-const { width: screenWidth } = Dimensions.get('window');
+const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -47,7 +50,6 @@ const HomeScreen = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [modalLoading, setModalLoading] = useState(false);
 
-  // Animations
   const fadeAnim = useRef(new Animated.Value(0)).current;
   const slideAnim = useRef(new Animated.Value(50)).current;
   const scaleAnim = useRef(new Animated.Value(0.9)).current;
@@ -59,77 +61,79 @@ const HomeScreen = () => {
     Array.from({ length: 3 }, () => new Animated.Value(0))
   ).current;
 
-  // ✅ قائمة الفئات مع خلفيات بيضاء للإيموجيات
   const categories = useMemo(() => [
     {
       id: 'protozoa',
       name: 'Protozoaires',
       emoji: '🦠',
-      description: 'Organismes unicellulaires',
+      description: 'Organismes unicellulaires parasitaires',
       questions: protozoaQuestions,
-      color: '#1E40AF',      // أزرق داكن احترافي
-      bgColor: '#FFFFFF',    // ✅ خلفية بيضاء
-      iconBgColor: '#FFFFFF', // ✅ خلفية بيضاء للإيموجي
+      color: '#0F766E',
+      lightColor: '#E0F2F1',
+      accentColor: '#00897B',
+      bgColor: '#FFFFFF',
+      iconBgColor: '#FFFFFF',
       icon: <Microscope size={24} color="#FFFFFF" />,
     },
     {
       id: 'helminths',
       name: 'Helminthes',
       emoji: '🪱',
-      description: 'Vers parasitaires',
+      description: 'Vers et parasites multicellulaires',
       questions: helminthsQuestions,
-      color: '#065F46',      // أخضر داكن احترافي
-      bgColor: '#FFFFFF',    // ✅ خلفية بيضاء
-      iconBgColor: '#FFFFFF', // ✅ خلفية بيضاء للإيموجي
+      color: '#1B5E20',
+      lightColor: '#E8F5E9',
+      accentColor: '#2E7D32',
+      bgColor: '#FFFFFF',
+      iconBgColor: '#FFFFFF',
       icon: <BookOpen size={24} color="#FFFFFF" />,
     },
     {
       id: 'arthropods',
       name: 'Arthropodes',
       emoji: '🦟',
-      description: 'Vecteurs & Ectoparasites',
+      description: 'Vecteurs et ectoparasites cliniquement importants',
       questions: arthropodsQuestions,
-      color: '#C2410C',      // برتقالي داكن احترافي
-      bgColor: '#FFFFFF',    // ✅ خلفية بيضاء
-      iconBgColor: '#FFFFFF', // ✅ خلفية بيضاء للإيموجي
+      color: '#B71C1C',
+      lightColor: '#FFEBEE',
+      accentColor: '#D32F2F',
+      bgColor: '#FFFFFF',
+      iconBgColor: '#FFFFFF',
       icon: <Target size={24} color="#FFFFFF" />,
     }
   ], []);
 
-// في HomeScreen.js - غيّر دالة handleCategoryPress
-
-const handleCategoryPress = useCallback((category) => {
-  let labels = {};
-  
-  switch (category.id) {
-    case 'protozoa':
-      labels = protozoaLabels;
-      break;
-    case 'helminths':
-      labels = helminthsLabels;
-      break;
-    case 'arthropods':
-      labels = arthropodsLabels;
-      break;
-    default:
-      labels = {};
-  }
-
-  console.log('🚀 Navigation avec categoryId:', category.id);
-  console.log('📝 Topics disponibles:', Object.keys(labels));
-
-  // ✅ الحل: الانتقال إلى Quiz Tab وتمرير الـ params
-  navigation.navigate('Quiz', {
-    screen: 'QuizMain',
-    params: {
-      categoryId: category.id,
-      categoryName: category.name,
-      questions: category.questions,
-      topicLabels: labels
+  const handleCategoryPress = useCallback((category) => {
+    let labels = {};
+    
+    switch (category.id) {
+      case 'protozoa':
+        labels = protozoaLabels;
+        break;
+      case 'helminths':
+        labels = helminthsLabels;
+        break;
+      case 'arthropods':
+        labels = arthropodsLabels;
+        break;
+      default:
+        labels = {};
     }
-  });
-}, [navigation]);
-  // ✅ تحميل البيانات الحقيقية
+
+    console.log('🚀 Navigation avec categoryId:', category.id);
+    console.log('📝 Topics disponibles:', Object.keys(labels));
+
+    navigation.navigate('Quiz', {
+      screen: 'QuizMain',
+      params: {
+        categoryId: category.id,
+        categoryName: category.name,
+        questions: category.questions,
+        topicLabels: labels
+      }
+    });
+  }, [navigation]);
+
   const loadRealData = useCallback(async () => {
     try {
       console.log('📊 Loading real user data...');
@@ -194,7 +198,7 @@ const handleCategoryPress = useCallback((category) => {
       duration: 200,
       useNativeDriver: true,
     }).start(() => setShowProgressModal(false));
-  }, []);
+  }, [progressModalAnim]);
 
   const closeResultsModal = useCallback(() => {
     Animated.timing(resultsModalAnim, {
@@ -202,7 +206,7 @@ const handleCategoryPress = useCallback((category) => {
       duration: 200,
       useNativeDriver: true,
     }).start(() => setShowResultsModal(false));
-  }, []);
+  }, [resultsModalAnim]);
 
   const handleOverlayPress = useCallback((modalType) => {
     if (modalType === 'progress') closeProgressModal();
@@ -246,7 +250,7 @@ const handleCategoryPress = useCallback((category) => {
         useNativeDriver: true,
       }).start();
     });
-  }, []);
+  }, [fadeAnim, slideAnim, scaleAnim, headerAnim, cardAnims]);
 
   useFocusEffect(
     useCallback(() => {
@@ -256,18 +260,19 @@ const handleCategoryPress = useCallback((category) => {
 
   const ModalLoadingIndicator = () => (
     <View style={styles.modalLoadingContainer}>
-      <ActivityIndicator size="large" color="#004643" />
+      <ActivityIndicator size="large" color="#0F766E" />
       <Text style={styles.modalLoadingText}>Chargement des données...</Text>
     </View>
   );
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar barStyle="dark-content" backgroundColor="#EFF0F3" />
+      <StatusBar barStyle="dark-content" backgroundColor="#FAFAFA" />
       
       <ScrollView 
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}
+        bounces={true}
       >
         <Animated.View 
           style={[
@@ -279,15 +284,26 @@ const handleCategoryPress = useCallback((category) => {
           ]}
         >
           <View style={styles.headerCard}>
-            <View style={styles.headerIconContainer}>
-              <View style={styles.headerIconBg}>
-                <Microscope size={28} color="#FFFFFF" />
+            <View style={styles.headerTopDecor}>
+              <View style={styles.decorLine} />
+            </View>
+            
+            <Text style={styles.headerTitle}>ParaQuiz</Text>
+            
+            <Text style={styles.headerSubtitle}>
+              Maîtrisez les parasites cliniquement importants
+            </Text>
+            
+            <View style={styles.headerStats}>
+              <View style={styles.headerStat}>
+                <CheckCircle size={18} color="#0F766E" />
+                <Text style={styles.headerStatText}>Apprentissage interactif</Text>
+              </View>
+              <View style={styles.headerStat}>
+                <Zap size={18} color="#0F766E" />
+                <Text style={styles.headerStatText}>Progression suivie</Text>
               </View>
             </View>
-            <Text style={styles.headerTitle}>ParaQuiz</Text>
-            <Text style={styles.headerSubtitle}>
-              Maîtrisez la parasitologie médicale
-            </Text>
           </View>
         </Animated.View>
 
@@ -300,8 +316,8 @@ const handleCategoryPress = useCallback((category) => {
             }
           ]}
         >
-          <Text style={styles.sectionTitle}>Catégories disponibles</Text>
-          <Text style={styles.sectionSubtitle}>Sélectionnez une catégorie pour commencer</Text>
+          <Text style={styles.sectionTitle}>Catégories d'apprentissage</Text>
+          <Text style={styles.sectionSubtitle}>Explorez les trois domaines de la parasitologie</Text>
         </Animated.View>
 
         <Animated.View 
@@ -353,9 +369,16 @@ const handleCategoryPress = useCallback((category) => {
                 >
                   <View 
                     style={[
+                      styles.categoryTopLine,
+                      { backgroundColor: category.color }
+                    ]}
+                  />
+                  
+                  <View 
+                    style={[
                       styles.categoryIconContainer,
                       { 
-                        backgroundColor: category.iconBgColor, // ✅ خلفية بيضاء للإيموجي
+                        backgroundColor: category.lightColor,
                         borderWidth: 2,
                         borderColor: category.color
                       }
@@ -373,12 +396,16 @@ const handleCategoryPress = useCallback((category) => {
                     </Text>
                   </View>
 
-                  <View 
-                    style={[
-                      styles.accentLine,
-                      { backgroundColor: category.color }
-                    ]}
-                  />
+                  <View style={styles.categoryFooter}>
+                    <View 
+                      style={[
+                        styles.categoryButton,
+                        { backgroundColor: category.color }
+                      ]}
+                    >
+                      <Text style={styles.categoryButtonText}>Commencer</Text>
+                    </View>
+                  </View>
                 </TouchableOpacity>
               </Animated.View>
             ))}
@@ -403,7 +430,8 @@ const handleCategoryPress = useCallback((category) => {
             }
           ]}
         >
-          <Text style={styles.featuresSectionTitle}>Statistiques</Text>
+          <Text style={styles.featuresSectionTitle}>Vos statistiques</Text>
+          <Text style={styles.featuresSectionSubtitle}>Suivez votre progression</Text>
           
           <View style={styles.featuresGrid}>
             <View style={styles.featureItem}>
@@ -412,11 +440,11 @@ const handleCategoryPress = useCallback((category) => {
                 activeOpacity={0.85}
                 onPress={openProgressModal}
               >
-                <View style={styles.featureIconContainer}>
+                <View style={[styles.featureIconContainer, { backgroundColor: '#0F766E' }]}>
                   <TrendingUp size={20} color="#FFFFFF" />
                 </View>
                 <Text style={styles.featureName}>Progression</Text>
-                <Text style={styles.featureDesc}>Suivez vos réponses</Text>
+                <Text style={styles.featureDesc}>Consultez vos réponses</Text>
               </TouchableOpacity>
             </View>
 
@@ -426,7 +454,7 @@ const handleCategoryPress = useCallback((category) => {
                 activeOpacity={0.85}
                 onPress={openResultsModal}
               >
-                <View style={styles.featureIconContainer}>
+                <View style={[styles.featureIconContainer, { backgroundColor: '#1B5E20' }]}>
                   <Award size={20} color="#FFFFFF" />
                 </View>
                 <Text style={styles.featureName}>Résultats</Text>
@@ -437,7 +465,7 @@ const handleCategoryPress = useCallback((category) => {
         </Animated.View>
 
         <View style={styles.footer}>
-          <Text style={styles.footerVersion}>ParaQuiz v1.0.0</Text>
+          <Text style={styles.footerVersion}>ParaQuiz v1.0.0 • Apprentissage médical</Text>
         </View>
       </ScrollView>
 
@@ -467,7 +495,12 @@ const handleCategoryPress = useCallback((category) => {
               ]}
             >
               <View style={styles.modalHeader}>
-                <Text style={styles.modalTitle}>Votre progression</Text>
+                <View style={styles.modalHeaderLeft}>
+                  <View style={styles.modalIconContainer}>
+                    <TrendingUp size={20} color="#FFFFFF" />
+                  </View>
+                  <Text style={styles.modalTitle}>Votre progression</Text>
+                </View>
                 <TouchableOpacity onPress={closeProgressModal}>
                   <X size={24} color="#666" />
                 </TouchableOpacity>
@@ -507,17 +540,18 @@ const handleCategoryPress = useCallback((category) => {
                   </View>
 
                   <View style={styles.progressBarContainer}>
+                    <View style={styles.progressBarLabel}>
+                      <Text style={styles.progressText}>Progression globale</Text>
+                      <Text style={styles.progressPercent}>{realData.progress.percentage}%</Text>
+                    </View>
                     <View style={styles.progressBar}>
-                      <View 
+                      <Animated.View 
                         style={[
                           styles.progressFill, 
                           { width: `${realData.progress.percentage}%` }
                         ]} 
                       />
                     </View>
-                    <Text style={styles.progressText}>
-                      Progression globale
-                    </Text>
                   </View>
 
                   <TouchableOpacity 
@@ -559,7 +593,12 @@ const handleCategoryPress = useCallback((category) => {
               ]}
             >
               <View style={styles.modalHeader}>
-                <Text style={styles.modalTitle}>Résultats par catégorie</Text>
+                <View style={styles.modalHeaderLeft}>
+                  <View style={[styles.modalIconContainer, { backgroundColor: '#1B5E20' }]}>
+                    <Award size={20} color="#FFFFFF" />
+                  </View>
+                  <Text style={styles.modalTitle}>Résultats par catégorie</Text>
+                </View>
                 <TouchableOpacity onPress={closeResultsModal}>
                   <X size={24} color="#666" />
                 </TouchableOpacity>
@@ -570,30 +609,51 @@ const handleCategoryPress = useCallback((category) => {
               ) : (
                 <>
                   <View style={styles.resultsSection}>
-                    <Text style={styles.resultsSubtitle}>Performances actuelles</Text>
+                    <Text style={styles.resultsSubtitle}>Vos performances actuelles</Text>
                     
-                    <View style={styles.resultItem}>
+                    <View style={[styles.resultItem, { borderLeftColor: '#0F766E' }]}>
                       <View style={styles.resultLeft}>
                         <Text style={styles.resultEmoji}>🦠</Text>
-                        <Text style={styles.resultCategory}>Protozoaires</Text>
+                        <View>
+                          <Text style={styles.resultCategory}>Protozoaires</Text>
+                          <Text style={styles.resultDesc}>Organismes unicellulaires</Text>
+                        </View>
                       </View>
-                      <Text style={styles.resultScore}>{realData.categories.protozoa}%</Text>
+                      <View style={styles.resultScoreContainer}>
+                        <Text style={[styles.resultScore, { color: '#0F766E' }]}>
+                          {realData.categories.protozoa}%
+                        </Text>
+                      </View>
                     </View>
                     
-                    <View style={styles.resultItem}>
+                    <View style={[styles.resultItem, { borderLeftColor: '#1B5E20' }]}>
                       <View style={styles.resultLeft}>
                         <Text style={styles.resultEmoji}>🪱</Text>
-                        <Text style={styles.resultCategory}>Helminthes</Text>
+                        <View>
+                          <Text style={styles.resultCategory}>Helminthes</Text>
+                          <Text style={styles.resultDesc}>Vers parasitaires</Text>
+                        </View>
                       </View>
-                      <Text style={styles.resultScore}>{realData.categories.helminths}%</Text>
+                      <View style={styles.resultScoreContainer}>
+                        <Text style={[styles.resultScore, { color: '#1B5E20' }]}>
+                          {realData.categories.helminths}%
+                        </Text>
+                      </View>
                     </View>
                     
-                    <View style={styles.resultItem}>
+                    <View style={[styles.resultItem, { borderLeftColor: '#B71C1C' }]}>
                       <View style={styles.resultLeft}>
                         <Text style={styles.resultEmoji}>🦟</Text>
-                        <Text style={styles.resultCategory}>Arthropodes</Text>
+                        <View>
+                          <Text style={styles.resultCategory}>Arthropodes</Text>
+                          <Text style={styles.resultDesc}>Vecteurs et ectoparasites</Text>
+                        </View>
                       </View>
-                      <Text style={styles.resultScore}>{realData.categories.arthropods}%</Text>
+                      <View style={styles.resultScoreContainer}>
+                        <Text style={[styles.resultScore, { color: '#B71C1C' }]}>
+                          {realData.categories.arthropods}%
+                        </Text>
+                      </View>
                     </View>
                   </View>
 
@@ -616,7 +676,7 @@ const handleCategoryPress = useCallback((category) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#EFF0F3',
+    backgroundColor: '#FAFAFA',
   },
   scrollContent: {
     flexGrow: 1,
@@ -624,70 +684,83 @@ const styles = StyleSheet.create({
   },
   headerContainer: {
     paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 20,
+    paddingTop: 12,
+    paddingBottom: 24,
   },
   headerCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 24,
-    padding: 24,
+    padding: 28,
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 12,
-    elevation: 5,
-  },
-  headerIconContainer: {
-    marginBottom: 16,
-  },
-  headerIconBg: {
-    width: 64,
-    height: 64,
-    borderRadius: 20,
-    backgroundColor: '#004643',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#004643',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.05,
     shadowRadius: 8,
-    elevation: 4,
+    elevation: 3,
+    borderWidth: 1,
+    borderColor: '#F0F0F0',
+  },
+  headerTopDecor: {
+    width: 60,
+    height: 4,
+    backgroundColor: '#0F766E',
+    borderRadius: 2,
+    marginBottom: 20,
+  },
+  decorLine: {
+    flex: 1,
   },
   headerTitle: {
-    fontSize: 32,
+    fontSize: 36,
     fontWeight: '900',
-    color: '#004643',
-    marginBottom: 6,
+    color: '#0F766E',
+    marginBottom: 8,
     letterSpacing: -1,
   },
   headerSubtitle: {
-    fontSize: 15,
-    color: '#5F6368',
+    fontSize: 16,
+    color: '#555555',
     textAlign: 'center',
-    fontWeight: '500',
+    fontWeight: '600',
+    lineHeight: 22,
+    marginBottom: 20,
+  },
+  headerStats: {
+    width: '100%',
+    gap: 12,
+  },
+  headerStat: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 10,
+    paddingVertical: 8,
+  },
+  headerStatText: {
+    fontSize: 14,
+    color: '#0F766E',
+    fontWeight: '600',
   },
   sectionTitleContainer: {
     paddingHorizontal: 16,
-    marginVertical: 24,
+    marginVertical: 28,
     alignItems: 'center',
   },
   sectionTitle: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: '800',
     color: '#1F2937',
     textAlign: 'center',
     letterSpacing: -0.5,
-    marginBottom: 6,
+    marginBottom: 8,
   },
   sectionSubtitle: {
-    fontSize: 14,
+    fontSize: 15,
     color: '#6B7280',
     textAlign: 'center',
     fontWeight: '500',
   },
   categoriesContainer: {
-    marginBottom: 32,
+    marginBottom: 36,
   },
   categoriesHorizontalScroll: {
     paddingHorizontal: 24,
@@ -700,35 +773,42 @@ const styles = StyleSheet.create({
   categoryCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
-    padding: 16,
+    overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.08,
     shadowRadius: 10,
     elevation: 5,
-    alignItems: 'center',
-    height: 180,
-    justifyContent: 'space-between',
+    height: 240,
+  },
+  categoryTopLine: {
+    height: 6,
+    width: '100%',
   },
   categoryIconContainer: {
-    width: 60,
-    height: 60,
+    width: 70,
+    height: 70,
     borderRadius: 18,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 12,
-    backgroundColor: '#FFFFFF', // ✅ خلفية بيضاء ثابتة
+    marginTop: 16,
+    alignSelf: 'center',
+    backgroundColor: '#FFFFFF',
   },
   categoryEmoji: {
-    fontSize: 28,
+    fontSize: 32,
   },
   categoryContent: {
     alignItems: 'center',
+    paddingHorizontal: 16,
+    marginTop: 14,
+    flex: 1,
+    justifyContent: 'center',
   },
   categoryName: {
     fontSize: 18,
     fontWeight: '700',
-    marginBottom: 4,
+    marginBottom: 6,
     letterSpacing: -0.3,
   },
   categoryDescription: {
@@ -736,12 +816,22 @@ const styles = StyleSheet.create({
     color: '#6B7280',
     textAlign: 'center',
     fontWeight: '500',
+    lineHeight: 18,
   },
-  accentLine: {
-    height: 4,
-    width: '80%',
-    borderRadius: 2,
-    marginTop: 8,
+  categoryFooter: {
+    paddingHorizontal: 16,
+    paddingBottom: 12,
+    paddingTop: 8,
+  },
+  categoryButton: {
+    paddingVertical: 12,
+    borderRadius: 12,
+    alignItems: 'center',
+  },
+  categoryButtonText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    fontWeight: '700',
   },
   scrollIndicatorContainer: {
     flexDirection: 'row',
@@ -755,7 +845,7 @@ const styles = StyleSheet.create({
     width: 8,
     height: 8,
     borderRadius: 4,
-    backgroundColor: '#004643',
+    backgroundColor: '#0F766E',
     opacity: 0.3,
   },
   featuresSection: {
@@ -763,11 +853,18 @@ const styles = StyleSheet.create({
     marginBottom: 32,
   },
   featuresSectionTitle: {
-    fontSize: 20,
+    fontSize: 24,
     fontWeight: '800',
     color: '#1F2937',
-    marginBottom: 20,
+    marginBottom: 4,
     textAlign: 'center',
+  },
+  featuresSectionSubtitle: {
+    fontSize: 14,
+    color: '#6B7280',
+    textAlign: 'center',
+    fontWeight: '500',
+    marginBottom: 20,
   },
   featuresGrid: {
     flexDirection: 'row',
@@ -780,24 +877,26 @@ const styles = StyleSheet.create({
   featureButton: {
     flex: 1,
     backgroundColor: '#FFFFFF',
-    borderRadius: 16,
-    padding: 16,
+    borderRadius: 18,
+    padding: 18,
     alignItems: 'center',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.08,
     shadowRadius: 10,
     elevation: 4,
+    borderWidth: 1,
+    borderColor: '#F5F5F5',
   },
   featureIconContainer: {
-    width: 50,
-    height: 50,
-    borderRadius: 12,
-    backgroundColor: '#004643',
+    width: 54,
+    height: 54,
+    borderRadius: 14,
+    backgroundColor: '#0F766E',
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 12,
-    shadowColor: '#004643',
+    marginBottom: 14,
+    shadowColor: '#0F766E',
     shadowOffset: { width: 0, height: 3 },
     shadowOpacity: 0.15,
     shadowRadius: 6,
@@ -822,18 +921,18 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
   },
   modalContent: {
     width: '100%',
-    maxWidth: 400,
+    maxWidth: 420,
   },
   modalInnerContent: {
     backgroundColor: 'white',
-    borderRadius: 20,
+    borderRadius: 24,
     overflow: 'hidden',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 20 },
@@ -847,12 +946,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#F1F5F9',
+    borderBottomColor: '#F5F5F5',
+  },
+  modalHeaderLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+  },
+  modalIconContainer: {
+    width: 40,
+    height: 40,
+    borderRadius: 10,
+    backgroundColor: '#0F766E',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: '700',
-    color: '#004643',
+    color: '#1F2937',
   },
   modalLoadingContainer: {
     padding: 40,
@@ -869,52 +981,60 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     paddingHorizontal: 20,
     paddingVertical: 24,
-    backgroundColor: '#F8FAFC',
+    backgroundColor: '#FAFAFA',
   },
   statItem: {
     alignItems: 'center',
-    paddingVertical: 14,
+    paddingVertical: 16,
     borderBottomWidth: 1,
-    borderBottomColor: '#E5E7EB',
+    borderBottomColor: '#EEEEEE',
   },
   statNumber: {
-    fontSize: 32,
-    fontWeight: '800',
-    color: '#004643',
+    fontSize: 36,
+    fontWeight: '900',
+    color: '#0F766E',
     marginBottom: 8,
   },
   statLabel: {
-    fontSize: 13,
+    fontSize: 14,
     color: '#6B7280',
     textAlign: 'center',
-    fontWeight: '500',
-    lineHeight: 18,
+    fontWeight: '600',
+    lineHeight: 20,
   },
   progressBarContainer: {
     paddingHorizontal: 20,
     paddingVertical: 24,
     backgroundColor: '#FFFFFF',
     borderTopWidth: 1,
-    borderTopColor: '#F1F5F9',
+    borderTopColor: '#F5F5F5',
   },
-  progressBar: {
-    height: 10,
-    backgroundColor: '#E5E7EB',
-    borderRadius: 5,
-    overflow: 'hidden',
+  progressBarLabel: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginBottom: 12,
-  },
-  progressFill: {
-    height: '100%',
-    backgroundColor: '#004643',
-    borderRadius: 5,
   },
   progressText: {
     fontSize: 14,
     color: '#6B7280',
-    textAlign: 'center',
     fontWeight: '600',
-    letterSpacing: 0.3,
+  },
+  progressPercent: {
+    fontSize: 16,
+    color: '#0F766E',
+    fontWeight: '700',
+  },
+  progressBar: {
+    height: 12,
+    backgroundColor: '#EEEEEE',
+    borderRadius: 6,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    height: '100%',
+    backgroundColor: '#0F766E',
+    borderRadius: 6,
   },
   resultsSection: {
     padding: 20,
@@ -923,55 +1043,74 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     color: '#1F2937',
-    marginBottom: 16,
+    marginBottom: 20,
   },
   resultItem: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 12,
-    borderBottomWidth: 1,
-    borderBottomColor: '#F1F5F9',
+    paddingVertical: 14,
+    paddingLeft: 14,
+    paddingRight: 0,
+    marginBottom: 12,
+    backgroundColor: '#FAFAFA',
+    borderRadius: 12,
+    borderLeftWidth: 4,
   },
   resultLeft: {
     flexDirection: 'row',
     alignItems: 'center',
     gap: 12,
+    flex: 1,
   },
   resultEmoji: {
-    fontSize: 24,
+    fontSize: 28,
   },
   resultCategory: {
-    fontSize: 16,
+    fontSize: 15,
     color: '#1F2937',
+    fontWeight: '700',
+    lineHeight: 20,
+  },
+  resultDesc: {
+    fontSize: 12,
+    color: '#9CA3AF',
     fontWeight: '500',
   },
+  resultScoreContainer: {
+    paddingRight: 16,
+  },
   resultScore: {
-    fontSize: 18,
-    fontWeight: '700',
-    color: '#004643',
+    fontSize: 20,
+    fontWeight: '800',
   },
   modalButton: {
-    backgroundColor: '#004643',
+    backgroundColor: '#0F766E',
     margin: 20,
     paddingVertical: 14,
     borderRadius: 12,
     alignItems: 'center',
+    shadowColor: '#0F766E',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 3,
   },
   modalButtonText: {
     color: 'white',
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: '700',
   },
   footer: {
     alignItems: 'center',
     paddingHorizontal: 20,
-    paddingVertical: 16,
+    paddingVertical: 20,
   },
   footerVersion: {
-    fontSize: 11,
-    color: '#9CA3AF',
+    fontSize: 12,
+    color: '#AAAAAA',
     fontWeight: '500',
+    letterSpacing: 0.3,
   },
 });
 
