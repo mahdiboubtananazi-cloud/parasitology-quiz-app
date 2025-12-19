@@ -37,3 +37,6 @@ export const CheckCircle = ({ size = 24, color = '#000' }) => (
 export const Zap = ({ size = 24, color = '#000' }) => (
   <Ionicons name="flash" size={size} color={color} />
 );
+export const Check = ({ size = 24, color = '#000' }) => (
+  <Ionicons name="checkmark" size={size} color={color} />
+);

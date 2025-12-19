@@ -1,4 +1,3 @@
-// navigation/AppNavigator.js - الحل الصحيح النهائي ✅
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -7,13 +6,12 @@ import { Ionicons } from '@expo/vector-icons';
 // Import Screens
 import HomeScreen from '../screens/home/HomeScreen';
 import QuizScreen from '../screens/QuizScreen';
-import ResultsScreen from '../screens/ResultsScreen';
 import ProposScreen from '../screens/ProposScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// ✅ HomeStack - بدون QuizScreen
+// ✅ HomeStack
 function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -22,12 +20,12 @@ function HomeStack() {
   );
 }
 
-// ✅ QuizStack - الكويز الأصلي
+// ✅ QuizStack 
+// لاحظ: حذفنا ResultsScreen من هنا لأنها أصبحت جزءاً من QuizScreen
 function QuizStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name="QuizMain" component={QuizScreen} />
-      <Stack.Screen name="Results" component={ResultsScreen} />
     </Stack.Navigator>
   );
 }

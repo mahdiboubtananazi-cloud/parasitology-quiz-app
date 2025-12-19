@@ -1,6 +1,5 @@
-﻿// screens/QuizScreen.js - النسخة الصحيحة مع حساب timeSpent
-import React, { useMemo, useCallback } from 'react';
-import { View, ScrollView, KeyboardAvoidingView, Platform, Text } from 'react-native';
+﻿import React, { useMemo, useCallback } from 'react';
+import { View, KeyboardAvoidingView, Platform, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { 
   protozoaQuestions, 
@@ -83,55 +82,33 @@ export default function QuizScreen({ route, navigation }) {
     logic.showFilterModal
   );
 
-  // ✅ FIXED: دالة حفظ النتائج مع حساب timeSpent الصحيح
   const saveQuizResults = useCallback(async () => {
     try {
-      let categoryNameForStorage = '';
-      if (categoryId === 'protozoa') {
-        categoryNameForStorage = 'Protozoaires';
-      } else if (categoryId === 'helminths') {
-        categoryNameForStorage = 'Helminthes';
-      } else if (categoryId === 'arthropods') {
-        categoryNameForStorage = 'Arthropodes';
-      }
+      let categoryNameForStorage = categoryId === 'protozoa' ? 'Protozoaires' : 
+                                   categoryId === 'helminths' ? 'Helminthes' : 'Arthropodes';
 
-      if (!logic.filteredQuestions || logic.filteredQuestions.length === 0) {
-        console.log('⚠️ No questions to save');
-        return false;
-      }
+      if (!logic.filteredQuestions || logic.filteredQuestions.length === 0) return false;
 
       const totalQuestions = logic.filteredQuestions.length;
       const correctAnswers = logic.score;
       const percentage = Math.round((correctAnswers / totalQuestions) * 100);
-      
-      // ✅ FIXED: Calculate actual time spent using the hook's method
       const timeSpentInSeconds = logic.getElapsedTime();
 
-      console.log('💾 Saving quiz results...');
-      console.log('Category:', categoryNameForStorage);
-      console.log('Score:', correctAnswers, '/', totalQuestions);
-      console.log('Percentage:', percentage + '%');
-      console.log('Time Spent:', timeSpentInSeconds, 'seconds');
-
-      // Save quiz result with correct timeSpent value
       await storage.saveQuizResult({
         categoryName: categoryNameForStorage,
-        totalQuestions: totalQuestions,
-        correctAnswers: correctAnswers,
-        percentage: percentage,
-        timeSpent: timeSpentInSeconds // ✅ FIXED: Real time value instead of 0
+        totalQuestions,
+        correctAnswers,
+        percentage,
+        timeSpent: timeSpentInSeconds
       });
 
-      // Save category-specific result
       await storage.saveCategoryResult(categoryNameForStorage, {
-        percentage: percentage,
+        percentage,
         correct: correctAnswers,
         total: totalQuestions
       });
 
-      console.log('✅ Results saved successfully!');
       return true;
-
     } catch (error) {
       console.error('❌ Error saving quiz results:', error);
       return false;
@@ -142,17 +119,13 @@ export default function QuizScreen({ route, navigation }) {
     if (logic.showResult && logic.filteredQuestions.length > 0) {
       await saveQuizResults();
     }
-
-    if (navigation) {
-      navigation.goBack();
-    }
+    if (navigation) navigation.goBack();
   }, [navigation, logic.showResult, logic.filteredQuestions, saveQuizResults]);
 
   const handleRestart = useCallback(async () => {
     if (logic.filteredQuestions.length > 0) {
       await saveQuizResults();
     }
-
     logic.resetQuiz();
   }, [logic, saveQuizResults]);
 
@@ -174,33 +147,40 @@ export default function QuizScreen({ route, navigation }) {
 
   if (logic.showResult) {
     return (
-      <ResultsScreen
-        score={logic.score}
-        totalQuestions={logic.filteredQuestions.length}
-        categoryName={categoryName}
-        categoryId={categoryId}
-        resultScaleAnim={resultScaleAnim}
-        onRestart={handleRestart}
-        onGoHome={goHome}
-        onFilterPress={() => logic.setShowFilterModal(true)}
-        showFilterModal={logic.showFilterModal}
-        setShowFilterModal={logic.setShowFilterModal}
-        selectedFilters={logic.selectedFilters}
-        onApplyFilters={logic.handleApplyFilters}
-        currentLabels={currentLabels}
-      />
+      <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
+        {/* نظهر الهيدر حتى في صفحة النتيجة ليتمكن من الفلترة أو الرجوع */}
+        <QuizHeader
+          categoryName={categoryName}
+          onFilterPress={() => logic.setShowFilterModal(true)}
+        />
+        
+        {/* مكون النتيجة الجديد */}
+        <ResultsScreen
+          score={logic.score}
+          totalQuestions={logic.filteredQuestions.length}
+          onRestart={handleRestart}
+          onGoHome={goHome}
+        />
+        
+        {/* نبقي مودال الفلتر متاحاً */}
+        <HorizontalFilter
+          visible={logic.showFilterModal}
+          onClose={() => logic.setShowFilterModal(false)}
+          selectedFilters={logic.selectedFilters}
+          onApplyFilters={logic.handleApplyFilters}
+          topicLabels={currentLabels}
+        />
+      </SafeAreaView>
     );
   }
+
 
   const question = logic.filteredQuestions[logic.currentQuestion];
 
   if (!question) {
     return (
       <SafeAreaView style={styles.container} edges={['top']}>
-        <QuizHeader
-          categoryName={categoryName}
-          onFilterPress={() => logic.setShowFilterModal(true)}
-        />
+        <QuizHeader categoryName={categoryName} onFilterPress={() => logic.setShowFilterModal(true)} />
         <View style={styles.noQuestionsContainer}>
           <Text style={styles.noQuestionsText}>Chargement...</Text>
         </View>
@@ -209,34 +189,32 @@ export default function QuizScreen({ route, navigation }) {
   }
 
   return (
-    <SafeAreaView style={styles.container} edges={['top']}>
+    <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
+      {/* Header */}
       <QuizHeader
         categoryName={categoryName}
         onFilterPress={() => logic.setShowFilterModal(true)}
       />
 
-      <KeyboardAvoidingView
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-        style={styles.keyboardAvoid}
-      >
-        <ScrollView
-          style={styles.content}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-          scrollEnabled={!logic.showExplanation}
-        >
-          <QuestionCard
-            currentQuestion={logic.currentQuestion}
-            totalQuestions={logic.filteredQuestions.length}
-            questionText={question.question}
-            topic={question.topic}
-            topicLabel={currentLabels[question.topic]}
-            timeLeft={logic.timeLeft}
-            slideAnim={slideAnim}
-            scaleAnim={scaleAnim}
-            timerPulseAnim={timerPulseAnim}
-          />
+      {/* Main Content Area - No ScrollView */}
+      <View style={styles.content}>
+        <View style={styles.scrollContent}>
+          {/* Top Section: Timer & Question */}
+          <View>
+            <QuestionCard
+              currentQuestion={logic.currentQuestion}
+              totalQuestions={logic.filteredQuestions.length}
+              questionText={question.question}
+              topic={question.topic}
+              topicLabel={currentLabels[question.topic]}
+              timeLeft={logic.timeLeft}
+              slideAnim={slideAnim}
+              scaleAnim={scaleAnim}
+              timerPulseAnim={timerPulseAnim}
+            />
+          </View>
 
+          {/* Middle Section: Options (Takes available space) */}
           <OptionsList
             options={question.options}
             selectedAnswer={logic.selectedAnswer}
@@ -245,18 +223,21 @@ export default function QuizScreen({ route, navigation }) {
             onAnswerSelect={logic.handleAnswerSelect}
           />
 
-          {logic.showExplanation && (
-            <ExplanationCard
-              isCorrect={logic.selectedAnswer === question.correctAnswer}
-              explanation={question.explanation}
-              isLastQuestion={logic.currentQuestion + 1 === logic.filteredQuestions.length}
-              onNext={logic.handleNextQuestion}
-              explanationFadeAnim={explanationFadeAnim}
-              explanationSlideAnim={explanationSlideAnim}
-            />
-          )}
-        </ScrollView>
-      </KeyboardAvoidingView>
+          {/* Bottom Section: Explanation & Button */}
+          <View style={styles.bottomSection}>
+            {logic.showExplanation && (
+              <ExplanationCard
+                isCorrect={logic.selectedAnswer === question.correctAnswer}
+                explanation={question.explanation}
+                isLastQuestion={logic.currentQuestion + 1 === logic.filteredQuestions.length}
+                onNext={logic.handleNextQuestion}
+                explanationFadeAnim={explanationFadeAnim}
+                explanationSlideAnim={explanationSlideAnim}
+              />
+            )}
+          </View>
+        </View>
+      </View>
 
       <HorizontalFilter
         visible={logic.showFilterModal}

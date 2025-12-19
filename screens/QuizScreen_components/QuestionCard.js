@@ -1,13 +1,11 @@
 import React from 'react';
 import { View, Text, Animated } from 'react-native';
-import { Icons } from './Icons';
 import { styles } from '../QuizScreen_styles/styles';
 
 export default function QuestionCard({ 
   currentQuestion, 
   totalQuestions, 
   questionText, 
-  topic, 
   topicLabel,
   timeLeft,
   slideAnim,
@@ -15,38 +13,25 @@ export default function QuestionCard({
   timerPulseAnim
 }) {
   return (
-    <>
-      <View style={styles.questionHeader}>
-        <View style={styles.questionInfo}>
-          <Text style={styles.questionNumber}>
-            Question {currentQuestion + 1}/{totalQuestions}
-          </Text>
-          <View style={styles.categoryBadge}>
-            <Text style={styles.categoryText}>
-              {topicLabel || topic}
-            </Text>
-          </View>
-        </View>
-        
-        <Animated.View 
-          style={[
-            styles.timerCircle,
-            { transform: [{ scale: timerPulseAnim }] }
-          ]}
-        >
-          <View style={styles.timerCircleInner}>
-            <Icons.Clock size={16} color={timeLeft <= 10 ? "#dc2626" : "#004643"} />
-            <Text style={[
-              styles.timerText,
-              timeLeft <= 10 && styles.timerWarning
-            ]}>
-              {timeLeft}s
-            </Text>
-          </View>
-        </Animated.View>
-      </View>
+    <View style={styles.questionContainer}>
+      {/* 1. العداد العائم (Absolute Positioned) */}
+      <Animated.View
+        style={[
+          styles.timerContainer,
+          timeLeft <= 10 && { borderColor: '#DC2626' },
+          { transform: [{ scale: timerPulseAnim }] }
+        ]}
+      >
+        <Text style={[
+          styles.timerText,
+          timeLeft <= 10 && { color: '#DC2626' }
+        ]}>
+          {timeLeft}
+        </Text>
+      </Animated.View>
 
-      <Animated.View 
+      {/* 2. كارت السؤال */}
+      <Animated.View
         style={[
           styles.questionCard,
           {
@@ -57,8 +42,22 @@ export default function QuestionCard({
           }
         ]}
       >
+        {/* Badge الفئة داخل الكارت */}
+        {topicLabel && (
+          <View style={styles.categoryBadge}>
+            <Text style={styles.categoryText}>{topicLabel}</Text>
+          </View>
+        )}
+        
         <Text style={styles.questionText}>{questionText}</Text>
       </Animated.View>
-    </>
+      
+      {/* رقم السؤال تحت الكارت مباشرة بخط صغير */}
+      <View style={{ alignItems: 'center', marginTop: 5 }}>
+         <Text style={styles.questionCounterText}>
+           Question {currentQuestion + 1} sur {totalQuestions}
+         </Text>
+      </View>
+    </View>
   );
 }
