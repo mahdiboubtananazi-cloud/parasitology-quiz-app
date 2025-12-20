@@ -39,24 +39,40 @@ export default function QuizScreen({ route, navigation }) {
     return { allQuestionsData: data, currentLabels: labels };
   }, [categoryId]);
 
+  // 🔥 التعديل الجوهري هنا 🔥
   const convertToQuestions = useCallback((data) => {
     const questions = [];
     Object.keys(data).forEach(topic => {
       if (Array.isArray(data[topic]) && data[topic].length > 0) {
         data[topic].forEach(q => {
+          
+          // 1. نحتفظ بنص الإجابة الصحيحة الأصلية (قبل الخلط)
+          const correctOptionText = q.options[q.correct];
+
+          // 2. نقوم بخلط الخيارات عشوائياً
+          // [...q.options] تنشئ نسخة جديدة حتى لا نعدل البيانات الأصلية
+          const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+
+          // 3. نبحث عن المكان الجديد للإجابة الصحيحة
+          const newCorrectIndex = shuffledOptions.indexOf(correctOptionText);
+
           questions.push({
             ...q,
             topic: topic,
             question: q.question,
-            options: q.options,
-            correctAnswer: q.correct,
+            options: shuffledOptions, // نستخدم الخيارات المخلوطة
+            correctAnswer: newCorrectIndex, // نستخدم الاندكس الجديد
             explanation: q.explanation
           });
         });
       }
     });
-    return questions;
+
+    // إضافة إضافية: خلط ترتيب الأسئلة نفسها أيضاً لزيادة التحدي
+    return questions.sort(() => Math.random() - 0.5);
+    
   }, []);
+  // 🔥 نهاية التعديل 🔥
 
   const animations = useQuizAnimations(0, false, false, 30, false);
 
@@ -152,7 +168,6 @@ export default function QuizScreen({ route, navigation }) {
           onFilterPress={() => logic.setShowFilterModal(true)}
         />
         
-        {/* ✅ تم تمرير mistakes هنا */}
         <ResultsScreen
           score={logic.score}
           totalQuestions={logic.filteredQuestions.length}
