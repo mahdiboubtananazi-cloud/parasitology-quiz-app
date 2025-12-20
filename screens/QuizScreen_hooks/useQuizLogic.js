@@ -9,6 +9,7 @@ export default function useQuizLogic(
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [score, setScore] = useState(0);
+  const [mistakes, setMistakes] = useState([]); // ✅ NEW: لتخزين الأخطاء
   const [showExplanation, setShowExplanation] = useState(false);
   const [showResult, setShowResult] = useState(false);
   const [allQuestions, setAllQuestions] = useState([]);
@@ -33,7 +34,6 @@ export default function useQuizLogic(
         
         if (questions.length > 0 && !quizStartTimeRef.current) {
           quizStartTimeRef.current = Date.now();
-          console.log('🚀 Quiz started at:', new Date(quizStartTimeRef.current).toLocaleTimeString());
         }
       } catch (error) {
         console.error('Error initializing questions:', error);
@@ -52,6 +52,7 @@ export default function useQuizLogic(
         setCurrentQuestion(0);
         setSelectedAnswer(null);
         setScore(0);
+        setMistakes([]); // ✅ Reset mistakes
         setShowExplanation(false);
         setShowResult(false);
         setShowNoQuestions(false);
@@ -59,7 +60,6 @@ export default function useQuizLogic(
         setTimeLeft(30);
         
         quizStartTimeRef.current = Date.now();
-        questionStartTimeRef.current = Date.now();
         
         if (resetAnimations) {
           resetAnimations();
@@ -99,25 +99,26 @@ export default function useQuizLogic(
       setSelectedFilters(filters);
     }
 
+    // Reset game state
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setScore(0);
+    setMistakes([]); // ✅ Reset mistakes
     setShowExplanation(false);
     setShowResult(false);
     setTimeLeft(30);
     setShowFilterModal(false);
     
     quizStartTimeRef.current = Date.now();
-    questionStartTimeRef.current = Date.now();
     
     if (resetAnimations) {
       resetAnimations();
     }
   }, [allQuestions, resetAnimations]);
 
-  // Timer effect - without showExplanation dependency
+  // Timer effect
   useEffect(() => {
-    if (filteredQuestions.length === 0) return;
+    if (filteredQuestions.length === 0 || showExplanation || showResult) return; // Stop timer if explanation shown
 
     setTimeLeft(30);
     questionStartTimeRef.current = Date.now();
@@ -126,6 +127,14 @@ export default function useQuizLogic(
       setTimeLeft(prevTime => {
         if (prevTime <= 1) {
           clearInterval(timer);
+          
+          // ✅ Time's up! Treat as wrong answer
+          setMistakes(prev => [...prev, {
+            ...filteredQuestions[currentQuestion],
+            userAnswer: null, // No answer selected
+            timeOut: true
+          }]);
+          
           setShowExplanation(true);
           return 0;
         }
@@ -134,7 +143,7 @@ export default function useQuizLogic(
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [currentQuestion, filteredQuestions.length]);
+  }, [currentQuestion, filteredQuestions.length, showExplanation, showResult]);
 
   const handleAnswerSelect = useCallback((answerIndex) => {
     if (showExplanation || filteredQuestions.length === 0) return;
@@ -142,8 +151,18 @@ export default function useQuizLogic(
     setSelectedAnswer(answerIndex);
     setShowExplanation(true);
 
-    if (answerIndex === filteredQuestions[currentQuestion].correctAnswer) {
+    const currentQ = filteredQuestions[currentQuestion];
+    
+    if (answerIndex === currentQ.correctAnswer) {
       setScore(prevScore => prevScore + 1);
+    } else {
+      // ✅ Wrong answer! Add to mistakes list
+      setMistakes(prev => [...prev, {
+        ...currentQ,
+        userAnswer: answerIndex,
+        userAnswerText: currentQ.options[answerIndex], // Store text for better review
+        correctAnswerText: currentQ.options[currentQ.correctAnswer]
+      }]);
     }
   }, [showExplanation, filteredQuestions, currentQuestion]);
 
@@ -165,13 +184,13 @@ export default function useQuizLogic(
     setCurrentQuestion(0);
     setSelectedAnswer(null);
     setScore(0);
+    setMistakes([]); // ✅ Reset mistakes
     setShowExplanation(false);
     setShowResult(false);
     setShowNoQuestions(false);
     setTimeLeft(30);
     
     quizStartTimeRef.current = Date.now();
-    questionStartTimeRef.current = Date.now();
     
     if (resetAnimations) {
       resetAnimations();
@@ -182,10 +201,6 @@ export default function useQuizLogic(
     setSelectedFilters({ topics: [] });
     setFilteredQuestions(allQuestions);
     setShowNoQuestions(false);
-    
-    quizStartTimeRef.current = Date.now();
-    questionStartTimeRef.current = Date.now();
-    
     resetQuiz();
   }, [allQuestions, resetQuiz]);
 
@@ -199,6 +214,7 @@ export default function useQuizLogic(
     currentQuestion,
     selectedAnswer,
     score,
+    mistakes, // ✅ Export this to use in UI
     showExplanation,
     showResult,
     filteredQuestions,

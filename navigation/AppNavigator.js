@@ -1,7 +1,8 @@
 import React from 'react';
+import { View, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'; // أضفنا MaterialCommunityIcons
 
 // Import Screens
 import HomeScreen from '../screens/home/HomeScreen';
@@ -21,7 +22,6 @@ function HomeStack() {
 }
 
 // ✅ QuizStack 
-// لاحظ: حذفنا ResultsScreen من هنا لأنها أصبحت جزءاً من QuizScreen
 function QuizStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -30,65 +30,106 @@ function QuizStack() {
   );
 }
 
+// Custom Tab Icon Component
+const CustomTabIcon = ({ focused, iconLibrary, iconName }) => {
+  // تحديد المكتبة المستخدمة (Ionicons أو MaterialCommunityIcons)
+  const IconComponent = iconLibrary === 'material' ? MaterialCommunityIcons : Ionicons;
+  
+  return (
+    <View style={{
+      alignItems: 'center',
+      justifyContent: 'center',
+      top: Platform.OS === 'ios' ? 10 : 0, 
+    }}>
+      <View
+        style={{
+          width: 45, // تصغير الدائرة قليلاً
+          height: 45,
+          borderRadius: 22.5,
+          backgroundColor: focused ? '#004643' : 'transparent', 
+          justifyContent: 'center',
+          alignItems: 'center',
+          elevation: focused ? 4 : 0,
+        }}
+      >
+        <IconComponent 
+          name={iconName} 
+          size={24} 
+          color={focused ? '#FFFFFF' : '#999999'} 
+        />
+      </View>
+    </View>
+  );
+};
+
 // Bottom Navigation
 export default function AppNavigator() {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
+      screenOptions={{
         headerShown: false,
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          if (route.name === 'Home') {
-            iconName = focused ? 'home' : 'home-outline';
-          } else if (route.name === 'Quiz') {
-            iconName = focused ? 'help-circle' : 'help-circle-outline';
-          } else if (route.name === 'Propos') {
-            iconName = focused ? 'information-circle' : 'information-circle-outline';
-          }
-
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: '#004643',
-        tabBarInactiveTintColor: '#999999',
+        tabBarShowLabel: false,
         tabBarStyle: {
-          backgroundColor: '#FFFFFF',
-          borderTopWidth: 1,
-          borderTopColor: '#E0E0E0',
-          height: 60,
-          paddingBottom: 8,
-          paddingTop: 8,
+          position: 'absolute',
+          bottom: 15, // خفضناه من 25 إلى 15 ليقترب من الحافة
+          left: 15, 
+          right: 15, // توسيع العرض قليلاً بتقليل الهوامش
+          elevation: 4, 
+          backgroundColor: '#ffffff',
+          borderRadius: 15, 
+          height: 60, // تقليل الارتفاع من 70 إلى 60 ليكون أقل ضخامة
+          borderTopWidth: 0, 
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: 5 },
+          shadowOpacity: 0.1,
+          shadowRadius: 5,
         },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          fontWeight: '600',
-        },
-      })}
+      }}
     >
-      {/* Tab 1 - الرئيسية */}
+      {/* Tab 1 - الرئيسية (لوحة التحكم) */}
       <Tab.Screen 
         name="Home" 
         component={HomeStack}
         options={{
-          tabBarLabel: 'Accueil',
+          tabBarIcon: ({ focused }) => (
+            <CustomTabIcon 
+              focused={focused} 
+              iconLibrary="ionic" 
+              iconName={focused ? "grid" : "grid-outline"} // أيقونة Grid
+            />
+          ),
         }}
       />
 
-      {/* Tab 2 - الكويز */}
+      {/* Tab 2 - الكويز (المجهر - أنسب للطفيليات) */}
       <Tab.Screen 
         name="Quiz" 
         component={QuizStack}
         options={{
-          tabBarLabel: 'Quiz',
+          // إخفاء الشريط في صفحة الكويز لتجنب تغطية الأزرار!
+          tabBarStyle: { display: 'none' }, 
+          tabBarIcon: ({ focused }) => (
+            <CustomTabIcon 
+              focused={focused} 
+              iconLibrary="material" 
+              iconName={focused ? "microscope" : "microscope"} // أيقونة المجهر
+            />
+          ),
         }}
       />
 
-      {/* Tab 3 - المعلومات */}
+      {/* Tab 3 - المعلومات (الكتاب/المرجع) */}
       <Tab.Screen 
         name="Propos" 
         component={ProposScreen}
         options={{
-          tabBarLabel: 'À propos',
+          tabBarIcon: ({ focused }) => (
+            <CustomTabIcon 
+              focused={focused} 
+              iconLibrary="ionic" 
+              iconName={focused ? "book" : "book-outline"} // أيقونة الكتاب
+            />
+          ),
         }}
       />
     </Tab.Navigator>

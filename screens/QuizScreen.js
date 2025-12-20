@@ -1,5 +1,5 @@
 ﻿import React, { useMemo, useCallback } from 'react';
-import { View, KeyboardAvoidingView, Platform, Text } from 'react-native';
+import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { 
   protozoaQuestions, 
@@ -72,8 +72,7 @@ export default function QuizScreen({ route, navigation }) {
     scaleAnim,
     timerPulseAnim,
     explanationFadeAnim,
-    explanationSlideAnim,
-    resultScaleAnim
+    explanationSlideAnim
   } = useQuizAnimations(
     logic.currentQuestion,
     logic.showExplanation,
@@ -148,21 +147,20 @@ export default function QuizScreen({ route, navigation }) {
   if (logic.showResult) {
     return (
       <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-        {/* نظهر الهيدر حتى في صفحة النتيجة ليتمكن من الفلترة أو الرجوع */}
         <QuizHeader
           categoryName={categoryName}
           onFilterPress={() => logic.setShowFilterModal(true)}
         />
         
-        {/* مكون النتيجة الجديد */}
+        {/* ✅ تم تمرير mistakes هنا */}
         <ResultsScreen
           score={logic.score}
           totalQuestions={logic.filteredQuestions.length}
+          mistakes={logic.mistakes} 
           onRestart={handleRestart}
           onGoHome={goHome}
         />
         
-        {/* نبقي مودال الفلتر متاحاً */}
         <HorizontalFilter
           visible={logic.showFilterModal}
           onClose={() => logic.setShowFilterModal(false)}
@@ -173,7 +171,6 @@ export default function QuizScreen({ route, navigation }) {
       </SafeAreaView>
     );
   }
-
 
   const question = logic.filteredQuestions[logic.currentQuestion];
 
@@ -190,16 +187,13 @@ export default function QuizScreen({ route, navigation }) {
 
   return (
     <SafeAreaView style={styles.container} edges={['top', 'bottom']}>
-      {/* Header */}
       <QuizHeader
         categoryName={categoryName}
         onFilterPress={() => logic.setShowFilterModal(true)}
       />
 
-      {/* Main Content Area - No ScrollView */}
       <View style={styles.content}>
         <View style={styles.scrollContent}>
-          {/* Top Section: Timer & Question */}
           <View>
             <QuestionCard
               currentQuestion={logic.currentQuestion}
@@ -214,7 +208,6 @@ export default function QuizScreen({ route, navigation }) {
             />
           </View>
 
-          {/* Middle Section: Options (Takes available space) */}
           <OptionsList
             options={question.options}
             selectedAnswer={logic.selectedAnswer}
@@ -223,7 +216,6 @@ export default function QuizScreen({ route, navigation }) {
             onAnswerSelect={logic.handleAnswerSelect}
           />
 
-          {/* Bottom Section: Explanation & Button */}
           <View style={styles.bottomSection}>
             {logic.showExplanation && (
               <ExplanationCard

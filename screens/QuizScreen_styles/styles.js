@@ -22,10 +22,10 @@ export const styles = StyleSheet.create({
   scrollContent: {
     flex: 1,
     paddingHorizontal: 20,
-    paddingTop: 10,
+    paddingTop: 0, // ✅ تم التعديل: إزالة البادينغ العلوي لتقليل المسافة
     paddingBottom: 20,
-    // هذا يضمن توزيع العناصر: السؤال فوق، والخيارات في الوسط، والزر تحت
     justifyContent: 'flex-start', 
+    gap: 12, // ✅ تم التعديل: استخدام gap للتحكم الدقيق بالمسافات
   },
 
   // --- Header ---
@@ -48,8 +48,8 @@ export const styles = StyleSheet.create({
   // --- Question Card Container ---
   // نستخدم flexShrink لمنع السؤال من دفع الخيارات خارج الشاشة إذا كان طويلاً
   questionContainer: {
-    marginTop: 20,
-    marginBottom: 15,
+    marginTop: 35, // ✅ تم التعديل: مسافة كافية لظهور العداد دون قص
+    marginBottom: 10, // ✅ تم التعديل: تقليل المسافة السفلية لتقريب الخيارات
     position: 'relative',
     alignItems: 'center',
     zIndex: 10,
@@ -58,10 +58,10 @@ export const styles = StyleSheet.create({
   // --- Timer (The Floating Badge) ---
   timerContainer: {
     position: 'absolute',
-    top: -20, // يطفو فوق الكارت
+    top: -22, // يطفو فوق الكارت بمسافة محسوبة
     alignSelf: 'center',
     zIndex: 20, // فوق الكارت دائماً
-    width: 44, // حجم صغير
+    width: 44, 
     height: 44,
     borderRadius: 22,
     backgroundColor: '#FFFFFF',
@@ -90,10 +90,10 @@ export const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     borderRadius: 16,
     paddingHorizontal: 16,
-    paddingTop: 30, // مساحة للعداد
-    paddingBottom: 16,
+    paddingTop: 30, // ✅ تم التعديل: مساحة داخلية كافية لعدم تغطية العداد للنص
+    paddingBottom: 15,
     width: '100%',
-    minHeight: 100, // ارتفاع معقول
+    minHeight: 100, 
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#004643',
@@ -103,11 +103,11 @@ export const styles = StyleSheet.create({
     elevation: 3,
   },
   questionText: {
-    fontSize: 15, // خط متوسط للقراءة
+    fontSize: 16, // ✅ تم التعديل: تكبير الخط قليلاً
     fontWeight: '700',
     color: '#1F2937',
     textAlign: 'center',
-    lineHeight: 22,
+    lineHeight: 24,
   },
   
   categoryBadge: {
@@ -130,17 +130,18 @@ export const styles = StyleSheet.create({
   // هذه الحاوية تأخذ المساحة المتبقية وتوزع الخيارات
   optionsContainer: {
     flex: 1, 
-    justifyContent: 'center', // توسيط الخيارات عمودياً
-    gap: 10, // مسافة بين الخيارات
-    marginBottom: 10,
-    paddingHorizontal: 4, // حماية من الظلال المقطوعة
+    justifyContent: 'flex-start', // ✅ تم التعديل: محاذاة للأعلى لتقليل الفراغ
+    gap: 8, 
+    marginBottom: 5,
+    paddingHorizontal: 4, 
   },
   
   // --- Individual Option (Compact) ---
   optionButton: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingVertical: 12, // ارتفاع مدمج
+    justifyContent: 'space-between', // ✅ تم التعديل: فصل الأيقونة عن النص
+    paddingVertical: 12, 
     paddingHorizontal: 14,
     borderRadius: 12,
     backgroundColor: '#FFFFFF',
@@ -159,11 +160,11 @@ export const styles = StyleSheet.create({
   
   optionText: {
     flex: 1,
-    fontSize: 13, // خط أصغر قليلاً للخيارات
+    fontSize: 13, 
     fontWeight: '600',
     color: '#374151',
-    marginLeft: 10,
     lineHeight: 18,
+    marginRight: 10, // ✅ تم التعديل: مسافة أمان
   },
   optionTextSelected: { color: '#004643', fontWeight: '700' },
   
@@ -180,47 +181,52 @@ export const styles = StyleSheet.create({
   optionRadioSelected: { borderColor: '#004643', backgroundColor: '#004643' },
 
   // --- Bottom Section (Explanation + Button) ---
-  // يظهر هذا القسم في الأسفل دائماً
   bottomSection: {
     justifyContent: 'flex-end',
     marginBottom: 5,
   },
 
-  // Explanation Box
+  // ✅ Explanation Box (New Design)
   explanationCard: {
     backgroundColor: '#FFFFFF',
-    borderRadius: 10,
-    padding: 12,
+    borderRadius: 12,
+    padding: 16,
     marginBottom: 10,
-    borderLeftWidth: 4,
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: 10,
+    marginTop: 5,
+    borderWidth: 1, // ✅ تم التعديل: إطار كامل
+    borderColor: '#E5E7EB',
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 3,
-    elevation: 2,
+    shadowOpacity: 0.08,
+    shadowRadius: 4,
+    elevation: 3,
   },
-  explanationCorrect: { borderLeftColor: '#10B981', backgroundColor: '#ECFDF5' },
-  explanationWrong: { borderLeftColor: '#EF4444', backgroundColor: '#FEF2F2' },
+  // ستايلات ديناميكية
+  explanationCorrect: { 
+    backgroundColor: '#F0FDF4', 
+    borderColor: '#BBF7D0' 
+  },
+  explanationWrong: { 
+    backgroundColor: '#FEF2F2', 
+    borderColor: '#FECACA' 
+  },
   
   explanationTitle: {
-    fontSize: 11,
-    fontWeight: '700',
-    marginBottom: 2,
+    fontSize: 14,
+    fontWeight: '800',
+    marginBottom: 4,
+    color: '#1F2937',
   },
   explanationText: {
-    flex: 1,
-    fontSize: 12,
-    color: '#374151',
-    lineHeight: 16,
+    fontSize: 13,
+    color: '#4B5563',
+    lineHeight: 20,
   },
   explanationHeader: {
-    // حاوية للأيقونة والعنوان إذا لزم الأمر
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    marginTop: 2,
+    marginBottom: 8,
+    gap: 8, // مسافة بين الأيقونة والعنوان
   },
 
   // Next Button
@@ -228,8 +234,10 @@ export const styles = StyleSheet.create({
     backgroundColor: '#004643',
     borderRadius: 12,
     paddingVertical: 14,
+    flexDirection: 'row', 
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 8,
     shadowColor: '#004643',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.2,
@@ -238,7 +246,7 @@ export const styles = StyleSheet.create({
   },
   nextButtonText: {
     color: '#FFFFFF',
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '700',
     letterSpacing: 0.5,
   },
@@ -258,15 +266,20 @@ export const styles = StyleSheet.create({
   filterModalOverlay: {
     position: 'absolute',
     top: 0, bottom: 0, left: 0, right: 0,
-    backgroundColor: 'rgba(0,0,0,0.4)',
+    backgroundColor: 'rgba(0,0,0,0.5)',
     zIndex: 100,
   },
   filterModalContainer: { flex: 1, justifyContent: 'flex-end' },
   filterModalContent: {
     backgroundColor: '#FFF',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    padding: 20,
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    padding: 24,
     maxHeight: '60%',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 10,
+    elevation: 20,
   },
 });
