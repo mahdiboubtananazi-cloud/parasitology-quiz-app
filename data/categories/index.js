@@ -1,5 +1,4 @@
-﻿// data/categories/index.js - استيراد من الملفات الفرعية
-import * as protozoaData from './protozoa';
+﻿import * as protozoaData from './protozoa';
 import * as helminthsData from './helminths';
 import * as arthropodsData from './arthropods';
 
@@ -37,22 +36,24 @@ export const helminthsLabels = {
   clinical: "Clinique"
 };
 
+// --- التغيير هنا ---
 // دمج أسئلة Arthropods
 export const arthropodsQuestions = {
-  ectoparasites: arthropodsData.ectoparasites || [],
-  vectors: arthropodsData.vectors || [],
-  control: arthropodsData.control || [],
-  identification: arthropodsData.identification || [],
-  medical: arthropodsData.medical || [],
+  diptera: arthropodsData.diptera || [],
+  arachnids: arthropodsData.arachnids || [],
+  other_insects: arthropodsData.other_insects || [],
+  medical_entomology: arthropodsData.medical_entomology || [],
+  control_prevention: arthropodsData.control_prevention || [],
 };
 
 export const arthropodsLabels = {
-  ectoparasites: "Ectoparasites",
-  vectors: "Vecteurs",
-  control: "Contrôle",
-  identification: "Identification",
-  medical: "Importance médicale"
+  diptera: "Diptères (Moustiques/Mouches)",
+  arachnids: "Arachnides (Tiques/Gale)",
+  other_insects: "Autres (Poux/Puces/Punaises)",
+  medical_entomology: "Entomologie Médicale",
+  control_prevention: "Lutte et Prévention"
 };
+// ------------------
 
 // حساب إجمالي الأسئلة
 export const getTotalQuestions = (questions) => {

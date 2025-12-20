@@ -367,5 +367,375 @@
     options: ["Tout le temps (jour et nuit)", "Jamais", "La nuit seulement", "Le jour seulement"],
     correct: 0,
     explanation: "Certaines souches de W. bancrofti (Pacifique) n'ont pas de périodicité marquée."
-  }
-];
+  },
+    // --- PART 11: TREATMENT & PHARMACOLOGY (NEMATODES) ---
+    {
+      id: 'h_nema_51',
+      question: "Quel est le mécanisme d'action des Benzimidazoles (Albendazole, Mébendazole) ?",
+      options: ["Inhibition de la polymérisation des microtubules (tubuline) du parasite", "Paralysie musculaire", "Inhibition de l'ADN", "Blocage respiratoire"],
+      correct: 0,
+      explanation: "En détruisant le cytosquelette (microtubules), ils empêchent l'absorption du glucose par le ver, qui meurt de faim."
+    },
+    {
+      id: 'h_nema_52',
+      question: "L'Ivermectine est le traitement de choix pour :",
+      options: ["L'Anguillulose (Strongyloides) et l'Onchocercose", "Le Ténia", "L'Amibiase", "Le Paludisme"],
+      correct: 0,
+      explanation: "Elle paralyse les muscles des nématodes et des arthropodes (gale) en agissant sur les canaux chlore glutamate-dépendants."
+    },
+    {
+      id: 'h_nema_53',
+      question: "Pourquoi la Diéthylcarbamazine (DEC) est-elle contre-indiquée dans l'Onchocercose ?",
+      options: ["Risque de réaction de Mazzotti sévère et de lésions oculaires irréversibles", "Elle ne marche pas", "Elle est toxique pour le foie", "Elle coûte trop cher"],
+      correct: 0,
+      explanation: "La lyse brutale des microfilaires dans l'œil peut rendre aveugle. On utilise l'Ivermectine qui est plus douce."
+    },
+    {
+      id: 'h_nema_54',
+      question: "Le traitement de l'Ascaridiose peut entraîner une migration erratique des vers si on utilise :",
+      options: ["Une anesthésie générale ou des sous-doses de médicaments irritants", "L'Albendazole", "Le Pyrantel", "L'eau"],
+      correct: 0,
+      explanation: "Le stress provoque la fuite des vers vers les canaux biliaires ou pancréatiques."
+    },
+    {
+      id: 'h_nema_55',
+      question: "Quel médicament est utilisé pour extraire le ver de Guinée (Dracunculus) ?",
+      options: ["Aucun, l'extraction est mécanique (enroulement progressif sur un bâton)", "Albendazole", "Praziquantel", "Ivermectine"],
+      correct: 0,
+      explanation: "C'est la seule parasitose où le traitement est purement manuel (quelques centimètres par jour)."
+    },
+  
+    // --- PART 12: RARE & ZOONOTIC NEMATODES ---
+    {
+      id: 'h_nema_56',
+      question: "L'Anisakis (Anisakidose) provoque des douleurs pseudo-ulcéreuses aiguës après ingestion de :",
+      options: ["Poisson cru (Sushi) ou calamar mariné", "Viande de porc", "Cresson", "Eau"],
+      correct: 0,
+      explanation: "La larve tente de s'enfoncer dans la paroi gastrique, provoquant une douleur violente immédiate."
+    },
+    {
+      id: 'h_nema_57',
+      question: "La prévention efficace contre l'Anisakis dans le poisson cru est :",
+      options: ["La congélation à -20°C pendant au moins 24h", "Le citron", "Le sel", "Le vinaigre"],
+      correct: 0,
+      explanation: "La marinade (citron, vinaigre) ne tue PAS la larve. Seule la cuisson ou la congélation le fait."
+    },
+    {
+      id: 'h_nema_58',
+      question: "Gnathostoma spinigerum cause :",
+      options: ["Des œdèmes migrateurs intermittents et une larva migrans viscérale", "Une diarrhée", "Une cécité", "Une anémie"],
+      correct: 0,
+      explanation: "Zoonose asiatique (poisson cru/poulet) caractérisée par des gonflements qui se déplacent sous la peau."
+    },
+    {
+      id: 'h_nema_59',
+      question: "L'Angiostrongylus cantonensis est la cause principale de :",
+      options: ["Méningite à éosinophiles dans le Pacifique/Asie", "Hépatite", "Pneumonie", "Myosite"],
+      correct: 0,
+      explanation: "Transmis par les escargots/crevettes. Les larves migrent vers le cerveau."
+    },
+    {
+      id: 'h_nema_60',
+      question: "Trichinella spiralis : le diagnostic de certitude en phase d'état se fait par :",
+      options: ["Biopsie musculaire (Deltoïde) montrant les larves enkystées", "Coproculture", "Frottis sanguin", "Urine"],
+      correct: 0,
+      explanation: "Les adultes ont disparu de l'intestin. Le parasite est désormais dans le muscle."
+    },
+  
+    // --- PART 13: ADVANCED DIAGNOSIS & BIOLOGY ---
+    {
+      id: 'h_nema_61',
+      question: "Une hyperéosinophilie massive (> 3000/mm3) est très évocatrice de :",
+      options: ["Trichinellose, Toxocarose ou distomatose en phase d'invasion", "Oxyurose", "Paludisme", "Amibiase"],
+      correct: 0,
+      explanation: "Plus le parasite est en contact intime avec les tissus (migration), plus l'éosinophilie est haute."
+    },
+    {
+      id: 'h_nema_62',
+      question: "La courbe de Lavier (courbe d'éosinophilie) montre typiquement :",
+      options: ["Une ascension rapide, un plateau, puis une descente lente", "Une ligne plate", "Une baisse initiale", "Des pics irréguliers"],
+      correct: 0,
+      explanation: "L'ascension correspond à la phase d'invasion tissulaire larvaire."
+    },
+    {
+      id: 'h_nema_63',
+      question: "Le diagnostic de la Toxocarose (Larva migrans viscérale) repose sur :",
+      options: ["La sérologie (ELISA/Western Blot) car on ne trouve pas le parasite", "L'examen des selles", "La biopsie", "Le frottis"],
+      correct: 0,
+      explanation: "C'est une impasse parasitaire, les vers ne deviennent jamais adultes et ne pondent pas d'œufs. Selles négatives."
+    },
+    {
+      id: 'h_nema_64',
+      question: "Dans l'anguillulose, l'examen direct des selles est souvent négatif car :",
+      options: ["La charge parasitaire est faible et l'émission des larves irrégulière", "Les vers sont microscopiques", "Il n'y a pas de larves", "Les larves meurent vite"],
+      correct: 0,
+      explanation: "Il faut répéter les examens et utiliser la méthode de Baermann pour augmenter la sensibilité."
+    },
+    {
+      id: 'h_nema_65',
+      question: "La méthode de Kato-Katz est utilisée pour :",
+      options: ["La quantification des œufs (épidémiologie de masse) des géo-helminthes et schistosomes", "La culture", "La sérologie", "La PCR"],
+      correct: 0,
+      explanation: "Standard OMS pour évaluer l'intensité de l'infection dans une population."
+    },
+  
+    // --- PART 14: FILARIASIS DETAILS ---
+    {
+      id: 'h_nema_66',
+      question: "Mansonella perstans est une filaire :",
+      options: ["Péritonéale et pleurale (séreuses), souvent peu pathogène", "Lymphatique", "Oculaire", "Musculaire"],
+      correct: 0,
+      explanation: "Très fréquente en Afrique, souvent découverte fortuite dans le sang (microfilaires à queue mousse)."
+    },
+    {
+      id: 'h_nema_67',
+      question: "La 'Cécité des rivières' est due à :",
+      options: ["L'opacification de la cornée par réaction inflammatoire aux microfilaires mortes", "Le ver adulte dans l'œil", "Une toxine", "Le soleil"],
+      correct: 0,
+      explanation: "C'est la sclérose inflammatoire chronique (kératite sclérosante) qui rend aveugle."
+    },
+    {
+      id: 'h_nema_68',
+      question: "Le vecteur de Loa loa (Chrysops) est attiré par :",
+      options: ["Le mouvement et la fumée (feux de bois)", "La lumière", "L'eau", "Le sucre"],
+      correct: 0,
+      explanation: "Il pique le jour, à l'extérieur, dans les zones forestières."
+    },
+    {
+      id: 'h_nema_69',
+      question: "La chylurie (urines lactescentes) est une complication de :",
+      options: ["La filariose lymphatique (Wuchereria bancrofti)", "La bilharziose", "L'ascaridiose", "L'anguillulose"],
+      correct: 0,
+      explanation: "Rupture des varices lymphatiques dans les voies urinaires. Les urines contiennent de la lymphe et des graisses."
+    },
+    {
+      id: 'h_nema_70',
+      question: "La prophylaxie de masse de la filariose lymphatique associe :",
+      options: ["Ivermectine + Albendazole (ou DEC + Albendazole)", "Chloroquine", "Pénicilline", "Rien"],
+      correct: 0,
+      explanation: "Une prise annuelle suffit pour réduire la microfilarémie et stopper la transmission."
+    },
+  
+    // --- PART 15: CLINICAL SCENARIOS ---
+    {
+      id: 'h_nema_71',
+      question: "Cas clinique : Enfant, toux sèche, fièvre, image pulmonaire labile, éosinophilie 20%. Diagnostic ?",
+      options: ["Syndrome de Löffler (Ascaris en migration)", "Tuberculose", "Pneumonie bactérienne", "Asthme pur"],
+      correct: 0,
+      explanation: "L'association signes pulmonaires + éosinophilie chez un enfant évoque une migration larvaire."
+    },
+    {
+      id: 'h_nema_72',
+      question: "Cas clinique : Jardinier, éruption rampante sur le pied qui avance de quelques cm par jour.",
+      options: ["Larva migrans cutanée (Ankylostome de chien)", "Mycose", "Varice", "Gale"],
+      correct: 0,
+      explanation: "Typique du contact avec un sol souillé par des déjections canines."
+    },
+    {
+      id: 'h_nema_73',
+      question: "Cas clinique : Retour du Mali, œdème du visage fugace et prurit, éosinophilie élevée.",
+      options: ["Loase (Filariose à Loa loa)", "Paludisme", "Allergie alimentaire", "Coup de soleil"],
+      correct: 0,
+      explanation: "Les œdèmes de Calabar sont typiques. Il faut chercher les microfilaires dans le sang à midi."
+    },
+    {
+      id: 'h_nema_74',
+      question: "Cas clinique : Anémie microcytaire sévère chez un paysan marchant pieds nus.",
+      options: ["Ankylostomose", "Ascaridiose", "Oxyurose", "Ténia"],
+      correct: 0,
+      explanation: "C'est la première cause d'anémie parasitaire au monde."
+    },
+    {
+      id: 'h_nema_75',
+      question: "Cas clinique : Douleurs musculaires atroces, fièvre, œdème des paupières après un repas de chasse (sanglier).",
+      options: ["Trichinellose", "Grippe", "Intoxication alimentaire", "Botulisme"],
+      correct: 0,
+      explanation: "L'œdème palpébral bilatéral et les myalgies sont la signature clinique."
+    },
+  
+    // --- PART 16: VECTOR & TRANSMISSION ---
+    {
+      id: 'h_nema_76',
+      question: "Les 'Géo-helminthes' (STH - Soil Transmitted Helminths) nécessitent :",
+      options: ["Un passage dans le sol pour la maturation des œufs/larves", "Un vecteur insecte", "Un escargot", "De l'eau"],
+      correct: 0,
+      explanation: "Ascaris, Trichuris, Ankylostomes : leurs œufs ne sont pas infectants immédiatement à la sortie de l'intestin."
+    },
+    {
+      id: 'h_nema_77',
+      question: "La Simulie (Vecteur de l'Onchocercose) pond ses œufs :",
+      options: ["Sur les plantes immergées dans les cours d'eau rapides et oxygénés", "Dans l'eau stagnante", "Dans la terre", "Sur les animaux"],
+      correct: 0,
+      explanation: "C'est pourquoi on traite les rivières pour éliminer les larves."
+    },
+    {
+      id: 'h_nema_78',
+      question: "Le cycle de Wuchereria bancrofti implique :",
+      options: ["L'homme comme réservoir principal", "Le singe", "Le chien", "L'oiseau"],
+      correct: 0,
+      explanation: "C'est une anthroponose stricte (pas de réservoir animal), ce qui rend son éradication théoriquement possible."
+    },
+    {
+      id: 'h_nema_79',
+      question: "Les œufs d'Oxyure deviennent infectants :",
+      options: ["Quelques heures après la ponte (très rapide)", "Après 1 mois dans le sol", "Immédiatement", "Jamais"],
+      correct: 0,
+      explanation: "Cela explique la contagion rapide dans les crèches et les familles."
+    },
+    {
+      id: 'h_nema_80',
+      question: "La pénétration transcutanée est le mode d'entrée de :",
+      options: ["Ankylostomes et Strongyloides", "Ascaris et Trichuris", "Oxyure", "Ténia"],
+      correct: 0,
+      explanation: "Les larves L3 infectantes traversent la peau saine."
+    },
+  
+    // --- PART 17: COMPLICATIONS ---
+    {
+      id: 'h_nema_81',
+      question: "L'éléphantiasis (Filariose) est dû à :",
+      options: ["L'obstruction lymphatique chronique et la surinfection bactérienne", "Un bouchon de vers", "Une tumeur", "Un excès d'eau"],
+      correct: 0,
+      explanation: "Le lymphœdème chronique entraîne une hypertrophie cutanée et sous-cutanée irréversible."
+    },
+    {
+      id: 'h_nema_82',
+      question: "Le prolapsus rectal est une complication classique de :",
+      options: ["La Trichocéphalose massive", "L'Oxyurose", "L'Ascaridiose", "L'Ankylostomose"],
+      correct: 0,
+      explanation: "L'irritation du rectum provoque des efforts de poussée (ténesme) qui font sortir la muqueuse."
+    },
+    {
+      id: 'h_nema_83',
+      question: "L'appendicite vermineuse peut être causée par :",
+      options: ["Ascaris ou Oxyures bloqués dans l'appendice", "Ténia", "Douves", "Giardia"],
+      correct: 0,
+      explanation: "On retrouve parfois des vers vivants en coupant l'appendice."
+    },
+    {
+      id: 'h_nema_84',
+      question: "Le syndrome d'hyperinfection à Strongyloides est mortel car :",
+      options: ["Les larves transportent des bactéries intestinales (E. coli) dans le sang (Septicémie à Gram négatif)", "Les vers mangent le cœur", "Le cerveau explose", "Hémorragie massive"],
+      correct: 0,
+      explanation: "Le danger n'est pas tant le ver que les bactéries qu'il emmène avec lui dans la circulation."
+    },
+    {
+      id: 'h_nema_85',
+      question: "La Toxocarose oculaire se présente souvent comme :",
+      options: ["Un leucocorie (reflet blanc) pouvant simuler un rétinoblastome (cancer)", "Une conjonctivite", "Un glaucome", "Une cataracte"],
+      correct: 0,
+      explanation: "Diagnostic différentiel crucial chez l'enfant pour éviter d'énucléer un œil pour rien."
+    },
+  
+    // --- PART 18: MORPHOLOGY ADVANCED ---
+    {
+      id: 'h_nema_86',
+      question: "Les œufs de Trichostrongylus ressemblent à ceux de l'Ankylostome mais :",
+      options: ["Sont plus grands, plus longs et pointus à un pôle", "Sont ronds", "Sont noirs", "Sont striés"],
+      correct: 0,
+      explanation: "Nématode fréquent chez les éleveurs de moutons."
+    },
+    {
+      id: 'h_nema_87',
+      question: "La femelle d'Ascaris possède une ceinture génitale située :",
+      options: ["Au tiers antérieur du corps", "À la fin du corps", "Au milieu", "Sur la tête"],
+      correct: 0,
+      explanation: "C'est un étranglement visible à l'œil nu, zone de la vulve."
+    },
+    {
+      id: 'h_nema_88',
+      question: "Les 'Ailes céphaliques' sont caractéristiques de l'adulte de :",
+      options: ["Enterobius vermicularis (Oxyure)", "Ascaris", "Trichuris", "Ankylostome"],
+      correct: 0,
+      explanation: "Ce sont des expansions cuticulaires latérales au niveau de la tête."
+    },
+    {
+      id: 'h_nema_89',
+      question: "La bourse caudale copulatrice (expansions en parapluie) est présente chez :",
+      options: ["Les mâles Ankylostomes", "Les femelles Ascaris", "Les Oxyures", "Les Trichocéphales"],
+      correct: 0,
+      explanation: "Sert à saisir la femelle lors de l'accouplement."
+    },
+    {
+      id: 'h_nema_90',
+      question: "Les microfilaires de Wuchereria bancrofti sont :",
+      options: ["À gaine, avec des noyaux ne allant pas jusqu'au bout de la queue", "Sans gaine", "À noyaux terminaux", "Très petites"],
+      correct: 0,
+      explanation: "La présence de la gaine et la disposition des noyaux caudaux permettent l'identification de l'espèce."
+    },
+  
+    // --- PART 19: MISCELLANEOUS & HISTORY ---
+    {
+      id: 'h_nema_91',
+      question: "Le sigle 'WASH' essentiel pour la lutte contre les nématodes signifie :",
+      options: ["Water, Sanitation and Hygiene", "Wash All Sick Humans", "World Association for Soil Helminths", "Rien"],
+      correct: 0,
+      explanation: "L'amélioration de l'accès à l'eau et aux latrines est la seule solution durable."
+    },
+    {
+      id: 'h_nema_92',
+      question: "L'éradication de la Dracunculose (Ver de Guinée) est basée sur :",
+      options: ["La filtration de l'eau de boisson et l'éducation (pas de vaccin ni traitement)", "La vaccination", "Les moustiquaires", "Les antibiotiques"],
+      correct: 0,
+      explanation: "C'est une maladie en voie d'éradication totale (quelques cas par an seulement dans le monde)."
+    },
+    {
+      id: 'h_nema_93',
+      question: "L'éosinophilie tropicale pulmonaire est une forme allergique de :",
+      options: ["Filariose lymphatique", "Ascaridiose", "Tuberculose", "Asthme"],
+      correct: 0,
+      explanation: "Réaction d'hypersensibilité aux microfilaires dans les poumons."
+    },
+    {
+      id: 'h_nema_94',
+      question: "Les œufs d'Ascaris sont très résistants grâce à :",
+      options: ["Leur coque épaisse multi-couches", "Leur taille", "Leur couleur", "Leur forme"],
+      correct: 0,
+      explanation: "Ils peuvent survivre des années dans le sol et résistent à l'eau de javel diluée."
+    },
+    {
+      id: 'h_nema_95',
+      question: "La 'Barrière chimique' contre les nématodes dans l'estomac est :",
+      options: ["L'acide chlorhydrique (pH acide)", "La pepsine", "La bile", "Le mucus"],
+      correct: 0,
+      explanation: "Les IPP (anti-acides) peuvent théoriquement favoriser certaines infections en réduisant cette barrière."
+    },
+  
+    // --- PART 20: FINAL CHECK ---
+    {
+      id: 'h_nema_96',
+      question: "Quelle parasitose peut être transmise par l'allaitement maternel ?",
+      options: ["L'Anguillulose (Strongyloides) et l'Ankylostomose (rare)", "Ascaridiose", "Ténia", "Paludisme"],
+      correct: 0,
+      explanation: "Les larves peuvent migrer dans les glandes mammaires."
+    },
+    {
+      id: 'h_nema_97',
+      question: "Le terme 'Helminthe' vient du grec et signifie :",
+      options: ["Ver", "Serpent", "Maladie", "Insecte"],
+      correct: 0,
+      explanation: "Base de l'Helminthologie."
+    },
+    {
+      id: 'h_nema_98',
+      question: "Les nématodes n'ont pas de :",
+      options: ["Système circulatoire et respiratoire (diffusion simple)", "Système nerveux", "Système digestif", "Muscles"],
+      correct: 0,
+      explanation: "Ils respirent par diffusion à travers la cuticule."
+    },
+    {
+      id: 'h_nema_99',
+      question: "La cuticule des nématodes est composée principalement de :",
+      options: ["Collagène", "Chitine", "Cellulose", "Kératine"],
+      correct: 0,
+      explanation: "C'est une structure protectrice flexible mais résistante."
+    },
+    {
+      id: 'h_nema_100',
+      question: "En cas de doute diagnostique sur une éosinophilie au retour des tropiques, on prescrit souvent un traitement d'épreuve par :",
+      options: ["Albendazole + Ivermectine", "Corticoïdes", "Antibiotiques", "Rien"],
+      correct: 0,
+      explanation: "Pour couvrir les nématodes tissulaires probables (Anguillule, etc.)."
+    }
+  ];
+  
