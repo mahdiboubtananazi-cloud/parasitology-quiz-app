@@ -2,12 +2,13 @@ import React from 'react';
 import { View, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'; // أضفنا MaterialCommunityIcons
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Import Screens
 import HomeScreen from '../screens/home/HomeScreen';
 import QuizScreen from '../screens/QuizScreen';
 import ProposScreen from '../screens/ProposScreen';
+import DiagnosticScreen from '../screens/DiagnosticScreen'; // ✅ تم إضافة الصفحة الجديدة هنا
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -32,7 +33,6 @@ function QuizStack() {
 
 // Custom Tab Icon Component
 const CustomTabIcon = ({ focused, iconLibrary, iconName }) => {
-  // تحديد المكتبة المستخدمة (Ionicons أو MaterialCommunityIcons)
   const IconComponent = iconLibrary === 'material' ? MaterialCommunityIcons : Ionicons;
   
   return (
@@ -43,7 +43,7 @@ const CustomTabIcon = ({ focused, iconLibrary, iconName }) => {
     }}>
       <View
         style={{
-          width: 45, // تصغير الدائرة قليلاً
+          width: 45,
           height: 45,
           borderRadius: 22.5,
           backgroundColor: focused ? '#004643' : 'transparent', 
@@ -71,13 +71,13 @@ export default function AppNavigator() {
         tabBarShowLabel: false,
         tabBarStyle: {
           position: 'absolute',
-          bottom: 15, // خفضناه من 25 إلى 15 ليقترب من الحافة
+          bottom: 15,
           left: 15, 
-          right: 15, // توسيع العرض قليلاً بتقليل الهوامش
+          right: 15,
           elevation: 4, 
           backgroundColor: '#ffffff',
           borderRadius: 15, 
-          height: 60, // تقليل الارتفاع من 70 إلى 60 ليكون أقل ضخامة
+          height: 60,
           borderTopWidth: 0, 
           shadowColor: '#000',
           shadowOffset: { width: 0, height: 5 },
@@ -86,7 +86,7 @@ export default function AppNavigator() {
         },
       }}
     >
-      {/* Tab 1 - الرئيسية (لوحة التحكم) */}
+      {/* Tab 1 - الرئيسية */}
       <Tab.Screen 
         name="Home" 
         component={HomeStack}
@@ -95,30 +95,44 @@ export default function AppNavigator() {
             <CustomTabIcon 
               focused={focused} 
               iconLibrary="ionic" 
-              iconName={focused ? "grid" : "grid-outline"} // أيقونة Grid
+              iconName={focused ? "grid" : "grid-outline"} 
             />
           ),
         }}
       />
 
-      {/* Tab 2 - الكويز (المجهر - أنسب للطفيليات) */}
+      {/* Tab 2 - الكويز */}
       <Tab.Screen 
         name="Quiz" 
         component={QuizStack}
         options={{
-          // إخفاء الشريط في صفحة الكويز لتجنب تغطية الأزرار!
           tabBarStyle: { display: 'none' }, 
           tabBarIcon: ({ focused }) => (
             <CustomTabIcon 
               focused={focused} 
               iconLibrary="material" 
-              iconName={focused ? "microscope" : "microscope"} // أيقونة المجهر
+              iconName={focused ? "microscope" : "microscope"} 
             />
           ),
         }}
       />
 
-      {/* Tab 3 - المعلومات (الكتاب/المرجع) */}
+      {/* Tab 3 - التشخيص (الصفحة الجديدة) */}
+      <Tab.Screen 
+        name="Diagnostic" 
+        component={DiagnosticScreen}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <CustomTabIcon 
+              focused={focused} 
+              iconLibrary="ionic" 
+              iconName={focused ? "medkit" : "medkit-outline"} // أيقونة طبية مناسبة للتشخيص
+            />
+          ),
+        }}
+      />
+
+      {/* Tab 4 - المعلومات */}
       <Tab.Screen 
         name="Propos" 
         component={ProposScreen}
@@ -127,7 +141,7 @@ export default function AppNavigator() {
             <CustomTabIcon 
               focused={focused} 
               iconLibrary="ionic" 
-              iconName={focused ? "book" : "book-outline"} // أيقونة الكتاب
+              iconName={focused ? "book" : "book-outline"} 
             />
           ),
         }}

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
+import { Ionicons } from '@expo/vector-icons'; // ✅ إضافة أيقونات إضافية
 import { Microscope, BookOpen, Target } from '../../components/Icons';
 import { storage } from '../../utils/storage';
 
@@ -45,7 +46,7 @@ const HomeScreen = () => {
   const progressModalAnim = useRef(new Animated.Value(0)).current;
   const resultsModalAnim = useRef(new Animated.Value(0)).current;
   
-  const cardAnims = useRef(Array.from({ length: 3 }, () => new Animated.Value(0))).current;
+  const cardAnims = useRef(Array.from({ length: 4 }, () => new Animated.Value(0))).current; // ✅ تم زيادة العدد لـ 4
 
   // Categories Data
   const categories = useMemo(() => [
@@ -69,11 +70,31 @@ const HomeScreen = () => {
       questions: arthropodsQuestions, labels: arthropodsLabels,
       color: '#B71C1C', lightColor: '#FFEBEE', bgColor: '#FFFFFF',
       icon: <Target size={24} color="#FFFFFF" />,
+    },
+    // 🔥 البطاقة الرابعة الجديدة: Diagnostic
+    {
+      id: 'diagnostic', 
+      name: 'Diagnostic AI', 
+      emoji: '🩺',
+      description: 'Identification par image et symptômes',
+      questions: [], labels: [], // لا يحتاج أسئلة
+      color: '#6C5CE7', // لون بنفسجي مميز
+      lightColor: '#F3F0FF', 
+      bgColor: '#FFFFFF',
+      icon: <Ionicons name="medkit" size={24} color="#FFFFFF" />, // استخدام Ionicons للأيقونة الجديدة
+      buttonLabel: 'Ouvrir l\'outil' // نص الزر الخاص
     }
   ], []);
 
   // Navigation Logic
   const handleCategoryPress = useCallback((category) => {
+    // ✅ التحقق: إذا كانت البطاقة هي التشخيص، نذهب لصفحة التشخيص
+    if (category.id === 'diagnostic') {
+      navigation.navigate('Diagnostic');
+      return;
+    }
+
+    // وإلا نذهب لصفحة الكويز العادية
     navigation.navigate('Quiz', {
       screen: 'QuizMain',
       params: {
@@ -198,7 +219,7 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#FAFAFA' },
-  scrollContent: { flexGrow: 1, paddingBottom: 40 },
+  scrollContent: { flexGrow: 1, paddingBottom: 100 }, // ✅ زيادة المساحة السفلية لكي لا يغطي النافبار المحتوى
   footer: { alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 },
   footerVersion: { fontSize: 12, color: '#AAAAAA', fontWeight: '500', letterSpacing: 0.3 },
 });

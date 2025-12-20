@@ -1,8 +1,9 @@
 ﻿import * as protozoaData from './protozoa';
 import * as helminthsData from './helminths';
 import * as arthropodsData from './arthropods';
+import * as microscopyData from './microscopy'; // <-- استيراد القسم الجديد
 
-// دمج أسئلة Protozoa
+// 1. Protozoa (Protozoaires)
 export const protozoaQuestions = {
   classification: protozoaData.classification || [],
   morphology: protozoaData.morphology || [],
@@ -19,7 +20,7 @@ export const protozoaLabels = {
   treatment: "Traitement"
 };
 
-// دمج أسئلة Helminths
+// 2. Helminths (Helminthes)
 export const helminthsQuestions = {
   nematodes: helminthsData.nematodes || [],
   cestodes: helminthsData.cestodes || [],
@@ -36,8 +37,7 @@ export const helminthsLabels = {
   clinical: "Clinique"
 };
 
-// --- التغيير هنا ---
-// دمج أسئلة Arthropods
+// 3. Arthropods (Arthropodes)
 export const arthropodsQuestions = {
   diptera: arthropodsData.diptera || [],
   arachnids: arthropodsData.arachnids || [],
@@ -53,11 +53,26 @@ export const arthropodsLabels = {
   medical_entomology: "Entomologie Médicale",
   control_prevention: "Lutte et Prévention"
 };
-// ------------------
 
-// حساب إجمالي الأسئلة
+// 4. Microscopy (Diagnostic Microscopique - TP) -- القسم الجديد --
+export const microscopyQuestions = {
+  selles: microscopyData.selles || [],
+  sang: microscopyData.sang || [],
+  tissus: microscopyData.tissus || [],
+  urines: microscopyData.urines || [],
+};
+
+export const microscopyLabels = {
+  selles: "Examen des Selles (Copro)",
+  sang: "Examen Sanguin (Frottis/GE)",
+  tissus: "Cutané & Tissus (Biopsie)",
+  urines: "Examen des Urines"
+};
+
+// Utility: حساب إجمالي الأسئلة
 export const getTotalQuestions = (questions) => {
   let total = 0;
+  if (!questions) return 0;
   Object.keys(questions).forEach(key => {
     if (Array.isArray(questions[key])) {
       total += questions[key].length;
@@ -66,7 +81,8 @@ export const getTotalQuestions = (questions) => {
   return total;
 };
 
-// للتحقق في console
+// Logging for Debugging
 console.log('📊 Protozoa:', getTotalQuestions(protozoaQuestions), 'questions');
 console.log('📊 Helminths:', getTotalQuestions(helminthsQuestions), 'questions');
 console.log('📊 Arthropods:', getTotalQuestions(arthropodsQuestions), 'questions');
+console.log('📊 Microscopy:', getTotalQuestions(microscopyQuestions), 'questions'); // <-- العداد الجديد
