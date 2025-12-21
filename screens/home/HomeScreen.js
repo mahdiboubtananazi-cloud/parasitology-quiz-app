@@ -9,8 +9,6 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
-import { Ionicons } from '@expo/vector-icons'; // ✅ إضافة أيقونات إضافية
-import { Microscope, BookOpen, Target } from '../../components/Icons';
 import { storage } from '../../utils/storage';
 
 // Import Data
@@ -46,55 +44,58 @@ const HomeScreen = () => {
   const progressModalAnim = useRef(new Animated.Value(0)).current;
   const resultsModalAnim = useRef(new Animated.Value(0)).current;
   
-  const cardAnims = useRef(Array.from({ length: 4 }, () => new Animated.Value(0))).current; // ✅ تم زيادة العدد لـ 4
+  const cardAnims = useRef(Array.from({ length: 4 }, () => new Animated.Value(0))).current;
 
-  // Categories Data
+  // --- Categories Configuration (Professional Medical UI) ---
   const categories = useMemo(() => [
     {
-      id: 'protozoa', name: 'Protozoaires', emoji: '🦠',
-      description: 'Organismes unicellulaires parasitaires',
+      id: 'protozoa', 
+      name: 'Protozoaires', 
+      description: 'Organismes unicellulaires et pathogènes.',
       questions: protozoaQuestions, labels: protozoaLabels,
-      color: '#0F766E', lightColor: '#E0F2F1', bgColor: '#FFFFFF',
-      icon: <Microscope size={24} color="#FFFFFF" />,
+      color: '#0F766E', // Teal
+      iconName: 'virus', // MaterialCommunityIcons
+      buttonLabel: 'Démarrer Quiz'
     },
     {
-      id: 'helminths', name: 'Helminthes', emoji: '🪱',
-      description: 'Vers et parasites multicellulaires',
+      id: 'helminths', 
+      name: 'Helminthes', 
+      description: 'Vers parasites (Nématodes, Cestodes).',
       questions: helminthsQuestions, labels: helminthsLabels,
-      color: '#1B5E20', lightColor: '#E8F5E9', bgColor: '#FFFFFF',
-      icon: <BookOpen size={24} color="#FFFFFF" />,
+      color: '#1B5E20', // Forest Green
+      iconName: 'snake', // MaterialCommunityIcons (Closest to worm)
+      buttonLabel: 'Démarrer Quiz'
     },
     {
-      id: 'arthropods', name: 'Arthropodes', emoji: '🦟',
-      description: 'Vecteurs et ectoparasites cliniquement importants',
+      id: 'arthropods', 
+      name: 'Arthropodes', 
+      description: 'Vecteurs cliniques et ectoparasites.',
       questions: arthropodsQuestions, labels: arthropodsLabels,
-      color: '#B71C1C', lightColor: '#FFEBEE', bgColor: '#FFFFFF',
-      icon: <Target size={24} color="#FFFFFF" />,
+      color: '#B71C1C', // Deep Red
+      iconName: 'spider', // MaterialCommunityIcons
+      buttonLabel: 'Démarrer Quiz'
     },
-    // 🔥 البطاقة الرابعة الجديدة: Diagnostic
     {
       id: 'diagnostic', 
-      name: 'Diagnostic AI', 
-      emoji: '🩺',
-      description: 'Identification par image et symptômes',
-      questions: [], labels: [], // لا يحتاج أسئلة
-      color: '#6C5CE7', // لون بنفسجي مميز
-      lightColor: '#F3F0FF', 
-      bgColor: '#FFFFFF',
-      icon: <Ionicons name="medkit" size={24} color="#FFFFFF" />, // استخدام Ionicons للأيقونة الجديدة
-      buttonLabel: 'Ouvrir l\'outil' // نص الزر الخاص
+      name: 'Diagnostic Lab', 
+      description: 'Identification microscopique et analyse IA.',
+      questions: [], labels: [],
+      color: '#6C5CE7', // Tech Purple
+      iconName: 'microscope', // MaterialCommunityIcons
+      buttonLabel: 'Ouvrir le Labo',
+      isSpecial: true // To handle navigation differently
     }
   ], []);
 
   // Navigation Logic
   const handleCategoryPress = useCallback((category) => {
-    // ✅ التحقق: إذا كانت البطاقة هي التشخيص، نذهب لصفحة التشخيص
+    // 1. Diagnostic Screen Navigation
     if (category.id === 'diagnostic') {
       navigation.navigate('Diagnostic');
       return;
     }
 
-    // وإلا نذهب لصفحة الكويز العادية
+    // 2. Standard Quiz Navigation
     navigation.navigate('Quiz', {
       screen: 'QuizMain',
       params: {
@@ -177,13 +178,13 @@ const HomeScreen = () => {
       >
         <HomeHeader fadeAnim={fadeAnim} translateYAnim={headerAnim} />
 
+        {/* Updated Carousel passing the correct data structure */}
         <CategoryCarousel 
           categories={categories}
           onCategoryPress={handleCategoryPress}
           fadeAnim={fadeAnim}
           slideAnim={slideAnim}
-          scaleAnim={scaleAnim}
-          cardAnims={cardAnims}
+          // Note: scaleAnim & cardAnims passed if your Carousel component uses them internally
         />
 
         <FeaturesSection 
@@ -219,7 +220,7 @@ const HomeScreen = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#FAFAFA' },
-  scrollContent: { flexGrow: 1, paddingBottom: 100 }, // ✅ زيادة المساحة السفلية لكي لا يغطي النافبار المحتوى
+  scrollContent: { flexGrow: 1, paddingBottom: 100 }, 
   footer: { alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 },
   footerVersion: { fontSize: 12, color: '#AAAAAA', fontWeight: '500', letterSpacing: 0.3 },
 });

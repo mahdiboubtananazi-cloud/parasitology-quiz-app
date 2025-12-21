@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Platform } from 'react-native';
+import { View, Text, Platform, StyleSheet } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
@@ -8,12 +8,12 @@ import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import HomeScreen from '../screens/home/HomeScreen';
 import QuizScreen from '../screens/QuizScreen';
 import ProposScreen from '../screens/ProposScreen';
-import DiagnosticScreen from '../screens/DiagnosticScreen'; // ✅ تم إضافة الصفحة الجديدة هنا
+import DiagnosticScreen from '../screens/DiagnosticScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// ✅ HomeStack
+// --- Stacks ---
 function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -22,7 +22,6 @@ function HomeStack() {
   );
 }
 
-// ✅ QuizStack 
 function QuizStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
@@ -31,62 +30,37 @@ function QuizStack() {
   );
 }
 
-// Custom Tab Icon Component
-const CustomTabIcon = ({ focused, iconLibrary, iconName }) => {
+// --- Custom Tab Icon (Minimalist & Modern) ---
+const CustomTabIcon = ({ focused, iconLibrary, iconName, label }) => {
   const IconComponent = iconLibrary === 'material' ? MaterialCommunityIcons : Ionicons;
-  
+  const activeColor = '#0F766E'; // Teal Professional
+  const inactiveColor = '#94A3B8'; // Slate Gray
+
   return (
-    <View style={{
-      alignItems: 'center',
-      justifyContent: 'center',
-      top: Platform.OS === 'ios' ? 10 : 0, 
-    }}>
-      <View
-        style={{
-          width: 45,
-          height: 45,
-          borderRadius: 22.5,
-          backgroundColor: focused ? '#004643' : 'transparent', 
-          justifyContent: 'center',
-          alignItems: 'center',
-          elevation: focused ? 4 : 0,
-        }}
-      >
-        <IconComponent 
-          name={iconName} 
-          size={24} 
-          color={focused ? '#FFFFFF' : '#999999'} 
-        />
-      </View>
+    <View style={styles.iconWrapper}>
+      <IconComponent 
+        name={iconName} 
+        size={26} 
+        color={focused ? activeColor : inactiveColor} 
+        style={{ marginBottom: 4 }}
+      />
+      {/* Optional: Dot indicator instead of full background */}
+      {focused && <View style={[styles.activeDot, { backgroundColor: activeColor }]} />}
     </View>
   );
 };
 
-// Bottom Navigation
+// --- Bottom Navigation ---
 export default function AppNavigator() {
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false,
-        tabBarStyle: {
-          position: 'absolute',
-          bottom: 15,
-          left: 15, 
-          right: 15,
-          elevation: 4, 
-          backgroundColor: '#ffffff',
-          borderRadius: 15, 
-          height: 60,
-          borderTopWidth: 0, 
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: 5 },
-          shadowOpacity: 0.1,
-          shadowRadius: 5,
-        },
+        tabBarShowLabel: false, // We handle visuals in the icon component
+        tabBarStyle: styles.floatingTabBar,
       }}
     >
-      {/* Tab 1 - الرئيسية */}
+      {/* Tab 1 - Dashboard */}
       <Tab.Screen 
         name="Home" 
         component={HomeStack}
@@ -101,38 +75,39 @@ export default function AppNavigator() {
         }}
       />
 
-      {/* Tab 2 - الكويز */}
+      {/* Tab 2 - Quiz (Theoretical) */}
       <Tab.Screen 
         name="Quiz" 
         component={QuizStack}
         options={{
-          tabBarStyle: { display: 'none' }, 
+          tabBarStyle: { display: 'none' }, // Hide tab bar inside quiz
           tabBarIcon: ({ focused }) => (
             <CustomTabIcon 
               focused={focused} 
               iconLibrary="material" 
-              iconName={focused ? "microscope" : "microscope"} 
+              iconName={focused ? "brain" : "brain"} // Corrected Logic: Quiz = Brain/Learning
             />
           ),
         }}
       />
 
-      {/* Tab 3 - التشخيص (الصفحة الجديدة) */}
+      {/* Tab 3 - Diagnostic (Microscope) */}
       <Tab.Screen 
         name="Diagnostic" 
         component={DiagnosticScreen}
         options={{
+          tabBarStyle: { display: 'none' }, // Hide tab bar during focus mode
           tabBarIcon: ({ focused }) => (
             <CustomTabIcon 
               focused={focused} 
-              iconLibrary="ionic" 
-              iconName={focused ? "medkit" : "medkit-outline"} // أيقونة طبية مناسبة للتشخيص
+              iconLibrary="material" 
+              iconName="microscope" // Corrected Logic: Diagnostic = Microscope
             />
           ),
         }}
       />
 
-      {/* Tab 4 - المعلومات */}
+      {/* Tab 4 - Atlas/Info */}
       <Tab.Screen 
         name="Propos" 
         component={ProposScreen}
@@ -149,3 +124,34 @@ export default function AppNavigator() {
     </Tab.Navigator>
   );
 }
+
+const styles = StyleSheet.create({
+  floatingTabBar: {
+    position: 'absolute',
+    bottom: 20,
+    left: 20,
+    right: 20,
+    elevation: 10, // High elevation for floating effect
+    backgroundColor: '#ffffff',
+    borderRadius: 24, // Softer roundness
+    height: 64,
+    borderTopWidth: 0,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.1,
+    shadowRadius: 12,
+    paddingBottom: 0, // Fix alignment on some Androids
+  },
+  iconWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    top: Platform.OS === 'ios' ? 12 : 0,
+    height: '100%',
+  },
+  activeDot: {
+    width: 5,
+    height: 5,
+    borderRadius: 2.5,
+    marginTop: 2,
+  }
+});

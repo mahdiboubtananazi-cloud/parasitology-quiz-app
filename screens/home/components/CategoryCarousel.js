@@ -5,13 +5,12 @@ import {
   TouchableOpacity, 
   StyleSheet, 
   Animated, 
-  Dimensions,
-  Platform
+  Dimensions
 } from 'react-native';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const { width: screenWidth } = Dimensions.get('window');
-// تصغير عرض البطاقة لتظهر البطاقات الجانبية بشكل أفضل
-const ITEM_WIDTH = screenWidth * 0.72; 
+const ITEM_WIDTH = screenWidth * 0.75; // عرض أوسع قليلاً للراحة
 const SPACING = 12;
 const SNAP_INTERVAL = ITEM_WIDTH + SPACING; 
 
@@ -24,18 +23,15 @@ export default function CategoryCarousel({
   const scrollX = useRef(new Animated.Value(0)).current;
 
   return (
-    <View style={{ marginBottom: 20 }}>
+    <View style={styles.carouselContainer}>
       <Animated.View 
         style={[
           styles.headerContainer,
-          {
-            opacity: fadeAnim,
-            transform: [{ translateY: slideAnim }]
-          }
+          { opacity: fadeAnim, transform: [{ translateY: slideAnim }] }
         ]}
       >
-        <Text style={styles.title}>Explorer</Text>
-        <Text style={styles.subtitle}>Sélectionnez une catégorie</Text>
+        <Text style={styles.sectionTitle}>Modules d'apprentissage</Text>
+        <Text style={styles.sectionSubtitle}>Sélectionnez votre mode d'étude</Text>
       </Animated.View>
 
       <Animated.FlatList
@@ -45,11 +41,9 @@ export default function CategoryCarousel({
         showsHorizontalScrollIndicator={false}
         snapToInterval={SNAP_INTERVAL}
         decelerationRate="fast"
-        bounces={false}
         contentContainerStyle={{
           paddingHorizontal: (screenWidth - ITEM_WIDTH) / 2,
-          paddingBottom: 24, // مساحة للظل المتوهج
-          paddingTop: 10
+          paddingBottom: 20, 
         }}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
@@ -62,24 +56,15 @@ export default function CategoryCarousel({
             (index + 1) * SNAP_INTERVAL
           ];
 
-          // أنيميشن التكبير والتصغير (أكثر وضوحاً الآن)
           const scale = scrollX.interpolate({
             inputRange,
-            outputRange: [0.85, 1, 0.85],
+            outputRange: [0.92, 1, 0.92],
             extrapolate: 'clamp'
           });
 
-          // أنيميشن الشفافية
           const opacity = scrollX.interpolate({
             inputRange,
-            outputRange: [0.6, 1, 0.6],
-            extrapolate: 'clamp'
-          });
-
-          // حركة عمودية طفيفة للبطاقات الجانبية
-          const translateY = scrollX.interpolate({
-            inputRange,
-            outputRange: [20, 0, 20],
+            outputRange: [0.7, 1, 0.7],
             extrapolate: 'clamp'
           });
 
@@ -88,49 +73,44 @@ export default function CategoryCarousel({
               style={{
                 width: ITEM_WIDTH,
                 marginRight: index === categories.length - 1 ? 0 : SPACING,
-                transform: [{ scale }, { translateY }],
+                transform: [{ scale }],
                 opacity
               }}
             >
               <TouchableOpacity 
                 activeOpacity={0.9}
                 onPress={() => onCategoryPress(item)}
-                style={[
-                  styles.card, 
-                  { 
-                    backgroundColor: item.bgColor,
-                    shadowColor: item.color, // الظل يأخذ لون البطاقة (تأثير Glow)
-                    borderColor: item.color + '40' // حدود شفافة بنفس اللون
-                  }
-                ]}
+                style={[styles.card, { borderColor: item.color + '40' }]}
               >
-                {/* شريط جانبي ملون بدلاً من العلوي */}
-                <View style={[styles.accentStrip, { backgroundColor: item.color }]} />
+                {/* Background Tint */}
+                <View style={[styles.cardBg, { backgroundColor: item.color + '08' }]} />
 
-                <View style={styles.cardInner}>
-                  <View style={[styles.iconCircle, { backgroundColor: item.color + '15' }]}>
-                    {item.icon ? (
-                       <View style={{ transform: [{ scale: 1.2 }] }}>
-                         {React.cloneElement(item.icon, { color: item.color, size: 36 })}
-                       </View>
-                    ) : (
-                       <Text style={styles.emoji}>{item.emoji}</Text>
-                    )}
+                <View style={styles.cardContent}>
+                  {/* Icon Section */}
+                  <View style={[styles.iconContainer, { backgroundColor: item.color + '15' }]}>
+                    <MaterialCommunityIcons 
+                      name={item.iconName} 
+                      size={42} 
+                      color={item.color} 
+                    />
                   </View>
 
-                  <View style={styles.textContainer}>
-                    <Text style={[styles.cardTitle, { color: '#2D3748' }]} numberOfLines={1}>
-                      {item.name}
-                    </Text>
+                  {/* Text Section */}
+                  <View style={styles.textWrapper}>
+                    <Text style={styles.cardTitle}>{item.name}</Text>
                     <Text style={styles.cardDesc} numberOfLines={2}>
                       {item.description}
                     </Text>
                   </View>
 
-                  <View style={[styles.btn, { backgroundColor: item.color }]}>
-                    <Text style={styles.btnText}>
-                      {item.buttonLabel || 'Quiz'}
+                  {/* Action Row (Bottom) */}
+                  <View style={[styles.actionRow, { borderTopColor: item.color + '15' }]}>
+                    <Text style={[styles.actionText, { color: item.color }]}>
+                      {item.buttonLabel || 'Commencer'}
                     </Text>
+                    <View style={[styles.arrowCircle, { backgroundColor: item.color + '20' }]}>
+                      <Ionicons name="arrow-forward" size={18} color={item.color} />
+                    </View>
                   </View>
                 </View>
               </TouchableOpacity>
@@ -143,81 +123,86 @@ export default function CategoryCarousel({
 }
 
 const styles = StyleSheet.create({
+  carouselContainer: {
+    marginBottom: 25,
+  },
   headerContainer: {
     paddingHorizontal: 24,
     marginBottom: 15,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: '800',
-    color: '#1A202C',
+  sectionTitle: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#1e293b',
     letterSpacing: -0.5,
   },
-  subtitle: {
-    fontSize: 14,
-    color: '#718096',
+  sectionSubtitle: {
+    fontSize: 13,
+    color: '#64748b',
     marginTop: 2,
   },
   card: {
-    height: 260, // تقليل الارتفاع (كان 320)
-    borderRadius: 24,
+    height: 240, // Reduced height for cleaner look
+    borderRadius: 20,
     backgroundColor: '#fff',
-    borderWidth: 1,
-    
-    // إعدادات الظل المتوهج
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.25, // زيادة الشفافية
-    shadowRadius: 12,
-    elevation: 8,
-    
-    flexDirection: 'row',
+    borderWidth: 1.5,
     overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.08, // Subtle shadow
+    shadowRadius: 10,
+    elevation: 4,
   },
-  accentStrip: {
-    width: 6,
-    height: '100%',
+  cardBg: {
+    ...StyleSheet.absoluteFillObject,
   },
-  cardInner: {
+  cardContent: {
     flex: 1,
     padding: 20,
-    alignItems: 'center',
     justifyContent: 'space-between',
   },
-  iconCircle: {
-    width: 80,
-    height: 80,
-    borderRadius: 40,
+  iconContainer: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
+    alignSelf: 'flex-start', // Icon aligned left
   },
-  emoji: {
-    fontSize: 38,
-  },
-  textContainer: {
-    alignItems: 'center',
+  textWrapper: {
+    flex: 1,
+    justifyContent: 'center',
   },
   cardTitle: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: '800',
+    color: '#1e293b',
     marginBottom: 6,
   },
   cardDesc: {
-    fontSize: 13,
-    color: '#718096',
-    textAlign: 'center',
-    lineHeight: 18,
+    fontSize: 14,
+    color: '#64748b',
+    lineHeight: 20,
   },
-  btn: {
-    width: '100%',
-    paddingVertical: 12,
-    borderRadius: 14,
+  actionRow: {
+    flexDirection: 'row',
     alignItems: 'center',
-    marginTop: 10,
+    justifyContent: 'space-between',
+    paddingTop: 15,
+    borderTopWidth: 1,
   },
-  btnText: {
-    color: '#fff',
+  actionText: {
     fontWeight: '700',
     fontSize: 14,
+    textTransform: 'uppercase',
+    letterSpacing: 0.5,
+  },
+  arrowCircle: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
