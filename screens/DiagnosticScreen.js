@@ -6,73 +6,109 @@ import {
   TouchableOpacity, 
   StatusBar, 
   Image, 
-  Dimensions,
   ScrollView,
   Platform,
   Alert,
   Animated,
-  ActivityIndicator
+  ActivityIndicator,
+  LayoutAnimation,
+  UIManager,
+  Dimensions
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'; 
-
-// استيراد البيانات
 import { microscopyAtlas } from '../data/microscopyAtlas';
 
-const { width, height } = Dimensions.get('window');
+// تفعيل الأنيميشن للأندرويد
+if (Platform.OS === 'android' && UIManager.setLayoutAnimationEnabledExperimental) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
+}
+
+const { width } = Dimensions.get('window');
 
 const DiagnosticScreen = () => {
   const navigation = useNavigation();
 
   // --- State ---
-  const [mode, setMode] = useState('quiz'); // 'quiz' or 'scanner'
   const [loading, setLoading] = useState(true);
+  const [mode, setMode] = useState('quiz'); // 'quiz' OR 'scanner'
   
+  // 🔬 Clinical Filters (Selles, Sang, Urines...)
+  const [showFilters, setShowFilters] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('Tout'); 
+
   // Quiz State
   const [currentQuestion, setCurrentQuestion] = useState(null);
   const [shuffledOptions, setShuffledOptions] = useState([]); 
   const [selectedOption, setSelectedOption] = useState(null);
+  const [isAnswered, setIsAnswered] = useState(false); 
   const [score, setScore] = useState(0);
   
   // Animation Values
   const fadeAnim = useRef(new Animated.Value(0)).current;
+  const clueAnim = useRef(new Animated.Value(0)).current;
+  const scannerAnim = useRef(new Animated.Value(0)).current; // Animation for AI Scanner
+
+  // --- Helper: تصنيف الطفيليات حسب العينة (Sample Type Logic) ---
+  const getSampleType = (item) => {
+    const name = item.parasiteName.toLowerCase();
+    const family = item.family.toLowerCase();
+
+    if (name.includes('haematobium') || name.includes('vaginalis')) return 'Urines';
+    if (name.includes('plasmodium') || name.includes('brucei') || family.includes('blood')) return 'Sang';
+    if (name.includes('enterobius') || item.technique.includes('Scotch')) return 'Scotch Test';
+    return 'Selles'; // Default (Most parasites are in stool)
+  };
 
   // --- Initialize ---
   useEffect(() => {
-    // محاكاة تحميل قصيرة لضمان استقرار الواجهة
     const timer = setTimeout(() => {
-      if (microscopyAtlas && microscopyAtlas.length > 0) {
-        generateNewQuestion();
-      }
+      generateNewQuestion('Tout');
       setLoading(false);
     }, 500);
     return () => clearTimeout(timer);
   }, []);
 
-  // --- Logic ---
-  const generateNewQuestion = () => {
-    // Reset Animation & State
+  // --- 🧠 The Smart Quiz Engine ---
+  
+  const generateNewQuestion = (filterOverride = activeFilter) => {
     fadeAnim.setValue(0);
+    clueAnim.setValue(0); 
     setSelectedOption(null);
+    setIsAnswered(false);
 
-    // 1. اختيار سؤال عشوائي
-    const randomIndex = Math.floor(Math.random() * microscopyAtlas.length);
-    const question = microscopyAtlas[randomIndex];
+    // 1. Smart Filtering based on Clinical Sample
+    let pool = microscopyAtlas;
+    if (filterOverride !== 'Tout') {
+      pool = microscopyAtlas.filter(item => getSampleType(item) === filterOverride);
+    }
 
-    // 2. ✅ خلط الخيارات عشوائياً (Fix: Shuffling logic)
+    if (pool.length === 0) {
+      Alert.alert("Info", `Aucun parasite trouvé dans la catégorie: ${filterOverride}`);
+      pool = microscopyAtlas; // Fallback
+      setActiveFilter('Tout');
+    }
+
+    // 2. Random Selection
+    const randomIndex = Math.floor(Math.random() * pool.length);
+    const question = pool[randomIndex];
+
+    // 3. Options Generation
     let finalOptions = [];
     if (question.options && question.options.length > 0) {
-      // ننسخ المصفوفة ونخلطها
       finalOptions = [...question.options].sort(() => Math.random() - 0.5);
     } else {
-      // Fallback في حال لا توجد خيارات
-      finalOptions = [question.parasiteName, "Option A", "Option B", "Option C"];
+      const randomDistractors = microscopyAtlas
+        .filter(i => i.id !== question.id)
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 3)
+        .map(i => i.parasiteName);
+      finalOptions = [question.parasiteName, ...randomDistractors].sort(() => Math.random() - 0.5);
     }
 
     setCurrentQuestion(question);
     setShuffledOptions(finalOptions);
 
-    // Fade In New Question
     Animated.timing(fadeAnim, {
       toValue: 1,
       duration: 400,
@@ -80,65 +116,124 @@ const DiagnosticScreen = () => {
     }).start();
   };
 
+  const handleFilterSelect = (category) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setActiveFilter(category);
+    generateNewQuestion(category);
+  };
+
+  const toggleFilterBar = () => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    setShowFilters(!showFilters);
+  };
+
   const handleOptionSelect = (option) => {
-    if (selectedOption) return; 
+    if (isAnswered) return;
 
     setSelectedOption(option);
+    setIsAnswered(true);
+    
     const isCorrect = option === currentQuestion.parasiteName;
-
     if (isCorrect) setScore(s => s + 1);
 
-    // Auto-advance
-    setTimeout(() => {
-      generateNewQuestion();
-    }, 1500); // زيادة الوقت قليلاً ليتمكن المستخدم من رؤية الإجابة الصحيحة
+    Animated.timing(clueAnim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
   };
 
+  const handleNextQuestion = () => {
+    generateNewQuestion();
+  };
+
+  // --- 🤖 AI Scanner Logic ---
   const handleAIScan = () => {
-    Alert.alert(
-      "Module IA (Bêta)",
-      "L'algorithme de reconnaissance d'images est en cours d'entraînement. Cette fonctionnalité sera activée dans la prochaine mise à jour.",
-      [{ text: "Compris", style: "cancel" }]
-    );
+    // تشغيل أنيميشن وهمي للمسح
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(scannerAnim, { toValue: 1, duration: 1500, useNativeDriver: true }),
+        Animated.timing(scannerAnim, { toValue: 0, duration: 1500, useNativeDriver: true })
+      ])
+    ).start();
+
+    // هنا سنربط الذكاء الاصطناعي لاحقاً
+    setTimeout(() => {
+      Alert.alert(
+        "Module IA (Bêta)",
+        "Je suis prêt à apprendre, Professeur ! \nDonnez-moi des données pour m'entraîner.",
+        [{ text: "Commencer l'entraînement" }]
+      );
+    }, 2000);
   };
 
-  // --- Components ---
+  // --- Categories List (Clinical) ---
+  const clinicalCategories = ['Tout', 'Selles', 'Sang', 'Urines', 'Scotch Test'];
+
+  // --- Renderers ---
 
   const renderHeader = () => (
     <View style={styles.headerContainer}>
       <View style={styles.statusBarPlaceholder} />
       <View style={styles.navBar}>
-        <TouchableOpacity 
-          onPress={() => navigation.goBack()} 
-          style={styles.iconButton}
-          activeOpacity={0.7}
-        >
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.iconButton}>
           <Ionicons name="arrow-back" size={24} color="#fff" />
         </TouchableOpacity>
         
-        {/* Segmented Control */}
-        <View style={styles.modeSelector}>
+        {/* Mode Switcher (Quiz vs AI) */}
+        <View style={styles.modeSwitchContainer}>
           <TouchableOpacity 
-            style={[styles.selectorBtn, mode === 'quiz' && styles.selectorBtnActive]}
-            onPress={() => setMode('quiz')}
-            activeOpacity={0.8}
+            style={[styles.modeBtn, mode === 'quiz' && styles.modeBtnActive]}
+            onPress={() => {
+              LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+              setMode('quiz');
+            }}
           >
-            <Text style={[styles.selectorText, mode === 'quiz' && styles.selectorTextActive]}>Quiz</Text>
+            <Text style={[styles.modeText, mode === 'quiz' && styles.modeTextActive]}>Quiz</Text>
           </TouchableOpacity>
           <TouchableOpacity 
-            style={[styles.selectorBtn, mode === 'scanner' && styles.selectorBtnActive]}
-            onPress={() => setMode('scanner')}
-            activeOpacity={0.8}
+            style={[styles.modeBtn, mode === 'scanner' && styles.modeBtnActive]}
+            onPress={() => {
+              LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+              setMode('scanner');
+            }}
           >
-            <Text style={[styles.selectorText, mode === 'scanner' && styles.selectorTextActive]}>Scanner</Text>
+            <MaterialCommunityIcons name="line-scan" size={16} color={mode === 'scanner' ? "#fff" : "#94a3b8"} style={{marginRight:4}} />
+            <Text style={[styles.modeText, mode === 'scanner' && styles.modeTextActive]}>AI</Text>
           </TouchableOpacity>
         </View>
 
-        <View style={styles.scoreBadge}>
-          <Text style={styles.scoreLabel}>PTS</Text>
-          <Text style={styles.scoreValue}>{score}</Text>
-        </View>
+        {/* Filter Toggle (Only in Quiz Mode) */}
+        {mode === 'quiz' ? (
+          <TouchableOpacity 
+            style={[styles.iconButton, showFilters && styles.iconButtonActive]} 
+            onPress={toggleFilterBar}
+          >
+            <Ionicons name="filter" size={20} color={showFilters ? "#3b82f6" : "#fff"} />
+          </TouchableOpacity>
+        ) : (
+          <View style={{width: 40}} /> // Spacer
+        )}
       </View>
+
+      {/* 🔽 Collapsible Clinical Filter Bar */}
+      {mode === 'quiz' && showFilters && (
+        <View style={styles.filterBar}>
+          <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{paddingHorizontal: 16}}>
+            {clinicalCategories.map((cat) => (
+              <TouchableOpacity 
+                key={cat} 
+                style={[styles.filterChip, activeFilter === cat && styles.filterChipActive]}
+                onPress={() => handleFilterSelect(cat)}
+              >
+                <Text style={[styles.filterText, activeFilter === cat && styles.filterTextActive]}>
+                  {cat}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </ScrollView>
+        </View>
+      )}
     </View>
   );
 
@@ -151,115 +246,138 @@ const DiagnosticScreen = () => {
     );
 
     return (
-      <ScrollView 
-        contentContainerStyle={styles.scrollContent} 
-        showsVerticalScrollIndicator={false}
-      >
-        <Animated.View style={{ opacity: fadeAnim }}>
-          {/* Microscope View */}
-          <View style={styles.microscopeCard}>
-            <View style={styles.imageWrapper}>
-              {currentQuestion.image ? (
-                <Image 
-                  source={currentQuestion.image} 
-                  style={styles.microscopeImage}
-                  resizeMode="contain" // ✅ تغيير إلى contain لضمان ظهور الصورة كاملة
-                  onError={(e) => console.log("خطأ في تحميل الصورة:", e.nativeEvent.error)}
-                />
-              ) : (
-                <View style={[styles.microscopeImage, { backgroundColor: '#1a1a1a', justifyContent: 'center', alignItems: 'center' }]}>
-                  <Ionicons name="image-outline" size={40} color="#666" />
-                  <Text style={{color: '#666', marginTop: 10}}>Image introuvable</Text>
+      <View style={{flex: 1}}>
+        <ScrollView 
+          contentContainerStyle={styles.scrollContent} 
+          showsVerticalScrollIndicator={false}
+        >
+          <Animated.View style={{ opacity: fadeAnim }}>
+            
+            {/* 🔬 Microscope View */}
+            <View style={styles.microscopeCard}>
+              <View style={styles.imageWrapper}>
+                {currentQuestion.image ? (
+                  <Image 
+                    source={currentQuestion.image} 
+                    style={styles.microscopeImage}
+                    resizeMode="contain"
+                  />
+                ) : (
+                  <View style={styles.missingImage}>
+                    <Ionicons name="image-outline" size={40} color="#94a3b8" />
+                  </View>
+                )}
+                
+                {/* Sample Badge (Dynamic) */}
+                <View style={[styles.sampleBadge, { backgroundColor: getSampleType(currentQuestion) === 'Sang' ? '#ef4444' : '#f59e0b' }]}>
+                   <Ionicons name="eyedrop" size={10} color="#fff" style={{marginRight:4}} />
+                   <Text style={styles.sampleText}>{getSampleType(currentQuestion)}</Text>
                 </View>
+
+                {/* Technique Badge */}
+                <View style={styles.techniqueBadge}>
+                  <Text style={styles.badgeText}>{currentQuestion.technique}</Text>
+                </View>
+              </View>
+
+              {/* Clue Box */}
+              {isAnswered && currentQuestion.clue && (
+                <Animated.View style={[styles.clueBox, { opacity: clueAnim }]}>
+                  <View style={styles.clueHeader}>
+                    <MaterialCommunityIcons name="microscope" size={18} color="#0f172a" />
+                    <Text style={styles.clueTitle}>Observation</Text>
+                  </View>
+                  <Text style={styles.clueText}>{currentQuestion.clue}</Text>
+                </Animated.View>
               )}
-              
-              {/* Overlays */}
-              <View style={styles.liveBadge}>
-                <View style={styles.recordingDot} />
-                <Text style={styles.liveText}>LIVE</Text>
-              </View>
-              
-              <View style={styles.zoomBadge}>
-                <Text style={styles.zoomText}>400x</Text>
-              </View>
             </View>
 
-            {/* Metadata Footer */}
-            <View style={styles.metaFooter}>
-              <View style={styles.metaItem}>
-                <Ionicons name="pricetag-outline" size={14} color="#64748b" />
-                <Text style={styles.metaText}>{currentQuestion.family || 'Unknown'}</Text>
-              </View>
-              <View style={styles.metaItem}>
-                <Ionicons name="hardware-chip-outline" size={14} color="#64748b" />
-                <Text style={styles.metaText}>ID: {currentQuestion.id || '---'}</Text>
-              </View>
-            </View>
-          </View>
+            <Text style={styles.sectionTitle}>DIAGNOSTIC ?</Text>
 
-          <Text style={styles.sectionTitle}>IDENTIFICATION</Text>
+            {/* Options Grid */}
+            <View style={styles.gridContainer}>
+              {shuffledOptions.map((option, index) => {
+                const isSelected = selectedOption === option;
+                const isCorrectAnswer = option === currentQuestion.parasiteName;
+                
+                let cardStyle = styles.gridCard;
+                let textStyle = styles.gridText;
+                let borderColor = '#e2e8f0';
 
-          {/* Options Grid */}
-          <View style={styles.optionsContainer}>
-            {shuffledOptions.map((option, index) => {
-              const isSelected = selectedOption === option;
-              const isCorrectAnswer = option === currentQuestion.parasiteName;
-              
-              let cardStyle = styles.optionCard;
-              let textStyle = styles.optionText;
-              let iconName = "ellipse-outline";
-              let iconColor = "#cbd5e1";
-
-              if (selectedOption) {
-                if (isCorrectAnswer) {
-                  // ✅ الإجابة الصحيحة تظهر دائماً بالأخضر سواء اخترتها أم لا
-                  cardStyle = [styles.optionCard, styles.cardCorrect];
-                  textStyle = [styles.optionText, styles.textCorrect];
-                  iconName = "checkmark-circle";
-                  iconColor = "#059669";
+                if (isAnswered) {
+                  if (isCorrectAnswer) {
+                    cardStyle = [styles.gridCard, styles.cardCorrect];
+                    textStyle = [styles.gridText, styles.textCorrect];
+                    borderColor = '#059669';
+                  } else if (isSelected) {
+                    cardStyle = [styles.gridCard, styles.cardWrong];
+                    textStyle = [styles.gridText, styles.textWrong];
+                    borderColor = '#dc2626';
+                  } else {
+                    cardStyle = [styles.gridCard, styles.cardDimmed];
+                  }
                 } else if (isSelected) {
-                  // ✅ إجابتك الخاطئة تظهر بالأحمر
-                  cardStyle = [styles.optionCard, styles.cardWrong];
-                  textStyle = [styles.optionText, styles.textWrong];
-                  iconName = "close-circle";
-                  iconColor = "#dc2626";
-                } else {
-                  // ✅ باقي الخيارات تصبح باهتة
-                  cardStyle = [styles.optionCard, styles.cardDimmed];
+                   borderColor = '#3b82f6';
                 }
-              }
 
-              return (
-                <TouchableOpacity 
-                  key={index}
-                  style={cardStyle}
-                  onPress={() => handleOptionSelect(option)}
-                  activeOpacity={0.9}
-                  disabled={selectedOption !== null}
-                >
-                  <Text style={textStyle}>{option}</Text>
-                  <Ionicons name={iconName} size={22} color={iconColor} />
-                </TouchableOpacity>
-              );
-            })}
+                return (
+                  <TouchableOpacity 
+                    key={index}
+                    style={[cardStyle, { borderColor }]}
+                    onPress={() => handleOptionSelect(option)}
+                    activeOpacity={0.9}
+                    disabled={isAnswered}
+                  >
+                    <Text style={textStyle} numberOfLines={2}>{option}</Text>
+                    {isAnswered && isCorrectAnswer && (
+                       <Ionicons name="checkmark-circle" size={20} color="#059669" style={styles.cardIcon} />
+                    )}
+                    {isAnswered && isSelected && !isCorrectAnswer && (
+                       <Ionicons name="close-circle" size={20} color="#dc2626" style={styles.cardIcon} />
+                    )}
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </Animated.View>
+        </ScrollView>
+
+        {/* Next Button */}
+        {isAnswered && (
+          <View style={styles.bottomBar}>
+            <TouchableOpacity style={styles.nextButton} onPress={handleNextQuestion}>
+              <Text style={styles.nextButtonText}>Suivant</Text>
+              <Ionicons name="arrow-forward" size={20} color="#fff" />
+            </TouchableOpacity>
           </View>
-        </Animated.View>
-      </ScrollView>
+        )}
+      </View>
     );
   };
 
+  // --- 🤖 THE AI SCANNER INTERFACE ---
   const renderScannerContent = () => (
     <View style={styles.scannerContainer}>
       <View style={styles.scannerCircle}>
-        <MaterialCommunityIcons name="line-scan" size={64} color="#6366f1" />
+        <Animated.View style={{ opacity: scannerAnim, transform: [{ scale: scannerAnim.interpolate({inputRange:[0,1], outputRange:[1, 1.2]}) }] }}>
+          <View style={styles.laserBeam} />
+        </Animated.View>
+        <MaterialCommunityIcons name="robot" size={80} color="#6366f1" />
       </View>
-      <Text style={styles.scannerTitle}>Analyseur IA</Text>
+      
+      <Text style={styles.scannerTitle}>AI Parasitologist</Text>
       <Text style={styles.scannerDesc}>
-        Pointez votre caméra vers l'oculaire pour une identification en temps réel.
+        Pointez votre caméra vers l'oculaire du microscope ou importez une photo pour l'analyse.
       </Text>
+      
       <TouchableOpacity style={styles.scanButton} onPress={handleAIScan}>
-        <Ionicons name="camera" size={20} color="#fff" style={{marginRight: 8}} />
-        <Text style={styles.scanButtonText}>Activer Caméra</Text>
+        <Ionicons name="camera" size={24} color="#fff" style={{marginRight: 8}} />
+        <Text style={styles.scanButtonText}>Analyser l'échantillon</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.galleryButton}>
+        <Ionicons name="images" size={20} color="#6366f1" style={{marginRight: 8}} />
+        <Text style={styles.galleryButtonText}>Importer de la galerie</Text>
       </TouchableOpacity>
     </View>
   );
@@ -268,322 +386,89 @@ const DiagnosticScreen = () => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#0f172a" />
       {renderHeader()}
-      
       <View style={styles.contentArea}>
         {mode === 'quiz' ? renderQuizContent() : renderScannerContent()}
       </View>
-
-      {/* Quick Switch FAB */}
-      {mode === 'quiz' && (
-        <TouchableOpacity 
-          style={styles.fab} 
-          onPress={() => setMode('scanner')}
-          activeOpacity={0.9}
-        >
-          <MaterialCommunityIcons name="brain" size={26} color="#fff" />
-        </TouchableOpacity>
-      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#f8fafc', // Very light slate
-  },
-  // --- Header ---
-  headerContainer: {
-    backgroundColor: '#0f172a', // Slate-900 (Deep Navy)
-    paddingBottom: 20,
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    zIndex: 10,
-  },
-  statusBarPlaceholder: {
-    height: Platform.OS === 'ios' ? 48 : StatusBar.currentHeight + 8,
-  },
-  navBar: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 20,
-  },
-  iconButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modeSelector: {
-    flexDirection: 'row',
-    backgroundColor: 'rgba(255,255,255,0.1)',
-    borderRadius: 20,
-    padding: 4,
-  },
-  selectorBtn: {
-    paddingVertical: 6,
-    paddingHorizontal: 16,
-    borderRadius: 16,
-  },
-  selectorBtnActive: {
-    backgroundColor: '#3b82f6', // Bright Blue
-  },
-  selectorText: {
-    color: '#94a3b8',
-    fontSize: 13,
-    fontWeight: '600',
-  },
-  selectorTextActive: {
-    color: '#fff',
-    fontWeight: '700',
-  },
-  scoreBadge: {
-    alignItems: 'center',
-    backgroundColor: 'rgba(16, 185, 129, 0.1)', // Green tint
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: 'rgba(16, 185, 129, 0.2)',
-  },
-  scoreLabel: {
-    fontSize: 9,
-    color: '#10b981',
-    fontWeight: '800',
-  },
-  scoreValue: {
-    fontSize: 16,
-    color: '#fff',
-    fontWeight: '800',
-  },
+  container: { flex: 1, backgroundColor: '#f8fafc' },
+  
+  // Header
+  headerContainer: { backgroundColor: '#0f172a', paddingBottom: 15, borderBottomLeftRadius: 24, borderBottomRightRadius: 24, elevation: 8, zIndex: 10 },
+  statusBarPlaceholder: { height: Platform.OS === 'ios' ? 48 : StatusBar.currentHeight + 8 },
+  navBar: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 20 },
+  
+  // Mode Switcher
+  modeSwitchContainer: { flexDirection: 'row', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 20, padding: 4 },
+  modeBtn: { flexDirection: 'row', alignItems: 'center', paddingVertical: 6, paddingHorizontal: 16, borderRadius: 16 },
+  modeBtnActive: { backgroundColor: '#3b82f6' },
+  modeText: { color: '#94a3b8', fontSize: 13, fontWeight: '600' },
+  modeTextActive: { color: '#fff', fontWeight: '700' },
 
-  // --- Content ---
-  contentArea: {
-    flex: 1,
-  },
-  centerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  loadingText: {
-    marginTop: 12,
-    color: '#64748b',
-    fontSize: 14,
-  },
-  scrollContent: {
-    padding: 20,
-    paddingBottom: 100,
-  },
+  iconButton: { width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.1)', justifyContent: 'center', alignItems: 'center' },
+  iconButtonActive: { backgroundColor: '#fff' },
 
-  // --- Microscope Card ---
-  microscopeCard: {
-    backgroundColor: '#fff',
-    borderRadius: 24,
-    padding: 8,
-    elevation: 4,
-    shadowColor: '#64748b',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.1,
-    shadowRadius: 16,
-    marginBottom: 24,
-  },
-  imageWrapper: {
-    height: 260,
-    backgroundColor: '#000', // خلفية سوداء لمحاكاة الميكروسكوب
-    borderRadius: 18,
-    overflow: 'hidden',
-    position: 'relative',
-    justifyContent: 'center', // لضمان توسط الصورة
-    alignItems: 'center',
-  },
-  microscopeImage: {
-    width: '100%',
-    height: '100%',
-  },
-  liveBadge: {
-    position: 'absolute',
-    top: 12,
-    left: 12,
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.7)',
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    borderRadius: 6,
-  },
-  recordingDot: {
-    width: 6,
-    height: 6,
-    borderRadius: 3,
-    backgroundColor: '#ef4444',
-    marginRight: 6,
-  },
-  liveText: {
-    color: '#fff',
-    fontSize: 10,
-    fontWeight: 'bold',
-  },
-  zoomBadge: {
-    position: 'absolute',
-    bottom: 12,
-    right: 12,
-    backgroundColor: 'rgba(255,255,255,0.9)',
-    paddingHorizontal: 8,
-    paddingVertical: 2,
-    borderRadius: 6,
-  },
-  zoomText: {
-    fontSize: 11,
-    fontWeight: '800',
-    color: '#0f172a',
-  },
-  metaFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingHorizontal: 12,
-    paddingTop: 12,
-    paddingBottom: 4,
-  },
-  metaItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 6,
-  },
-  metaText: {
-    fontSize: 12,
-    color: '#64748b',
-    fontWeight: '600',
-    textTransform: 'uppercase',
-  },
+  // Filters
+  filterBar: { marginTop: 15 },
+  filterChip: { paddingHorizontal: 16, paddingVertical: 8, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.1)', marginRight: 10, borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' },
+  filterChipActive: { backgroundColor: '#3b82f6', borderColor: '#3b82f6' },
+  filterText: { fontSize: 13, fontWeight: '600', color: '#94a3b8' },
+  filterTextActive: { color: '#fff' },
 
-  sectionTitle: {
-    fontSize: 13,
-    fontWeight: '700',
-    color: '#64748b',
-    marginBottom: 12,
-    marginLeft: 4,
-    letterSpacing: 1,
-  },
+  // Content
+  contentArea: { flex: 1 },
+  centerContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  loadingText: { marginTop: 12, color: '#64748b' },
+  scrollContent: { padding: 20, paddingBottom: 100 },
 
-  // --- Options ---
-  optionsContainer: {
-    gap: 12,
-  },
-  optionCard: {
-    backgroundColor: '#fff',
-    borderRadius: 16,
-    padding: 18,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    borderWidth: 1,
-    borderColor: '#e2e8f0',
-    elevation: 1,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
-  },
-  optionText: {
-    fontSize: 15,
-    color: '#334155',
-    fontWeight: '600',
-    flex: 1,
-  },
-  // States
-  cardCorrect: {
-    backgroundColor: '#ecfdf5',
-    borderColor: '#059669',
-  },
-  textCorrect: {
-    color: '#047857',
-  },
-  cardWrong: {
-    backgroundColor: '#fef2f2',
-    borderColor: '#dc2626',
-  },
-  textWrong: {
-    color: '#b91c1c',
-  },
-  cardDimmed: {
-    opacity: 0.5,
-    backgroundColor: '#f1f5f9',
-  },
+  // Microscope Card
+  microscopeCard: { backgroundColor: '#fff', borderRadius: 24, padding: 12, elevation: 4, marginBottom: 20, shadowColor: '#0f172a', shadowOpacity: 0.1, shadowRadius: 10 },
+  imageWrapper: { height: 260, backgroundColor: '#000', borderRadius: 16, overflow: 'hidden', justifyContent: 'center', alignItems: 'center' },
+  microscopeImage: { width: '100%', height: '100%' },
+  missingImage: { opacity: 0.5 },
+  
+  sampleBadge: { position: 'absolute', top: 12, left: 12, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, paddingVertical: 6, borderRadius: 20, elevation: 2 },
+  sampleText: { color: '#fff', fontSize: 11, fontWeight: '700', textTransform: 'uppercase' },
+  techniqueBadge: { position: 'absolute', bottom: 12, right: 12, backgroundColor: 'rgba(0,0,0,0.7)', paddingHorizontal: 10, paddingVertical: 6, borderRadius: 20 },
+  badgeText: { color: '#fff', fontSize: 11, fontWeight: '600' },
 
-  // --- Scanner ---
-  scannerContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 40,
-  },
-  scannerCircle: {
-    width: 140,
-    height: 140,
-    borderRadius: 70,
-    backgroundColor: '#e0e7ff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 30,
-  },
-  scannerTitle: {
-    fontSize: 24,
-    fontWeight: '800',
-    color: '#1e293b',
-    marginBottom: 10,
-  },
-  scannerDesc: {
-    fontSize: 15,
-    color: '#64748b',
-    textAlign: 'center',
-    marginBottom: 40,
-    lineHeight: 22,
-  },
-  scanButton: {
-    flexDirection: 'row',
-    backgroundColor: '#4f46e5',
-    paddingVertical: 16,
-    paddingHorizontal: 32,
-    borderRadius: 30,
-    alignItems: 'center',
-    elevation: 6,
-    shadowColor: '#4f46e5',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-  },
-  scanButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-    fontSize: 16,
-  },
+  // Clue
+  clueBox: { marginTop: 12, backgroundColor: '#f1f5f9', padding: 12, borderRadius: 12 },
+  clueHeader: { flexDirection: 'row', alignItems: 'center', marginBottom: 4, gap: 6 },
+  clueTitle: { fontSize: 12, fontWeight: '700', color: '#0f172a', textTransform: 'uppercase' },
+  clueText: { fontSize: 13, color: '#334155', lineHeight: 20 },
 
-  // --- FAB ---
-  fab: {
-    position: 'absolute',
-    bottom: 24,
-    right: 24,
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: '#0f172a',
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-  },
+  sectionTitle: { fontSize: 13, fontWeight: '700', color: '#64748b', marginBottom: 12, marginLeft: 4, letterSpacing: 1 },
+
+  // Grid
+  gridContainer: { flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', gap: 12 },
+  gridCard: { width: '48%', backgroundColor: '#fff', borderRadius: 16, padding: 16, minHeight: 90, justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: '#f1f5f9', elevation: 2 },
+  gridText: { fontSize: 14, color: '#334155', fontWeight: '600', textAlign: 'center' },
+  cardIcon: { marginTop: 6 },
+  cardCorrect: { backgroundColor: '#ecfdf5', borderColor: '#10b981' },
+  textCorrect: { color: '#047857' },
+  cardWrong: { backgroundColor: '#fef2f2', borderColor: '#ef4444' },
+  textWrong: { color: '#b91c1c' },
+  cardDimmed: { opacity: 0.5 },
+
+  // Bottom Bar
+  bottomBar: { position: 'absolute', bottom: 30, left: 0, right: 0, alignItems: 'center' },
+  nextButton: { flexDirection: 'row', backgroundColor: '#0f172a', paddingVertical: 14, paddingHorizontal: 40, borderRadius: 30, alignItems: 'center', gap: 8, elevation: 10, shadowColor: '#3b82f6', shadowOpacity: 0.4, shadowOffset: {width: 0, height: 4} },
+  nextButtonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
+
+  // Scanner AI Styles
+  scannerContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', padding: 40, backgroundColor: '#f8fafc' },
+  scannerCircle: { width: 160, height: 160, borderRadius: 80, backgroundColor: '#e0e7ff', justifyContent: 'center', alignItems: 'center', marginBottom: 30, borderWidth: 1, borderColor: '#c7d2fe' },
+  laserBeam: { position: 'absolute', width: 140, height: 2, backgroundColor: '#f43f5e', top: 70 },
+  scannerTitle: { fontSize: 24, fontWeight: '800', color: '#1e293b', marginBottom: 10 },
+  scannerDesc: { fontSize: 15, color: '#64748b', textAlign: 'center', marginBottom: 40, lineHeight: 24 },
+  scanButton: { flexDirection: 'row', backgroundColor: '#4f46e5', paddingVertical: 16, paddingHorizontal: 32, borderRadius: 30, elevation: 6, width: '100%', justifyContent: 'center', alignItems: 'center' },
+  scanButtonText: { color: '#fff', fontWeight: 'bold', fontSize: 16 },
+  galleryButton: { flexDirection: 'row', marginTop: 16, paddingVertical: 16, width: '100%', justifyContent: 'center', alignItems: 'center', borderWidth: 2, borderColor: '#e2e8f0', borderRadius: 30 },
+  galleryButtonText: { color: '#6366f1', fontWeight: '700', fontSize: 16 },
 });
 
 export default DiagnosticScreen;
