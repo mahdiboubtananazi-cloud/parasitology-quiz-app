@@ -4,14 +4,17 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
+
 // Import Screens
 import HomeScreen from '../screens/home/HomeScreen';
-import QuizScreen from '../screens/QuizScreen'; 
+import QuizScreen from '../screens/QuizScreen';
 import DiagnosticScreen from '../screens/DiagnosticScreen';
 import ProposScreen from '../screens/ProposScreen';
 
+
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
+
 
 // 🎨 الألوان الاحترافية
 const COLORS = {
@@ -20,6 +23,7 @@ const COLORS = {
   inactive: '#94a3b8', // Gray
   bg: '#ffffff'
 };
+
 
 // --- 1. Tab Bar (الشريط السفلي - يظهر فقط في الرئيسية) ---
 function HomeTabs() {
@@ -32,8 +36,8 @@ function HomeTabs() {
       }}
     >
       {/* Tab 1: Home */}
-      <Tab.Screen 
-        name="HomeTab" 
+      <Tab.Screen
+        name="HomeTab"
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -42,9 +46,10 @@ function HomeTabs() {
         }}
       />
 
+
       {/* Tab 2: Quick Action (زر وهمي يفتح الكويز) */}
-      <Tab.Screen 
-        name="QuickPlay" 
+      <Tab.Screen
+        name="QuickPlay"
         component={View} // مكون فارغ لأننا سنستولي على الضغط
         listeners={({ navigation }) => ({
           tabPress: (e) => {
@@ -61,9 +66,10 @@ function HomeTabs() {
         }}
       />
 
+
       {/* Tab 3: Propos */}
-      <Tab.Screen 
-        name="ProposTab" 
+      <Tab.Screen
+        name="ProposTab"
         component={ProposScreen}
         options={{
           tabBarIcon: ({ focused }) => (
@@ -75,6 +81,7 @@ function HomeTabs() {
   );
 }
 
+
 // --- 2. Root Stack (الملاحة الرئيسية) ---
 // هنا السر: الكويز والتشخيص هما "Stacks" فوق الـ "Tabs"
 export default function AppNavigator() {
@@ -82,27 +89,28 @@ export default function AppNavigator() {
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       {/* التطبيق الأساسي (الرئيسية بالشريط السفلي) */}
       <Stack.Screen name="Main" component={HomeTabs} />
-      
+     
       {/* الشاشات التي تغطي الشريط السفلي (Fullscreen) */}
-      <Stack.Screen 
-        name="Diagnostic" 
-        component={DiagnosticScreen} 
-        options={{ 
+      <Stack.Screen
+        name="Diagnostic"
+        component={DiagnosticScreen}
+        options={{
           presentation: 'card', // حركة دخول طبيعية
           animationEnabled: true
-        }} 
+        }}
       />
-      <Stack.Screen 
-        name="Quiz" 
-        component={QuizScreen} 
-        options={{ 
+      <Stack.Screen
+        name="Quiz"
+        component={QuizScreen}
+        options={{
           presentation: 'card',
           animationEnabled: true
-        }} 
+        }}
       />
     </Stack.Navigator>
   );
 }
+
 
 const styles = StyleSheet.create({
   tabBar: {

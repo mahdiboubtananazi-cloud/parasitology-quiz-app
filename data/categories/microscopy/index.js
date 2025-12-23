@@ -1,22 +1,25 @@
-import selles from './selles';
-import sang from './sang';
-import tissus from './tissus';
-import urines from './urines';
+// data/categories/microscopy/index.js
 
-// المصفوفة المجمعة للعداد العام
-const microscopy = [
-  ...selles,
-  ...sang,
-  ...tissus,
-  ...urines
-];
+import { selles } from './selles';
+import { sang } from './sang';
+import { urines } from './urines';
+import { tissus } from './tissus';
 
-export default microscopy;
+// تصدير البيانات الخام (Arrays)
+export { selles, sang, urines, tissus };
 
-// التصدير المفصل للفلترة
-export {
-  selles,
-  sang,
-  tissus,
-  urines
+// تصدير كائن الأسئلة المجمع (للاستخدام في QuizScreen)
+export const microscopyQuestions = {
+  selles: selles,
+  sang: sang,
+  urines: urines,
+  tissus: tissus
+};
+
+// تصدير العناوين (للاستخدام في الفلتر)
+export const microscopyLabels = {
+  selles: "Selles (Copro)",
+  sang: "Sang (Hémato)",
+  urines: "Urines & Liquides",
+  tissus: "Peau & Tissus"
 };

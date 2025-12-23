@@ -5,13 +5,14 @@ import {
   StyleSheet, 
   ScrollView, 
   Animated, 
-  StatusBar 
+  StatusBar,
+  Platform
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { storage } from '../../utils/storage';
 
-// Import New Components
+// Import Components
 import HomeHeader from './components/HomeHeader';
 import CategoryCarousel from './components/CategoryCarousel';
 import FeaturesSection from './components/FeaturesSection';
@@ -19,24 +20,31 @@ import ProgressModal from './components/ProgressModal';
 import ResultsModal from './components/ResultsModal';
 
 // --- DATA CONFIGURATION ---
-// نقلنا البيانات للخارج لمنع إعادة إنشائها مع كل Render
-// يمكنك لاحقاً نقلها لملف منفصل تماماً (data/categories.js)
 const CATEGORIES_DATA = [
     {
       id: 'diagnostic', 
-      name: 'Diagnostic Lab', 
-      description: 'Identification microscopique (Images Réelles)',
+      name: 'Diagnostic Visuel', 
+      description: 'Identification par images (Microscopie)',
       questions: [], 
       labels: [],
-      color: '#3b82f6', // أزرق (نفس لون الفلتر النشط في التشخيص)
+      color: '#3b82f6', // Royal Blue
       iconName: 'microscope', 
       buttonLabel: 'Ouvrir le Labo',
-      screenRoute: 'Diagnostic' // توجيه مباشر
+      screenRoute: 'Diagnostic'
+    },
+    {
+      id: 'microscopy', 
+      name: 'Techniques Labo', 
+      description: 'Prélèvement, Selles, Sang & Urines',
+      color: '#eab308', // Golden Yellow
+      iconName: 'flask', 
+      buttonLabel: 'Quiz Technique',
+      screenRoute: 'Quiz'
     },
     {
       id: 'protozoa', 
       name: 'Protozoaires', 
-      description: 'Amibes, Flagellés et Ciliés.',
+      description: 'Amibes, Flagellés et Ciliés',
       color: '#0F766E', // Teal
       iconName: 'virus', 
       buttonLabel: 'Quiz Théorique',
@@ -45,7 +53,7 @@ const CATEGORIES_DATA = [
     {
       id: 'helminths', 
       name: 'Helminthes', 
-      description: 'Nématodes, Cestodes et Trématodes.',
+      description: 'Nématodes, Cestodes et Trématodes',
       color: '#15803d', // Green
       iconName: 'snake', 
       buttonLabel: 'Quiz Théorique',
@@ -54,7 +62,7 @@ const CATEGORIES_DATA = [
     {
       id: 'arthropods', 
       name: 'Arthropodes', 
-      description: 'Vecteurs et Ectoparasites.',
+      description: 'Vecteurs et Entomologie Médicale',
       color: '#b91c1c', // Red
       iconName: 'spider', 
       buttonLabel: 'Quiz Théorique',
@@ -70,7 +78,7 @@ const HomeScreen = () => {
   const [showResultsModal, setShowResultsModal] = useState(false);
   const [realData, setRealData] = useState({
     progress: { answered: 0, correct: 0, percentage: 0 },
-    categories: { protozoa: 0, helminths: 0, arthropods: 0 }
+    categories: { protozoa: 0, helminths: 0, arthropods: 0, microscopy: 0 }
   });
   const [modalLoading, setModalLoading] = useState(false);
 
@@ -83,20 +91,16 @@ const HomeScreen = () => {
   
   // Navigation Logic
   const handleCategoryPress = useCallback((category) => {
-    // 1. Direct Route (مثل التشخيص)
+    // 1. Direct Route to Diagnostic Lab
     if (category.screenRoute === 'Diagnostic') {
       navigation.navigate('Diagnostic');
       return;
     }
 
-    // 2. Quiz Route (مع تمرير البيانات)
-    // ملاحظة: تأكد أنك تستورد الأسئلة الحقيقية هنا أو تمرر الـ ID فقط وتجلبها هناك
+    // 2. Quiz Route (CORRECTED: Flattened navigation params)
     navigation.navigate('Quiz', {
-      screen: 'QuizMain',
-      params: {
-        categoryId: category.id,
-        categoryName: category.name,
-      }
+      categoryId: category.id,
+      categoryName: category.name,
     });
   }, [navigation]);
 
@@ -115,7 +119,8 @@ const HomeScreen = () => {
         categories: {
           protozoa: categoryStats?.Protozoaires?.percentage || 0,
           helminths: categoryStats?.Helminthes?.percentage || 0,
-          arthropods: categoryStats?.Arthropodes?.percentage || 0
+          arthropods: categoryStats?.Arthropodes?.percentage || 0,
+          microscopy: categoryStats?.Microscopy?.percentage || 0
         }
       });
     } catch (error) {
@@ -126,7 +131,7 @@ const HomeScreen = () => {
   // Modal Handlers
   const handleOpenModal = useCallback(async (type) => {
     setModalLoading(true);
-    await loadRealData(); // Refresh data on open
+    await loadRealData(); 
     setModalLoading(false);
     
     const isProgress = type === 'progress';
@@ -159,7 +164,7 @@ const HomeScreen = () => {
   useFocusEffect(useCallback(() => { loadRealData(); }, [loadRealData]));
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={styles.container} edges={['top', 'left', 'right']}>
       <StatusBar barStyle="light-content" backgroundColor="#0f172a" />
       
       <ScrollView 
@@ -168,6 +173,7 @@ const HomeScreen = () => {
       >
         <HomeHeader fadeAnim={fadeAnim} translateYAnim={headerAnim} />
 
+        {/* Categories Section */}
         <CategoryCarousel 
           categories={CATEGORIES_DATA}
           onCategoryPress={handleCategoryPress}
@@ -175,6 +181,7 @@ const HomeScreen = () => {
           slideAnim={slideAnim}
         />
 
+        {/* Stats & Features */}
         <FeaturesSection 
           onProgressPress={() => handleOpenModal('progress')}
           onResultsPress={() => handleOpenModal('results')}
@@ -183,7 +190,7 @@ const HomeScreen = () => {
         />
 
         <View style={styles.footer}>
-          <Text style={styles.footerVersion}>ParaQuiz v1.0.0 • Medical Learning</Text>
+          <Text style={styles.footerVersion}>ParaQuiz v2.1 • Medical Education</Text>
         </View>
       </ScrollView>
 
@@ -208,10 +215,11 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: '#f8fafc' }, // خلفية رمادية فاتحة جداً (أنظف من الأبيض)
+  container: { flex: 1, backgroundColor: '#f8fafc' }, 
   scrollContent: { flexGrow: 1, paddingBottom: 100 }, 
-  footer: { alignItems: 'center', paddingHorizontal: 20, paddingVertical: 20 },
-  footerVersion: { fontSize: 11, color: '#94a3b8', fontWeight: '600', letterSpacing: 0.5 },
+  
+  footer: { alignItems: 'center', paddingHorizontal: 20, paddingVertical: 24, marginTop: 'auto' },
+  footerVersion: { fontSize: 11, color: '#94a3b8', fontWeight: '600', letterSpacing: 0.8, textTransform: 'uppercase' },
 });
 
 export default React.memo(HomeScreen);

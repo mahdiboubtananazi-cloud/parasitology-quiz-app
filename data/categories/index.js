@@ -1,9 +1,20 @@
-﻿import * as protozoaData from './protozoa';
+﻿// data/categories/index.js
+// 🌐 The Central Hub for All Quiz Data
+
+// 1. Import Sub-Modules
+import * as protozoaData from './protozoa';
 import * as helminthsData from './helminths';
 import * as arthropodsData from './arthropods';
-import * as microscopyData from './microscopy'; // <-- استيراد القسم الجديد
 
-// 1. Protozoa (Protozoaires)
+// 2. Import Microscopy Modules DIRECTLY (لتجنب مشاكل التصدير)
+import { selles } from './microscopy/selles';
+import { sang } from './microscopy/sang';
+import { urines } from './microscopy/urines';
+import { tissus } from './microscopy/tissus';
+
+// ==========================================
+// 1. PROTOZOA
+// ==========================================
 export const protozoaQuestions = {
   classification: protozoaData.classification || [],
   morphology: protozoaData.morphology || [],
@@ -20,7 +31,9 @@ export const protozoaLabels = {
   treatment: "Traitement"
 };
 
-// 2. Helminths (Helminthes)
+// ==========================================
+// 2. HELMINTHS
+// ==========================================
 export const helminthsQuestions = {
   nematodes: helminthsData.nematodes || [],
   cestodes: helminthsData.cestodes || [],
@@ -37,7 +50,9 @@ export const helminthsLabels = {
   clinical: "Clinique"
 };
 
-// 3. Arthropods (Arthropodes)
+// ==========================================
+// 3. ARTHROPODS
+// ==========================================
 export const arthropodsQuestions = {
   diptera: arthropodsData.diptera || [],
   arachnids: arthropodsData.arachnids || [],
@@ -47,29 +62,33 @@ export const arthropodsQuestions = {
 };
 
 export const arthropodsLabels = {
-  diptera: "Diptères (Moustiques/Mouches)",
-  arachnids: "Arachnides (Tiques/Gale)",
-  other_insects: "Autres (Poux/Puces/Punaises)",
-  medical_entomology: "Entomologie Médicale",
-  control_prevention: "Lutte et Prévention"
+  diptera: "Diptères (Moustiques)",
+  arachnids: "Arachnides (Tiques)",
+  other_insects: "Autres Insectes",
+  medical_entomology: "Entomologie",
+  control_prevention: "Lutte & Prévention"
 };
 
-// 4. Microscopy (Diagnostic Microscopique - TP) -- القسم الجديد --
+// ==========================================
+// 4. MICROSCOPY (THE NEW SECTION) 🔬
+// ==========================================
 export const microscopyQuestions = {
-  selles: microscopyData.selles || [],
-  sang: microscopyData.sang || [],
-  tissus: microscopyData.tissus || [],
-  urines: microscopyData.urines || [],
+  selles: selles || [],
+  sang: sang || [],
+  urines: urines || [],
+  tissus: tissus || [],
 };
 
 export const microscopyLabels = {
-  selles: "Examen des Selles (Copro)",
-  sang: "Examen Sanguin (Frottis/GE)",
-  tissus: "Cutané & Tissus (Biopsie)",
-  urines: "Examen des Urines"
+  selles: "Selles (Copro)",
+  sang: "Sang (Hémato)",
+  urines: "Urines & Liquides",
+  tissus: "Peau & Tissus"
 };
 
-// Utility: حساب إجمالي الأسئلة
+// ==========================================
+// Utility
+// ==========================================
 export const getTotalQuestions = (questions) => {
   let total = 0;
   if (!questions) return 0;
@@ -80,9 +99,3 @@ export const getTotalQuestions = (questions) => {
   });
   return total;
 };
-
-// Logging for Debugging
-console.log('📊 Protozoa:', getTotalQuestions(protozoaQuestions), 'questions');
-console.log('📊 Helminths:', getTotalQuestions(helminthsQuestions), 'questions');
-console.log('📊 Arthropods:', getTotalQuestions(arthropodsQuestions), 'questions');
-console.log('📊 Microscopy:', getTotalQuestions(microscopyQuestions), 'questions'); // <-- العداد الجديد

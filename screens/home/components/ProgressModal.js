@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Animated, ActivityIndicator } from 'react-native';
-import { TrendingUp, X, CheckCircle, Target, Zap } from '../../../components/Icons'; // تأكد من استيراد الأيقونات الجديدة
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'; // استخدام المكتبات الموجودة
 
 export default function ProgressModal({ 
   visible, 
@@ -51,14 +51,14 @@ export default function ProgressModal({
             }
           ]}
         >
-          {/* Header الاحترافي */}
+          {/* Header */}
           <View style={styles.header}>
             <View style={styles.headerTitleContainer}>
                <Text style={styles.headerEyebrow}>RAPPORT D'APPRENTISSAGE</Text>
                <Text style={styles.headerTitle}>Statistiques Globales</Text>
             </View>
             <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-              <X size={20} color="#374151" />
+              <Ionicons name="close" size={20} color="#374151" />
             </TouchableOpacity>
           </View>
           
@@ -70,7 +70,7 @@ export default function ProgressModal({
           ) : (
             <View style={styles.contentContainer}>
               
-              {/* Main Score (Doughnut Style Simulation) */}
+              {/* Main Score */}
               <View style={styles.scoreOverview}>
                 <View style={styles.scoreCircle}>
                   <Text style={styles.scoreBigNumber}>{data?.percentage || 0}%</Text>
@@ -84,37 +84,37 @@ export default function ProgressModal({
                 </View>
               </View>
 
-              {/* Data Grid (Medical Chart Style) */}
+              {/* Data Grid */}
               <View style={styles.statsGrid}>
                 {/* Total Answered */}
                 <View style={styles.statBox}>
                   <View style={[styles.iconBadge, { backgroundColor: '#E0F2FE' }]}>
-                    <Target size={18} color="#0284C7" />
+                    <Ionicons name="stats-chart" size={18} color="#0284C7" />
                   </View>
                   <Text style={styles.boxValue}>{data?.answered || 0}</Text>
-                  <Text style={styles.boxLabel}>Total Questions</Text>
+                  <Text style={styles.boxLabel}>Questions</Text>
                 </View>
 
                 {/* Correct Answers */}
                 <View style={styles.statBox}>
                   <View style={[styles.iconBadge, { backgroundColor: '#DCFCE7' }]}>
-                    <CheckCircle size={18} color="#16A34A" />
+                    <Ionicons name="checkmark-circle" size={18} color="#16A34A" />
                   </View>
                   <Text style={styles.boxValue}>{data?.correct || 0}</Text>
-                  <Text style={styles.boxLabel}>Réponses Justes</Text>
+                  <Text style={styles.boxLabel}>Correctes</Text>
                 </View>
 
-                {/* Efficiency Rate */}
+                {/* Efficiency Rate (Level) */}
                 <View style={styles.statBox}>
                   <View style={[styles.iconBadge, { backgroundColor: '#FEF3C7' }]}>
-                    <Zap size={18} color="#D97706" />
+                    <MaterialCommunityIcons name="lightning-bolt" size={18} color="#D97706" />
                   </View>
                   <Text style={styles.boxValue}>{(data?.percentage || 0) >= 80 ? 'A' : (data?.percentage || 0) >= 50 ? 'B' : 'C'}</Text>
                   <Text style={styles.boxLabel}>Niveau</Text>
                 </View>
               </View>
 
-              {/* Progress Bar (Clinical Style) */}
+              {/* Progress Bar */}
               <View style={styles.progressSection}>
                 <View style={styles.progressLabels}>
                    <Text style={styles.progressTitle}>Taux de Complétion</Text>
@@ -149,8 +149,8 @@ export default function ProgressModal({
 
 const styles = StyleSheet.create({
   modalOverlay: {
-    position: 'absolute', inset: 0,
-    backgroundColor: 'rgba(17, 24, 39, 0.6)', // خلفية داكنة أكثر جدية
+    position: 'absolute', top: 0, bottom: 0, left: 0, right: 0,
+    backgroundColor: 'rgba(17, 24, 39, 0.6)',
     justifyContent: 'center', alignItems: 'center', padding: 16, zIndex: 1000,
   },
   modalContent: { width: '100%', maxWidth: 380 },
