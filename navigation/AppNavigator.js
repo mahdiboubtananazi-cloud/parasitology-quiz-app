@@ -1,123 +1,73 @@
 import React from 'react';
-import { View, Text, Platform, StyleSheet } from 'react-native';
+import { View, StyleSheet, Platform, TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Import Screens
 import HomeScreen from '../screens/home/HomeScreen';
-import QuizScreen from '../screens/QuizScreen';
-import ProposScreen from '../screens/ProposScreen';
+import QuizScreen from '../screens/QuizScreen'; 
 import DiagnosticScreen from '../screens/DiagnosticScreen';
+import ProposScreen from '../screens/ProposScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// --- Stacks ---
-function HomeStack() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="HomeMain" component={HomeScreen} />
-    </Stack.Navigator>
-  );
-}
-
-function QuizStack() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="QuizMain" component={QuizScreen} />
-    </Stack.Navigator>
-  );
-}
-
-// --- Custom Tab Icon (Minimalist & Modern) ---
-const CustomTabIcon = ({ focused, iconLibrary, iconName, label }) => {
-  const IconComponent = iconLibrary === 'material' ? MaterialCommunityIcons : Ionicons;
-  const activeColor = '#0F766E'; // Teal Professional
-  const inactiveColor = '#94A3B8'; // Slate Gray
-
-  return (
-    <View style={styles.iconWrapper}>
-      <IconComponent 
-        name={iconName} 
-        size={26} 
-        color={focused ? activeColor : inactiveColor} 
-        style={{ marginBottom: 4 }}
-      />
-      {/* Optional: Dot indicator instead of full background */}
-      {focused && <View style={[styles.activeDot, { backgroundColor: activeColor }]} />}
-    </View>
-  );
+// 🎨 الألوان الاحترافية
+const COLORS = {
+  primary: '#0f172a', // Dark Navy (Professional)
+  accent: '#3b82f6',  // Bright Blue (Action)
+  inactive: '#94a3b8', // Gray
+  bg: '#ffffff'
 };
 
-// --- Bottom Navigation ---
-export default function AppNavigator() {
+// --- 1. Tab Bar (الشريط السفلي - يظهر فقط في الرئيسية) ---
+function HomeTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false, // We handle visuals in the icon component
-        tabBarStyle: styles.floatingTabBar,
+        tabBarShowLabel: false, // نخفي النصوص ليكون الشكل أنظف
+        tabBarStyle: styles.tabBar,
       }}
     >
-      {/* Tab 1 - Dashboard */}
+      {/* Tab 1: Home */}
       <Tab.Screen 
-        name="Home" 
-        component={HomeStack}
+        name="HomeTab" 
+        component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomTabIcon 
-              focused={focused} 
-              iconLibrary="ionic" 
-              iconName={focused ? "grid" : "grid-outline"} 
-            />
+            <Ionicons name={focused ? "grid" : "grid-outline"} size={24} color={focused ? COLORS.primary : COLORS.inactive} />
           ),
         }}
       />
 
-      {/* Tab 2 - Quiz (Theoretical) */}
+      {/* Tab 2: Quick Action (زر وهمي يفتح الكويز) */}
       <Tab.Screen 
-        name="Quiz" 
-        component={QuizStack}
+        name="QuickPlay" 
+        component={View} // مكون فارغ لأننا سنستولي على الضغط
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault(); // نمنع فتح التبويب
+            navigation.navigate('Quiz'); // نذهب للكويز بملء الشاشة
+          },
+        })}
         options={{
-          tabBarStyle: { display: 'none' }, // Hide tab bar inside quiz
           tabBarIcon: ({ focused }) => (
-            <CustomTabIcon 
-              focused={focused} 
-              iconLibrary="material" 
-              iconName={focused ? "brain" : "brain"} // Corrected Logic: Quiz = Brain/Learning
-            />
+            <View style={styles.centerButton}>
+              <MaterialCommunityIcons name="brain" size={28} color="#fff" />
+            </View>
           ),
         }}
       />
 
-      {/* Tab 3 - Diagnostic (Microscope) */}
+      {/* Tab 3: Propos */}
       <Tab.Screen 
-        name="Diagnostic" 
-        component={DiagnosticScreen}
-        options={{
-          tabBarStyle: { display: 'none' }, // Hide tab bar during focus mode
-          tabBarIcon: ({ focused }) => (
-            <CustomTabIcon 
-              focused={focused} 
-              iconLibrary="material" 
-              iconName="microscope" // Corrected Logic: Diagnostic = Microscope
-            />
-          ),
-        }}
-      />
-
-      {/* Tab 4 - Atlas/Info */}
-      <Tab.Screen 
-        name="Propos" 
+        name="ProposTab" 
         component={ProposScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <CustomTabIcon 
-              focused={focused} 
-              iconLibrary="ionic" 
-              iconName={focused ? "book" : "book-outline"} 
-            />
+            <Ionicons name={focused ? "book" : "book-outline"} size={24} color={focused ? COLORS.primary : COLORS.inactive} />
           ),
         }}
       />
@@ -125,33 +75,60 @@ export default function AppNavigator() {
   );
 }
 
+// --- 2. Root Stack (الملاحة الرئيسية) ---
+// هنا السر: الكويز والتشخيص هما "Stacks" فوق الـ "Tabs"
+export default function AppNavigator() {
+  return (
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      {/* التطبيق الأساسي (الرئيسية بالشريط السفلي) */}
+      <Stack.Screen name="Main" component={HomeTabs} />
+      
+      {/* الشاشات التي تغطي الشريط السفلي (Fullscreen) */}
+      <Stack.Screen 
+        name="Diagnostic" 
+        component={DiagnosticScreen} 
+        options={{ 
+          presentation: 'card', // حركة دخول طبيعية
+          animationEnabled: true
+        }} 
+      />
+      <Stack.Screen 
+        name="Quiz" 
+        component={QuizScreen} 
+        options={{ 
+          presentation: 'card',
+          animationEnabled: true
+        }} 
+      />
+    </Stack.Navigator>
+  );
+}
+
 const styles = StyleSheet.create({
-  floatingTabBar: {
+  tabBar: {
     position: 'absolute',
-    bottom: 20,
-    left: 20,
-    right: 20,
-    elevation: 10, // High elevation for floating effect
-    backgroundColor: '#ffffff',
-    borderRadius: 24, // Softer roundness
-    height: 64,
-    borderTopWidth: 0,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 8 },
-    shadowOpacity: 0.1,
-    shadowRadius: 12,
-    paddingBottom: 0, // Fix alignment on some Androids
+    bottom: 0,
+    left: 0,
+    right: 0,
+    elevation: 0, // إزالة الظل القديم
+    backgroundColor: COLORS.bg,
+    borderTopColor: '#f1f5f9', // خط رفيع جداً
+    borderTopWidth: 1,
+    height: Platform.OS === 'ios' ? 85 : 60, // ارتفاع مريح
+    paddingBottom: Platform.OS === 'ios' ? 20 : 0,
   },
-  iconWrapper: {
-    alignItems: 'center',
+  centerButton: {
+    width: 56,
+    height: 56,
+    borderRadius: 28,
+    backgroundColor: COLORS.accent, // الزر الأزرق المميز
     justifyContent: 'center',
-    top: Platform.OS === 'ios' ? 12 : 0,
-    height: '100%',
-  },
-  activeDot: {
-    width: 5,
-    height: 5,
-    borderRadius: 2.5,
-    marginTop: 2,
+    alignItems: 'center',
+    marginBottom: Platform.OS === 'ios' ? 30 : 20, // يرتفع قليلاً عن الشريط
+    elevation: 5,
+    shadowColor: COLORS.accent,
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 5,
   }
 });
