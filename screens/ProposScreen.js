@@ -1,8 +1,7 @@
-﻿// screens/ProposScreen.js - النسخة المبسطة العاملة
-import React from 'react';
-import { View, Text, ScrollView, StyleSheet, Animated } from 'react-native';
+﻿import React from 'react';
+import { View, Text, ScrollView, StyleSheet, Animated, Linking, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
+import { Ionicons, FontAwesome5, MaterialCommunityIcons } from '@expo/vector-icons';
 
 export default function ProposScreen() {
   const fadeAnim = React.useRef(new Animated.Value(0)).current;
@@ -23,10 +22,15 @@ export default function ProposScreen() {
     ]).start();
   }, []);
 
+  // دالة المراسلة
+  const handleEmail = () => {
+    Linking.openURL('mailto:mehdi.boubetana@gmail.com');
+  };
+
   const features = [
     {
       icon: 'help-circle',
-      title: 'Banque de questions (150+)',
+      title: 'Banque de questions',
       description: 'Plus de 150 questions révisées et classées par thème avec explications détaillées.',
     },
     {
@@ -48,11 +52,6 @@ export default function ProposScreen() {
       icon: 'download',
       title: 'Mode hors-ligne',
       description: "Révisez sans connexion (pratique en déplacement).",
-    },
-    {
-      icon: 'star',
-      title: 'Favoris & révisions',
-      description: "Marquez les questions importantes.",
     },
   ];
 
@@ -77,14 +76,16 @@ export default function ProposScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView 
-        contentContainerStyle={styles.scrollContent}
+        contentContainerStyle={styles.scrollContent} // تم التعديل هنا
         showsVerticalScrollIndicator={false}
       >
-        {/* Header */}
+        {/* Header - تم إزالة الإيموجي الكبير */}
         <View style={styles.header}>
           <View style={styles.headerContent}>
-            <Text style={styles.headerIcon}>🔬</Text>
             <Text style={styles.headerTitle}>À propos</Text>
+            <View style={styles.versionBadge}>
+               <Text style={styles.versionText}>v2.1 Beta</Text>
+            </View>
           </View>
         </View>
 
@@ -98,9 +99,9 @@ export default function ProposScreen() {
             }
           ]}
         >
-          <Text style={styles.introTitle}>Application de Parasitologie</Text>
+          <Text style={styles.introTitle}>ParaQuiz</Text>
           <Text style={styles.introText}>
-            "اللهم علّمنا ما ينفعنا وانفعنا بما علمتنا 🇩🇿"
+            "اللهم علّمنا ما ينفعنا وانفعنا بما علمتنا"
           </Text>
         </Animated.View>
 
@@ -160,7 +161,7 @@ export default function ProposScreen() {
           </View>
         </View>
 
-        {/* Credits */}
+        {/* Credits - تم تحديث المعلومات فقط مع الحفاظ على التصميم */}
         <Animated.View 
           style={[
             styles.creditsSection,
@@ -176,26 +177,27 @@ export default function ProposScreen() {
             </View>
             <Text style={styles.creditsTitle}>Développeur</Text>
           </View>
+          
           <View style={styles.creditsContent}>
             <View style={styles.developerInfo}>
-              <Text style={styles.developerName}>Application de Parasitologie</Text>
+              {/* اسمك هنا */}
+              <Text style={styles.developerName}>Mehdi Boubetana</Text> 
               <Text style={styles.developerRole}>
-                Destinée aux étudiants en médecine, pharmacie et sciences biologiques
+                Parasitologue & Développeur Full Stack
               </Text>
             </View>
+            
             <View style={styles.divider} />
-            <View style={styles.targetAudienceContainer}>
-              <View style={styles.audienceIcon}>
-                <Ionicons name="school" size={20} color="#004643" />
-              </View>
-              <View style={styles.audienceText}>
-                <Text style={styles.audienceTitle}>Public cible</Text>
-                <Text style={styles.audienceDescription}>
-                  Étudiants en médecine, pharmacie, et sciences de la vie
-                </Text>
-              </View>
-            </View>
-            <View style={styles.thanksContainer}>
+            
+            {/* زر التواصل */}
+            <TouchableOpacity style={styles.contactRow} onPress={handleEmail}>
+               <View style={styles.contactIconBox}>
+                  <Ionicons name="mail" size={18} color="#004643" />
+               </View>
+               <Text style={styles.contactText}>mehdi.boubetana@gmail.com</Text>
+            </TouchableOpacity>
+
+            <View style={[styles.thanksContainer, { marginTop: 20 }]}>
               <Ionicons name="heart" size={16} color="#dc2626" />
               <Text style={styles.thanksText}>Merci d'utiliser ParaQuiz</Text>
             </View>
@@ -204,8 +206,8 @@ export default function ProposScreen() {
 
         {/* Footer */}
         <View style={styles.footer}>
-          <Text style={styles.footerText}>Version 1.0.0 • Développé avec React Native</Text>
-          <Text style={styles.footerSubText}>© 2024 Application de Parasitologie</Text>
+          <Text style={styles.footerText}>Version 2.1 (Beta) • Sétif, Algérie 🇩🇿</Text>
+          <Text style={styles.footerSubText}>© 2025 Mehdi Boubetana</Text>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -219,7 +221,8 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingVertical: 20,
-    paddingBottom: 40,
+    // تم التعديل: مسافة كافية لكي لا يغطي الشريط السفلي العائم المحتوى
+    paddingBottom: 120, 
   },
   header: {
     backgroundColor: '#FFFFFF',
@@ -232,15 +235,23 @@ const styles = StyleSheet.create({
   headerContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 8,
-  },
-  headerIcon: {
-    fontSize: 20,
+    justifyContent: 'space-between', // لتباعد العنوان عن رقم الإصدار
   },
   headerTitle: {
-    fontSize: 16,
+    fontSize: 20,
+    fontWeight: '800',
+    color: '#004643',
+  },
+  versionBadge: {
+    backgroundColor: '#E6F0ED',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+  },
+  versionText: {
+    color: '#004643',
     fontWeight: '700',
-    color: '#000000',
+    fontSize: 12,
   },
   introCard: {
     backgroundColor: '#FFFFFF',
@@ -416,36 +427,30 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignSelf: 'center',
   },
-  targetAudienceContainer: {
+  // ستايلات جديدة للتواصل
+  contactRow: {
     flexDirection: 'row',
-    alignItems: 'flex-start',
-    gap: 14,
+    alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: '#F0F5F4',
-    padding: 18,
-    borderRadius: 14,
-    marginBottom: 18,
+    padding: 12,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#D0E7E2',
+    gap: 10,
   },
-  audienceIcon: {
-    width: 40,
-    height: 40,
-    borderRadius: 10,
+  contactIconBox: {
+    width: 32,
+    height: 32,
+    borderRadius: 16,
     backgroundColor: '#ABD1C6',
     justifyContent: 'center',
     alignItems: 'center',
   },
-  audienceText: {
-    flex: 1,
-  },
-  audienceTitle: {
-    fontSize: 15,
-    fontWeight: '700',
+  contactText: {
+    fontSize: 14,
+    fontWeight: '600',
     color: '#004643',
-    marginBottom: 5,
-  },
-  audienceDescription: {
-    fontSize: 13,
-    color: '#475569',
-    lineHeight: 19,
   },
   thanksContainer: {
     flexDirection: 'row',

@@ -1,38 +1,38 @@
 import React from 'react';
-import { View, StyleSheet, Platform, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
-
-// Import Screens
+// --- Import Screens ---
+// تأكد من صحة المسارات في مشروعك
 import HomeScreen from '../screens/home/HomeScreen';
 import QuizScreen from '../screens/QuizScreen';
 import DiagnosticScreen from '../screens/DiagnosticScreen';
 import ProposScreen from '../screens/ProposScreen';
 
-
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-
-// 🎨 الألوان الاحترافية
+// 🎨 الألوان الاحترافية (Medical Theme)
 const COLORS = {
-  primary: '#0f172a', // Dark Navy (Professional)
+  primary: '#0f172a', // Dark Navy
   accent: '#3b82f6',  // Bright Blue (Action)
-  inactive: '#94a3b8', // Gray
-  bg: '#ffffff'
+  inactive: '#94a3b8', // Slate Gray
+  bg: '#f8fafc',      // Very Light Gray for App Background
+  white: '#ffffff',
+  shadow: '#000000',
 };
 
-
-// --- 1. Tab Bar (الشريط السفلي - يظهر فقط في الرئيسية) ---
+// --- 1. Tab Bar (الشريط السفلي العائم) ---
 function HomeTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false, // نخفي النصوص ليكون الشكل أنظف
+        tabBarShowLabel: false, // إخفاء التسميات لتصميم أنظف
         tabBarStyle: styles.tabBar,
+        tabBarHideOnKeyboard: true, // إخفاء الشريط عند الكتابة
       }}
     >
       {/* Tab 1: Home */}
@@ -41,31 +41,37 @@ function HomeTabs() {
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Ionicons name={focused ? "grid" : "grid-outline"} size={24} color={focused ? COLORS.primary : COLORS.inactive} />
-          ),
-        }}
-      />
-
-
-      {/* Tab 2: Quick Action (زر وهمي يفتح الكويز) */}
-      <Tab.Screen
-        name="QuickPlay"
-        component={View} // مكون فارغ لأننا سنستولي على الضغط
-        listeners={({ navigation }) => ({
-          tabPress: (e) => {
-            e.preventDefault(); // نمنع فتح التبويب
-            navigation.navigate('Quiz'); // نذهب للكويز بملء الشاشة
-          },
-        })}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <View style={styles.centerButton}>
-              <MaterialCommunityIcons name="brain" size={28} color="#fff" />
+            <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
+              <Ionicons 
+                name={focused ? "grid" : "grid-outline"} 
+                size={26} 
+                color={focused ? COLORS.primary : COLORS.inactive} 
+              />
             </View>
           ),
         }}
       />
 
+      {/* Tab 2: Quick Action (الزر العائم المركزي) */}
+      <Tab.Screen
+        name="QuickPlay"
+        component={View} // مكون وهمي
+        listeners={({ navigation }) => ({
+          tabPress: (e) => {
+            e.preventDefault(); // منع فتح التبويب
+            navigation.navigate('Quiz'); // فتح الكويز مباشرة
+          },
+        })}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <View style={styles.centerButtonContainer}>
+              <View style={styles.centerButton}>
+                <MaterialCommunityIcons name="brain" size={32} color="#fff" />
+              </View>
+            </View>
+          ),
+        }}
+      />
 
       {/* Tab 3: Propos */}
       <Tab.Screen
@@ -73,7 +79,13 @@ function HomeTabs() {
         component={ProposScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <Ionicons name={focused ? "book" : "book-outline"} size={24} color={focused ? COLORS.primary : COLORS.inactive} />
+            <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
+              <Ionicons 
+                name={focused ? "book" : "book-outline"} 
+                size={26} 
+                color={focused ? COLORS.primary : COLORS.inactive} 
+              />
+            </View>
           ),
         }}
       />
@@ -81,62 +93,77 @@ function HomeTabs() {
   );
 }
 
-
 // --- 2. Root Stack (الملاحة الرئيسية) ---
-// هنا السر: الكويز والتشخيص هما "Stacks" فوق الـ "Tabs"
 export default function AppNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {/* التطبيق الأساسي (الرئيسية بالشريط السفلي) */}
+      {/* الشاشات الرئيسية مع الشريط السفلي */}
       <Stack.Screen name="Main" component={HomeTabs} />
-     
-      {/* الشاشات التي تغطي الشريط السفلي (Fullscreen) */}
-      <Stack.Screen
-        name="Diagnostic"
-        component={DiagnosticScreen}
-        options={{
-          presentation: 'card', // حركة دخول طبيعية
-          animationEnabled: true
-        }}
+      
+      {/* الشاشات الكاملة (تغطي الشريط السفلي) */}
+      <Stack.Screen 
+        name="Diagnostic" 
+        component={DiagnosticScreen} 
+        options={{ presentation: 'card', animationEnabled: true }}
       />
-      <Stack.Screen
-        name="Quiz"
-        component={QuizScreen}
-        options={{
-          presentation: 'card',
-          animationEnabled: true
-        }}
+      <Stack.Screen 
+        name="Quiz" 
+        component={QuizScreen} 
+        options={{ presentation: 'card', animationEnabled: true }}
       />
     </Stack.Navigator>
   );
 }
 
-
+// --- 3. Styles (التصميم الجديد) ---
 const styles = StyleSheet.create({
   tabBar: {
     position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    elevation: 0, // إزالة الظل القديم
-    backgroundColor: COLORS.bg,
-    borderTopColor: '#f1f5f9', // خط رفيع جداً
-    borderTopWidth: 1,
-    height: Platform.OS === 'ios' ? 85 : 60, // ارتفاع مريح
-    paddingBottom: Platform.OS === 'ios' ? 20 : 0,
+    bottom: 25, // ارتفاع عن الحافة السفلية
+    left: 20,
+    right: 20,
+    height: 70,
+    backgroundColor: COLORS.white,
+    borderRadius: 20, // زوايا دائرية
+    borderTopWidth: 0, // إزالة الخط العلوي الافتراضي
+    
+    // الظلال (Shadows) - تعطي تأثير الطفو
+    shadowColor: COLORS.shadow,
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.1, // ظل ناعم
+    shadowRadius: 10,
+    elevation: 10, // للأندرويد
   },
+  
+  // حاوية الزر المركزي
+  centerButtonContainer: {
+    position: 'absolute',
+    top: -30, // يرفع الزر ليخرج نصفه خارج الشريط
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
+  // الدائرة الملونة نفسها
   centerButton: {
-    width: 56,
-    height: 56,
-    borderRadius: 28,
-    backgroundColor: COLORS.accent, // الزر الأزرق المميز
+    width: 65,
+    height: 65,
+    borderRadius: 32.5,
+    backgroundColor: COLORS.accent,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: Platform.OS === 'ios' ? 30 : 20, // يرتفع قليلاً عن الشريط
-    elevation: 5,
+    
+    // خدعة الحدود: لون الحدود نفس لون خلفية التطبيق ليعطي إيحاء "بالقطع"
+    borderWidth: 5,
+    borderColor: '#f2f2f2', // ⚠️ هام: غير هذا اللون ليطابق خلفية الـ HomeScreen تماماً
+    
+    // ظلال للزر نفسه
     shadowColor: COLORS.accent,
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
+    shadowOffset: { width: 0, height: 5 },
+    shadowOpacity: 0.4,
     shadowRadius: 5,
-  }
+    elevation: 6,
+  },
 });

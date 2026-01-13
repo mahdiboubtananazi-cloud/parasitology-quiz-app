@@ -1,82 +1,115 @@
 ﻿// data/categories/index.js
-// 🌐 The Central Hub for All Quiz Data
+// 🌐 The Master Hub: Disease-Centric Data Structure (v3.0)
 
-// 1. Import Sub-Modules
-import * as protozoaData from './protozoa';
-import * as helminthsData from './helminths';
-import * as arthropodsData from './arthropods';
+// ==========================================
+// 1. PROTOZOA IMPORTS
+// ==========================================
+import { questions as paludisme } from './protozoa/maladies/paludisme';
+import { questions as amibiase } from './protozoa/maladies/amibiase';
+import { questions as giardiase } from './protozoa/maladies/giardiase';
+import { questions as leishmaniose } from './protozoa/maladies/leishmaniose';
 
-// 2. Import Microscopy Modules DIRECTLY (لتجنب مشاكل التصدير)
+// ==========================================
+// 2. HELMINTHS IMPORTS
+// ==========================================
+import { questions as ascaridiose } from './helminths/maladies/ascaridiose';
+import { questions as oxyurose } from './helminths/maladies/oxyurose';
+import { questions as ankylostomiase } from './helminths/maladies/ankylostomiase';
+import { questions as anguillulose } from './helminths/maladies/anguillulose';
+import { questions as trichocephalose } from './helminths/maladies/trichocephalose';
+import { questions as filarioses } from './helminths/maladies/filarioses';
+import { questions as schistosomiase } from './helminths/maladies/schistosomiase';
+import { questions as teniase } from './helminths/maladies/teniase';
+import { questions as echinococcose } from './helminths/maladies/echinococcose';
+import { questions as fasciolose } from './helminths/maladies/fasciolose';
+
+// ==========================================
+// 3. ARTHROPODS IMPORTS
+// ==========================================
+import { questions as gale } from './arthropods/maladies/gale';
+import { questions as poux_puces } from './arthropods/maladies/poux_puces';
+import { questions as tiques } from './arthropods/maladies/tiques';
+import { questions as moustiques } from './arthropods/maladies/moustiques_vecteurs';
+import { questions as myiases } from './arthropods/maladies/myiases';
+
+// ==========================================
+// 4. MICROSCOPY IMPORTS (No Changes)
+// ==========================================
 import { selles } from './microscopy/selles';
 import { sang } from './microscopy/sang';
 import { urines } from './microscopy/urines';
 import { tissus } from './microscopy/tissus';
 
 // ==========================================
-// 1. PROTOZOA
+// EXPORTS: STRUCTURED BY DISEASE
 // ==========================================
+
+// 1. PROTOZOA
 export const protozoaQuestions = {
-  classification: protozoaData.classification || [],
-  morphology: protozoaData.morphology || [],
-  pathogenesis: protozoaData.pathogenesis || [],
-  diagnosis: protozoaData.diagnosis || [],
-  treatment: protozoaData.treatment || [],
+  // Key = ID of the disease module
+  paludisme: { name: "Paludisme", data: paludisme },
+  amibiase: { name: "Amibiase", data: amibiase },
+  giardiase: { name: "Giardiase", data: giardiase },
+  leishmaniose: { name: "Leishmaniose", data: leishmaniose },
 };
 
 export const protozoaLabels = {
-  classification: "Classification",
-  morphology: "Morphologie",
-  pathogenesis: "Pathogénie",
-  diagnosis: "Diagnostic",
-  treatment: "Traitement"
+  paludisme: "Paludisme (Malaria)",
+  amibiase: "Amibiase (Entamoeba)",
+  giardiase: "Giardiase (Lamblia)",
+  leishmaniose: "Leishmaniose"
 };
 
-// ==========================================
 // 2. HELMINTHS
-// ==========================================
 export const helminthsQuestions = {
-  nematodes: helminthsData.nematodes || [],
-  cestodes: helminthsData.cestodes || [],
-  trematodes: helminthsData.trematodes || [],
-  lifecycle: helminthsData.lifecycle || [],
-  clinical: helminthsData.clinical || [],
+  ascaridiose: { name: "Ascaridiose", data: ascaridiose },
+  oxyurose: { name: "Oxyurose", data: oxyurose },
+  ankylostomiase: { name: "Ankylostomiase", data: ankylostomiase },
+  anguillulose: { name: "Anguillulose", data: anguillulose },
+  trichocephalose: { name: "Trichocéphalose", data: trichocephalose },
+  filarioses: { name: "Filarioses", data: filarioses },
+  schistosomiase: { name: "Schistosomiase", data: schistosomiase },
+  teniase: { name: "Téniase & Cysticercose", data: teniase },
+  echinococcose: { name: "Échinococcose", data: echinococcose },
+  fasciolose: { name: "Fasciolose", data: fasciolose },
 };
 
 export const helminthsLabels = {
-  nematodes: "Nématodes",
-  cestodes: "Cestodes",
-  trematodes: "Trématodes",
-  lifecycle: "Cycle de vie",
-  clinical: "Clinique"
+  ascaridiose: "Ascaridiose",
+  oxyurose: "Oxyurose",
+  ankylostomiase: "Ankylostomiase",
+  anguillulose: "Anguillulose",
+  trichocephalose: "Trichocéphalose",
+  filarioses: "Filarioses",
+  schistosomiase: "Schistosomiase",
+  teniase: "Téniase",
+  echinococcose: "Échinococcose",
+  fasciolose: "Fasciolose"
 };
 
-// ==========================================
 // 3. ARTHROPODS
-// ==========================================
 export const arthropodsQuestions = {
-  diptera: arthropodsData.diptera || [],
-  arachnids: arthropodsData.arachnids || [],
-  other_insects: arthropodsData.other_insects || [],
-  medical_entomology: arthropodsData.medical_entomology || [],
-  control_prevention: arthropodsData.control_prevention || [],
+  gale: { name: "Gale", data: gale },
+  poux_puces: { name: "Poux & Puces", data: poux_puces },
+  tiques: { name: "Tiques", data: tiques },
+  moustiques: { name: "Moustiques", data: moustiques },
+  myiases: { name: "Myiases", data: myiases },
 };
 
 export const arthropodsLabels = {
-  diptera: "Diptères (Moustiques)",
-  arachnids: "Arachnides (Tiques)",
-  other_insects: "Autres Insectes",
-  medical_entomology: "Entomologie",
-  control_prevention: "Lutte & Prévention"
+  gale: "Gale (Sarcoptes)",
+  poux_puces: "Poux & Puces",
+  tiques: "Tiques (Ixodes, etc.)",
+  moustiques: "Moustiques Vecteurs",
+  myiases: "Myiases"
 };
 
-// ==========================================
-// 4. MICROSCOPY (THE NEW SECTION) 🔬
-// ==========================================
+// 4. MICROSCOPY
 export const microscopyQuestions = {
-  selles: selles || [],
-  sang: sang || [],
-  urines: urines || [],
-  tissus: tissus || [],
+  selles,
+  sang,
+  urines,
+  tissus
 };
 
 export const microscopyLabels = {
@@ -87,14 +120,20 @@ export const microscopyLabels = {
 };
 
 // ==========================================
-// Utility
+// UTILITY: Get Stats per Axis
 // ==========================================
-export const getTotalQuestions = (questions) => {
+export const getTotalQuestions = (categoryObj) => {
   let total = 0;
-  if (!questions) return 0;
-  Object.keys(questions).forEach(key => {
-    if (Array.isArray(questions[key])) {
-      total += questions[key].length;
+  if (!categoryObj) return 0;
+  
+  Object.values(categoryObj).forEach(module => {
+    // If it's the new structure { name: "...", data: [...] }
+    if (module.data && Array.isArray(module.data)) {
+      total += module.data.length;
+    } 
+    // If it's the old structure (Direct array like microscopy)
+    else if (Array.isArray(module)) {
+      total += module.length;
     }
   });
   return total;

@@ -7,12 +7,10 @@ import {
   Modal, 
   Animated, 
   Dimensions,
-  Platform 
+  Platform,
+  ScrollView // ✅ ضروري جداً للقوائم الطويلة
 } from 'react-native';
-// تأكد من أن مسار الأيقونات صحيح (حسب ملفك)
 import { Ionicons } from '@expo/vector-icons';
-
-const { width } = Dimensions.get('window');
 
 // مكون أيقونة بسيط للاستخدام الداخلي
 const Icon = ({ name, size, color }) => (
@@ -29,22 +27,21 @@ export default function HorizontalFilter({
   const [tempFilters, setTempFilters] = useState({ topics: [] });
   
   // قيم الحركة (Animation Values)
-  const slideAnim = useRef(new Animated.Value(-300)).current; // يبدأ مخفياً في الأعلى
+  const slideAnim = useRef(new Animated.Value(-300)).current; 
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   // منطق الحركة عند الفتح والإغلاق
   useEffect(() => {
     if (visible) {
-      // 1. إعادة تعيين الفلاتر
+      // 1. استرجاع الفلاتر المحددة سابقاً
       setTempFilters(selectedFilters || { topics: [] });
       
       // 2. تشغيل الأنيميشن (دخول)
       Animated.parallel([
         Animated.timing(slideAnim, {
-          toValue: 0, // يعود لمكانه الطبيعي
+          toValue: 0,
           duration: 400,
           useNativeDriver: true,
-          // حركة فيزيائية (بونج) خفيفة
           tension: 60, 
           friction: 8
         }),
@@ -55,8 +52,7 @@ export default function HorizontalFilter({
         })
       ]).start();
     } else {
-      // عند الإغلاق (يتم التحكم به عادة من الـ Parent، لكن للمودال نحتاج خدعة)
-      // المودال سيختفي فوراً، لذا الحركة هنا بصرية فقط عند الفتح
+      // إخفاء القيم عند الإغلاق
       slideAnim.setValue(-300);
       fadeAnim.setValue(0);
     }
@@ -75,9 +71,8 @@ export default function HorizontalFilter({
   };
 
   const handleApply = () => {
-    // حركة خروج سريعة (اختياري)
     onApplyFilters(tempFilters);
-    onClose(); // سيغلق المودال
+    onClose(); 
   };
 
   const handleReset = () => {
@@ -95,15 +90,15 @@ export default function HorizontalFilter({
       visible={visible}
       transparent={true}
       onRequestClose={onClose}
-      animationType="none" // نلغي الأنيميشن الافتراضي لنستخدم الخاص بنا
+      animationType="none"
     >
       <View style={styles.modalOverlay}>
-        {/* الخلفية المعتمة (تظهر بتدرج) */}
+        {/* الخلفية المعتمة */}
         <Animated.View style={[styles.backdrop, { opacity: fadeAnim }]}>
           <TouchableOpacity style={{ flex: 1 }} onPress={onClose} activeOpacity={1} />
         </Animated.View>
 
-        {/* محتوى الفلتر (ينزلق من الأعلى) */}
+        {/* محتوى الفلتر */}
         <Animated.View 
           style={[
             styles.modalContent,
@@ -121,37 +116,44 @@ export default function HorizontalFilter({
             </TouchableOpacity>
           </View>
 
-          {/* Grid of Topics (Chips) */}
-          <View style={styles.topicsContainer}>
-            {allTopics.map(topic => {
-              const isSelected = tempFilters.topics && tempFilters.topics.includes(topic);
-              return (
-                <TouchableOpacity
-                  key={topic}
-                  style={[
-                    styles.chip,
-                    isSelected && styles.chipSelected
-                  ]}
-                  onPress={() => toggleTopic(topic)}
-                  activeOpacity={0.7}
-                >
-                  {isSelected && (
-                    <View style={styles.checkIcon}>
-                      <Icon name="checkmark" size={12} color="#FFFFFF" />
-                    </View>
-                  )}
-                  <Text style={[
-                    styles.chipText,
-                    isSelected && styles.chipTextSelected
-                  ]}>
-                    {topicLabels[topic]}
-                  </Text>
-                </TouchableOpacity>
-              );
-            })}
-          </View>
+          {/* Grid of Topics (Scrollable now ✅) */}
+          <ScrollView 
+            style={{ maxHeight: 400 }} // تحديد ارتفاع أقصى
+            contentContainerStyle={{ paddingBottom: 10 }}
+            showsVerticalScrollIndicator={true}
+            bounces={true}
+          >
+            <View style={styles.topicsContainer}>
+              {allTopics.map(topic => {
+                const isSelected = tempFilters.topics && tempFilters.topics.includes(topic);
+                return (
+                  <TouchableOpacity
+                    key={topic}
+                    style={[
+                      styles.chip,
+                      isSelected && styles.chipSelected
+                    ]}
+                    onPress={() => toggleTopic(topic)}
+                    activeOpacity={0.7}
+                  >
+                    {isSelected && (
+                      <View style={styles.checkIcon}>
+                        <Icon name="checkmark" size={12} color="#FFFFFF" />
+                      </View>
+                    )}
+                    <Text style={[
+                      styles.chipText,
+                      isSelected && styles.chipTextSelected
+                    ]}>
+                      {topicLabels[topic]}
+                    </Text>
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+          </ScrollView>
 
-          {/* Actions Footer */}
+          {/* Footer Actions */}
           <View style={styles.footer}>
             <View style={styles.leftActions}>
                <TouchableOpacity onPress={handleReset} style={styles.textAction}>
@@ -188,19 +190,19 @@ export default function HorizontalFilter({
 const styles = StyleSheet.create({
   modalOverlay: {
     flex: 1,
-    justifyContent: 'flex-start', // يبدأ من الأعلى
+    justifyContent: 'flex-start',
   },
   backdrop: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: 'rgba(0, 0, 0, 0.4)', // تعتيم الخلفية
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
   },
   modalContent: {
     backgroundColor: '#FFFFFF',
     borderBottomLeftRadius: 24,
     borderBottomRightRadius: 24,
-    paddingTop: Platform.OS === 'ios' ? 50 : 20, // حساب Notch في الآيفون
+    paddingTop: Platform.OS === 'ios' ? 50 : 20,
     paddingHorizontal: 20,
-    paddingBottom: 15,
+    paddingBottom: 20, // زيادة بسيطة
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 10 },
     shadowOpacity: 0.15,
@@ -236,9 +238,9 @@ const styles = StyleSheet.create({
   // Topics Grid Styles
   topicsContainer: {
     flexDirection: 'row',
-    flexWrap: 'wrap', // يسمح بالالتفاف
+    flexWrap: 'wrap',
     gap: 10,
-    marginBottom: 25,
+    marginBottom: 5, // قللناها لأن الـ ScrollView لديه padding
   },
   chip: {
     flexDirection: 'row',
@@ -251,7 +253,7 @@ const styles = StyleSheet.create({
     borderColor: '#E2E8F0',
   },
   chipSelected: {
-    backgroundColor: '#E6FFFA', // خلفية خضراء فاتحة جداً
+    backgroundColor: '#E6FFFA',
     borderColor: '#004643',
   },
   checkIcon: {
@@ -278,7 +280,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    marginTop: 10,
+    marginTop: 15,
+    paddingTop: 15,
+    borderTopWidth: 1,
+    borderTopColor: '#F1F5F9', // خط فاصل خفيف فوق الفوتر
   },
   leftActions: {
     flexDirection: 'row',
@@ -291,7 +296,7 @@ const styles = StyleSheet.create({
   resetText: {
     fontSize: 14,
     fontWeight: '600',
-    color: '#EF4444', // أحمر للريست
+    color: '#EF4444',
   },
   selectAllText: {
     fontSize: 14,
@@ -309,7 +314,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#004643',
     paddingVertical: 12,
     paddingHorizontal: 20,
-    borderRadius: 30, // زر دائري الحواف بالكامل
+    borderRadius: 30,
     gap: 8,
     shadowColor: '#004643',
     shadowOffset: { width: 0, height: 4 },
@@ -323,7 +328,6 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   
-  // مقبض تجميلي
   dragHandle: {
     width: 40,
     height: 4,

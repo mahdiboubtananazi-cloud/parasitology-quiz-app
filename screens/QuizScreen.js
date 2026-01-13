@@ -1,7 +1,8 @@
 ﻿import React, { useMemo, useCallback } from 'react';
 import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-// 👇 1. الاستيراد الشامل (تمت إضافة الميكروسكوب)
+
+// 👇 1. الاستيراد من ملف الفهرس الجديد
 import { 
   protozoaQuestions, 
   protozoaLabels, 
@@ -12,6 +13,7 @@ import {
   microscopyQuestions,
   microscopyLabels 
 } from '../data/categories';
+
 import { storage } from '../utils/storage';
 import HorizontalFilter from '../components/HorizontalFilter';
 import QuizHeader from './QuizScreen_components/QuizHeader';
@@ -24,10 +26,23 @@ import useQuizLogic from './QuizScreen_hooks/useQuizLogic';
 import useQuizAnimations from './QuizScreen_hooks/useQuizAnimations';
 import { styles } from './QuizScreen_styles/styles';
 
+// 🎨 خريطة ألوان وتسميات للمحاور الخمسة (للعرض البصري)
+const AXIS_CONFIG = {
+  morphology: { label: "Morphologie", color: "#3b82f6" }, // Blue
+  lifecycle: { label: "Cycle de Vie", color: "#10b981" }, // Green
+  clinical: { label: "Clinique", color: "#f59e0b" },     // Orange
+  diagnosis: { label: "Diagnostic", color: "#8b5cf6" },  // Purple
+  treatment: { label: "Traitement", color: "#ef4444" },  // Red
+  // Fallbacks
+  biology: { label: "Biologie", color: "#06b6d4" },
+  classification: { label: "Classification", color: "#64748b" },
+  default: { label: "Général", color: "#64748b" }
+};
+
 export default function QuizScreen({ route, navigation }) {
   const { categoryId, categoryName } = route?.params || {};
 
-  // 👇 2. منطق اختيار البيانات (تم تحديثه)
+  // 👇 2. اختيار البيانات (لم يتغير المنطق، ولكن المحتوى تغير)
   const { allQuestionsData, currentLabels } = useMemo(() => {
     let data = protozoaQuestions;
     let labels = protozoaLabels;
@@ -38,7 +53,7 @@ export default function QuizScreen({ route, navigation }) {
     } else if (categoryId === 'arthropods') {
       data = arthropodsQuestions;
       labels = arthropodsLabels;
-    } else if (categoryId === 'microscopy') { // الشرط الجديد ✅
+    } else if (categoryId === 'microscopy') {
       data = microscopyQuestions;
       labels = microscopyLabels;
     }
@@ -46,39 +61,60 @@ export default function QuizScreen({ route, navigation }) {
     return { allQuestionsData: data, currentLabels: labels };
   }, [categoryId]);
 
-  // 🔥 وظيفة التحويل (حافظنا عليها كما هي تماماً) 🔥
+  // 🔥 3. المحول الذكي الجديد (The Adapter) 🔥
+  // يقوم بفك هيكل { name: "Paludisme", data: [...] } وتحويله لمصفوفة مسطحة
   const convertToQuestions = useCallback((data) => {
     const questions = [];
-    Object.keys(data).forEach(topic => {
-      if (Array.isArray(data[topic]) && data[topic].length > 0) {
-        data[topic].forEach(q => {
-          
-          // 1. نحتفظ بنص الإجابة الصحيحة الأصلية
-          const correctOptionText = q.options[q.correct];
 
-          // 2. نقوم بخلط الخيارات
+    Object.keys(data).forEach(key => {
+      const module = data[key]; 
+      
+      // التعامل مع الهيكل الجديد (الأمراض)
+      // module يكون كائناً: { name: "Paludisme", data: [...] }
+      if (module.data && Array.isArray(module.data)) {
+        module.data.forEach(q => {
+          // خلط الخيارات
           const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
-
-          // 3. نبحث عن المكان الجديد
-          const newCorrectIndex = shuffledOptions.indexOf(correctOptionText);
+          const newCorrectIndex = shuffledOptions.indexOf(q.options[q.correct]); // لاحظ: q.correct قد يكون index في البيانات الأصلية
 
           questions.push({
             ...q,
-            topic: topic,
-            question: q.question,
+            id: q.id || Math.random().toString(),
+            topic: key, // هذا سيستخدم للفلترة (مثلاً: paludisme)
+            diseaseName: module.name, // الاسم المقروء (Paludisme)
+            axisConfig: AXIS_CONFIG[q.axis] || AXIS_CONFIG.default, // إعدادات المحور للعرض
             options: shuffledOptions,
             correctAnswer: newCorrectIndex,
+            // التأكد من وجود الخصائص الأساسية
+            question: q.question,
             explanation: q.explanation
+          });
+        });
+      } 
+      // التعامل مع الهيكل القديم/المباشر (مثل الميكروسكوب)
+      // module يكون مصفوفة مباشرة: [...]
+      else if (Array.isArray(module)) {
+        module.forEach(q => {
+          const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
+          const newCorrectIndex = shuffledOptions.indexOf(q.options[q.correct]);
+
+          questions.push({
+            ...q,
+            topic: key,
+            diseaseName: currentLabels[key], // محاولة جلب الاسم من Labels
+            axisConfig: AXIS_CONFIG.default,
+            options: shuffledOptions,
+            correctAnswer: newCorrectIndex,
           });
         });
       }
     });
 
-    // خلط الأسئلة
+    // خلط جميع الأسئلة النهائية عشوائياً
     return questions.sort(() => Math.random() - 0.5);
     
-  }, []);
-  // 🔥 نهاية الوظيفة 🔥
+  }, [currentLabels]); 
+  // 🔥 نهاية المحول 🔥
 
   const animations = useQuizAnimations(0, false, false, 30, false);
 
@@ -89,6 +125,7 @@ export default function QuizScreen({ route, navigation }) {
     categoryId
   );
 
+  // ... (بقية الـ Animations والـ SaveLogic تبقى كما هي تماماً) ...
   const {
     slideAnim,
     scaleAnim,
@@ -104,39 +141,39 @@ export default function QuizScreen({ route, navigation }) {
   );
 
   const saveQuizResults = useCallback(async () => {
+    // ... (نفس كود الحفظ السابق)
     try {
-      // تحديد اسم الفئة للتخزين (تمت إضافة المختبر)
-      let categoryNameForStorage = 'Protozoaires';
-      if (categoryId === 'helminths') categoryNameForStorage = 'Helminthes';
-      else if (categoryId === 'arthropods') categoryNameForStorage = 'Arthropodes';
-      else if (categoryId === 'microscopy') categoryNameForStorage = 'Microscopy'; // ✅
-
-      if (!logic.filteredQuestions || logic.filteredQuestions.length === 0) return false;
-
-      const totalQuestions = logic.filteredQuestions.length;
-      const correctAnswers = logic.score;
-      const percentage = Math.round((correctAnswers / totalQuestions) * 100);
-      const timeSpentInSeconds = logic.getElapsedTime();
-
-      await storage.saveQuizResult({
-        categoryName: categoryNameForStorage,
-        totalQuestions,
-        correctAnswers,
-        percentage,
-        timeSpent: timeSpentInSeconds
-      });
-
-      await storage.saveCategoryResult(categoryNameForStorage, {
-        percentage,
-        correct: correctAnswers,
-        total: totalQuestions
-      });
-
-      return true;
-    } catch (error) {
-      console.error('❌ Error saving quiz results:', error);
-      return false;
-    }
+        let categoryNameForStorage = 'Protozoaires';
+        if (categoryId === 'helminths') categoryNameForStorage = 'Helminthes';
+        else if (categoryId === 'arthropods') categoryNameForStorage = 'Arthropodes';
+        else if (categoryId === 'microscopy') categoryNameForStorage = 'Microscopy';
+  
+        if (!logic.filteredQuestions || logic.filteredQuestions.length === 0) return false;
+  
+        const totalQuestions = logic.filteredQuestions.length;
+        const correctAnswers = logic.score;
+        const percentage = Math.round((correctAnswers / totalQuestions) * 100);
+        const timeSpentInSeconds = logic.getElapsedTime();
+  
+        await storage.saveQuizResult({
+          categoryName: categoryNameForStorage,
+          totalQuestions,
+          correctAnswers,
+          percentage,
+          timeSpent: timeSpentInSeconds
+        });
+  
+        await storage.saveCategoryResult(categoryNameForStorage, {
+          percentage,
+          correct: correctAnswers,
+          total: totalQuestions
+        });
+  
+        return true;
+      } catch (error) {
+        console.error('❌ Error saving quiz results:', error);
+        return false;
+      }
   }, [categoryId, logic.score, logic.filteredQuestions, logic.getElapsedTime]);
 
   const goHome = useCallback(async () => {
@@ -152,6 +189,8 @@ export default function QuizScreen({ route, navigation }) {
     }
     logic.resetQuiz();
   }, [logic, saveQuizResults]);
+
+  // --- RENDERING ---
 
   if (logic.showNoQuestions || (logic.filteredQuestions.length === 0)) {
     return (
@@ -176,7 +215,6 @@ export default function QuizScreen({ route, navigation }) {
           categoryName={categoryName}
           onFilterPress={() => logic.setShowFilterModal(true)}
         />
-        
         <ResultsScreen
           score={logic.score}
           totalQuestions={logic.filteredQuestions.length}
@@ -184,7 +222,6 @@ export default function QuizScreen({ route, navigation }) {
           onRestart={handleRestart}
           onGoHome={goHome}
         />
-        
         <HorizontalFilter
           visible={logic.showFilterModal}
           onClose={() => logic.setShowFilterModal(false)}
@@ -199,14 +236,8 @@ export default function QuizScreen({ route, navigation }) {
   const question = logic.filteredQuestions[logic.currentQuestion];
 
   if (!question) {
-    return (
-      <SafeAreaView style={styles.container} edges={['top']}>
-        <QuizHeader categoryName={categoryName} onFilterPress={() => logic.setShowFilterModal(true)} />
-        <View style={styles.noQuestionsContainer}>
-          <Text style={styles.noQuestionsText}>Chargement...</Text>
-        </View>
-      </SafeAreaView>
-    );
+    // Loading State
+    return <View style={styles.container} />;
   }
 
   return (
@@ -219,16 +250,23 @@ export default function QuizScreen({ route, navigation }) {
       <View style={styles.content}>
         <View style={styles.scrollContent}>
           <View>
+            {/* 👇 تحديث: نمرر بيانات المحور والمرض لبطاقة السؤال */}
             <QuestionCard
               currentQuestion={logic.currentQuestion}
               totalQuestions={logic.filteredQuestions.length}
               questionText={question.question}
-              topic={question.topic}
-              topicLabel={currentLabels[question.topic]}
+              
+              // التعديل هنا: نعرض اسم المرض + شارة المحور
+              topic={question.diseaseName || currentLabels[question.topic]} 
+              topicLabel={question.topic} // للإبقاء على التوافق إذا كنت تستخدمه
+              axisConfig={question.axisConfig} // 🔥 جديد: لون واسم المحور
+              
               timeLeft={logic.timeLeft}
               slideAnim={slideAnim}
               scaleAnim={scaleAnim}
               timerPulseAnim={timerPulseAnim}
+              // دعم الصور (Labo-Vision)
+              image={question.image} 
             />
           </View>
 
@@ -260,7 +298,7 @@ export default function QuizScreen({ route, navigation }) {
         onClose={() => logic.setShowFilterModal(false)}
         selectedFilters={logic.selectedFilters}
         onApplyFilters={logic.handleApplyFilters}
-        topicLabels={currentLabels}
+        topicLabels={currentLabels} // الآن سيعرض أسماء الأمراض (Paludisme, etc.)
       />
     </SafeAreaView>
   );
