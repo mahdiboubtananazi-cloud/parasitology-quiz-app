@@ -1,5 +1,5 @@
 ﻿// data/categories/index.js
-// 🌐 The Master Hub: Disease-Centric Data Structure (v3.0)
+// 🌐 The Master Hub: Disease-Centric Data Structure (v3.2 - Stable)
 
 // ==========================================
 // 1. PROTOZOA IMPORTS
@@ -8,6 +8,10 @@ import { questions as paludisme } from './protozoa/maladies/paludisme';
 import { questions as amibiase } from './protozoa/maladies/amibiase';
 import { questions as giardiase } from './protozoa/maladies/giardiase';
 import { questions as leishmaniose } from './protozoa/maladies/leishmaniose';
+import { questions as toxoplasmose } from './protozoa/maladies/toxoplasmose';
+import { questions as trypanosomiase } from './protozoa/maladies/trypanosomiase';
+import { questions as coccidies } from './protozoa/maladies/coccidies';
+import { questions as trichomonase } from './protozoa/maladies/trichomonase';
 
 // ==========================================
 // 2. HELMINTHS IMPORTS
@@ -33,31 +37,40 @@ import { questions as moustiques } from './arthropods/maladies/moustiques_vecteu
 import { questions as myiases } from './arthropods/maladies/myiases';
 
 // ==========================================
-// 4. MICROSCOPY IMPORTS (No Changes)
+// 4. TECHNIQUES (LABO) IMPORTS - ✅ CORRECTED
 // ==========================================
-import { selles } from './microscopy/selles';
-import { sang } from './microscopy/sang';
-import { urines } from './microscopy/urines';
-import { tissus } from './microscopy/tissus';
+// هنا كان الخطأ: نستورد 'questions' ونسميها حسب التقنية
+import { questions as prelevements } from './techniques/prelevements';
+import { questions as coprologie } from './techniques/coprologie';
+import { questions as hematologie } from './techniques/hematologie';
+import { questions as colorations } from './techniques/colorations';
+import { questions as immuno } from './techniques/immuno_moleculaire';
 
 // ==========================================
-// EXPORTS: STRUCTURED BY DISEASE
+// EXPORTS: STRUCTURED BY DISEASE / MODULE
 // ==========================================
 
 // 1. PROTOZOA
 export const protozoaQuestions = {
-  // Key = ID of the disease module
   paludisme: { name: "Paludisme", data: paludisme },
   amibiase: { name: "Amibiase", data: amibiase },
   giardiase: { name: "Giardiase", data: giardiase },
   leishmaniose: { name: "Leishmaniose", data: leishmaniose },
+  toxoplasmose: { name: "Toxoplasmose", data: toxoplasmose },
+  trypanosomiase: { name: "Trypanosomiase", data: trypanosomiase },
+  coccidies: { name: "Coccidies", data: coccidies },
+  trichomonase: { name: "Trichomonase", data: trichomonase },
 };
 
 export const protozoaLabels = {
   paludisme: "Paludisme (Malaria)",
   amibiase: "Amibiase (Entamoeba)",
   giardiase: "Giardiase (Lamblia)",
-  leishmaniose: "Leishmaniose"
+  leishmaniose: "Leishmaniose",
+  toxoplasmose: "Toxoplasmose",
+  trypanosomiase: "Trypanosomiase",
+  coccidies: "Coccidies (Crypto)",
+  trichomonase: "Trichomonase"
 };
 
 // 2. HELMINTHS
@@ -104,19 +117,22 @@ export const arthropodsLabels = {
   myiases: "Myiases"
 };
 
-// 4. MICROSCOPY
+// 4. TECHNIQUES (Updated to match New Structure)
+// ✅ تم تحديث هذا القسم ليطابق الهيكلة الجديدة
 export const microscopyQuestions = {
-  selles,
-  sang,
-  urines,
-  tissus
+  prelevements: { name: "Prélèvements", data: prelevements },
+  coprologie: { name: "Coprologie", data: coprologie },
+  hematologie: { name: "Hématologie", data: hematologie },
+  colorations: { name: "Colorations", data: colorations },
+  immuno: { name: "Immuno & Moléculaire", data: immuno },
 };
 
 export const microscopyLabels = {
-  selles: "Selles (Copro)",
-  sang: "Sang (Hémato)",
-  urines: "Urines & Liquides",
-  tissus: "Peau & Tissus"
+  prelevements: "Prélèvements & Sécurité",
+  coprologie: "Coprologie (Selles)",
+  hematologie: "Hématologie (Sang)",
+  colorations: "Colorations Spéciales",
+  immuno: "Immuno & Moléculaire"
 };
 
 // ==========================================

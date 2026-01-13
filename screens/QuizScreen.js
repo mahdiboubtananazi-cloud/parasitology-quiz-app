@@ -2,7 +2,7 @@
 import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-// 👇 1. الاستيراد من ملف الفهرس الجديد
+// 👇 1. الاستيراد من ملف الفهرس الجديد (تأكدنا من صحته سابقاً)
 import { 
   protozoaQuestions, 
   protozoaLabels, 
@@ -26,15 +26,24 @@ import useQuizLogic from './QuizScreen_hooks/useQuizLogic';
 import useQuizAnimations from './QuizScreen_hooks/useQuizAnimations';
 import { styles } from './QuizScreen_styles/styles';
 
-// 🎨 خريطة ألوان وتسميات للمحاور الخمسة (للعرض البصري)
+// 🎨 خريطة ألوان وتسميات للمحاور (تم تحديثها لتشمل التقنيات الجديدة)
 const AXIS_CONFIG = {
+  // المحاور الأساسية للأمراض
   morphology: { label: "Morphologie", color: "#3b82f6" }, // Blue
   lifecycle: { label: "Cycle de Vie", color: "#10b981" }, // Green
   clinical: { label: "Clinique", color: "#f59e0b" },     // Orange
   diagnosis: { label: "Diagnostic", color: "#8b5cf6" },  // Purple
   treatment: { label: "Traitement", color: "#ef4444" },  // Red
+  
+  // المحاور الجديدة للتقنيات (Techniques) 🧪
+  prelevement: { label: "Prélèvement", color: "#0891b2" }, // Cyan
+  technique: { label: "Technique", color: "#4f46e5" },    // Indigo
+  concentration: { label: "Concentration", color: "#be185d" }, // Pink
+  coloration: { label: "Coloration", color: "#9333ea" },   // Purple Strong
+  immuno: { label: "Immuno/Moléc.", color: "#ea580c" },    // Dark Orange
+  biologie: { label: "Biologie", color: "#06b6d4" },
+  
   // Fallbacks
-  biology: { label: "Biologie", color: "#06b6d4" },
   classification: { label: "Classification", color: "#64748b" },
   default: { label: "Général", color: "#64748b" }
 };
@@ -42,7 +51,7 @@ const AXIS_CONFIG = {
 export default function QuizScreen({ route, navigation }) {
   const { categoryId, categoryName } = route?.params || {};
 
-  // 👇 2. اختيار البيانات (لم يتغير المنطق، ولكن المحتوى تغير)
+  // 👇 2. اختيار البيانات
   const { allQuestionsData, currentLabels } = useMemo(() => {
     let data = protozoaQuestions;
     let labels = protozoaLabels;
@@ -61,47 +70,63 @@ export default function QuizScreen({ route, navigation }) {
     return { allQuestionsData: data, currentLabels: labels };
   }, [categoryId]);
 
-  // 🔥 3. المحول الذكي الجديد (The Adapter) 🔥
-  // يقوم بفك هيكل { name: "Paludisme", data: [...] } وتحويله لمصفوفة مسطحة
+  // 🔥 3. المحول الذكي (تم إصلاحه ليدعم الإجابات بدقة) 🔥
   const convertToQuestions = useCallback((data) => {
     const questions = [];
 
     Object.keys(data).forEach(key => {
       const module = data[key]; 
       
-      // التعامل مع الهيكل الجديد (الأمراض)
-      // module يكون كائناً: { name: "Paludisme", data: [...] }
+      // التعامل مع الهيكل الجديد { name: "...", data: [...] }
+      // (وهذا يشمل الآن التقنيات أيضاً)
       if (module.data && Array.isArray(module.data)) {
         module.data.forEach(q => {
+          
+          // ✅ FIX: تحديد الإجابة الصحيحة بذكاء (يدعم correctAnswer و correct)
+          const correctIndexOriginal = (q.correctAnswer !== undefined) 
+                                       ? q.correctAnswer 
+                                       : (q.correct !== undefined ? q.correct : 0);
+
+          const correctOptionText = q.options[correctIndexOriginal];
+
+          // حماية من الأخطاء في البيانات
+          if (!correctOptionText) {
+             console.warn(`Skipping question ${q.id}: Invalid correct index.`);
+             return;
+          }
+
           // خلط الخيارات
           const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
-          const newCorrectIndex = shuffledOptions.indexOf(q.options[q.correct]); // لاحظ: q.correct قد يكون index في البيانات الأصلية
+          
+          // إيجاد المكان الجديد للإجابة الصحيحة
+          const newCorrectIndex = shuffledOptions.indexOf(correctOptionText);
 
           questions.push({
             ...q,
             id: q.id || Math.random().toString(),
-            topic: key, // هذا سيستخدم للفلترة (مثلاً: paludisme)
-            diseaseName: module.name, // الاسم المقروء (Paludisme)
-            axisConfig: AXIS_CONFIG[q.axis] || AXIS_CONFIG.default, // إعدادات المحور للعرض
+            topic: key, // مفتاح الفلتر (مثلاً: paludisme, coprologie)
+            diseaseName: module.name, // الاسم الظاهر (Paludisme, Coprologie)
+            axisConfig: AXIS_CONFIG[q.axis] || AXIS_CONFIG.default, // لون الشارة
             options: shuffledOptions,
             correctAnswer: newCorrectIndex,
-            // التأكد من وجود الخصائص الأساسية
+            // ضمان وجود النصوص
             question: q.question,
             explanation: q.explanation
           });
         });
       } 
-      // التعامل مع الهيكل القديم/المباشر (مثل الميكروسكوب)
-      // module يكون مصفوفة مباشرة: [...]
+      // التعامل مع الهيكل القديم (احتياط)
       else if (Array.isArray(module)) {
         module.forEach(q => {
+          const correctIndexOriginal = (q.correctAnswer !== undefined) ? q.correctAnswer : q.correct;
+          const correctOptionText = q.options[correctIndexOriginal];
           const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
-          const newCorrectIndex = shuffledOptions.indexOf(q.options[q.correct]);
+          const newCorrectIndex = shuffledOptions.indexOf(correctOptionText);
 
           questions.push({
             ...q,
             topic: key,
-            diseaseName: currentLabels[key], // محاولة جلب الاسم من Labels
+            diseaseName: currentLabels[key] || "Question",
             axisConfig: AXIS_CONFIG.default,
             options: shuffledOptions,
             correctAnswer: newCorrectIndex,
@@ -110,7 +135,7 @@ export default function QuizScreen({ route, navigation }) {
       }
     });
 
-    // خلط جميع الأسئلة النهائية عشوائياً
+    // خلط ترتيب الأسئلة النهائي
     return questions.sort(() => Math.random() - 0.5);
     
   }, [currentLabels]); 
@@ -125,7 +150,6 @@ export default function QuizScreen({ route, navigation }) {
     categoryId
   );
 
-  // ... (بقية الـ Animations والـ SaveLogic تبقى كما هي تماماً) ...
   const {
     slideAnim,
     scaleAnim,
@@ -141,7 +165,6 @@ export default function QuizScreen({ route, navigation }) {
   );
 
   const saveQuizResults = useCallback(async () => {
-    // ... (نفس كود الحفظ السابق)
     try {
         let categoryNameForStorage = 'Protozoaires';
         if (categoryId === 'helminths') categoryNameForStorage = 'Helminthes';
@@ -236,7 +259,6 @@ export default function QuizScreen({ route, navigation }) {
   const question = logic.filteredQuestions[logic.currentQuestion];
 
   if (!question) {
-    // Loading State
     return <View style={styles.container} />;
   }
 
@@ -250,22 +272,17 @@ export default function QuizScreen({ route, navigation }) {
       <View style={styles.content}>
         <View style={styles.scrollContent}>
           <View>
-            {/* 👇 تحديث: نمرر بيانات المحور والمرض لبطاقة السؤال */}
             <QuestionCard
               currentQuestion={logic.currentQuestion}
               totalQuestions={logic.filteredQuestions.length}
               questionText={question.question}
-              
-              // التعديل هنا: نعرض اسم المرض + شارة المحور
               topic={question.diseaseName || currentLabels[question.topic]} 
-              topicLabel={question.topic} // للإبقاء على التوافق إذا كنت تستخدمه
-              axisConfig={question.axisConfig} // 🔥 جديد: لون واسم المحور
-              
+              topicLabel={question.topic} 
+              axisConfig={question.axisConfig}
               timeLeft={logic.timeLeft}
               slideAnim={slideAnim}
               scaleAnim={scaleAnim}
               timerPulseAnim={timerPulseAnim}
-              // دعم الصور (Labo-Vision)
               image={question.image} 
             />
           </View>
@@ -298,7 +315,7 @@ export default function QuizScreen({ route, navigation }) {
         onClose={() => logic.setShowFilterModal(false)}
         selectedFilters={logic.selectedFilters}
         onApplyFilters={logic.handleApplyFilters}
-        topicLabels={currentLabels} // الآن سيعرض أسماء الأمراض (Paludisme, etc.)
+        topicLabels={currentLabels} 
       />
     </SafeAreaView>
   );
