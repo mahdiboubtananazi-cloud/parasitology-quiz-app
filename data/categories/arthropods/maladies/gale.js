@@ -1,548 +1,341 @@
 export const questions = [
+  // =========================
+  // GALE - MORPHOLOGIE (8)
+  // =========================
   {
-    "id": "arach_10",
-    "question": "La transmission de la gale commune se fait principalement par :",
-    "options": [
-      "Contact cutané direct, prolongé ('peau contre peau')",
-      "Par l'air (toux)",
-      "Par l'eau",
-      "Par piqûre de moustique"
-    ],
-    "correct": 0,
-    "explanation": "C'est souvent une infection sexuellement transmissible ou familiale (dormir dans le même lit).",
-    "axis": "morphology"
+    id: "gale_morph_1",
+    axis: "morphology",
+    question: "Sarcoptes scabiei est :",
+    options: ["Un acarien microscopique strictement humain", "Un ver nématode intestinal", "Un protozoaire intracellulaire", "Un insecte hématophage ailé"],
+    correctAnswer: 0,
+    explanation: "Sarcoptes scabiei var. hominis est un acarien microscopique parasite obligatoire de la peau humaine."
   },
   {
-    "id": "arach_11",
-    "question": "La transmission indirecte (linge, literie) est-elle possible dans la gale ?",
-    "options": [
-      "Oui, car le sarcopte survit 24 à 48h hors de l'hôte",
-      "Non, le sarcopte meurt instantanément dehors",
-      "Oui, il vit des mois dans le linge",
-      "Uniquement par les animaux"
-    ],
-    "correct": 0,
-    "explanation": "C'est pourquoi il faut traiter l'environnement (linge à 60°C ou sac plastique) en même temps que le patient.",
-    "axis": "morphology"
+    id: "gale_morph_2",
+    axis: "morphology",
+    question: "La taille approximative de la femelle adulte est :",
+    options: ["0,3 à 0,5 mm, visible à l’œil nu comme un point blanc", "1 à 2 mm", "5 mm", "Invisible même au microscope"],
+    correctAnswer: 0,
+    explanation: "La femelle mesure environ 0,3 à 0,5 mm, ce qui la rend à peine visible à l’œil nu."
   },
   {
-    "id": "arach_12",
-    "question": "Le diagnostic de certitude de la gale repose sur :",
-    "options": [
-      "La mise en évidence du sarcopte (ou œufs/fèces) au microscope après grattage d'un sillon",
-      "Une prise de sang",
-      "Une biopsie profonde",
-      "L'examen des urines"
-    ],
-    "correct": 0,
-    "explanation": "Le test à l'encre de Chine peut aider à visualiser les sillons avant le prélèvement.",
-    "axis": "morphology"
+    id: "gale_morph_3",
+    axis: "morphology",
+    question: "La femelle de Sarcoptes scabiei est :",
+    options: ["Plus grande que le mâle et creuse les sillons", "Plus petite que le mâle", "Ailée", "Libre dans le sang"],
+    correctAnswer: 0,
+    explanation: "La femelle est plus grande que le mâle et est responsable du creusement des sillons dans l’épiderme."
   },
   {
-    "id": "arach_13",
-    "question": "Le traitement de référence par voie orale de la gale est :",
-    "options": [
-      "L'Ivermectine (Stromectol)",
-      "Le Métronidazole",
-      "L'Amoxicilline",
-      "La Chloroquine"
-    ],
-    "correct": 0,
-    "explanation": "Prise unique, à répéter souvent à J+7 ou J+14 pour tuer les larves écloses des œufs survivants.",
-    "axis": "morphology"
+    id: "gale_morph_4",
+    axis: "morphology",
+    question: "L’œuf de Sarcoptes scabiei est :",
+    options: ["Ovale et pondu dans les sillons épidermiques", "Operculé et éliminé dans les selles", "En forme de citron à bouchons polaires", "En D avec face plane"],
+    correctAnswer: 0,
+    explanation: "Les œufs sont ovales et déposés par la femelle dans les tunnels creusés dans la couche cornée."
   },
   {
-    "id": "arach_14",
-    "question": "Qu'est-ce que les 'nodules scabieux post-scabieux' ?",
-    "options": [
-      "Des nodules rouges et prurigineux qui persistent plusieurs semaines après guérison (réaction immuno-allergique)",
-      "Une récidive de la maladie",
-      "Une surinfection",
-      "Des kystes de graisse"
-    ],
-    "correct": 0,
-    "explanation": "Ils ne contiennent plus de sarcoptes vivants mais sont dus à une hypersensibilité persistante aux antigènes du parasite mort.",
-    "axis": "morphology"
+    id: "gale_morph_5",
+    axis: "morphology",
+    question: "Le nombre moyen d’acariens chez un patient atteint de gale commune est :",
+    options: ["10 à 15 parasites environ", "Plusieurs milliers", "Un seul parasite", "Plus de 1 million"],
+    correctAnswer: 0,
+    explanation: "Dans la gale commune, la charge parasitaire est faible, généralement autour de 10 à 15 acariens."
   },
   {
-    "id": "arach_15",
-    "question": "La gale animale (chien/chat) transmise à l'homme provoque :",
-    "options": [
-      "Une pseudo-gale : prurit vif mais pas de sillons, et ça guérit tout seul si l'animal est traité",
-      "Une gale humaine classique",
-      "Une maladie mortelle",
-      "Rien"
-    ],
-    "correct": 0,
-    "explanation": "Sarcoptes scabiei var. canis ne peut pas se reproduire durablement sur la peau humaine (impasse parasitaire).",
-    "axis": "morphology"
+    id: "gale_morph_6",
+    axis: "morphology",
+    question: "La gale norvégienne se caractérise par :",
+    options: ["Une charge parasitaire massive avec milliers d’acariens", "Une absence totale d’acariens", "Uniquement des œufs", "Une infestation sanguine"],
+    correctAnswer: 0,
+    explanation: "La gale norvégienne (croûteuse) présente une multiplication massive des parasites dans l’épiderme."
   },
   {
-    "id": "arach_21",
-    "question": "Rhipicephalus sanguineus (Tique du chien) transmet :",
-    "options": [
-      "La Fièvre Boutonneuse Méditerranéenne (Rickettsia conorii)",
-      "La Maladie du sommeil",
-      "La Rage",
-      "La Gale"
-    ],
-    "correct": 0,
-    "explanation": "Elle vit près des habitations (chenils, fissures). La morsure cause souvent une 'tache noire'.",
-    "axis": "morphology"
+    id: "gale_morph_7",
+    axis: "morphology",
+    question: "Les pattes de Sarcoptes scabiei sont adaptées à :",
+    options: ["Creuser la couche cornée de l’épiderme", "Nager dans le sang", "Voler", "Sauter comme une puce"],
+    correctAnswer: 0,
+    explanation: "Les pattes sont courtes et puissantes, adaptées au creusement de tunnels épidermiques."
   },
   {
-    "id": "arach_3",
-    "question": "Quel est l'agent causal de la Gale humaine ?",
-    "options": [
-      "Sarcoptes scabiei var. hominis",
-      "Demodex folliculorum",
-      "Ixodes ricinus",
-      "Pediculus humanus"
-    ],
-    "correct": 0,
-    "explanation": "C'est un acarien microscopique spécifique de l'homme, agent d'une ectoparasitose contagieuse.",
-    "axis": "morphology"
+    id: "gale_morph_8",
+    axis: "morphology",
+    question: "La cuticule de l’acarien est :",
+    options: ["Chitineuse et striée", "Membraneuse sans protection", "Calcaire", "Muqueuse"],
+    correctAnswer: 0,
+    explanation: "La cuticule chitineuse protège l’acarien et lui permet de résister dans la couche cornée."
+  },
+
+  // =========================
+  // GALE - CYCLE DE VIE (8)
+  // =========================
+  {
+    id: "gale_cycle_1",
+    axis: "lifecycle",
+    question: "Le cycle de Sarcoptes scabiei se déroule :",
+    options: ["Entièrement dans l’épiderme humain", "Dans le sang humain", "Dans l’intestin", "Dans un mollusque intermédiaire"],
+    correctAnswer: 0,
+    explanation: "Tout le cycle parasitaire se déroule dans la couche cornée de l’épiderme."
   },
   {
-    "id": "arach_4",
-    "question": "Où vit la femelle fécondée de Sarcoptes scabiei ?",
-    "options": [
-      "Elle creuse un tunnel (sillon) dans la couche cornée de l'épiderme",
-      "À la surface de la peau",
-      "Dans le follicule pileux",
-      "Dans le sang"
-    ],
-    "correct": 0,
-    "explanation": "Elle progresse de 1 à 2 mm par jour dans l'épaisseur de la peau pour y pondre ses œufs.",
-    "axis": "morphology"
+    id: "gale_cycle_2",
+    axis: "lifecycle",
+    question: "La transmission de la gale est principalement :",
+    options: ["Par contact cutané direct prolongé", "Par piqûre de moustique", "Par eau contaminée", "Par inhalation d’aérosols"],
+    correctAnswer: 0,
+    explanation: "La transmission se fait surtout par contact peau à peau prolongé."
   },
   {
-    "id": "arach_44",
-    "question": "Les Tarentules (Lycoses) et Mygales sont-elles mortelles ?",
-    "options": [
-      "Rarement, leur morsure est douloureuse (mécanique) mais leur venin est peu toxique pour l'homme",
-      "Oui, toujours",
-      "Non, elles n'ont pas de venin",
-      "Elles transmettent le SIDA"
-    ],
-    "correct": 0,
-    "explanation": "Leur dangerosité est exagérée par le cinéma. Les scorpions sont bien plus dangereux.",
-    "axis": "morphology"
+    id: "gale_cycle_3",
+    axis: "lifecycle",
+    question: "Après la ponte, les œufs éclosent en :",
+    options: ["Larves à 6 pattes", "Microfilaires", "Cercaires", "Rhabditoïdes"],
+    correctAnswer: 0,
+    explanation: "Les œufs donnent naissance à des larves hexapodes (6 pattes)."
   },
   {
-    "id": "arach_45",
-    "question": "Les poils urticants des Mygales servent à :",
-    "options": [
-      "La défense (elles les bombardent en se frottant l'abdomen), causant des irritations oculaires/cutanées",
-      "L'audition",
-      "Le vol",
-      "La nage"
-    ],
-    "correct": 0,
-    "explanation": "C'est souvent leur principale arme défensive contre les prédateurs, plus que la morsure.",
-    "axis": "morphology"
+    id: "gale_cycle_4",
+    axis: "lifecycle",
+    question: "La durée du cycle complet est d’environ :",
+    options: ["10 à 14 jours", "1 jour", "2 mois", "6 mois"],
+    correctAnswer: 0,
+    explanation: "Le cycle évolutif complet dure environ deux semaines."
   },
   {
-    "id": "arach_48",
-    "question": "Le sérum antivenimeux est le traitement de choix pour :",
-    "options": [
-      "Les envenimations graves à Scorpions (Androctonus) ou Araignées (Veuve noire/Loxosceles)",
-      "La gale",
-      "Les tiques",
-      "Les aoûtats"
-    ],
-    "correct": 0,
-    "explanation": "Il neutralise les toxines circulantes. Doit être administré tôt en cas de signes systémiques.",
-    "axis": "morphology"
+    id: "gale_cycle_5",
+    axis: "lifecycle",
+    question: "Sarcoptes scabiei possède :",
+    options: ["Aucun stade sanguin", "Un stade sanguin obligatoire", "Un stade hépatique", "Un stade pulmonaire"],
+    correctAnswer: 0,
+    explanation: "Il n’existe aucun passage sanguin dans le cycle de la gale."
   },
   {
-    "id": "arach_49",
-    "question": "L'ivermectine est-elle efficace sur les poux ?",
-    "options": [
-      "Oui, c'est aussi un traitement de deuxième intention des pédiculoses résistantes",
-      "Non, uniquement sur la gale",
-      "Non, c'est pour les vers",
-      "C'est un antibiotique"
-    ],
-    "correct": 0,
-    "explanation": "L'ivermectine tue la plupart des ectoparasites (gale, poux) et des nématodes.",
-    "axis": "morphology"
+    id: "gale_cycle_6",
+    axis: "lifecycle",
+    question: "La femelle fécondée :",
+    options: ["Creuse un sillon et y pond ses œufs", "Quitte la peau pour pondre dans l’environnement", "Pond dans le sang", "Pond dans les follicules pileux uniquement"],
+    correctAnswer: 0,
+    explanation: "La femelle fécondée creuse un tunnel intra-épidermique où elle dépose ses œufs."
   },
   {
-    "id": "arach_5",
-    "question": "Le symptôme majeur et évocateur de la gale est :",
-    "options": [
-      "Un prurit féroce à recrudescence nocturne, épargnant le visage (sauf nourrisson)",
-      "Une fièvre élevée",
-      "Des douleurs musculaires",
-      "Une perte de cheveux"
-    ],
-    "correct": 0,
-    "explanation": "Le prurit nocturne familial est le signe d'appel clinique n°1.",
-    "axis": "morphology"
+    id: "gale_cycle_7",
+    axis: "lifecycle",
+    question: "La survie du parasite hors de l’hôte est d’environ :",
+    options: ["24 à 72 heures", "Plusieurs semaines", "Quelques minutes", "6 mois"],
+    correctAnswer: 0,
+    explanation: "Les acariens survivent rarement plus de 2 à 3 jours hors de l’hôte."
   },
   {
-    "id": "arach_50",
-    "question": "La 'Gale des gens propres' est :",
-    "options": [
-      "Une gale paucisymptomatique (peu de lésions) chez des sujets à l'hygiène rigoureuse, difficile à diagnostiquer",
-      "Une gale imaginaire",
-      "Une allergie au savon",
-      "Une gale sans prurit"
-    ],
-    "correct": 0,
-    "explanation": "Le lavage fréquent élimine beaucoup de sarcoptes en surface, rendant les sillons rares et le diagnostic difficile, mais le prurit persiste.",
-    "axis": "morphology"
+    id: "gale_cycle_8",
+    axis: "lifecycle",
+    question: "La contagiosité maximale est observée :",
+    options: ["Dans la gale norvégienne", "Dans la gale commune", "Uniquement chez l’enfant", "Uniquement chez l’adulte"],
+    correctAnswer: 0,
+    explanation: "La gale norvégienne est extrêmement contagieuse du fait de la charge parasitaire massive."
+  },
+
+  // =========================
+  // GALE - CLINIQUE (12)
+  // =========================
+  {
+    id: "gale_clin_1",
+    axis: "clinical",
+    question: "Le symptôme cardinal de la gale est :",
+    options: ["Prurit intense à recrudescence nocturne", "Douleur diurne isolée", "Fièvre élevée", "Toux chronique"],
+    correctAnswer: 0,
+    explanation: "Le prurit nocturne est le signe fonctionnel majeur de la gale."
   },
   {
-    "id": "arach_51",
-    "question": "Quelle est la nourriture principale de Sarcoptes scabiei ?",
-    "options": [
-      "La kératine et les liquides tissulaires de l'épiderme",
-      "Le sang",
-      "Le sébum",
-      "Les poils"
-    ],
-    "correct": 0,
-    "explanation": "Le sarcopte n'est pas hématophage (ne boit pas de sang), il est histophage (mange les tissus).",
-    "axis": "morphology"
+    id: "gale_clin_2",
+    axis: "clinical",
+    question: "La lésion pathognomonique de la gale est :",
+    options: ["Le sillon scabieux", "La pustule profonde", "La macule pigmentée", "Le nodule vasculaire"],
+    correctAnswer: 0,
+    explanation: "Le sillon scabieux correspond au tunnel creusé par la femelle dans l’épiderme."
   },
   {
-    "id": "arach_54",
-    "question": "L'allergie à la viande rouge (Syndrome alpha-gal) peut être déclenchée par :",
-    "options": [
-      "Une morsure de tique (Amblyomma) qui sensibilise le patient à un sucre (alpha-gal)",
-      "Une piqûre de moustique",
-      "La gale",
-      "Une araignée"
-    ],
-    "correct": 0,
-    "explanation": "Phénomène émergent : la salive de la tique induit une allergie croisée avec la viande de mammifère.",
-    "axis": "morphology"
+    id: "gale_clin_3",
+    axis: "clinical",
+    question: "Les vésicules perlées correspondent à :",
+    options: ["Réaction inflammatoire au niveau du sillon", "Accumulation de pus bactérien", "Rupture vasculaire", "Allergie alimentaire"],
+    correctAnswer: 0,
+    explanation: "Les vésicules perlées sont de petites vésicules prurigineuses liées à la réaction locale."
   },
   {
-    "id": "arach_6",
-    "question": "Qu'est-ce que le 'sillon scabieux' ?",
-    "options": [
-      "Une lésion sinueuse, filiforme, de quelques millimètres, terminée par une 'perle' (l'acarien)",
-      "Une croûte noire",
-      "Un bouton rouge simple",
-      "Une morsure"
-    ],
-    "correct": 0,
-    "explanation": "C'est la lésion pathognomonique, correspondant au trajet de la femelle. On le cherche entre les doigts et aux poignets.",
-    "axis": "morphology"
+    id: "gale_clin_4",
+    axis: "clinical",
+    question: "Les localisations électives chez l’adulte sont :",
+    options: ["Espaces interdigitaux, poignets, organes génitaux", "Cuir chevelu uniquement", "Plante des pieds", "Dos uniquement"],
+    correctAnswer: 0,
+    explanation: "Les espaces interdigitaux et zones fines de la peau sont les sites préférentiels."
   },
   {
-    "id": "arach_63",
-    "question": "Les tiques Dermacentor (tiques ornées) transmettent :",
-    "options": [
-      "La Rickettsiose (TIBOLA/DEBONEL) et la Tularémie",
-      "Lyme",
-      "Le SIDA",
-      "La Gale"
-    ],
-    "correct": 0,
-    "explanation": "Elles ont un scutum orné de motifs émaillés blancs/argentés. Souvent retrouvées dans les cheveux.",
-    "axis": "morphology"
+    id: "gale_clin_5",
+    axis: "clinical",
+    question: "Chez le nourrisson, la gale atteint fréquemment :",
+    options: ["Le cuir chevelu et la paume des mains", "Uniquement les jambes", "Les ongles", "Le visage exclusivement"],
+    correctAnswer: 0,
+    explanation: "Chez le nourrisson, les localisations sont plus diffuses, incluant cuir chevelu et paumes."
   },
   {
-    "id": "arach_64",
-    "question": "La fièvre hémorragique de Crimée-Congo (FHCC) est transmise par des tiques du genre :",
-    "options": [
-      "Hyalomma",
-      "Ixodes",
-      "Argas",
-      "Sarcoptes"
-    ],
-    "correct": 0,
-    "explanation": "C'est une urgence virale grave (mortalité 30%). Hyalomma est le vecteur et réservoir.",
-    "axis": "morphology"
+    id: "gale_clin_6",
+    axis: "clinical",
+    question: "La gale norvégienne se manifeste par :",
+    options: ["Plaques croûteuses épaisses et hyperkératosiques", "Urticaire fugace", "Bulles isolées", "Nécrose cutanée"],
+    correctAnswer: 0,
+    explanation: "La gale croûteuse associe hyperkératose, croûtes et pullulation parasitaire."
   },
   {
-    "id": "arach_66",
-    "question": "Le 'signe du deltaplane' en dermatoscopie évoque :",
-    "options": [
-      "La tête et les pattes avant du sarcopte au bout du sillon (Gale)",
-      "Un pou",
-      "Une tique",
-      "Une myase"
-    ],
-    "correct": 0,
-    "explanation": "Image triangulaire caractéristique vue au dermatoscope qui confirme le diagnostic de gale.",
-    "axis": "morphology"
+    id: "gale_clin_7",
+    axis: "clinical",
+    question: "La gale norvégienne survient surtout chez :",
+    options: ["Patients immunodéprimés", "Sportifs sains", "Nouveaux-nés", "Femmes enceintes uniquement"],
+    correctAnswer: 0,
+    explanation: "Elle touche préférentiellement les sujets immunodéprimés ou institutionnalisés."
   },
   {
-    "id": "arach_69",
-    "question": "La Gale croûteuse (Norvégienne) est-elle prurigineuse ?",
-    "options": [
-      "Souvent peu ou pas prurigineuse (ce qui retarde le diagnostic)",
-      "Toujours très prurigineuse",
-      "Douloureuse",
-      "Brûlante"
-    ],
-    "correct": 0,
-    "explanation": "L'absence de grattage est justement ce qui permet l'accumulation des croûtes.",
-    "axis": "morphology"
+    id: "gale_clin_8",
+    axis: "clinical",
+    question: "Le prurit persistant après traitement s’explique par :",
+    options: ["Réaction d’hypersensibilité post-scabieuse", "Nouvelle infestation immédiate", "Échec total du traitement", "Infection fongique"],
+    correctAnswer: 0,
+    explanation: "Un prurit résiduel peut persister plusieurs semaines malgré l’éradication parasitaire."
   },
   {
-    "id": "arach_7",
-    "question": "Les zones de prédilection des lésions de la gale sont :",
-    "options": [
-      "Espaces interdigitaux, poignets, aisselles, aréoles (femme), organes génitaux (homme)",
-      "Le dos et le cuir chevelu",
-      "Les plantes de pieds uniquement",
-      "Le nez"
-    ],
-    "correct": 0,
-    "explanation": "Ce sont les zones où la peau est fine et chaude.",
-    "axis": "morphology"
+    id: "gale_clin_9",
+    axis: "clinical",
+    question: "Les lésions de grattage peuvent entraîner :",
+    options: ["Surinfection bactérienne", "Cancer cutané", "Mycose profonde", "Gangrène immédiate"],
+    correctAnswer: 0,
+    explanation: "Le grattage favorise l’impétiginisation et la surinfection bactérienne."
   },
   {
-    "id": "arach_70",
-    "question": "Le traitement de l'environnement pour les acariens (gale/poussière) nécessite une température de :",
-    "options": [
-      "60°C minimum",
-      "30°C",
-      "40°C",
-      "0°C"
-    ],
-    "correct": 0,
-    "explanation": "Les acariens résistent aux lavages tièdes. Il faut de l'eau très chaude ou de la vapeur.",
-    "axis": "morphology"
+    id: "gale_clin_10",
+    axis: "clinical",
+    question: "Le délai d’apparition des symptômes après primo-infestation est :",
+    options: ["3 à 6 semaines", "24 heures", "6 mois", "Quelques minutes"],
+    correctAnswer: 0,
+    explanation: "Le délai correspond au temps de sensibilisation immunologique."
   },
   {
-    "id": "arach_74",
-    "question": "Le Benzoate de Benzyle (Ascabiol) est :",
-    "options": [
-      "Un traitement local (lotion) de la gale",
-      "Un comprimé",
-      "Un vaccin",
-      "Un shampoing poux"
-    ],
-    "correct": 0,
-    "explanation": "C'est le traitement topique classique, à appliquer au pinceau sur tout le corps (sauf visage).",
-    "axis": "morphology"
+    id: "gale_clin_11",
+    axis: "clinical",
+    question: "Lors d’une réinfestation, les symptômes apparaissent :",
+    options: ["En 24 à 48 heures", "Après 6 semaines", "Après 6 mois", "Jamais"],
+    correctAnswer: 0,
+    explanation: "La mémoire immunitaire explique la rapidité des symptômes lors d’une réinfestation."
   },
   {
-    "id": "arach_75",
-    "question": "La perméthrine en crème est utilisée pour :",
-    "options": [
-      "Le traitement topique de la gale (Topiscab/Lyclear)",
-      "Les moustiques",
-      "Les araignées",
-      "Les serpents"
-    ],
-    "correct": 0,
-    "explanation": "Très efficace et moins irritante que le benzoate de benzyle, c'est le standard dans de nombreux pays.",
-    "axis": "morphology"
+    id: "gale_clin_12",
+    axis: "clinical",
+    question: "La gale est considérée comme :",
+    options: ["Une parasitose cutanée strictement contagieuse", "Une mycose", "Une infection virale", "Une maladie auto-immune"],
+    correctAnswer: 0,
+    explanation: "La gale est une ectoparasitose cutanée hautement contagieuse."
+  },
+
+  // =========================
+  // GALE - DIAGNOSTIC (6)
+  // =========================
+  {
+    id: "gale_diag_1",
+    axis: "diagnosis",
+    question: "L’examen diagnostique de référence est :",
+    options: ["Grattage du sillon avec mise en évidence de l’acarien", "Sérologie sanguine", "Radiographie cutanée", "Test urinaire"],
+    correctAnswer: 0,
+    explanation: "Le diagnostic repose sur l’identification directe du parasite, œufs ou déjections."
   },
   {
-    "id": "arach_82",
-    "question": "Enfant avec prurit nocturne et lésions de grattage entre les doigts. Sa mère se gratte aussi. Diagnostic ?",
-    "options": [
-      "Gale",
-      "Eczéma",
-      "Psoriasis",
-      "Varicelle"
-    ],
-    "correct": 0,
-    "explanation": "Le caractère familial et la topographie interdigitale signent la gale.",
-    "axis": "morphology"
+    id: "gale_diag_2",
+    axis: "diagnosis",
+    question: "La dermatoscopie permet :",
+    options: ["Visualisation du 'delta wing sign' du parasite", "Analyse histologique", "Culture bactérienne", "Dosage d’IgE"],
+    correctAnswer: 0,
+    explanation: "Le dermatoscope visualise le signe caractéristique en aile de delta du parasite."
   },
   {
-    "id": "arach_85",
-    "question": "Homme piqué au pied la nuit en marchant, douleur atroce immédiate, sueurs, vomissements. Diagnostic ?",
-    "options": [
-      "Envenimation scorpionique",
-      "Gale",
-      "Tique",
-      "Aoûtat"
-    ],
-    "correct": 0,
-    "explanation": "La douleur immédiate et les signes généraux (adrénergiques) évoquent le scorpion.",
-    "axis": "morphology"
+    id: "gale_diag_3",
+    axis: "diagnosis",
+    question: "La présence d’un sillon avec point noir terminal correspond :",
+    options: ["À la femelle au fond du tunnel", "À une nécrose vasculaire", "À une piqûre d’insecte", "À un comédon"],
+    correctAnswer: 0,
+    explanation: "Le point noir terminal correspond à la femelle de Sarcoptes scabiei."
   },
   {
-    "id": "arach_88",
-    "question": "Le terme 'Mite' en anglais désigne :",
-    "options": [
-      "Les Acariens (sauf les tiques)",
-      "Les Moustiques",
-      "Les Fourmis",
-      "Les Rats"
-    ],
-    "correct": 0,
-    "explanation": "House Dust Mite = Acarien de poussière. Scabies Mite = Sarcoptes.",
-    "axis": "morphology"
+    id: "gale_diag_4",
+    axis: "diagnosis",
+    question: "Le diagnostic est souvent :",
+    options: ["Clinique avant d’être parasitologique", "Radiologique", "Sérologique", "Endoscopique"],
+    correctAnswer: 0,
+    explanation: "La clinique (prurit nocturne + sillons) est fortement évocatrice."
   },
   {
-    "id": "arach_89",
-    "question": "La 'Gale des oreilles' du chat (Otodectes) peut-elle toucher l'homme ?",
-    "options": [
-      "Rarement, donne des papules passagères, mais ne s'installe pas",
-      "Oui, c'est mortel",
-      "C'est la même que la gale humaine",
-      "Non, jamais"
-    ],
-    "correct": 0,
-    "explanation": "Spécificité d'hôte. Nos oreilles ne leur conviennent pas.",
-    "axis": "morphology"
+    id: "gale_diag_5",
+    axis: "diagnosis",
+    question: "Dans la gale norvégienne, le diagnostic est :",
+    options: ["Facilité par l’abondance parasitaire", "Impossible", "Nécessite biopsie musculaire", "Nécessite PCR"],
+    correctAnswer: 0,
+    explanation: "La charge parasitaire massive rend la mise en évidence très facile."
   },
   {
-    "id": "arach_9",
-    "question": "La 'Gale Norvégienne' (hyperkératosique) survient sur quel terrain ?",
-    "options": [
-      "Sujets immunodéprimés (SIDA, corticoïdes) ou âgés grabataires",
-      "Sportifs en bonne santé",
-      "Enfants",
-      "Femmes enceintes"
-    ],
-    "correct": 0,
-    "explanation": "L'absence de grattage (déficit moteur/sensoriel) ou d'immunité permet une pullulation de millions de sarcoptes sous des croûtes épaisses.",
-    "axis": "morphology"
+    id: "gale_diag_6",
+    axis: "diagnosis",
+    question: "Un diagnostic négatif au grattage :",
+    options: ["N’élimine pas la gale", "Exclut formellement la gale", "Confirme une allergie", "Indique une mycose"],
+    correctAnswer: 0,
+    explanation: "Un prélèvement négatif n’exclut pas la gale en cas de forte suspicion clinique."
+  },
+
+  // =========================
+  // GALE - TRAITEMENT (6)
+  // =========================
+  {
+    id: "gale_treat_1",
+    axis: "treatment",
+    question: "Le traitement de référence per os est :",
+    options: ["Ivermectine", "Albendazole", "Praziquantel", "Metronidazole"],
+    correctAnswer: 0,
+    explanation: "L’ivermectine orale est très efficace, notamment dans la gale norvégienne."
   },
   {
-    "id": "arach_92",
-    "question": "L'acarophobie est :",
-    "options": [
-      "La peur irrationnelle d'être infesté par des acariens/gale (délire parasitaire)",
-      "La peur des araignées (Arachnophobie)",
-      "La peur des tiques",
-      "La peur des scorpions"
-    ],
-    "correct": 0,
-    "explanation": "Le patient s'excorie la peau pour 'enlever' des parasites invisibles.",
-    "axis": "morphology"
+    id: "gale_treat_2",
+    axis: "treatment",
+    question: "Le traitement topique classique est :",
+    options: ["Benzoate de benzyle", "Povidone iodée", "Corticoïde seul", "Antibiotique local"],
+    correctAnswer: 0,
+    explanation: "Le benzoate de benzyle est un scabicide topique de référence."
   },
   {
-    "id": "ctrl_21",
-    "question": "Contre la Gale, le traitement de l'environnement (linge) se fait par :",
-    "options": [
-      "Lavage à 60°C ou isolement en sac plastique fermé pendant 3 jours (le sarcopte meurt de faim)",
-      "Lavage à froid",
-      "Exposition au soleil 1h",
-      "Repassage seul"
-    ],
-    "correct": 0,
-    "explanation": "Indispensable pour éviter la réinfestation.",
-    "axis": "treatment"
+    id: "gale_treat_3",
+    axis: "treatment",
+    question: "Le traitement doit concerner :",
+    options: ["Tous les contacts familiaux simultanément", "Uniquement le patient", "Seulement les enfants", "Uniquement les personnes symptomatiques"],
+    correctAnswer: 0,
+    explanation: "Tous les contacts doivent être traités pour éviter les réinfestations."
   },
   {
-    "id": "ctrl_57",
-    "question": "Le débroussaillage péridomestique (autour de la maison) est efficace contre :",
-    "options": [
-      "Les Tsé-tsé (Glossines) et les moustiques exophiles qui se reposent dans la végétation basse",
-      "Les poux",
-      "Les punaises de lit",
-      "Les sarcoptes"
-    ],
-    "correct": 0,
-    "explanation": "Créer une 'zone tampon' sans végétation réduit le contact vecteur-homme.",
-    "axis": "treatment"
+    id: "gale_treat_4",
+    axis: "treatment",
+    question: "Le linge doit être :",
+    options: ["Lavé à ≥ 60°C ou isolé 72h", "Simplement aéré", "Jeté systématiquement", "Désinfecté à l’alcool"],
+    correctAnswer: 0,
+    explanation: "Le parasite ne survit pas au lavage chaud ou à l’isolement prolongé."
   },
   {
-    "id": "dipt_125",
-    "question": "Le Prurigo strophulus est :",
-    "options": [
-      "Une hypersensibilité retardée aux piqûres d'insectes (moustiques/puces) créant des papules persistantes",
-      "Une gale",
-      "Un pou",
-      "Une myase"
-    ],
-    "correct": 0,
-    "explanation": "Fréquent chez l'enfant atopique. Lésions de grattage chroniques.",
-    "axis": "morphology"
+    id: "gale_treat_5",
+    axis: "treatment",
+    question: "Dans la gale norvégienne, le traitement associe :",
+    options: ["Ivermectine orale + topique scabicide", "Antibiotique seul", "Corticoïde seul", "Antifongique"],
+    correctAnswer: 0,
+    explanation: "Une bithérapie est nécessaire vu la charge parasitaire massive."
   },
   {
-    "id": "dipt_63",
-    "question": "Les Glossines du groupe 'palpalis' (riveraines) vivent :",
-    "options": [
-      "Dans les forêts galeries le long des cours d'eau (Vecteurs de T.b. gambiense)",
-      "Dans la savane sèche",
-      "En ville",
-      "En montagne"
-    ],
-    "correct": 0,
-    "explanation": "Elles transmettent la forme chronique (Gambiense) en Afrique de l'Ouest et Centrale.",
-    "axis": "morphology"
-  },
-  {
-    "id": "dipt_82",
-    "question": "Oestrus ovis est responsable de :",
-    "options": [
-      "Myase cavitaire (ophtalmomyase ou nasale) chez le mouton et l'homme (accidentel)",
-      "Myase furonculeuse",
-      "Myase des plaies",
-      "Gale"
-    ],
-    "correct": 0,
-    "explanation": "La mouche éjecte directement des larves (vivipare) dans les narines ou les yeux (en volant) des moutons ou des bergers.",
-    "axis": "morphology"
-  },
-  {
-    "id": "med_ent_8",
-    "question": "La transmission par régurgitation concerne :",
-    "options": [
-      "La Peste (Puce)",
-      "Le Paludisme",
-      "La Gale",
-      "L'Onchocercose"
-    ],
-    "correct": 0,
-    "explanation": "Le blocage du proventricule force la puce à vomir le sang et les bactéries dans la plaie.",
-    "axis": "biology"
-  },
-  {
-    "id": "other_19",
-    "question": "Xenopsylla cheopis est le vecteur principal de :",
-    "options": [
-      "La Peste bubonique (Yersinia pestis) et du Typhus murin",
-      "La Gale",
-      "La Dengue",
-      "Le SIDA"
-    ],
-    "correct": 0,
-    "explanation": "C'est la puce du rat noir. Elle transmet la peste du rat à l'homme quand les rats meurent (épizootie).",
-    "axis": "morphology"
-  },
-  {
-    "id": "other_56",
-    "question": "Les chiens renifleurs sont utilisés pour :",
-    "options": [
-      "Détecter les foyers de punaises de lit cachés avec une grande précision",
-      "Détecter les poux",
-      "Détecter la gale",
-      "Chasser les rats"
-    ],
-    "correct": 0,
-    "explanation": "Méthode de diagnostic moderne très efficace pour cibler le traitement.",
-    "axis": "morphology"
-  },
-  {
-    "id": "other_65",
-    "question": "Devant un prurit du cuir chevelu sans poux ni lentes visibles, il faut penser à :",
-    "options": [
-      "Psoriasis, Dermite séborrhéique, ou Eczéma de contact",
-      "Gale",
-      "Paludisme",
-      "Teigne"
-    ],
-    "correct": 0,
-    "explanation": "Les pellicules (squames) se détachent facilement, contrairement aux lentes collées.",
-    "axis": "morphology"
-  },
-  {
-    "id": "other_9",
-    "question": "Le Pou de corps est le vecteur historique de :",
-    "options": [
-      "Le Typhus exanthématique (Rickettsia prowazekii)",
-      "La Peste",
-      "Le Paludisme",
-      "La Gale"
-    ],
-    "correct": 0,
-    "explanation": "Il a causé des millions de morts lors des guerres et famines (froid + manque d'hygiène = pas de change de vêtements).",
-    "axis": "morphology"
+    id: "gale_treat_6",
+    axis: "treatment",
+    question: "Le prurit post-traitement peut être soulagé par :",
+    options: ["Antihistaminiques et dermocorticoïdes", "Nouvelle dose systématique d’ivermectine", "Antibiotiques", "Antifongiques"],
+    correctAnswer: 0,
+    explanation: "Le prurit résiduel est inflammatoire et justifie un traitement symptomatique."
   }
 ];
