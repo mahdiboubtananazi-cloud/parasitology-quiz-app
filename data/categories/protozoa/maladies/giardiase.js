@@ -1,1214 +1,1011 @@
-// data/categories/protozoa/maladies/giardiase.js
-// Questions related to giardiase extracted from all axis files
-
-export const questions = [
+// ==========================================
+// 1. MORPHOLOGIE (15 Questions)
+// ==========================================
+const morphologyQuestions = [
   {
-    "id": "p_class_6",
-    "question": "L'ordre des Kinetoplastida inclut quels genres importants ?",
+    "id": "giardia_morph_1",
+    "axis": "morphology",
+    "question": "Quelle structure caractéristique permet à Giardia de se fixer à l'épithélium intestinal ?",
     "options": [
-      "Trypanosoma et Leishmania",
-      "Giardia et Trichomonas",
-      "Entamoeba et Endolimax",
-      "Plasmodium et Babesia"
+      "Le disque adhésif (ventral)",
+      "Le rostre apical",
+      "Les pseudopodes",
+      "La membrane ondulante"
     ],
-    "correct": 0,
-    "explanation": "Les Kinetoplastida se caractérisent par la présence d'un kinétoplaste (ADN mitochondrial condensé) à la base du flagelle.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Le disque adhésif ventral permet l’adhérence mécanique de Giardia aux entérocytes."
   },
   {
-    "id": "p_class_7",
-    "question": "Giardia intestinalis appartient à l'ordre des :",
+    "id": "giardia_morph_2",
+    "axis": "morphology",
+    "question": "Quelle est la forme générale du trophozoïte de Giardia en microscopie ?",
     "options": [
-      "Diplomonadida",
-      "Trichomonadida",
-      "Kinetoplastida",
-      "Amoebida"
+      "En poire, symétrique bilatérale",
+      "Arrondie irrégulière",
+      "Allongée fusiforme",
+      "Amoeboïde"
     ],
-    "correct": 0,
-    "explanation": "Les Diplomonadida sont caractérisés par une symétrie bilatérale, deux noyaux et pas de mitochondries classiques.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Le trophozoïte a une forme piriforme très caractéristique avec symétrie bilatérale."
   },
   {
-    "id": "p_class_9",
-    "question": "Quel flagellé est classé parmi les 'Flagellés intestinaux non pathogènes' (Commensaux) ?",
+    "id": "giardia_morph_3",
+    "axis": "morphology",
+    "question": "Combien de noyaux possède le trophozoïte de Giardia ?",
     "options": [
-      "Chilomastix mesnili",
-      "Giardia intestinalis",
-      "Leishmania donovani",
-      "Trypanosoma brucei"
+      "Deux noyaux",
+      "Un seul noyau",
+      "Quatre noyaux",
+      "Huit noyaux"
     ],
-    "correct": 0,
-    "explanation": "Chilomastix mesnili est un commensal fréquent du côlon, témoin de péril fécal mais non pathogène.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Les deux noyaux donnent un aspect de « visage » typique."
   },
   {
-    "id": "p_class_12",
-    "question": "Les amibes libres pathogènes ('Amphizoïques') incluent les genres :",
+    "id": "giardia_morph_4",
+    "axis": "morphology",
+    "question": "Quel élément cytosquelettique est visible sous forme de lignes médianes chez Giardia ?",
     "options": [
-      "Naegleria, Acanthamoeba, Balamuthia",
-      "Entamoeba, Endolimax, Iodamoeba",
-      "Giardia, Trichomonas",
-      "Plasmodium, Babesia"
+      "Axonèmes et corps médians",
+      "Kinétoplaste",
+      "Microsporidies",
+      "Vacuoles digestives"
     ],
-    "correct": 0,
-    "explanation": "Ce sont des amibes qui vivent librement dans l'environnement (eau, sol) mais peuvent parasiter l'homme accidentellement.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Les axonèmes correspondent aux structures internes des flagelles."
   },
   {
-    "id": "p_class_16",
-    "question": "La classe des Coccidea (Coccidies) inclut les genres :",
+    "id": "giardia_morph_5",
+    "axis": "morphology",
+    "question": "Combien de flagelles possède le trophozoïte de Giardia ?",
     "options": [
-      "Toxoplasma, Isospora, Cryptosporidium",
-      "Plasmodium, Babesia",
-      "Entamoeba, Giardia",
-      "Leishmania, Trypanosoma"
+      "Huit flagelles",
+      "Quatre flagelles",
+      "Six flagelles",
+      "Deux flagelles"
     ],
-    "correct": 0,
-    "explanation": "Ce sont des parasites intracellulaires obligatoires de l'épithélium intestinal (sauf Toxoplasma qui est tissulaire).",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Les 8 flagelles assurent la mobilité caractéristique en chute de feuille."
   },
   {
-    "id": "p_class_22",
-    "question": "Les protozoaires 'Monoxènes' (cycle direct) incluent :",
+    "id": "giardia_morph_6",
+    "axis": "morphology",
+    "question": "Quelle est la taille approximative du trophozoïte de Giardia ?",
     "options": [
-      "Entamoeba histolytica et Giardia lamblia",
-      "Plasmodium falciparum",
-      "Trypanosoma brucei",
-      "Leishmania infantum"
+      "10–20 µm",
+      "2–5 µm",
+      "30–50 µm",
+      "60–100 µm"
     ],
-    "correct": 0,
-    "explanation": "Ils se transmettent directement d'homme à homme (ou via l'environnement) sans passer par un autre animal ou vecteur.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Cette taille permet son observation en microscopie optique standard."
   },
   {
-    "id": "p_class_26",
-    "question": "Les 'Excavata' sont un super-groupe d'eucaryotes incluant :",
+    "id": "giardia_morph_7",
+    "axis": "morphology",
+    "question": "Quelle est la forme du kyste de Giardia ?",
     "options": [
-      "Giardia, Trichomonas, Trypanosoma",
-      "Amoebozoa",
-      "Opisthokonta",
-      "Archaeplastida"
+      "Ovale à ellipsoïde",
+      "Sphérique parfaite",
+      "Allongée fusiforme",
+      "Irrégulière"
     ],
-    "correct": 0,
-    "explanation": "C'est un groupe majeur caractérisé par une structure de 'sillon ventral' (excavation) primitive, incluant la plupart des flagellés parasites.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Le kyste est bien délimité, ovale, avec paroi épaisse."
   },
   {
-    "id": "p_class_27",
-    "question": "Le super-groupe 'Amoebozoa' contient :",
+    "id": "giardia_morph_8",
+    "axis": "morphology",
+    "question": "Combien de noyaux contient le kyste mûr de Giardia ?",
     "options": [
-      "Entamoeba et Acanthamoeba",
-      "Giardia",
-      "Plasmodium",
-      "Leishmania"
+      "Quatre noyaux",
+      "Deux noyaux",
+      "Un noyau",
+      "Huit noyaux"
     ],
-    "correct": 0,
-    "explanation": "Ce groupe rassemble les organismes se déplaçant par pseudopodes lobés (Lobosea).",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Le kyste mature tétranucléé est la forme infestante."
   },
   {
-    "id": "p_class_45",
-    "question": "Lequel est un flagellé urogénital ?",
+    "id": "giardia_morph_9",
+    "axis": "morphology",
+    "question": "Quel élément morphologique est souvent visible dans le kyste de Giardia ?",
     "options": [
-      "Trichomonas vaginalis",
-      "Giardia intestinalis",
-      "Trypanosoma brucei",
-      "Leishmania"
+      "Axonèmes repliés",
+      "Pseudopodes",
+      "Hématies phagocytées",
+      "Capsule polysaccharidique"
     ],
-    "correct": 0,
-    "explanation": "C'est la seule IST majeure causée par un protozoaire, colonisant le vagin et l'urètre.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Les axonèmes et corps médians sont visibles à l’intérieur du kyste."
   },
   {
-    "id": "p_class_49",
-    "question": "Les 'Hémoflagellés' incluent :",
+    "id": "giardia_morph_10",
+    "axis": "morphology",
+    "question": "Quelle coloration est classiquement utilisée pour visualiser Giardia dans les selles ?",
     "options": [
-      "Trypanosoma et Leishmania",
-      "Plasmodium et Babesia",
-      "Giardia et Trichomonas",
-      "Entamoeba"
+      "Coloration au trichrome",
+      "Ziehl-Neelsen",
+      "Gram",
+      "Giemsa sanguin"
     ],
-    "correct": 0,
-    "explanation": "Ce sont des flagellés qui vivent dans le sang ou les tissus profonds (système réticulo-endothélial).",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Le trichrome met bien en évidence les structures internes."
   },
   {
-    "id": "p_class_52",
-    "question": "Les Phlébotomes (Sandflies) sont les vecteurs biologiques de :",
+    "id": "giardia_morph_11",
+    "axis": "morphology",
+    "question": "Quel aspect est typique du trophozoïte vivant en microscopie directe ?",
     "options": [
-      "Leishmania",
-      "Trypanosoma",
-      "Plasmodium",
-      "Giardia"
+      "Mouvement en chute de feuille",
+      "Mouvement amiboïde lent",
+      "Immobilté totale",
+      "Rotation rapide sur lui-même"
     ],
-    "correct": 0,
-    "explanation": "Ces petits moucherons velus transmettent la leishmaniose lors de leur repas sanguin.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Ce mouvement est très évocateur de Giardia."
   },
   {
-    "id": "p_class_55",
-    "question": "Le chat (Félidés) est l'hôte définitif exclusif de :",
+    "id": "giardia_morph_12",
+    "axis": "morphology",
+    "question": "Quel est le principal critère morphologique permettant de différencier Giardia d’une amibe ?",
     "options": [
-      "Toxoplasma gondii",
-      "Giardia",
-      "Plasmodium",
-      "Leishmania"
+      "Symétrie bilatérale et flagelles",
+      "Présence de pseudopodes",
+      "Hématophagie",
+      "Taille supérieure à 30 µm"
     ],
-    "correct": 0,
-    "explanation": "C'est seulement dans l'intestin du chat que la reproduction sexuée de Toxoplasma a lieu (production d'oocystes).",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Giardia est un flagellé, contrairement aux amibes."
   },
   {
-    "id": "p_class_56",
-    "question": "Les Diplomonadines (ex: Giardia) se caractérisent par la possession de :",
+    "id": "giardia_morph_13",
+    "axis": "morphology",
+    "question": "Où se situe principalement le trophozoïte de Giardia dans l’intestin ?",
     "options": [
-      "2 noyaux (caryomastigotes) et une symétrie bilatérale",
-      "1 seul noyau",
-      "De nombreux noyaux",
-      "Aucun noyau"
+      "Duodénum et jéjunum proximal",
+      "Côlon sigmoïde",
+      "Iléon terminal",
+      "Rectum"
     ],
-    "correct": 0,
-    "explanation": "Le terme 'Diplo-monas' signifie littéralement 'deux unités', référant aux deux noyaux symétriques.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Giardia se fixe préférentiellement sur l’intestin grêle proximal."
   },
   {
-    "id": "p_class_59",
-    "question": "Les Coccidies intestinales incluent trois genres majeurs pathogènes pour l'homme :",
+    "id": "giardia_morph_14",
+    "axis": "morphology",
+    "question": "Quelle structure est absente chez Giardia par rapport à de nombreux protozoaires ?",
     "options": [
-      "Cryptosporidium, Cyclospora, Cystoisospora",
-      "Giardia, Entamoeba, Trichomonas",
-      "Plasmodium, Babesia, Toxoplasma",
-      "Leishmania, Trypanosoma"
+      "Mitochondries classiques",
+      "Noyau",
+      "Cytosquelette",
+      "Flagelles"
     ],
-    "correct": 0,
-    "explanation": "Ce trio forme le groupe des coccidies causant des diarrhées, souvent opportunistes.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Giardia possède des mitosomes, formes très réduites de mitochondries."
   },
   {
-    "id": "p_class_61",
-    "question": "Un parasite 'Cosmopolite' est un parasite qui :",
+    "id": "giardia_morph_15",
+    "axis": "morphology",
+    "question": "Quelle caractéristique morphologique explique la non-invasivité de Giardia ?",
     "options": [
-      "Est présent partout dans le monde",
-      "Vit dans les villes",
-      "Vit dans l'espace",
-      "Est rare"
+      "Absence de pénétration tissulaire",
+      "Présence de pseudopodes",
+      "Hématophagie active",
+      "Multiplication intracellulaire"
     ],
-    "correct": 0,
-    "explanation": "Ex: Giardia intestinalis et Cryptosporidium sont trouvés sur tous les continents.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_63",
-    "question": "Lequel est un parasite 'Xénophile' (transmis par vecteur) ?",
-    "options": [
-      "Plasmodium",
-      "Giardia",
-      "Entamoeba",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "Giardia, Entamoeba et Trichomonas sont transmis directement (eau/contact). Plasmodium nécessite un vecteur.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_65",
-    "question": "Les parasites 'Intracellulaires obligatoires' ne peuvent vivre qu'à l'intérieur d'une cellule. Ex :",
-    "options": [
-      "Toxoplasma, Plasmodium, Leishmania",
-      "Giardia, Trichomonas",
-      "Entamoeba, Balantidium",
-      "Trypanosoma (stade sanguin)"
-    ],
-    "correct": 0,
-    "explanation": "Ils ont besoin de la machinerie cellulaire hôte pour se diviser et se cacher du système immunitaire.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_71",
-    "question": "Groupe : Flagellé sanguin transmis par piqûre. Lequel ?",
-    "options": [
-      "Trypanosoma",
-      "Giardia",
-      "Trichomonas",
-      "Entamoeba"
-    ],
-    "correct": 0,
-    "explanation": "Trypanosoma vit dans le plasma sanguin.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_72",
-    "question": "Groupe : Protozoaire tissulaire causant des malformations fœtales. Lequel ?",
-    "options": [
-      "Toxoplasma gondii",
-      "Plasmodium",
-      "Leishmania",
-      "Giardia"
-    ],
-    "correct": 0,
-    "explanation": "La toxoplasmose congénitale est le danger majeur de ce parasite.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_75",
-    "question": "Groupe : Flagellé commensal de la bouche. Lequel ?",
-    "options": [
-      "Trichomonas tenax",
-      "Trichomonas vaginalis",
-      "Giardia",
-      "Chilomastix"
-    ],
-    "correct": 0,
-    "explanation": "Il vit dans le tartre dentaire et les poches parodontales.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_82",
-    "question": "Quel protozoaire a un cycle 'Dixène' (deux hôtes) ?",
-    "options": [
-      "Leishmania (Homme + Phlébotome)",
-      "Giardia (Homme)",
-      "Entamoeba (Homme)",
-      "Trichomonas (Homme)"
-    ],
-    "correct": 0,
-    "explanation": "Leishmania alterne obligatoirement entre un vertébré et un insecte vecteur.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_85",
-    "question": "Lequel appartient au groupe des 'Stramenopiles' ?",
-    "options": [
-      "Blastocystis",
-      "Giardia",
-      "Entamoeba",
-      "Leishmania"
-    ],
-    "correct": 0,
-    "explanation": "Comme vu précédemment, Blastocystis est un hétéroconte (algue sans chlorophylle).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_87",
-    "question": "Les protozoaires 'Anaérobies' (ex: Entamoeba, Giardia) vivent :",
-    "options": [
-      "Sans oxygène (fermentation)",
-      "Avec beaucoup d'oxygène",
-      "Dans le sang artériel",
-      "Sur la peau"
-    ],
-    "correct": 0,
-    "explanation": "C'est pourquoi le Métronidazole (actif en anaérobiose) est le traitement de choix.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_98",
-    "question": "Lequel est un eucaryote 'primitif' sans mitochondries (perte secondaire) ?",
-    "options": [
-      "Giardia intestinalis",
-      "Plasmodium",
-      "Paramecium",
-      "Euglena"
-    ],
-    "correct": 0,
-    "explanation": "Giardia a perdu ses mitochondries au cours de l'évolution pour s'adapter à la vie anaérobie (mitosomes).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_99",
-    "question": "La classe des Litostomatea inclut le genre :",
-    "options": [
-      "Balantidium",
-      "Entamoeba",
-      "Giardia",
-      "Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "C'est la classe taxonomique précise de Balantidium coli.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_morph_1",
-    "question": "Quelle est la forme caractéristique du trophozoïte de Giardia intestinalis vue de face ?",
-    "options": [
-      "En forme de cerf-volant ou de poire",
-      "Arrondie et sphérique",
-      "Allongée en fuseau",
-      "Irrégulière (amiboïde)"
-    ],
-    "correct": 0,
-    "explanation": "De face, Giardia a une forme piriforme (en poire) ou de cerf-volant, avec une symétrie bilatérale parfaite.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_2",
-    "question": "Combien de noyaux possède le kyste mûr de Giardia intestinalis ?",
-    "options": [
-      "4 noyaux",
-      "2 noyaux",
-      "8 noyaux",
-      "1 noyau"
-    ],
-    "correct": 0,
-    "explanation": "Le kyste mûr et infectant de Giardia contient 4 noyaux, souvent regroupés à un pôle.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_5",
-    "question": "Quel organite rigide traverse le corps de Trichomonas vaginalis et dépasse à l'extrémité postérieure ?",
-    "options": [
-      "L'axostyle",
-      "Le kinétoplaste",
-      "Le corps parabasal",
-      "Le cytostome"
-    ],
-    "correct": 0,
-    "explanation": "L'axostyle est une baguette rigide de soutien qui traverse le parasite et dépasse en arrière comme une pointe.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_7",
-    "question": "Les corps parabasaux en forme de virgule sont caractéristiques de :",
-    "options": [
-      "Giardia intestinalis",
-      "Entamoeba histolytica",
-      "Plasmodium falciparum",
-      "Cryptosporidium"
-    ],
-    "correct": 0,
-    "explanation": "Giardia possède deux corps parabasaux médians, souvent en forme de virgule ou de marteau, visibles au centre.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_20",
-    "question": "Quel parasite possède un flagelle qui ne sort PAS de la poche flagellaire ?",
-    "options": [
-      "Leishmania (forme amastigote)",
-      "Trichomonas",
-      "Giardia",
-      "Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "Dans la forme amastigote de Leishmania, le flagelle est très court et reste caché à l'intérieur de la poche flagellaire.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_55",
-    "question": "L'autofluorescence bleue sous lumière UV est une propriété caractéristique de :",
-    "options": [
-      "Cyclospora cayetanensis",
-      "Cryptosporidium hominis",
-      "Entamoeba histolytica",
-      "Giardia lamblia"
-    ],
-    "correct": 0,
-    "explanation": "La paroi de l'oocyste de Cyclospora est autofluorescente, ce qui permet un diagnostic rapide sous microscope à fluorescence.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_76",
-    "question": "Quel protozoaire possède un appareil de Golgi géant appelé 'corps parabasal' ?",
-    "options": [
-      "Les flagellés (Trichomonas, Giardia)",
-      "Les amibes",
-      "Les sporozoaires",
-      "Les ciliés"
-    ],
-    "correct": 0,
-    "explanation": "C'est une structure de soutien associée au kinétosome, très développée chez les flagellés parabasaliens.",
-    "axis": "morphology"
-  },
+    "correctAnswer": 0,
+    "explanation": "Giardia reste strictement luminale, fixée à la muqueuse sans l’envahir."
+  }
+];
+// ==========================================
+// 2. CYCLE DE VIE (15 Questions)
+// ==========================================
+const lifecycleQuestions = [
   {
-    "id": "p_morph_81",
-    "question": "La coloration de Gomori-Grocott (argentique) est utile pour visualiser les kystes de :",
+    "id": "giardia_cycle_1",
+    "axis": "lifecycle",
+    "question": "Quelle est la forme infestante responsable de la transmission de la giardiase ?",
     "options": [
-      "Pneumocystis jirovecii (classé fongique mais étudié en parasito)",
-      "Giardia",
-      "Plasmodium",
-      "Entamoeba"
+      "Le kyste mûr",
+      "Le trophozoïte",
+      "Le prékyste",
+      "La forme flagellée libre"
     ],
-    "correct": 0,
-    "explanation": "Elle colore la paroi des kystes en noir. Pneumocystis a été reclassé comme champignon mais reste traité en parasitologie médicale.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Seul le kyste est capable de survivre dans le milieu extérieur et d’initier l’infection."
   },
   {
-    "id": "p_morph_83",
-    "question": "Le kyste de Giardia est très résistant grâce à :",
+    "id": "giardia_cycle_2",
+    "axis": "lifecycle",
+    "question": "Quelle est la dose infectante minimale approximative de Giardia chez l’homme ?",
     "options": [
-      "Sa paroi épaisse constituée de filaments de N-acétylgalactosamine",
-      "Sa capsule lipidique",
-      "Ses cils",
-      "Son noyau"
+      "10 à 100 kystes",
+      "Plus de 1 000 kystes",
+      "Un seul trophozoïte",
+      "Plus de 10 000 kystes"
     ],
-    "correct": 0,
-    "explanation": "Cette paroi fibrillaire épaisse lui permet de survivre des mois dans l'eau froide.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "La dose infectante est très faible, ce qui explique la grande contagiosité."
   },
   {
-    "id": "p_morph_86",
-    "question": "Laquelle de ces formes n'est JAMAIS trouvée dans les selles ?",
+    "id": "giardia_cycle_3",
+    "axis": "lifecycle",
+    "question": "Où a lieu l’excystation du kyste de Giardia après ingestion ?",
     "options": [
-      "Trophozoïte de Plasmodium",
-      "Kyste d'Entamoeba",
-      "Oocyste de Cryptosporidium",
-      "Trophozoïte de Giardia (diarrhée)"
+      "Dans le duodénum",
+      "Dans l’estomac",
+      "Dans le côlon",
+      "Dans le jéjunum distal"
     ],
-    "correct": 0,
-    "explanation": "Plasmodium est un parasite sanguin strict chez l'homme, il ne passe jamais dans le tube digestif.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "L’environnement biliaire et alcalin du duodénum favorise l’excystation."
   },
   {
-    "id": "p_morph_93",
-    "question": "Quel parasite présente un 'bouton' ou 'bouchon' polaire visible sur ses oocystes (bien que rare) ?",
+    "id": "giardia_cycle_4",
+    "axis": "lifecycle",
+    "question": "Quel est l’habitat principal du trophozoïte de Giardia chez l’homme ?",
     "options": [
-      "Aucun protozoaire (c'est typique des œufs d'helminthes)",
-      "Giardia",
-      "Entamoeba",
-      "Balantidium"
+      "Duodénum et jéjunum proximal",
+      "Estomac",
+      "Côlon",
+      "Voies biliaires"
     ],
-    "correct": 0,
-    "explanation": "Piège ! Les bouchons polaires sont typiques des œufs de Trichuris (helminthe), pas des protozoaires.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Giardia se fixe préférentiellement sur la muqueuse de l’intestin grêle proximal."
   },
   {
-    "id": "p_morph_99",
-    "question": "Un trophozoïte avec 2 noyaux ayant chacun un gros caryosome fragmenté (en 4-8 granules) est :",
+    "id": "giardia_cycle_5",
+    "axis": "lifecycle",
+    "question": "Quel mécanisme permet la multiplication de Giardia dans l’intestin ?",
     "options": [
-      "Dientamoeba fragilis",
-      "Giardia",
-      "Entamoeba coli",
-      "Endolimax"
+      "Division binaire longitudinale",
+      "Schizogonie",
+      "Bourgeonnement",
+      "Sporogonie"
     ],
-    "correct": 0,
-    "explanation": "C'est l'aspect typique des noyaux de Dientamoeba (caryosome fragmenté en 'motte').",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Giardia se multiplie par simple fission binaire."
   },
   {
-    "id": "p_morph_115",
-    "question": "Le 'basket form' (forme en panier) est une variante morphologique de :",
+    "id": "giardia_cycle_6",
+    "axis": "lifecycle",
+    "question": "À quel moment du transit intestinal se produit l’enkystement ?",
     "options": [
-      "Trophozoïte jeune de Plasmodium",
-      "Kyste de Giardia",
-      "Oocyste de Toxoplasma",
-      "Amastigote"
+      "Lors du passage vers le côlon",
+      "Dès l’arrivée dans le duodénum",
+      "Dans l’estomac",
+      "Uniquement hors de l’hôte"
     ],
-    "correct": 0,
-    "explanation": "C'est une forme annulaire de Plasmodium dont le cytoplasme forme une anse fine ressemblant à un panier.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "La déshydratation progressive favorise l’enkystement."
   },
   {
-    "id": "p_morph_120",
-    "question": "Cyclospora cayetanensis est souvent confondu avec :",
+    "id": "giardia_cycle_7",
+    "axis": "lifecycle",
+    "question": "Quelles formes sont éliminées dans les selles ?",
     "options": [
-      "Cryptosporidium (mais Cyclospora est plus grand : 8-10 µm)",
-      "Giardia",
-      "Isospora",
-      "Microsporidies"
+      "Principalement les kystes",
+      "Uniquement les trophozoïtes",
+      "Uniquement les formes immatures",
+      "Aucune forme viable"
     ],
-    "correct": 0,
-    "explanation": "Morphologiquement similaires (ronds, rouges au Ziehl), mais Cyclospora est deux fois plus grand (8-10 µm) que Cryptosporidium (4-5 µm).",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Les kystes sont responsables de la contamination environnementale."
   },
   {
-    "id": "p_morph_126",
-    "question": "Sur une coupe histologique de l'intestin, Giardia se trouve :",
+    "id": "giardia_cycle_8",
+    "axis": "lifecycle",
+    "question": "Quel mode de transmission est le plus fréquent de la giardiase ?",
     "options": [
-      "À la surface de l'épithélium (lumière)",
-      "Dans le chorion (profond)",
-      "Dans les vaisseaux sanguins",
-      "Dans les cellules musculaires"
+      "Transmission hydrique",
+      "Transmission vectorielle",
+      "Transmission sexuelle exclusive",
+      "Transmission transplacentaire"
     ],
-    "correct": 0,
-    "explanation": "Giardia est un parasite de surface, il tapisse la muqueuse mais n'envahit pas les tissus profonds (non invasif).",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "L’eau contaminée est un mode majeur de transmission."
   },
   {
-    "id": "p_morph_132",
-    "question": "Lequel est le plus grand flagellé intestinal ?",
+    "id": "giardia_cycle_9",
+    "axis": "lifecycle",
+    "question": "Quel autre mode de transmission est particulièrement important en collectivité ?",
     "options": [
-      "Giardia intestinalis",
-      "Trichomonas hominis",
-      "Chilomastix mesnili",
-      "Retortamonas intestinalis"
+      "Transmission interhumaine manuportée",
+      "Transmission aérienne",
+      "Transmission par arthropodes",
+      "Transmission par aliments cuits"
     ],
-    "correct": 0,
-    "explanation": "Giardia (10-20 µm) est généralement le plus grand et le plus massif des flagellés intestinaux communs.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Les mains sales jouent un rôle clé, surtout chez les enfants."
   },
   {
-    "id": "p_morph_136",
-    "question": "Au microscope électronique, la surface de Giardia montre des :",
+    "id": "giardia_cycle_10",
+    "axis": "lifecycle",
+    "question": "Pourquoi les épidémies de giardiase sont-elles fréquentes ?",
     "options": [
-      "Vacuoles périphériques spécifiques",
-      "Mitosomes",
-      "Épines",
-      "Cils"
+      "Faible dose infectante et kystes résistants",
+      "Parasite très fragile",
+      "Transmission uniquement sexuelle",
+      "Immunité durable après infection"
     ],
-    "correct": 0,
-    "explanation": "Giardia possède des vésicules périphériques sous la membrane dorsale impliquées dans l'endocytose/exocytose.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Quelques kystes suffisent pour déclencher une infection."
   },
   {
-    "id": "p_morph_137",
-    "question": "Les 'Mitosomes' sont des organites dérivés des mitochondries trouvés chez :",
+    "id": "giardia_cycle_11",
+    "axis": "lifecycle",
+    "question": "Quelle caractéristique des kystes favorise la transmission hydrique ?",
     "options": [
-      "Giardia et Entamoeba",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
+      "Résistance au chlore",
+      "Multiplication dans l’eau",
+      "Mobilité active",
+      "Fragilité thermique"
     ],
-    "correct": 0,
-    "explanation": "Ces parasites anaérobies ont réduit leurs mitochondries en mitosomes, qui ne font pas de phosphorylation oxydative.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Les kystes résistent aux concentrations habituelles de chlore."
   },
   {
-    "id": "p_morph_138",
-    "question": "Le 'Glycocalyx' de surface est particulièrement épais et immunogène chez :",
+    "id": "giardia_cycle_12",
+    "axis": "lifecycle",
+    "question": "Quel réservoir est principalement impliqué dans la giardiase humaine ?",
     "options": [
-      "Trypanosoma brucei (VSG)",
-      "Entamoeba",
-      "Giardia",
-      "Trichomonas"
+      "L’homme",
+      "Les oiseaux",
+      "Les poissons",
+      "Les insectes"
     ],
-    "correct": 0,
-    "explanation": "La couche de VSG (Variant Surface Glycoprotein) forme un manteau dense qui protège le trypanosome du système immunitaire.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "La transmission est surtout anthroponotique."
   },
   {
-    "id": "p_morph_142",
-    "question": "Identification : Kyste ovale, 8-10 µm, 4 petits noyaux (bouton), pas de corps chromatoïdes. Diagnostic ?",
+    "id": "giardia_cycle_13",
+    "axis": "lifecycle",
+    "question": "Quel facteur favorise la chronicité de l’infection à Giardia ?",
     "options": [
-      "Endolimax nana",
-      "Entamoeba hartmanni",
-      "Giardia",
-      "Chilomastix"
+      "Réinfection fréquente et persistance des kystes",
+      "Multiplication sanguine",
+      "Invasion tissulaire",
+      "Transformation en forme dormante intracellulaire"
     ],
-    "correct": 0,
-    "explanation": "C'est typique d'Endolimax nana (nana = nain/petit).",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Les réinfections sont fréquentes en zone d’endémie."
   },
   {
-    "id": "p_morph_144",
-    "question": "Identification : Trophozoïte en 'feuille tombante', mobile, 2 noyaux. Diagnostic ?",
+    "id": "giardia_cycle_14",
+    "axis": "lifecycle",
+    "question": "Quel élément explique l’absence de phase sanguine chez Giardia ?",
     "options": [
-      "Giardia intestinalis",
-      "Trichomonas",
-      "Chilomastix",
-      "Entamoeba"
+      "Cycle strictement luminal intestinal",
+      "Besoin d’un vecteur",
+      "Multiplication intracellulaire",
+      "Phase hépatique obligatoire"
     ],
-    "correct": 0,
-    "explanation": "Le mouvement typique de Giardia est décrit comme une feuille morte tombant d'un arbre (falling leaf motility).",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Giardia reste confinée à la lumière intestinale."
   },
   {
-    "id": "p_morph_149",
-    "question": "Identification : Trophozoïte avec une membrane ondulante sur TOUTE la longueur du corps. Espèce ?",
+    "id": "giardia_cycle_15",
+    "axis": "lifecycle",
+    "question": "Quel contexte favorise particulièrement la transmission de Giardia ?",
     "options": [
-      "Pentatrichomonas hominis (ou T. hominis)",
-      "Trichomonas vaginalis",
-      "Trichomonas tenax",
-      "Giardia"
+      "Collectivités d’enfants et mauvaise hygiène",
+      "Zones froides exclusivement",
+      "Milieux hospitaliers stériles",
+      "Contacts avec les moustiques"
     ],
-    "correct": 0,
-    "explanation": "Chez T. hominis, la membrane ondulante longe tout le corps et le flagelle devient libre à la fin, contrairement à T. vaginalis.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_150",
-    "question": "Identification : Petit kyste 'en citron' (6-8 µm) avec un bouchon muqueux. Diagnostic ?",
-    "options": [
-      "Chilomastix mesnili",
-      "Giardia",
-      "Retortamonas",
-      "Enteromonas"
-    ],
-    "correct": 0,
-    "explanation": "La forme de citron (lemon-shaped) est la signature de Chilomastix mesnili.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_patho_1",
-    "question": "Quel est le mécanisme pathogène principal de Giardia intestinalis ?",
-    "options": [
-      "Atrophie villositaire et malabsorption (Mécanisme de couverture)",
-      "Invasion profonde et ulcération",
-      "Lyse des érythrocytes",
-      "Sécrétion d'une neurotoxine"
-    ],
-    "correct": 0,
-    "explanation": "Giardia tapisse la muqueuse (effet tapis), raccourcit les villosités et perturbe les enzymes digestives, causant une malabsorption des graisses.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_18",
-    "question": "Le 'Méga-œsophage' et le 'Mégacôlon' sont des complications chroniques de :",
-    "options": [
-      "La maladie de Chagas (Trypanosoma cruzi)",
-      "L'amibiase",
-      "La giardiase",
-      "La balantidiose"
-    ],
-    "correct": 0,
-    "explanation": "T. cruzi détruit les plexus nerveux autonomes (Auerbach/Meissner), entraînant une dilatation et une paralysie des organes creux.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_27",
-    "question": "Une splénomégalie tropicale (grosse rate) est très évocatrice de :",
-    "options": [
-      "Paludisme ou Leishmaniose viscérale",
-      "Amibiase",
-      "Giardiase",
-      "Trichomonase"
-    ],
-    "correct": 0,
-    "explanation": "La rate est le cimetière des globules rouges et le lieu de réponse immune, elle grossit énormément dans ces infections sanguines.",
-    "axis": "pathogenesis"
-  },
+    "correctAnswer": 0,
+    "explanation": "Crèches et collectivités sont des lieux à haut risque."
+  }
+];
+// ==========================================
+// 3. CLINIQUE (20 Questions)
+// ==========================================
+const clinicalQuestions = [
   {
-    "id": "p_patho_29",
-    "question": "Une stéatorrhée (selles grasses et flottantes) suggère une infection par :",
+    "id": "giardia_clin_1",
+    "axis": "clinical",
+    "question": "Quel est le mécanisme physiopathologique principal responsable des symptômes de la giardiase ?",
     "options": [
-      "Giardia intestinalis",
-      "Entamoeba histolytica",
-      "Plasmodium",
-      "Trichomonas"
+      "Malabsorption intestinale",
+      "Invasion tissulaire profonde",
+      "Bactériémie parasitaire",
+      "Réaction allergique systémique"
     ],
-    "correct": 0,
-    "explanation": "La malabsorption des lipides due au tapis de Giardia rend les selles graisseuses et malodorantes.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "Giardia altère la surface d’absorption de l’intestin grêle sans l’envahir."
   },
   {
-    "id": "p_patho_34",
-    "question": "Les micro-ulcérations en 'coup d'ongle' à l'endoscopie sont évocatrices de :",
+    "id": "giardia_clin_2",
+    "axis": "clinical",
+    "question": "Quel segment intestinal est principalement atteint dans la giardiase symptomatique ?",
     "options": [
-      "Amibiase colique",
-      "Giardiase",
-      "Maladie de Crohn",
-      "Cancer"
+      "Duodénum et jéjunum proximal",
+      "Iléon terminal",
+      "Côlon",
+      "Rectum"
     ],
-    "correct": 0,
-    "explanation": "C'est l'aspect macroscopique débutant typique des lésions amibiennes.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La fixation des trophozoïtes dans l’intestin grêle proximal perturbe l’absorption."
   },
   {
-    "id": "p_patho_35",
-    "question": "La 'Diarrhée des voyageurs' (Turista) est souvent causée par :",
+    "id": "giardia_clin_3",
+    "axis": "clinical",
+    "question": "Quel type de diarrhée est le plus évocateur d’une giardiase chronique ?",
     "options": [
-      "Giardia, Cryptosporidium ou Entamoeba",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
+      "Diarrhée graisseuse, pâle et flottante",
+      "Diarrhée glairo-sanglante",
+      "Diarrhée aqueuse profuse fébrile",
+      "Diarrhée nocturne sanglante"
     ],
-    "correct": 0,
-    "explanation": "Bien que souvent bactérienne (E. coli), Giardia est la cause parasitaire la plus fréquente de diarrhée persistante au retour de voyage.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La stéatorrhée est liée à la malabsorption des graisses."
   },
   {
-    "id": "p_patho_37",
-    "question": "Des troubles visuels (choriorétinite) chez un adulte peuvent être une réactivation de :",
+    "id": "giardia_clin_4",
+    "axis": "clinical",
+    "question": "Quelle carence nutritionnelle est fréquemment observée au cours de la giardiase prolongée ?",
     "options": [
-      "Toxoplasmose acquise in-utero ou ancienne",
-      "Paludisme",
-      "Amibiase",
-      "Giardiase"
+      "Vitamines liposolubles (A, D, E, K)",
+      "Vitamine B12 uniquement",
+      "Vitamine C",
+      "Fer exclusivement"
     ],
-    "correct": 0,
-    "explanation": "La toxoplasmose oculaire est une cause fréquente d'uvéite postérieure et de cécité.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La malabsorption des graisses entraîne une carence en vitamines liposolubles."
   },
   {
-    "id": "p_patho_38",
-    "question": "Un prurit anal nocturne est-il un signe de protozoose ?",
+    "id": "giardia_clin_5",
+    "axis": "clinical",
+    "question": "Quel symptôme digestif est fréquemment associé à la giardiase ?",
     "options": [
-      "Non, c'est typique de l'Oxyurose (Ver)",
-      "Oui, de Giardia",
-      "Oui, d'Amibe",
-      "Oui, de Trichomonas"
+      "Ballonnements et météorisme",
+      "Hématémèse",
+      "Ténesme rectal",
+      "Douleur anale"
     ],
-    "correct": 0,
-    "explanation": "Piège classique. Le prurit anal est le signe des Oxyures (Enterobius vermicularis), pas des protozoaires.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "Les fermentations digestives sont favorisées par la malabsorption."
   },
   {
-    "id": "p_patho_39",
-    "question": "Une hépatomégalie douloureuse fébrile suggère :",
+    "id": "giardia_clin_6",
+    "axis": "clinical",
+    "question": "Pourquoi les selles peuvent-elles flotter chez un patient atteint de giardiase ?",
     "options": [
-      "Un abcès amibien du foie",
-      "Un kyste hydatique (souvent indolore)",
-      "Une giardiase",
-      "Un ténia"
+      "Excès de graisses non absorbées",
+      "Présence de sang",
+      "Production de mucus",
+      "Présence de parasites visibles"
     ],
-    "correct": 0,
-    "explanation": "La triade de Fontan : Fièvre + Hépatomégalie douloureuse + Ébranlement hépatique positif = Abcès Amibien.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La stéatorrhée diminue la densité des selles."
   },
   {
-    "id": "p_patho_44",
-    "question": "La 'Cruzipaïne' est une enzyme majeure de virulence de :",
+    "id": "giardia_clin_7",
+    "axis": "clinical",
+    "question": "Quel signe clinique est particulièrement évocateur chez l’enfant ?",
     "options": [
-      "Trypanosoma cruzi",
-      "Leishmania",
-      "Plasmodium",
-      "Giardia"
+      "Retard de croissance staturo-pondéral",
+      "Ictère",
+      "Œdèmes généralisés",
+      "Convulsions fébriles"
     ],
-    "correct": 0,
-    "explanation": "C'est une cystéine protéase essentielle à la survie et à l'invasion cellulaire de T. cruzi.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La malnutrition chronique liée à la giardiase impacte la croissance."
   },
   {
-    "id": "p_patho_45",
-    "question": "La capsule de kyste de Giardia le protège contre :",
+    "id": "giardia_clin_8",
+    "axis": "clinical",
+    "question": "Quelle évolution clinique est possible en l’absence de traitement ?",
     "options": [
-      "L'acidité gastrique et la chloration de l'eau",
-      "Les antibiotiques",
-      "La chaleur extrême",
-      "Les virus"
+      "Chronicité avec alternance de rémissions et rechutes",
+      "Guérison spontanée rapide constante",
+      "Évolution vers un choc septique",
+      "Invasion hépatique"
     ],
-    "correct": 0,
-    "explanation": "Cette résistance permet au parasite de traverser l'estomac intact pour s'ouvrir dans le duodénum.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La giardiase peut évoluer vers une forme chronique."
   },
   {
-    "id": "p_patho_50",
-    "question": "L'auto-infestation (cycle court) est possible chez :",
+    "id": "giardia_clin_9",
+    "axis": "clinical",
+    "question": "Quel est le plus souvent l’état général du patient atteint de giardiase chronique ?",
     "options": [
-      "Cryptosporidium et Giardia",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
+      "Asthénie et amaigrissement",
+      "Fièvre élevée constante",
+      "Altération brutale avec sepsis",
+      "Asymptomatique strict"
     ],
-    "correct": 0,
-    "explanation": "Les oocystes de Cryptosporidium peuvent éclore directement dans l'intestin, causant une hyperinfection chronique.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "L’amaigrissement est lié à la malabsorption."
   },
   {
-    "id": "p_patho_61",
-    "question": "La transmission verticale (Mère-Enfant) est majeure pour :",
+    "id": "giardia_clin_10",
+    "axis": "clinical",
+    "question": "Quel symptôme est généralement absent au cours de la giardiase ?",
     "options": [
-      "Toxoplasma et Trypanosoma cruzi",
-      "Giardia",
-      "Entamoeba",
-      "Trichomonas"
+      "Sang dans les selles",
+      "Diarrhée chronique",
+      "Ballonnements",
+      "Stéatorrhée"
     ],
-    "correct": 0,
-    "explanation": "Outre Toxoplasma, la maladie de Chagas congénitale est un problème de santé publique majeur en Amérique Latine.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "Giardia n’est pas invasive, il n’y a pas de rectorragies."
   },
   {
-    "id": "p_patho_62",
-    "question": "Lequel peut être transmis par transfusion sanguine ?",
+    "id": "giardia_clin_11",
+    "axis": "clinical",
+    "question": "Quel tableau clinique peut mimer une giardiase chronique ?",
     "options": [
-      "Plasmodium, Babesia, Trypanosoma cruzi",
-      "Giardia",
-      "Entamoeba",
-      "Cryptosporidium"
+      "Syndrome de l’intestin irritable",
+      "Appendicite aiguë",
+      "Occlusion intestinale",
+      "Ulcère gastrique hémorragique"
     ],
-    "correct": 0,
-    "explanation": "Tous les parasites sanguicoles peuvent être transmis par transfusion si le donneur est infecté (même asymptomatique).",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "Les symptômes fonctionnels peuvent être proches."
   },
   {
-    "id": "p_patho_63",
-    "question": "La transmission par greffe d'organe est un risque pour :",
+    "id": "giardia_clin_12",
+    "axis": "clinical",
+    "question": "Quel facteur favorise les formes symptomatiques sévères ?",
     "options": [
-      "Toxoplasma (Cœur/Rein) et Strongyloides",
-      "Giardia",
-      "Poux",
-      "Gale"
+      "Déficit immunitaire ou dénutrition",
+      "Groupe sanguin",
+      "Sexe masculin",
+      "Climat froid"
     ],
-    "correct": 0,
-    "explanation": "Si le donneur a des kystes tissulaires (cœur/muscle), le receveur immunodéprimé développera une toxoplasmose aiguë grave.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "Les défenses immunitaires jouent un rôle clé dans le contrôle de l’infection."
   },
   {
-    "id": "p_patho_65",
-    "question": "La transmission de la Giardiase est souvent 'hydrique' mais aussi :",
+    "id": "giardia_clin_13",
+    "axis": "clinical",
+    "question": "Quelle manifestation extra-digestive peut être associée à la giardiase ?",
     "options": [
-      "Interhumaine directe (Mains sales, crèches)",
-      "Par l'air",
-      "Par le sang",
-      "Par les moustiques"
+      "Asthénie prolongée",
+      "Arthrite septique",
+      "Hépatite aiguë",
+      "Méningite"
     ],
-    "correct": 0,
-    "explanation": "La transmission féco-orale directe est très fréquente dans les collectivités d'enfants.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "L’asthénie est fréquente dans les formes chroniques."
   },
   {
-    "id": "p_patho_72",
-    "question": "Retour de Thaïlande, fièvre J7, thrombopénie, pas de paludisme. Penser à :",
+    "id": "giardia_clin_14",
+    "axis": "clinical",
+    "question": "Chez l’adulte, quelle plainte fonctionnelle est la plus fréquente ?",
     "options": [
-      "Dengue (Virus) mais diagnostic différentiel majeur du Palu",
-      "Amibiase",
-      "Giardiase",
-      "Trichomonas"
+      "Gêne abdominale postprandiale",
+      "Douleur anale",
+      "Constipation sévère",
+      "Dysphagie"
     ],
-    "correct": 0,
-    "explanation": "En médecine tropicale, il faut savoir évoquer les virus (Dengue, Chikungunya) quand le frottis sanguin est négatif.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "Les symptômes surviennent souvent après les repas."
   },
   {
-    "id": "p_patho_73",
-    "question": "Diarrhée glairo-sanglante sans fièvre chez un adulte jeune. Penser à :",
+    "id": "giardia_clin_15",
+    "axis": "clinical",
+    "question": "Quel élément clinique oriente vers une giardiase plutôt qu’une amibiase ?",
     "options": [
-      "Amibiase intestinale aiguë",
-      "Choléra (eau de riz)",
-      "Giardia (graisseux)",
-      "Salmonellose (fièvre)"
+      "Absence de fièvre et de sang dans les selles",
+      "Diarrhée fébrile aiguë",
+      "Douleur rectale intense",
+      "Selles glairo-sanglantes"
     ],
-    "correct": 0,
-    "explanation": "L'amibiase est classiquement apyrétique (sans fièvre) car l'amibe reste locale et ne stimule pas une forte réponse inflammatoire systémique au début.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La giardiase est non invasive."
   },
   {
-    "id": "p_patho_80",
-    "question": "Giardia consomme avidement quel nutriment de l'hôte ?",
+    "id": "giardia_clin_16",
+    "axis": "clinical",
+    "question": "Quel impact nutritionnel est particulièrement redouté chez l’enfant ?",
     "options": [
-      "Arginine et Sels biliaires",
-      "Fer",
-      "Sucre",
-      "Oxygène"
+      "Retard pondéral et statural",
+      "Anémie hémolytique",
+      "Rachitisme carentiel isolé",
+      "Obésité"
     ],
-    "correct": 0,
-    "explanation": "La consommation d'arginine réduit la production de NO (oxyde nitrique), un mécanisme de défense de l'intestin.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La croissance est très sensible aux troubles d’absorption."
   },
   {
-    "id": "p_patho_81",
-    "question": "Le syndrome de malabsorption de Giardia peut entraîner chez l'enfant :",
+    "id": "giardia_clin_17",
+    "axis": "clinical",
+    "question": "Quelle évolution clinique est fréquente après traitement efficace ?",
     "options": [
-      "Un retard de croissance et staturo-pondéral",
-      "Une obésité",
-      "Une hypertension",
-      "Un diabète"
+      "Disparition progressive des symptômes digestifs",
+      "Persistance définitive de la stéatorrhée",
+      "Aggravation clinique",
+      "Transformation invasive"
     ],
-    "correct": 0,
-    "explanation": "La malabsorption chronique des nutriments essentiels freine la croissance de l'enfant.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La muqueuse intestinale se régénère après éradication."
   },
   {
-    "id": "p_patho_82",
-    "question": "L'effet 'Antabuse' (intolérance à l'alcool) est un effet secondaire du traitement par :",
+    "id": "giardia_clin_18",
+    "axis": "clinical",
+    "question": "Quel symptôme peut persister transitoirement après guérison parasitologique ?",
     "options": [
-      "Métronidazole (Flagyl) utilisé contre les protozoaires",
-      "Quinine",
-      "Pénicilline",
-      "Aspirine"
+      "Intolérance transitoire au lactose",
+      "Fièvre élevée",
+      "Rectorragies",
+      "Vomissements incoercibles"
     ],
-    "correct": 0,
-    "explanation": "Important à savoir : Interdiction formelle d'alcool pendant le traitement d'une amibiase ou giardiase.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La lactase est souvent altérée secondairement."
   },
   {
-    "id": "p_patho_92",
-    "question": "Les douleurs épigastriques pseudo-ulcéreuses sont typiques de :",
+    "id": "giardia_clin_19",
+    "axis": "clinical",
+    "question": "Quel type de douleur abdominale est le plus souvent rapporté ?",
     "options": [
-      "Giardiase",
-      "Amibiase",
-      "Trichomonase",
-      "Paludisme"
+      "Douleur diffuse, modérée, chronique",
+      "Douleur brutale en fosse iliaque droite",
+      "Douleur épigastrique nocturne",
+      "Douleur anale"
     ],
-    "correct": 0,
-    "explanation": "La localisation duodénale haute de Giardia imite souvent les douleurs d'ulcère gastrique.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La douleur est liée aux troubles fonctionnels."
   },
   {
-    "id": "p_patho_95",
-    "question": "Lequel provoque une anémie mégaloblastique par consommation de vitamine B12 ?",
+    "id": "giardia_clin_20",
+    "axis": "clinical",
+    "question": "Quel tableau clinique est possible chez un porteur sain ?",
     "options": [
-      "Diphyllobothrium latum (Ténia du poisson) - Piège helminthe !",
-      "Giardia",
-      "Plasmodium",
-      "Entamoeba"
+      "Absence totale de symptômes",
+      "Tableau systématiquement sévère",
+      "Diarrhée sanglante",
+      "Atteinte hépatique"
     ],
-    "correct": 0,
-    "explanation": "Attention aux pièges ! C'est un ver (le Bothriocéphale) qui cause ça, pas un protozoaire. Giardia cause une malabsorption globale.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_diag_5",
-    "question": "Le 'Scotch-Test' (Test de Graham) est utilisé pour rechercher :",
-    "options": [
-      "Les œufs d'Oxyure (Enterobius)",
-      "Les kystes de Giardia",
-      "Les amibes",
-      "Les larves d'Anguillule"
-    ],
-    "correct": 0,
-    "explanation": "Bien que ce soit un Nématode, c'est un diagnostic différentiel classique. Pour les protozoaires, on utilise l'EPS (Examen Parasitologique des Selles).",
-    "axis": "diagnosis"
-  },
+    "correctAnswer": 0,
+    "explanation": "De nombreux porteurs restent asymptomatiques."
+  }
+];
+// ==========================================
+// 4. DIAGNOSTIC (15 Questions)
+// ==========================================
+const diagnosisQuestions = [
   {
-    "id": "p_diag_11",
-    "question": "La sérologie (Anticorps IgG) est le test de choix pour :",
+    "id": "giardia_diag_1",
+    "axis": "diagnosis",
+    "question": "Quel est l'examen parasitologique de première intention pour le diagnostic de la giardiase ?",
     "options": [
-      "L'amibiase hépatique (Abcès)",
-      "L'amibiase intestinale aiguë",
-      "La giardiase",
-      "Le portage sain d'amibes"
+      "Examen parasitologique des selles",
+      "Sérologie parasitaire",
+      "Hémoculture",
+      "Coproculture bactérienne"
     ],
-    "correct": 0,
-    "explanation": "Dans l'abcès, les amibes sont dans le foie, pas dans les selles. La réponse anticorps est forte et constante.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Le diagnostic repose avant tout sur la mise en évidence de kystes ou trophozoïtes dans les selles."
   },
   {
-    "id": "p_diag_18",
-    "question": "La PCR Multiplex pour les diarrhées permet de :",
+    "id": "giardia_diag_2",
+    "axis": "diagnosis",
+    "question": "Pourquoi un seul examen parasitologique des selles peut-il être négatif malgré une giardiase avérée ?",
     "options": [
-      "Détecter simultanément Virus, Bactéries et Parasites (Giardia, Crypto, Entamoeba)",
-      "Traiter le patient",
-      "Voir la résistance",
-      "Remplacer le médecin"
+      "Excrétion intermittente des kystes",
+      "Destruction systématique des parasites",
+      "Absence de phase kystique",
+      "Erreur systématique de coloration"
     ],
-    "correct": 0,
-    "explanation": "C'est une révolution diagnostique (Panel gastro-intestinal) qui donne un résultat complet en 1 heure.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "L’excrétion des kystes est intermittente, justifiant des examens répétés."
   },
   {
-    "id": "p_diag_36",
-    "question": "La culture sur milieu NNN (Novy-MacNeal-Nicolle) est utilisée pour :",
+    "id": "giardia_diag_3",
+    "axis": "diagnosis",
+    "question": "Quelle est la stratégie recommandée pour améliorer la sensibilité du diagnostic parasitologique des selles ?",
     "options": [
-      "Leishmania et Trypanosoma",
-      "Plasmodium",
-      "Giardia",
-      "Entamoeba"
+      "Réaliser trois examens de selles à des jours différents",
+      "Un seul examen après purge",
+      "Réaliser une coproculture prolongée",
+      "Examiner uniquement des selles diarrhéiques"
     ],
-    "correct": 0,
-    "explanation": "C'est un milieu diphasique au sang de lapin qui permet la multiplication des promastigotes.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Trois examens augmentent la sensibilité diagnostique à plus de 90%."
   },
   {
-    "id": "p_diag_38",
-    "question": "L'inoculation à la souris est parfois utilisée pour isoler :",
+    "id": "giardia_diag_4",
+    "axis": "diagnosis",
+    "question": "Quelle forme parasitaire est le plus souvent observée dans les selles moulées ?",
     "options": [
-      "Toxoplasma gondii",
-      "Giardia",
-      "Trichomonas",
-      "Balantidium"
+      "Kyste",
+      "Trophozoïte mobile",
+      "Œuf",
+      "Larve"
     ],
-    "correct": 0,
-    "explanation": "Toxoplasma est très pathogène pour la souris (ascite riche en tachyzoïtes), c'était une méthode historique d'isolement.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Les kystes sont retrouvés dans les selles formées."
   },
   {
-    "id": "p_diag_39",
-    "question": "La xénodiagnostic (utilisation du vecteur vivant) a été utilisée pour :",
+    "id": "giardia_diag_5",
+    "axis": "diagnosis",
+    "question": "Dans quelles selles observe-t-on préférentiellement les trophozoïtes de Giardia ?",
     "options": [
-      "La maladie de Chagas (Triatomes non infectés)",
-      "Le Paludisme",
-      "L'Amibiase",
-      "La Giardiase"
+      "Selles liquides fraîches",
+      "Selles dures",
+      "Selles constipées",
+      "Selles anciennes"
     ],
-    "correct": 0,
-    "explanation": "On laisse des punaises saines piquer le patient, puis on examine l'intestin de la punaise pour voir si elle s'est infectée.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Les trophozoïtes fragiles ne survivent que dans les selles liquides fraîchement émises."
   },
   {
-    "id": "p_diag_53",
-    "question": "Le diagnostic de certitude de la Giardiase se fait par la mise en évidence de :",
+    "id": "giardia_diag_6",
+    "axis": "diagnosis",
+    "question": "Quel examen peut être proposé en cas de forte suspicion clinique malgré des selles négatives répétées ?",
     "options": [
-      "Kystes dans les selles ou Trophozoïtes dans le liquide duodénal",
-      "Sérologie",
-      "Frottis sanguin",
-      "Hémoculture"
+      "Tubage duodénal avec analyse du liquide",
+      "Sérologie Giardia",
+      "Ponction hépatique",
+      "IRM abdominale"
     ],
-    "correct": 0,
-    "explanation": "Si les selles sont négatives, le tubage duodénal ou le 'Enterotest' (fil avalé) peut récupérer les trophozoïtes.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Le liquide duodénal peut contenir des trophozoïtes."
   },
   {
-    "id": "p_diag_54",
-    "question": "La recherche d'antigènes copro-solubles (ELISA) est très utile pour :",
+    "id": "giardia_diag_7",
+    "axis": "diagnosis",
+    "question": "Quel est l'intérêt principal du tubage duodénal dans la giardiase ?",
     "options": [
-      "Giardia, Cryptosporidium et Entamoeba histolytica",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
+      "Mettre en évidence les trophozoïtes fixés à la muqueuse",
+      "Évaluer la fonction hépatique",
+      "Rechercher une invasion sanguine",
+      "Mesurer la charge bactérienne"
     ],
-    "correct": 0,
-    "explanation": "C'est une alternative rapide et sensible à la microscopie, surtout pour le dépistage de masse.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Giardia colonise préférentiellement le duodénum."
   },
   {
-    "id": "p_diag_55",
-    "question": "Une selle pâteuse jaune-ocre mousseuse est évocatrice de :",
+    "id": "giardia_diag_8",
+    "axis": "diagnosis",
+    "question": "Quel examen histologique peut être réalisé exceptionnellement en cas de diagnostic difficile ?",
     "options": [
-      "Giardiase",
-      "Amibiase",
-      "Choléra",
-      "Paludisme"
+      "Biopsie jéjunale",
+      "Biopsie colique",
+      "Biopsie hépatique",
+      "Biopsie ganglionnaire"
     ],
-    "correct": 0,
-    "explanation": "L'aspect graisseux et la couleur sont dus à la malabsorption des graisses.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "La biopsie jéjunale permet l’observation directe des parasites et des lésions."
   },
   {
-    "id": "p_diag_69",
-    "question": "Lequel peut être diagnostiqué par une biopsie intestinale (jéjunale) ?",
+    "id": "giardia_diag_9",
+    "axis": "diagnosis",
+    "question": "Quelle anomalie histologique peut être observée lors d’une giardiase chronique ?",
     "options": [
-      "Giardia, Cryptosporidium, Microsporidies",
-      "Plasmodium",
-      "Trichomonas",
-      "Trypanosoma"
+      "Atrophie villositaire partielle",
+      "Nécrose transmucosale",
+      "Granulomes épithélioïdes",
+      "Fibrose intestinale"
     ],
-    "correct": 0,
-    "explanation": "Si les selles sont négatives, la biopsie montre les parasites collés ou dans l'épithélium.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "L’atrophie villositaire explique la malabsorption."
   },
   {
-    "id": "p_diag_72",
-    "question": "La présence d'hématies dans les selles (Hématies +++) oriente vers :",
+    "id": "giardia_diag_10",
+    "axis": "diagnosis",
+    "question": "Pourquoi la sérologie n'est-elle pas un outil fiable pour le diagnostic de la giardiase ?",
     "options": [
-      "Une colite invasive (Amibienne ou Bactérienne)",
-      "Une malabsorption",
-      "Une giardiase",
-      "Une occlusion"
+      "Réponse immunitaire inconstante et peu spécifique",
+      "Sensibilité trop élevée",
+      "Disparition rapide des anticorps",
+      "Réservée aux formes invasives"
     ],
-    "correct": 0,
-    "explanation": "C'est le signe d'une lésion de la paroi intestinale.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Les anticorps ne reflètent pas toujours une infection active."
   },
   {
-    "id": "p_diag_75",
-    "question": "La 'reviviscence' des kystes de Giardia après traitement est souvent due à :",
+    "id": "giardia_diag_11",
+    "axis": "diagnosis",
+    "question": "Quel test immunologique peut améliorer le diagnostic des selles ?",
     "options": [
-      "Une réinfestation ou un traitement mal pris",
-      "Une résistance vraie (rare)",
-      "Une mutation",
-      "Un changement de climat"
+      "Recherche d’antigènes de Giardia dans les selles",
+      "Test de Coombs",
+      "Western blot sanguin",
+      "Dosage des IgE totales"
     ],
-    "correct": 0,
-    "explanation": "Le plus souvent, c'est une ré-infection par l'entourage non traité.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Les tests antigéniques augmentent la sensibilité diagnostique."
   },
   {
-    "id": "p_diag_80",
-    "question": "La biopsie rectale peut aider au diagnostic de :",
+    "id": "giardia_diag_12",
+    "axis": "diagnosis",
+    "question": "Quel élément oriente vers un diagnostic de giardiase plutôt qu'une autre parasitose intestinale ?",
     "options": [
-      "Amibiase (ulcères en bouton de chemise) ou Bilharziose (œufs)",
-      "Giardiase",
-      "Paludisme",
-      "Trichomonas"
+      "Association diarrhée chronique et stéatorrhée",
+      "Présence de fièvre élevée",
+      "Syndrome inflammatoire marqué",
+      "Selles sanglantes"
     ],
-    "correct": 0,
-    "explanation": "L'anatomopathologie montre l'invasion tissulaire et l'inflammation.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "La giardiase est une parasitose non invasive responsable de malabsorption."
   },
   {
-    "id": "p_diag_87",
-    "question": "Une erreur fréquente d'identification est de confondre :",
+    "id": "giardia_diag_13",
+    "axis": "diagnosis",
+    "question": "Chez l’enfant présentant un retard staturo-pondéral, quel examen doit être évoqué en priorité ?",
     "options": [
-      "P. vivax et P. ovale",
-      "P. falciparum et P. malariae",
-      "Giardia et Amibe",
-      "Toxoplasma et Leishmania"
+      "Examen parasitologique des selles répété",
+      "IRM cérébrale",
+      "Exploration thyroïdienne",
+      "Biopsie hépatique"
     ],
-    "correct": 0,
-    "explanation": "P. vivax et P. ovale se ressemblent beaucoup (hématies agrandies, pointillé). La forme 'frangée' d'ovale est la clé.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "La giardiase est une cause fréquente de retard de croissance."
   },
   {
-    "id": "p_diag_93",
-    "question": "La métagénomique permet d'étudier :",
+    "id": "giardia_diag_14",
+    "axis": "diagnosis",
+    "question": "Quel est l'aspect typique de Giardia observé au microscope dans le liquide duodénal ?",
     "options": [
-      "L'ensemble du microbiome intestinal et ses interactions avec les parasites",
-      "Un seul parasite",
-      "Le génome humain",
-      "Les virus"
+      "Trophozoïte piriforme bilatéralement symétrique",
+      "Kyste sphérique à paroi épaisse",
+      "Larve mobile filiforme",
+      "Forme amiboïde"
     ],
-    "correct": 0,
-    "explanation": "Elle révèle comment Giardia ou Blastocystis modifient la flore bactérienne.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Le trophozoïte a une morphologie très caractéristique."
   },
   {
-    "id": "p_diag_98",
-    "question": "Leucopénie et thrombopénie sont des signes d'orientation pour :",
+    "id": "giardia_diag_15",
+    "axis": "diagnosis",
+    "question": "Quelle conduite diagnostique est recommandée devant une suspicion persistante malgré examens négatifs ?",
     "options": [
-      "Leishmanose Viscérale et Paludisme",
-      "Amibiase",
-      "Giardiase",
-      "Oxyurose"
+      "Multiplier les méthodes diagnostiques",
+      "Exclure définitivement la giardiase",
+      "Instaurer un traitement probabiliste prolongé sans preuve",
+      "Attendre une complication"
     ],
-    "correct": 0,
-    "explanation": "L'hypersplénisme (grosse rate) piège les cellules sanguines.",
-    "axis": "diagnosis"
-  },
+    "correctAnswer": 0,
+    "explanation": "La combinaison des examens augmente la probabilité diagnostique."
+  }
+];
+// ==========================================
+// 5. TRAITEMENT (10 Questions)
+// ==========================================
+const treatmentQuestions = [
   {
-    "id": "p_treat_4",
-    "question": "Le traitement de choix de la Giardiase est :",
+    "id": "giardia_treat_1",
+    "axis": "treatment",
+    "question": "Quel est le traitement de première intention de la giardiase chez l’adulte immunocompétent ?",
     "options": [
-      "Métronidazole ou Tinidazole (dose unique souvent possible)",
-      "Amoxicilline",
-      "Quinine",
+      "Métronidazole per os",
+      "Albendazole",
+      "Praziquantel",
       "Ivermectine"
     ],
-    "correct": 0,
-    "explanation": "Les nitro-imidazolés sont actifs sur les flagellés anaérobies comme Giardia et Trichomonas.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Le métronidazole est le traitement de référence de la giardiase depuis plusieurs décennies."
   },
   {
-    "id": "p_treat_5",
-    "question": "Quel médicament est une alternative pour la Giardiase chez l'enfant (si refus des comprimés amers) ?",
+    "id": "giardia_treat_2",
+    "axis": "treatment",
+    "question": "Quelle est la durée classique du traitement par métronidazole dans la giardiase ?",
     "options": [
-      "Nitazoxanide",
-      "Aspirine",
-      "Corticoïdes",
-      "Morphine"
+      "5 à 7 jours",
+      "24 heures",
+      "14 jours",
+      "1 mois"
     ],
-    "correct": 0,
-    "explanation": "Le Nitazoxanide est un antiparasitaire à large spectre disponible en suspension buvable.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Le schéma standard est de 5 à 7 jours pour assurer l’éradication parasitaire."
   },
   {
-    "id": "p_treat_27",
-    "question": "Pour la Cryptosporidiose chez l'immunocompétent, le traitement est :",
+    "id": "giardia_treat_3",
+    "axis": "treatment",
+    "question": "Quel médicament permet un traitement dit « minute » de la giardiase ?",
     "options": [
-      "Symptomatique (Réhydratation), parfois Nitazoxanide",
-      "Chimiothérapie lourde",
-      "Antibiotiques IV",
-      "Chirurgie"
+      "Tinidazole",
+      "Métronidazole",
+      "Secnidazole",
+      "Nitazoxanide"
     ],
-    "correct": 0,
-    "explanation": "La maladie guérit souvent seule. Chez le VIH+, le seul vrai traitement est la restauration de l'immunité (ARV).",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Le tinidazole peut être administré en dose unique avec une excellente efficacité."
   },
   {
-    "id": "p_treat_28",
-    "question": "L'Albendazole (anti-helminthe) est aussi efficace sur quel protozoaire ?",
+    "id": "giardia_treat_4",
+    "axis": "treatment",
+    "question": "Quel est l’avantage principal du tinidazole par rapport au métronidazole ?",
     "options": [
-      "Giardia intestinalis et Microsporidies",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
+      "Meilleure observance grâce à une prise unique",
+      "Moins de toxicité hépatique",
+      "Utilisable chez le nourrisson",
+      "Absence totale d’effets indésirables"
     ],
-    "correct": 0,
-    "explanation": "Il a une action sur le cytosquelette de Giardia et est le traitement de référence de certaines microsporidioses.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La prise unique améliore nettement l’observance thérapeutique."
   },
   {
-    "id": "p_treat_43",
-    "question": "Pour prévenir la diarrhée du voyageur (dont Giardia), il faut :",
+    "id": "giardia_treat_5",
+    "axis": "treatment",
+    "question": "Quelle recommandation doit être donnée concernant la consommation d’alcool sous nitro-imidazolés ?",
     "options": [
-      "Boire de l'eau capsulée, peler les fruits, manger cuit ('Boil it, cook it, peel it or forget it')",
-      "Prendre des antibiotiques avant de partir",
-      "Manger des salades",
-      "Boire l'eau du robinet"
+      "Interdiction stricte en raison d’un effet antabuse",
+      "Autorisation sans restriction",
+      "Alcool autorisé à faible dose",
+      "Uniquement après le repas"
     ],
-    "correct": 0,
-    "explanation": "Règle d'or de l'hygiène alimentaire tropicale.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Les nitro-imidazolés provoquent une réaction de type disulfirame avec l’alcool."
   },
   {
-    "id": "p_treat_82",
-    "question": "Prescription : Giardiase adulte. Métronidazole (Flagyl) 500mg. Posologie ?",
+    "id": "giardia_treat_6",
+    "axis": "treatment",
+    "question": "Quelle conduite thérapeutique est recommandée chez les sujets contacts asymptomatiques ?",
     "options": [
-      "2 à 4 comprimés (1-2g) en prise unique ou sur 3 jours",
-      "1 comprimé par semaine",
-      "10 comprimés par jour",
-      "Une injection"
+      "Traitement simultané pour éviter la réinfestation",
+      "Absence de traitement",
+      "Traitement uniquement si sérologie positive",
+      "Traitement uniquement chez l’enfant"
     ],
-    "correct": 0,
-    "explanation": "Le traitement court (minute) ou sur 3 jours est classique.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Le traitement des contacts limite les réinfections intrafamiliales."
+  },
+  {
+    "id": "giardia_treat_7",
+    "axis": "treatment",
+    "question": "Quel examen est recommandé pour contrôler l’efficacité du traitement de la giardiase ?",
+    "options": [
+      "Examen parasitologique des selles de contrôle",
+      "Sérologie à 1 mois",
+      "Numération formule sanguine",
+      "Test respiratoire à l’hydrogène"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Un contrôle parasitologique confirme l’éradication du parasite."
+  },
+  {
+    "id": "giardia_treat_8",
+    "axis": "treatment",
+    "question": "À quel délai le contrôle parasitologique est-il recommandé après traitement ?",
+    "options": [
+      "7 à 10 jours après la fin du traitement",
+      "Le lendemain du traitement",
+      "À 3 mois",
+      "Uniquement en cas de rechute clinique"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Ce délai permet l’élimination des parasites résiduels."
+  },
+  {
+    "id": "giardia_treat_9",
+    "axis": "treatment",
+    "question": "Quelle est la principale cause d’échec thérapeutique dans la giardiase ?",
+    "options": [
+      "Mauvaise observance ou réinfestation",
+      "Résistance systématique du parasite",
+      "Erreur diagnostique initiale",
+      "Dose excessive de médicament"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La mauvaise observance et les recontaminations sont les causes majeures."
+  },
+  {
+    "id": "giardia_treat_10",
+    "axis": "treatment",
+    "question": "Quelle mesure non médicamenteuse est essentielle pour prévenir les rechutes de giardiase ?",
+    "options": [
+      "Hygiène rigoureuse des mains et de l’eau",
+      "Supplémentation vitaminique",
+      "Régime sans gluten",
+      "Vaccination"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La prévention repose principalement sur les mesures d’hygiène."
   }
+];
+
+// ==========================================
+// EXPORT FINAL
+// ==========================================
+export const questions = [
+  ...morphologyQuestions,
+  ...lifecycleQuestions,
+  ...clinicalQuestions,
+  ...diagnosisQuestions,
+  ...treatmentQuestions
 ];

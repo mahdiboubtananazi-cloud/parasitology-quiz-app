@@ -1,2735 +1,2640 @@
 // data/categories/protozoa/maladies/paludisme.js
-// Questions related to paludisme extracted from all axis files
 
-export const questions = [
+// 1. Morphology
+const morphologyQuestions = [
   {
-    "id": "p_class_6",
-    "question": "L'ordre des Kinetoplastida inclut quels genres importants ?",
+    "id": "malaria_morph_1",
+    "axis": "morphology",
+    "question": "Quelle espèce de Plasmodium produit typiquement des gamétocytes en forme de croissant ou de banane sur le frottis sanguin périphérique ?",
     "options": [
-      "Trypanosoma et Leishmania",
-      "Giardia et Trichomonas",
-      "Entamoeba et Endolimax",
-      "Plasmodium et Babesia"
-    ],
-    "correct": 0,
-    "explanation": "Les Kinetoplastida se caractérisent par la présence d'un kinétoplaste (ADN mitochondrial condensé) à la base du flagelle.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_12",
-    "question": "Les amibes libres pathogènes ('Amphizoïques') incluent les genres :",
-    "options": [
-      "Naegleria, Acanthamoeba, Balamuthia",
-      "Entamoeba, Endolimax, Iodamoeba",
-      "Giardia, Trichomonas",
-      "Plasmodium, Babesia"
-    ],
-    "correct": 0,
-    "explanation": "Ce sont des amibes qui vivent librement dans l'environnement (eau, sol) mais peuvent parasiter l'homme accidentellement.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_16",
-    "question": "La classe des Coccidea (Coccidies) inclut les genres :",
-    "options": [
-      "Toxoplasma, Isospora, Cryptosporidium",
-      "Plasmodium, Babesia",
-      "Entamoeba, Giardia",
-      "Leishmania, Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "Ce sont des parasites intracellulaires obligatoires de l'épithélium intestinal (sauf Toxoplasma qui est tissulaire).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_17",
-    "question": "L'ordre des Haemosporidia (Hémosporidies) contient le genre :",
-    "options": [
-      "Plasmodium",
-      "Toxoplasma",
-      "Eimeria",
-      "Cyclospora"
-    ],
-    "correct": 0,
-    "explanation": "Ce sont des Apicomplexa qui parasitent les cellules sanguines et sont transmis par des vecteurs arthropodes.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_18",
-    "question": "Babesia (Piroplasmes) est phylogénétiquement très proche de :",
-    "options": [
-      "Theileria et Plasmodium",
-      "Trypanosoma",
-      "Entamoeba",
-      "Toxoplasma"
-    ],
-    "correct": 0,
-    "explanation": "Ils appartiennent tous deux aux Apicomplexa sanguicoles, bien que Babesia soit transmis par des tiques et non des moustiques.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_21",
-    "question": "Les protozoaires 'Hétéroxènes' sont ceux qui :",
-    "options": [
-      "Ont besoin de plusieurs hôtes pour compléter leur cycle",
-      "N'ont qu'un seul hôte",
-      "Vivent librement",
-      "Sont hermaphrodites"
-    ],
-    "correct": 0,
-    "explanation": "Hétéroxène = Cycle complexe impliquant au moins un hôte définitif et un hôte intermédiaire (ex: Plasmodium).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_22",
-    "question": "Les protozoaires 'Monoxènes' (cycle direct) incluent :",
-    "options": [
-      "Entamoeba histolytica et Giardia lamblia",
       "Plasmodium falciparum",
-      "Trypanosoma brucei",
-      "Leishmania infantum"
+      "Plasmodium vivax",
+      "Plasmodium malariae",
+      "Plasmodium ovale"
     ],
-    "correct": 0,
-    "explanation": "Ils se transmettent directement d'homme à homme (ou via l'environnement) sans passer par un autre animal ou vecteur.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "P. falciparum forme de manière unique des gamétocytes en forme de croissant (banane), caractéristique pathognomonique pour l'identification de l'espèce."
   },
   {
-    "id": "p_class_25",
-    "question": "Quel parasite est une 'Zoonose' (réservoir animal important) ?",
+    "id": "malaria_morph_2",
+    "axis": "morphology",
+    "question": "Quelle espèce de Plasmodium infecte le plus couramment des érythrocytes agrandis avec des trophozoïtes amiboïdes ?",
     "options": [
-      "Balantidium coli (Porc)",
-      "Plasmodium falciparum (Homme strict)",
-      "Entamoeba histolytica (Homme strict)",
-      "Trichomonas vaginalis (Homme strict)"
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium malariae",
+      "Plasmodium knowlesi"
     ],
-    "correct": 0,
-    "explanation": "Balantidium coli est un parasite habituel du porc, qui est le réservoir principal contaminant l'homme.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "P. vivax infecte les réticulocytes, provoquant un agrandissement marqué des globules rouges et des trophozoïtes amiboïdes irréguliers."
   },
   {
-    "id": "p_class_27",
-    "question": "Le super-groupe 'Amoebozoa' contient :",
+    "id": "malaria_morph_3",
+    "axis": "morphology",
+    "question": "Quel motif de ponctuation apparaît sous forme de fentes grossières, irrégulières, associées à la membrane dans les érythrocytes infectés ?",
     "options": [
-      "Entamoeba et Acanthamoeba",
-      "Giardia",
-      "Plasmodium",
-      "Leishmania"
+      "Fentes de Maurer",
+      "Points de Schüffner",
+      "Points de Ziemann",
+      "Ponctuation basophile"
     ],
-    "correct": 0,
-    "explanation": "Ce groupe rassemble les organismes se déplaçant par pseudopodes lobés (Lobosea).",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Les fentes de Maurer sont de grandes inclusions irrégulières observées dans les globules rouges infectés par P. falciparum."
   },
   {
-    "id": "p_class_31",
-    "question": "Le genre Plasmodium compte 5 espèces infectant l'homme naturellement, dont la plus récente reconnue est :",
+    "id": "malaria_morph_4",
+    "axis": "morphology",
+    "question": "Un schizonte contenant 6 à 12 mérozoïtes disposés en rosette est le plus caractéristique de quelle espèce ?",
+    "options": [
+      "Plasmodium malariae",
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les schizontes de P. malariae montrent classiquement un arrangement en rosette (tête de marguerite) avec moins de mérozoïtes."
+  },
+  {
+    "id": "malaria_morph_5",
+    "axis": "morphology",
+    "question": "Quelle espèce de Plasmodium présente des trophozoïtes en forme de bande s'étendant à travers l'érythrocyte ?",
+    "options": [
+      "Plasmodium malariae",
+      "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les trophozoïtes en forme de bande sont une caractéristique microscopique classique de P. malariae."
+  },
+  {
+    "id": "malaria_morph_6",
+    "axis": "morphology",
+    "question": "Les points de Schüffner sont mieux décrits comme :",
+    "options": [
+      "Ponctuation rougeâtre fine dans les globules rouges agrandis",
+      "Grandes fentes membranaires irrégulières",
+      "Agrégats d'ARN bleus dus à la toxicité",
+      "Granules cytoplasmiques contenant du fer"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les points de Schüffner sont de fins granules rouges observés dans les infections à P. vivax et P. ovale."
+  },
+  {
+    "id": "malaria_morph_7",
+    "axis": "morphology",
+    "question": "Quelle espèce infecte typiquement les érythrocytes de tous âges, résultant en globules rouges de taille normale ?",
+    "options": [
+      "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium ovale",
+      "Plasmodium malariae"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P. falciparum infecte les érythrocytes de tous âges, donc la taille des globules rouges reste généralement normale."
+  },
+  {
+    "id": "malaria_morph_8",
+    "axis": "morphology",
+    "question": "Plusieurs formes annulaires délicates dans un seul érythrocyte suggèrent fortement une infection par :",
+    "options": [
+      "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium malariae",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P. falciparum produit couramment plusieurs formes annulaires par globule rouge."
+  },
+  {
+    "id": "malaria_morph_9",
+    "axis": "morphology",
+    "question": "Quelle espèce de Plasmodium produit des érythrocytes agrandis, ovales avec des marges frangées ?",
+    "options": [
+      "Plasmodium ovale",
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium malariae"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P. ovale provoque un agrandissement ovale des globules rouges avec des bords déchiquetés caractéristiques."
+  },
+  {
+    "id": "malaria_morph_10",
+    "axis": "morphology",
+    "question": "Quelle espèce est associée à de fins points de Ziemann clairsemés qui peuvent être difficiles à visualiser ?",
+    "options": [
+      "Plasmodium malariae",
+      "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les points de Ziemann sont une ponctuation faible parfois observée dans les infections à P. malariae."
+  },
+  {
+    "id": "malaria_morph_11",
+    "axis": "morphology",
+    "question": "Un schizonte avec 16 à 24 mérozoïtes dans un érythrocyte agrandi appartient très probablement à :",
+    "options": [
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium malariae",
+      "Plasmodium knowlesi"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les schizontes de P. vivax contiennent de nombreux mérozoïtes et se développent dans des globules rouges agrandis."
+  },
+  {
+    "id": "malaria_morph_12",
+    "axis": "morphology",
+    "question": "Quelle caractéristique morphologique différencie le mieux Plasmodium knowlesi de Plasmodium malariae ?",
+    "options": [
+      "Parasitémie élevée avec réplication quotidienne",
+      "Trophozoïtes en forme de bande",
+      "Schizontes en rosette",
+      "Érythrocytes de taille normale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P. knowlesi a un cycle érythrocytaire de 24 heures conduisant à une parasitémie plus élevée."
+  },
+  {
+    "id": "malaria_morph_13",
+    "axis": "morphology",
+    "question": "Quelle espèce de Plasmodium montre le plus couramment des trophozoïtes amiboïdes avec des contours cytoplasmiques irréguliers ?",
+    "options": [
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium malariae",
+      "Plasmodium knowlesi"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les trophozoïtes amiboïdes sont caractéristiques de P. vivax."
+  },
+  {
+    "id": "malaria_morph_14",
+    "axis": "morphology",
+    "question": "Quelle espèce montre rarement des schizontes matures dans le sang périphérique en raison de la séquestration ?",
+    "options": [
+      "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium malariae",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les schizontes de P. falciparum adhèrent à l'endothélium et sont généralement absents des frottis périphériques."
+  },
+  {
+    "id": "malaria_morph_15",
+    "axis": "morphology",
+    "question": "Quelle découverte morphologique soutient fortement de vrais parasites du paludisme plutôt qu'un artefact de coloration ?",
+    "options": [
+      "Présence d'un point de chromatine et d'un anneau cytoplasmique",
+      "Points bleus uniformes dans tous les globules rouges",
+      "Granules extracellulaires",
+      "Précipité de coloration irrégulier"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les vrais parasites montrent un cytoplasme et une chromatine organisés, contrairement aux artefacts."
+  },
+  {
+    "id": "malaria_morph_16",
+    "axis": "morphology",
+    "question": "Quelle espèce produit des schizontes compacts remplissant la plupart d'un érythrocyte de taille normale ?",
+    "options": [
+      "Plasmodium malariae",
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les schizontes de P. malariae sont compacts et occupent des globules rouges de taille normale."
+  },
+  {
+    "id": "malaria_morph_17",
+    "axis": "morphology",
+    "question": "Quelle espèce de Plasmodium infecte principalement les réticulocytes ?",
+    "options": [
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium malariae",
+      "Plasmodium knowlesi"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P. vivax a une forte préférence pour les réticulocytes."
+  },
+  {
+    "id": "malaria_morph_18",
+    "axis": "morphology",
+    "question": "Quelle morphologie de gamétocyte est typique de Plasmodium vivax ?",
+    "options": [
+      "Grands gamétocytes ronds remplissant des globules rouges agrandis",
+      "Formes extracellulaires en croissant",
+      "Petits gamétocytes compacts dans des globules rouges normaux",
+      "Gamétocytes allongés en forme de fuseau"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les gamétocytes de P. vivax sont ronds et occupent des érythrocytes agrandis."
+  },
+  {
+    "id": "malaria_morph_19",
+    "axis": "morphology",
+    "question": "Quelle espèce peut être confondue avec P. malariae en raison des formes en bande mais provoque une infection plus sévère ?",
     "options": [
       "Plasmodium knowlesi",
-      "Plasmodium cynomolgi",
-      "Plasmodium brasilianum",
-      "Plasmodium simium"
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium ovale"
     ],
-    "correct": 0,
-    "explanation": "P. knowlesi, parasite du macaque, est désormais reconnu comme la 5ème espèce causant le paludisme humain (Zoonose en Asie).",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "P. knowlesi ressemble morphologiquement à P. malariae mais a une réplication rapide."
   },
   {
-    "id": "p_class_35",
-    "question": "Cyclospora cayetanensis a été classé parmi les coccidies grâce à sa ressemblance avec le genre :",
+    "id": "malaria_morph_20",
+    "axis": "morphology",
+    "question": "Quel changement des globules rouges est partagé par Plasmodium vivax et Plasmodium ovale ?",
     "options": [
-      "Eimeria",
-      "Isospora",
-      "Toxoplasma",
-      "Sarcocystis"
+      "Points de Schüffner",
+      "Taille normale des globules rouges",
+      "Formes annulaires multiples",
+      "Fentes de Maurer"
     ],
-    "correct": 0,
-    "explanation": "Ses oocystes sporulés contiennent 2 sporocystes, une caractéristique typique des Eimeriidae.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "P. vivax et P. ovale présentent tous deux des points de Schüffner."
   },
   {
-    "id": "p_class_36",
-    "question": "Les protozoaires qui se divisent par 'Schizogonie' sont :",
+    "id": "malaria_morph_21",
+    "axis": "morphology",
+    "question": "Quelle espèce a les trophozoïtes annulaires les plus petits et les plus délicats ?",
     "options": [
-      "Les Sporozoaires (ex: Plasmodium)",
-      "Les Flagellés",
-      "Les Amibes",
-      "Les Ciliés"
+      "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium malariae",
+      "Plasmodium ovale"
     ],
-    "correct": 0,
-    "explanation": "La schizogonie est une reproduction asexuée multiple typique des Apicomplexa.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Les anneaux de P. falciparum sont fins, délicats et petits par rapport à la taille des globules rouges."
   },
   {
-    "id": "p_class_40",
-    "question": "Un parasite 'Sténoxène' est un parasite qui :",
+    "id": "malaria_morph_22",
+    "axis": "morphology",
+    "question": "Quel motif de ponctuation N'EST PAS associé aux parasites du paludisme ?",
     "options": [
-      "A une spécificité d'hôte très étroite (ex: P. falciparum chez l'homme)",
-      "Peut infecter de nombreux animaux",
-      "Vit dans le sang",
-      "A un cycle simple"
+      "Ponctuation basophile",
+      "Points de Schüffner",
+      "Fentes de Maurer",
+      "Points de Ziemann"
     ],
-    "correct": 0,
-    "explanation": "Contrairement aux parasites euryxènes (spectre large), les sténoxènes sont très exigeants et infectent peu d'espèces.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "La ponctuation basophile est une découverte hématologique non liée au paludisme."
   },
   {
-    "id": "p_class_41",
-    "question": "Qui a découvert l'hématozoaire du paludisme (Plasmodium) ?",
+    "id": "malaria_morph_23",
+    "axis": "morphology",
+    "question": "Quel stade morphologique est le plus utile pour identifier Plasmodium falciparum ?",
     "options": [
-      "Alphonse Laveran",
-      "Ronald Ross",
-      "Louis Pasteur",
-      "Robert Koch"
+      "Gamétocyte",
+      "Schizonte",
+      "Trophozoïte",
+      "Hypnozoïte"
     ],
-    "correct": 0,
-    "explanation": "Alphonse Laveran, médecin militaire français, a observé le parasite pour la première fois en Algérie en 1880.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Le gamétocyte en forme de croissant est pathognomonique de P. falciparum."
   },
   {
-    "id": "p_class_47",
-    "question": "Le genre Babesia est transmis par :",
+    "id": "malaria_morph_24",
+    "axis": "morphology",
+    "question": "Quelle espèce de Plasmodium produit typiquement moins de 12 mérozoïtes par schizonte ?",
     "options": [
-      "Les tiques (Ixodes)",
-      "Les moustiques",
-      "Les phlébotomes",
-      "Les mouches"
+      "Plasmodium malariae",
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium ovale"
     ],
-    "correct": 0,
-    "explanation": "Contrairement au Paludisme, la Babésiose est une maladie transmise par les tiques dures.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Les schizontes de P. malariae contiennent généralement 6 à 12 mérozoïtes."
   },
   {
-    "id": "p_class_48",
-    "question": "Quelle forme parasitaire n'existe PAS chez les protozoaires ?",
+    "id": "malaria_morph_25",
+    "axis": "morphology",
+    "question": "Quelle découverte plaide contre une infection à Plasmodium falciparum ?",
     "options": [
-      "L'œuf (Embryophore)",
-      "Le kyste",
-      "Le trophozoïte",
-      "L'oocyste"
+      "Points de Schüffner dans les globules rouges agrandis",
+      "Formes annulaires multiples par globule rouge",
+      "Érythrocytes de taille normale",
+      "Parasitémie élevée"
     ],
-    "correct": 0,
-    "explanation": "Les protozoaires ne pondent pas d'œufs. Ce sont les Helminthes (Vers) qui pondent des œufs.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Les points de Schüffner ne sont pas observés dans les infections à P. falciparum."
   },
   {
-    "id": "p_class_49",
-    "question": "Les 'Hémoflagellés' incluent :",
+    "id": "malaria_morph_26",
+    "axis": "morphology",
+    "question": "Quelle espèce démontre couramment des formes de trophozoïtes en panier ou en bande ?",
     "options": [
-      "Trypanosoma et Leishmania",
-      "Plasmodium et Babesia",
-      "Giardia et Trichomonas",
-      "Entamoeba"
+      "Plasmodium malariae",
+      "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium ovale"
     ],
-    "correct": 0,
-    "explanation": "Ce sont des flagellés qui vivent dans le sang ou les tissus profonds (système réticulo-endothélial).",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Les formes en panier et en bande sont typiques des trophozoïtes de P. malariae."
   },
   {
-    "id": "p_class_51",
-    "question": "Quel genre de moustique transmet le genre Plasmodium ?",
+    "id": "malaria_morph_27",
+    "axis": "morphology",
+    "question": "Quelle caractéristique morphologique est partagée par Plasmodium falciparum et Plasmodium knowlesi ?",
+    "options": [
+      "Érythrocytes de taille normale",
+      "Points de Schüffner",
+      "Globules rouges ovales",
+      "Marges frangées"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les deux espèces infectent les globules rouges de tous âges, maintenant une taille normale des globules rouges."
+  },
+  {
+    "id": "malaria_morph_28",
+    "axis": "morphology",
+    "question": "Quel parasite provoque le plus souvent une parasitémie très élevée en raison d'un cycle érythrocytaire de 24 heures ?",
+    "options": [
+      "Plasmodium knowlesi",
+      "Plasmodium malariae",
+      "Plasmodium vivax",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P. knowlesi se réplique toutes les 24 heures, conduisant à une multiplication rapide des parasites."
+  },
+  {
+    "id": "malaria_morph_29",
+    "axis": "morphology",
+    "question": "Quelle espèce de Plasmodium produit des gamétocytes ronds dans des érythrocytes de taille normale ?",
+    "options": [
+      "Plasmodium malariae",
+      "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les gamétocytes de P. malariae sont ronds et se développent dans des globules rouges de taille normale."
+  },
+  {
+    "id": "malaria_morph_30",
+    "axis": "morphology",
+    "question": "Quelle découverte morphologique distingue le mieux les parasites du paludisme des plaquettes recouvrant les globules rouges ?",
+    "options": [
+      "Présence d'un point de chromatine",
+      "Petite taille",
+      "Localisation périphérique",
+      "Coloration bleue"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les parasites ont des points de chromatine identifiables ; les plaquettes n'en ont pas."
+  },
+  {
+    "id": "malaria_morph_31",
+    "axis": "morphology",
+    "question": "Quelle espèce montre le plus grand degré d'agrandissement des globules rouges ?",
+    "options": [
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium malariae",
+      "Plasmodium knowlesi"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P. vivax provoque un agrandissement marqué des érythrocytes infectés."
+  },
+  {
+    "id": "malaria_morph_32",
+    "axis": "morphology",
+    "question": "Quel motif de ponctuation est le plus étroitement associé à la cytoadhérence et au paludisme sévère ?",
+    "options": [
+      "Fentes de Maurer",
+      "Points de Schüffner",
+      "Points de Ziemann",
+      "Ponctuation basophile"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les fentes de Maurer sont liées à la cytoadhérence médiée par PfEMP1 dans P. falciparum."
+  },
+  {
+    "id": "malaria_morph_33",
+    "axis": "morphology",
+    "question": "Quelle espèce de Plasmodium démontre le plus couramment des formes appliquées (accolées) ?",
+    "options": [
+      "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium malariae",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les formes appliquées sont caractéristiques des stades annulaires de P. falciparum."
+  },
+  {
+    "id": "malaria_morph_34",
+    "axis": "morphology",
+    "question": "Quelle caractéristique morphologique est la MOINS utile pour la différenciation des espèces ?",
+    "options": [
+      "Présence d'anémie",
+      "Forme du gamétocyte",
+      "Taille des globules rouges",
+      "Nombre de mérozoïtes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'anémie est non spécifique et n'aide pas à la différenciation morphologique."
+  },
+  {
+    "id": "malaria_morph_35",
+    "axis": "morphology",
+    "question": "Quelle espèce produit des schizontes dépassant rarement 12 mérozoïtes ?",
+    "options": [
+      "Plasmodium malariae",
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les faibles nombres de mérozoïtes sont typiques des schizontes de P. malariae."
+  },
+  {
+    "id": "malaria_morph_36",
+    "axis": "morphology",
+    "question": "Quel indice morphologique soutient P. ovale plutôt que P. vivax ?",
+    "options": [
+      "Marges frangées des globules rouges",
+      "Points de Schüffner",
+      "Érythrocytes agrandis",
+      "Trophozoïtes amiboïdes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les marges frangées sont caractéristiques de P. ovale."
+  },
+  {
+    "id": "malaria_morph_37",
+    "axis": "morphology",
+    "question": "Quelle espèce de Plasmodium produit le plus couramment des trophozoïtes compacts sans formes amiboïdes ?",
+    "options": [
+      "Plasmodium malariae",
+      "Plasmodium vivax",
+      "Plasmodium falciparum",
+      "Plasmodium ovale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les trophozoïtes de P. malariae sont compacts et moins amiboïdes."
+  },
+  {
+    "id": "malaria_morph_38",
+    "axis": "morphology",
+    "question": "Quelle caractéristique morphologique indique une maturation avancée du trophozoïte dans P. falciparum ?",
+    "options": [
+      "Fentes de Maurer grossières",
+      "Points de Schüffner",
+      "Formes en bande",
+      "Agrandissement des globules rouges"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les fentes de Maurer deviennent plus évidentes dans les stades trophozoïtes tardifs."
+  },
+  {
+    "id": "malaria_morph_39",
+    "axis": "morphology",
+    "question": "Quelle espèce est la plus probable lorsque les schizontes sont fréquemment observés dans le sang périphérique avec des pics de fièvre quotidiens ?",
+    "options": [
+      "Plasmodium knowlesi",
+      "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium malariae"
+    ],
+    "correctAnswer": 0,
+    "explanation": "P. knowlesi a un cycle quotidien et des schizontes visibles."
+  },
+  {
+    "id": "malaria_morph_40",
+    "axis": "morphology",
+    "question": "Quelle caractéristique morphologique distingue le mieux les parasites du paludisme des débris de coloration ?",
+    "options": [
+      "Cytoplasme organisé avec chromatine",
+      "Taille uniforme",
+      "Localisation extracellulaire",
+      "Forme irrégulière"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les vrais parasites ont un cytoplasme et une chromatine structurés, contrairement aux débris."
+  }
+];
+
+// 1. Morphology
+// 2. Lifecycle
+const lifecycleQuestions = [
+  {
+    "id": "malaria_lifecycle_1",
+    "axis": "lifecycle",
+    "question": "Quel stade du cycle de vie de Plasmodium est responsable de l'infection initiale des hépatocytes chez l'homme ?",
+    "options": [
+      "Sporozoïte",
+      "Mérozoïte",
+      "Gamétocyte",
+      "Ookinète"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les sporozoïtes sont injectés par le moustique Anopheles et envahissent rapidement les hépatocytes pour initier le cycle exo-érythrocytaire."
+    },
+    {
+      "id": "malaria_lifecycle_2",
+      "axis": "lifecycle",
+    "question": "Quelles espèces de Plasmodium forment des hypnozoïtes dormants dans le foie capables de provoquer une rechute ?",
+    "options": [
+      "Plasmodium vivax et Plasmodium ovale",
+      "Plasmodium falciparum et Plasmodium malariae",
+      "Plasmodium knowlesi et Plasmodium falciparum",
+      "Plasmodium malariae uniquement"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Seuls P. vivax et P. ovale forment des hypnozoïtes qui peuvent se réactiver des mois à des années plus tard."
+    },
+    {
+      "id": "malaria_lifecycle_3",
+      "axis": "lifecycle",
+    "question": "Quelle phase du cycle de vie de Plasmodium se produit exclusivement dans le vecteur moustique ?",
+    "options": [
+      "Sporogonie",
+      "Schizogonie",
+      "Cycle érythrocytaire",
+      "Formation d'hypnozoïte"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La sporogonie, impliquant la reproduction sexuée et la formation de sporozoïtes, se produit uniquement dans le moustique Anopheles."
+    },
+    {
+      "id": "malaria_lifecycle_4",
+      "axis": "lifecycle",
+    "question": "Quelle espèce de moustique femelle sert d'hôte définitif pour Plasmodium ?",
     "options": [
       "Anopheles",
       "Aedes",
       "Culex",
-      "Phlebotomus"
+      "Mansonia"
     ],
-    "correct": 0,
-    "explanation": "Seules les femelles d'Anophèles sont vectrices du paludisme humain.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_52",
-    "question": "Les Phlébotomes (Sandflies) sont les vecteurs biologiques de :",
+    "correctAnswer": 0,
+    "explanation": "Les moustiques Anopheles femelles sont l'hôte définitif où se produit la reproduction sexuée."
+    },
+    {
+      "id": "malaria_lifecycle_5",
+      "axis": "lifecycle",
+    "question": "Quelle durée du cycle érythrocytaire est caractéristique de Plasmodium malariae ?",
     "options": [
-      "Leishmania",
-      "Trypanosoma",
-      "Plasmodium",
-      "Giardia"
+      "72 heures",
+      "48 heures",
+      "24 heures",
+      "96 heures"
     ],
-    "correct": 0,
-    "explanation": "Ces petits moucherons velus transmettent la leishmaniose lors de leur repas sanguin.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_55",
-    "question": "Le chat (Félidés) est l'hôte définitif exclusif de :",
+    "correctAnswer": 0,
+    "explanation": "P. malariae provoque le paludisme quarte avec un cycle érythrocytaire de 72 heures."
+    },
+    {
+      "id": "malaria_lifecycle_6",
+      "axis": "lifecycle",
+      "question": "Quelle espèce de Plasmodium complète son cycle érythrocytaire en environ 24 heures ?",
+      "options": [
+        "Plasmodium knowlesi",
+        "Plasmodium falciparum",
+        "Plasmodium vivax",
+        "Plasmodium malariae"
+      ],
+      "correctAnswer": 0,
+      "explanation": "P. knowlesi a un cycle érythrocytaire rapide de 24 heures, conduisant à des pics de fièvre quotidiens."
+    },
+    {
+      "id": "malaria_lifecycle_7",
+      "axis": "lifecycle",
+    "question": "Quel stade est responsable des symptômes cliniques du paludisme ?",
     "options": [
-      "Toxoplasma gondii",
-      "Giardia",
-      "Plasmodium",
-      "Leishmania"
+      "Schizogonie érythrocytaire",
+      "Schizogonie exo-érythrocytaire",
+      "Sporogonie",
+      "Fusion des gamètes"
     ],
-    "correct": 0,
-    "explanation": "C'est seulement dans l'intestin du chat que la reproduction sexuée de Toxoplasma a lieu (production d'oocystes).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_59",
-    "question": "Les Coccidies intestinales incluent trois genres majeurs pathogènes pour l'homme :",
+    "correctAnswer": 0,
+    "explanation": "Les manifestations cliniques résultent de la rupture synchrone des globules rouges infectés pendant la schizogonie érythrocytaire."
+    },
+    {
+      "id": "malaria_lifecycle_8",
+      "axis": "lifecycle",
+    "question": "Quel trait génétique humain fournit une protection contre l'infection à Plasmodium vivax ?",
     "options": [
-      "Cryptosporidium, Cyclospora, Cystoisospora",
-      "Giardia, Entamoeba, Trichomonas",
-      "Plasmodium, Babesia, Toxoplasma",
-      "Leishmania, Trypanosoma"
+      "Négativité de l'antigène Duffy",
+      "Trait drépanocytaire",
+      "Thalassémie majeure",
+      "Déficit en G6PD"
     ],
-    "correct": 0,
-    "explanation": "Ce trio forme le groupe des coccidies causant des diarrhées, souvent opportunistes.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_62",
-    "question": "Un parasite 'Tropical' strict est limité par :",
+    "correctAnswer": 0,
+    "explanation": "P. vivax nécessite l'antigène Duffy pour entrer dans les globules rouges ; les individus Duffy-négatifs sont résistants."
+    },
+    {
+      "id": "malaria_lifecycle_9",
+      "axis": "lifecycle",
+    "question": "Quelle condition génétique offre une protection partielle contre le paludisme sévère à Plasmodium falciparum ?",
     "options": [
-      "La présence de son vecteur (climat chaud)",
-      "La nourriture",
-      "L'eau",
-      "L'altitude"
+      "Trait drépanocytaire (HbAS)",
+      "Négativité Duffy",
+      "Hémophilie",
+      "Anémie ferriprive"
     ],
-    "correct": 0,
-    "explanation": "Ex: La maladie du sommeil ou le paludisme à P. falciparum dépendent de la température nécessaire au vecteur.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_63",
-    "question": "Lequel est un parasite 'Xénophile' (transmis par vecteur) ?",
+    "correctAnswer": 0,
+    "explanation": "Le trait drépanocytaire hétérozygote interfère avec la survie de P. falciparum dans les globules rouges."
+    },
+    {
+      "id": "malaria_lifecycle_10",
+      "axis": "lifecycle",
+    "question": "Quel stade de Plasmodium est ingéré par le moustique lors d'un repas sanguin ?",
     "options": [
-      "Plasmodium",
-      "Giardia",
-      "Entamoeba",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "Giardia, Entamoeba et Trichomonas sont transmis directement (eau/contact). Plasmodium nécessite un vecteur.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_65",
-    "question": "Les parasites 'Intracellulaires obligatoires' ne peuvent vivre qu'à l'intérieur d'une cellule. Ex :",
-    "options": [
-      "Toxoplasma, Plasmodium, Leishmania",
-      "Giardia, Trichomonas",
-      "Entamoeba, Balantidium",
-      "Trypanosoma (stade sanguin)"
-    ],
-    "correct": 0,
-    "explanation": "Ils ont besoin de la machinerie cellulaire hôte pour se diviser et se cacher du système immunitaire.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_66",
-    "question": "Quelle est la différence entre un 'Kyste' et un 'Oocyste' ?",
-    "options": [
-      "Le kyste est végétatif/résistance, l'oocyste est le produit de la reproduction sexuée",
-      "Le kyste est sexué, l'oocyste asexué",
-      "C'est la même chose",
-      "Le kyste est mobile"
-    ],
-    "correct": 0,
-    "explanation": "L'Oocyste (œuf-kyste) résulte toujours de la fécondation (zygote), alors que le Kyste est une forme de résistance asexuée.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_68",
-    "question": "Un hôte 'Définitif' est celui qui héberge :",
-    "options": [
-      "La forme sexuée (adulte) du parasite",
-      "La forme larvaire",
-      "La forme asexuée",
-      "Le vecteur"
-    ],
-    "correct": 0,
-    "explanation": "Par définition, c'est l'hôte où a lieu la reproduction sexuelle. (Ex: Anophèle pour Plasmodium, Chat pour Toxoplasma).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_72",
-    "question": "Groupe : Protozoaire tissulaire causant des malformations fœtales. Lequel ?",
-    "options": [
-      "Toxoplasma gondii",
-      "Plasmodium",
-      "Leishmania",
-      "Giardia"
-    ],
-    "correct": 0,
-    "explanation": "La toxoplasmose congénitale est le danger majeur de ce parasite.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_74",
-    "question": "Groupe : Coccidie opportuniste causant des diarrhées aqueuses chez le sidéen. Laquelle ?",
-    "options": [
-      "Cryptosporidium parvum",
-      "Plasmodium",
-      "Leishmania",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "La cryptosporidiose est une cause majeure de diarrhée chronique chez les patients VIH+.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_78",
-    "question": "L'apicoplaste des Plasmodium est une cible thérapeutique car :",
-    "options": [
-      "Il est d'origine végétale (sensible aux herbicides/antibiotiques)",
-      "Il est humain",
-      "Il est viral",
-      "Il est indestructible"
-    ],
-    "correct": 0,
-    "explanation": "C'est pourquoi certains antibiotiques (Doxycycline) fonctionnent contre le paludisme : ils tuent l'apicoplaste 'végétal'.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_88",
-    "question": "Quel parasite possède un 'axostyle' (squelette interne) ?",
-    "options": [
-      "Trichomonas",
-      "Entamoeba",
-      "Plasmodium",
-      "Toxoplasma"
-    ],
-    "correct": 0,
-    "explanation": "L'axostyle est la caractéristique des flagellés de l'ordre Trichomonadida.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_89",
-    "question": "Les Hémosporidies (Plasmodium) diffèrent des Coccidies vraies car :",
-    "options": [
-      "Elles n'ont pas de kyste de résistance extérieur",
-      "Elles sont plus petites",
-      "Elles sont ciliées",
-      "Elles sont des bactéries"
-    ],
-    "correct": 0,
-    "explanation": "Plasmodium passe directement d'un hôte à l'autre (Vecteur -> Homme) sans jamais être exposé à l'environnement extérieur sous forme de kyste.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_91",
-    "question": "Quel est le nom de la famille des amibes 'sociales' (qui s'agrègent) ?",
-    "options": [
-      "Dictyosteliidae (ex: Dictyostelium)",
-      "Entamoebidae",
-      "Acanthamoebidae",
-      "Naegleriidae"
-    ],
-    "correct": 0,
-    "explanation": "Elles forment des structures pluricellulaires temporaires (pseudoplasmodiums), modèle d'étude biologique.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_92",
-    "question": "L'ordre des Piroplasmida (Piroplasmes) doit son nom à :",
-    "options": [
-      "La forme en poire (Piro-) des parasites dans les hématies",
-      "Le feu (Pyro-)",
-      "La forme ronde",
-      "La forme carrée"
-    ],
-    "correct": 0,
-    "explanation": "Piro- (poire) décrit la forme des mérozoïtes de Babesia.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_93",
-    "question": "Les Haemogregarines sont des parasites de :",
-    "options": [
-      "Reptiles et Poissons (rarement Mammifères)",
-      "Humains",
-      "Oiseaux",
-      "Insectes seulement"
-    ],
-    "correct": 0,
-    "explanation": "Elles sont proches de Plasmodium mais infectent les animaux à sang froid.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_98",
-    "question": "Lequel est un eucaryote 'primitif' sans mitochondries (perte secondaire) ?",
-    "options": [
-      "Giardia intestinalis",
-      "Plasmodium",
-      "Paramecium",
-      "Euglena"
-    ],
-    "correct": 0,
-    "explanation": "Giardia a perdu ses mitochondries au cours de l'évolution pour s'adapter à la vie anaérobie (mitosomes).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_morph_7",
-    "question": "Les corps parabasaux en forme de virgule sont caractéristiques de :",
-    "options": [
-      "Giardia intestinalis",
-      "Entamoeba histolytica",
-      "Plasmodium falciparum",
-      "Cryptosporidium"
-    ],
-    "correct": 0,
-    "explanation": "Giardia possède deux corps parabasaux médians, souvent en forme de virgule ou de marteau, visibles au centre.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_19",
-    "question": "Le 'C form' ou forme en C est typique de quel trypanosome sur frottis sanguin ?",
-    "options": [
-      "Trypanosoma cruzi",
-      "Trypanosoma brucei gambiense",
-      "Trypanosoma brucei rhodesiense",
-      "Leishmania donovani"
-    ],
-    "correct": 0,
-    "explanation": "Trypanosoma cruzi adopte souvent une forme rigide en 'C' ou en 'U' sur les frottis sanguins fixés.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_41",
-    "question": "La 'tache de Maurer' est une modification de l'érythrocyte observée dans l'infection à :",
-    "options": [
-      "Plasmodium falciparum",
-      "Plasmodium vivax",
-      "Plasmodium malariae",
-      "Plasmodium ovale"
-    ],
-    "correct": 0,
-    "explanation": "Les taches de Maurer sont de grosses granulations irrégulières, peu nombreuses, typiques de P. falciparum.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_42",
-    "question": "Quelle espèce de Plasmodium a des trophozoïtes en forme de 'bandelette' équatoriale ?",
-    "options": [
-      "Plasmodium malariae",
-      "Plasmodium falciparum",
-      "Plasmodium vivax",
-      "Plasmodium ovale"
-    ],
-    "correct": 0,
-    "explanation": "Le trophozoïte âgé de P. malariae s'étire souvent en travers de l'hématie, formant une bande rectangulaire.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_43",
-    "question": "La forme 'rosace' (schizonte mûr) de Plasmodium malariae contient généralement :",
-    "options": [
-      "8 à 10 mérozoïtes (en marguerite)",
-      "16 à 24 mérozoïtes",
-      "32 mérozoïtes",
-      "4 mérozoïtes"
-    ],
-    "correct": 0,
-    "explanation": "Les mérozoïtes sont gros, peu nombreux (8-10) et disposés régulièrement autour du pigment central, comme une fleur.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_44",
-    "question": "Les hématies parasitées par Plasmodium vivax sont :",
-    "options": [
-      "Augmentées de taille et déformées",
-      "De taille normale",
-      "Rapetissées (crénelées)",
-      "Ovales"
-    ],
-    "correct": 0,
-    "explanation": "P. vivax préfère les réticulocytes (jeunes) et les fait gonfler, augmentant leur diamètre.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_45",
-    "question": "Les hématies parasitées par Plasmodium ovale sont souvent :",
-    "options": [
-      "Ovalaires avec des bords frangés",
-      "Rondes et petites",
-      "En forme de croissant",
-      "Sphériques parfaites"
-    ],
-    "correct": 0,
-    "explanation": "Comme son nom l'indique, P. ovale déforme l'hématie en ovale et donne à ses bords un aspect déchiqueté ou frangé.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_46",
-    "question": "Le pigment malarique (hémozoïne) apparaît au microscope comme :",
-    "options": [
-      "Des grains brun-noir ou dorés",
-      "Des cristaux bleus",
-      "Des vacuoles transparentes",
-      "Des filaments rouges"
-    ],
-    "correct": 0,
-    "explanation": "C'est un résidu de la digestion de l'hémoglobine par le parasite, visible sous forme de grains pigmentés.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_47",
-    "question": "Quelle espèce de Plasmodium peut présenter plusieurs trophozoïtes (polyparasitisme) dans une seule hématie ?",
-    "options": [
-      "Plasmodium falciparum",
-      "Plasmodium malariae",
-      "Plasmodium ovale",
-      "Plasmodium knowlesi"
-    ],
-    "correct": 0,
-    "explanation": "Le polyparasitisme (2, 3 ou plus de 'bagues' dans une cellule) est très évocateur de P. falciparum.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_48",
-    "question": "Les 'Accolés' (trophozoïtes collés à la périphérie de l'hématie) sont typiques de :",
-    "options": [
-      "Plasmodium falciparum",
-      "Plasmodium vivax",
-      "Plasmodium malariae",
-      "Toxoplasma"
-    ],
-    "correct": 0,
-    "explanation": "P. falciparum a souvent une position marginale, semblant collé à la membrane interne de l'érythrocyte.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_49",
-    "question": "Babesia spp. se distingue morphologiquement de Plasmodium par :",
-    "options": [
-      "L'absence de pigment malarique et la disposition en tétrade (Croix de Malte)",
-      "La présence de gros gamétocytes",
-      "Des kystes intra-érythrocytaires",
-      "Des flagelles"
-    ],
-    "correct": 0,
-    "explanation": "Babesia ne produit pas d'hémozoïne et ses mérozoïtes s'organisent parfois en croix de quatre (tétrade pathognomonique).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_50",
-    "question": "Le gamétocyte de Plasmodium vivax est :",
-    "options": [
-      "Rond ou ovale, remplissant l'hématie",
-      "En forme de banane",
-      "En forme de croissant",
-      "Invisible"
-    ],
-    "correct": 0,
-    "explanation": "Contrairement à P. falciparum, les gamétocytes de P. vivax (et des autres espèces) sont grands et arrondis.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_51",
-    "question": "Quelle est la taille moyenne d'un oocyste de Cryptosporidium parvum ?",
-    "options": [
-      "4 à 6 µm",
-      "10 à 12 µm",
-      "20 à 30 µm",
-      "1 µm"
-    ],
-    "correct": 0,
-    "explanation": "Les oocystes de Cryptosporidium sont très petits (4-6 µm), ce qui rend leur détection difficile sans coloration spécifique.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_52",
-    "question": "Quelle coloration est spécifique pour identifier les oocystes de Cryptosporidium ?",
-    "options": [
-      "Ziehl-Neelsen modifié (Kinyoun)",
-      "Gram",
-      "Giemsa",
-      "Lugol"
-    ],
-    "correct": 0,
-    "explanation": "C'est une coloration acido-alcoolo-résistante modifiée qui colore les oocystes en rouge vif sur fond vert/bleu.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_53",
-    "question": "Cyclospora cayetanensis possède des oocystes qui sont :",
-    "options": [
-      "Sphériques, de 8-10 µm, non sporulés à l'émission",
-      "Ovaire, de 4 µm, sporulés",
-      "Elliptiques",
-      "En forme de banane"
-    ],
-    "correct": 0,
-    "explanation": "Les oocystes de Cyclospora sont plus gros que ceux de Cryptosporidium (8-10 µm) et nécessitent une maturation dans le milieu extérieur.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_54",
-    "question": "Cystoisospora belli (Isospora belli) se distingue par des oocystes :",
-    "options": [
-      "Grands, ovales (20-30 µm) et transparents",
-      "Petits et ronds (5 µm)",
-      "Pigmentés en brun",
-      "Flagellés"
-    ],
-    "correct": 0,
-    "explanation": "Ce sont les plus grands oocystes parmi les coccidies intestinales humaines, ayant une forme de ballon de rugby.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_55",
-    "question": "L'autofluorescence bleue sous lumière UV est une propriété caractéristique de :",
-    "options": [
-      "Cyclospora cayetanensis",
-      "Cryptosporidium hominis",
-      "Entamoeba histolytica",
-      "Giardia lamblia"
-    ],
-    "correct": 0,
-    "explanation": "La paroi de l'oocyste de Cyclospora est autofluorescente, ce qui permet un diagnostic rapide sous microscope à fluorescence.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_56",
-    "question": "Sarcocystis hominis forme dans les muscles (hôte intermédiaire) des :",
-    "options": [
-      "Sarcocystes (kystes tissulaires)",
-      "Oocystes",
-      "Tachyzoïtes libres",
-      "Amibes"
-    ],
-    "correct": 0,
-    "explanation": "Les sarcocystes sont des kystes allongés, blancs, visibles parfois à l'œil nu dans les muscles (aspect en grain de riz).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_57",
-    "question": "Les sporocystes de Sarcocystis éliminés dans les selles humaines contiennent :",
-    "options": [
-      "4 sporozoïtes",
-      "2 sporozoïtes",
-      "8 sporozoïtes",
-      "1 seul sporozoïte"
-    ],
-    "correct": 0,
-    "explanation": "L'homme élimine des sporocystes isolés (l'oocyste à paroi fine s'est rompu) contenant chacun 4 sporozoïtes.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_59",
-    "question": "Lors de la sporulation, l'oocyste de Cyclospora cayetanensis produit :",
-    "options": [
-      "2 sporocystes contenant chacun 2 sporozoïtes",
-      "4 sporocystes nus",
-      "8 sporozoïtes libres",
-      "1 sporocyste géant"
-    ],
-    "correct": 0,
-    "explanation": "La formule de sporulation est 1 oocyste -> 2 sporocystes -> 2 sporozoïtes par sporocyste (Total = 4 sporozoïtes).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_60",
-    "question": "L'oocyste de Cystoisospora belli contient à maturité :",
-    "options": [
-      "2 sporocystes contenant chacun 4 sporozoïtes",
-      "4 sporocystes contenant chacun 2 sporozoïtes",
-      "8 sporozoïtes nus",
-      "16 mérozoïtes"
-    ],
-    "correct": 0,
-    "explanation": "Total = 8 sporozoïtes (formule 1 -> 2 -> 4).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_78",
-    "question": "Le 'Schizonte' est une cellule multinucléée résultant de :",
-    "options": [
-      "La schizogonie (division asexuée multiple)",
-      "La gamogonie",
-      "La fusion de gamètes",
-      "L'enkystement"
-    ],
-    "correct": 0,
-    "explanation": "Le noyau se divise plusieurs fois sans division du cytoplasme, puis le cytoplasme se fragmente pour former des mérozoïtes.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_79",
-    "question": "L'ookinète de Plasmodium est une forme :",
-    "options": [
-      "Mobile et vermiculaire (zygote mobile)",
-      "Immobile et ronde",
-      "Kystique",
-      "Intracellulaire"
-    ],
-    "correct": 0,
-    "explanation": "L'ookinète est le zygote mobile capable de traverser la paroi stomacale du moustique pour former l'oocyste.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_80",
-    "question": "Chez Toxoplasma gondii, le 'kyste tissulaire' contient des milliers de :",
-    "options": [
-      "Bradyzoïtes (formes à multiplication lente)",
-      "Tachyzoïtes",
+      "Gamétocytes",
       "Sporozoïtes",
-      "Mérozoïtes"
-    ],
-    "correct": 0,
-    "explanation": "Les bradyzoïtes sont les formes de latence qui persistent à vie dans les kystes (cerveau, muscle, œil).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_81",
-    "question": "La coloration de Gomori-Grocott (argentique) est utile pour visualiser les kystes de :",
-    "options": [
-      "Pneumocystis jirovecii (classé fongique mais étudié en parasito)",
-      "Giardia",
-      "Plasmodium",
-      "Entamoeba"
-    ],
-    "correct": 0,
-    "explanation": "Elle colore la paroi des kystes en noir. Pneumocystis a été reclassé comme champignon mais reste traité en parasitologie médicale.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_82",
-    "question": "La 'forme en rosace' de Leishmania correspond à :",
-    "options": [
-      "Un amas de promastigotes en culture (rosette)",
-      "Un schizonte",
-      "Un kyste",
-      "Une inclusion virale"
-    ],
-    "correct": 0,
-    "explanation": "En culture (milieu NNN), les promastigotes s'agglutinent souvent par leur flagelle formant des images en rosette.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_85",
-    "question": "Les mérozoïtes de Plasmodium ont une forme de :",
-    "options": [
-      "Poire ou gouttelette",
-      "Sphère",
-      "Disque",
-      "Ruban"
-    ],
-    "correct": 0,
-    "explanation": "Ils sont piriformes avec le complexe apical dirigé vers l'avant pour pénétrer l'hématie.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_86",
-    "question": "Laquelle de ces formes n'est JAMAIS trouvée dans les selles ?",
-    "options": [
-      "Trophozoïte de Plasmodium",
-      "Kyste d'Entamoeba",
-      "Oocyste de Cryptosporidium",
-      "Trophozoïte de Giardia (diarrhée)"
-    ],
-    "correct": 0,
-    "explanation": "Plasmodium est un parasite sanguin strict chez l'homme, il ne passe jamais dans le tube digestif.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_90",
-    "question": "Chez quel parasite observe-t-on des 'formes en croix de Malte' dans les érythrocytes ?",
-    "options": [
-      "Babesia microti",
-      "Plasmodium falciparum",
-      "Plasmodium vivax",
-      "Toxoplasma"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'image typique de la division binaire en tétrade de Babesia (Maltese cross).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_91",
-    "question": "La 'tache de Ziemann' est associée à :",
-    "options": [
-      "Plasmodium malariae",
-      "Plasmodium ovale",
-      "Plasmodium vivax",
-      "Plasmodium falciparum"
-    ],
-    "correct": 0,
-    "explanation": "C'est une fine pointillé (stippling) visible sur les hématies infectées par P. malariae avec des colorations spéciales.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_93",
-    "question": "Quel parasite présente un 'bouton' ou 'bouchon' polaire visible sur ses oocystes (bien que rare) ?",
-    "options": [
-      "Aucun protozoaire (c'est typique des œufs d'helminthes)",
-      "Giardia",
-      "Entamoeba",
-      "Balantidium"
-    ],
-    "correct": 0,
-    "explanation": "Piège ! Les bouchons polaires sont typiques des œufs de Trichuris (helminthe), pas des protozoaires.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_95",
-    "question": "La taille d'un oocyste d'Isospora belli est d'environ :",
-    "options": [
-      "20 à 30 µm de long",
-      "5 µm",
-      "10 µm",
-      "50 µm"
-    ],
-    "correct": 0,
-    "explanation": "C'est une grande structure ellipsoïde facilement visible à l'examen direct (20-30 x 10-19 µm).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_96",
-    "question": "Les 'sporozoïtes' sont la forme infectante injectée par le moustique Anophèle. Ils sont :",
-    "options": [
-      "Fusiformes et mobiles",
-      "Ronds et immobiles",
-      "Amiboïdes",
-      "Ciliés"
-    ],
-    "correct": 0,
-    "explanation": "Ils doivent migrer rapidement de la peau vers le foie via la circulation sanguine.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_97",
-    "question": "Le terme 'Hypnozoïte' désigne :",
-    "options": [
-      "Une forme dormante hépatique (P. vivax/ovale)",
-      "Un kyste musculaire",
-      "Une forme sanguine",
-      "Un stade sexué"
-    ],
-    "correct": 0,
-    "explanation": "Responsable des rechutes tardives (reviviscences), il reste 'endormi' dans les hépatocytes.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_111",
-    "question": "Plasmodium knowlesi, parasite du singe infectant l'homme, ressemble morphologiquement à :",
-    "options": [
-      "Plasmodium malariae (stades âgés) et P. falciparum (stades jeunes)",
-      "Plasmodium vivax",
-      "Plasmodium ovale",
-      "Babesia"
-    ],
-    "correct": 0,
-    "explanation": "C'est un piège diagnostique : les formes jeunes ressemblent à P. falciparum et les formes âgées à P. malariae (bandelettes).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_112",
-    "question": "Les 'fentes de Maurer' sont visibles avec quelle coloration ?",
-    "options": [
-      "Giemsa à pH 7.2",
-      "Gram",
-      "Ziehl",
-      "Encre de Chine"
-    ],
-    "correct": 0,
-    "explanation": "La coloration de Giemsa de bonne qualité est indispensable pour voir ces granulations rouges irrégulières (P. falciparum).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_114",
-    "question": "Contrairement à Plasmodium, Babesia ne produit jamais de :",
-    "options": [
-      "Pigment (Hémozoïne)",
       "Mérozoïtes",
-      "Trophozoïtes",
-      "Gamètes"
+      "Schizontes"
     ],
-    "correct": 0,
-    "explanation": "Babesia ne digère pas l'hémoglobine de la même façon et ne produit pas le pigment noir caractéristique du paludisme.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_115",
-    "question": "Le 'basket form' (forme en panier) est une variante morphologique de :",
+    "correctAnswer": 0,
+    "explanation": "Les moustiques ingèrent les gamétocytes mâles et femelles du sang humain."
+    },
+  
+    {
+      "id": "malaria_lifecycle_11",
+      "axis": "lifecycle",
+    "question": "La fusion des gamètes mâles et femelles dans l'intestin moyen du moustique aboutit à la formation de :",
     "options": [
-      "Trophozoïte jeune de Plasmodium",
-      "Kyste de Giardia",
-      "Oocyste de Toxoplasma",
-      "Amastigote"
+      "Zygote",
+      "Ookinète",
+      "Oocyste",
+      "Sporozoïte"
     ],
-    "correct": 0,
-    "explanation": "C'est une forme annulaire de Plasmodium dont le cytoplasme forme une anse fine ressemblant à un panier.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_116",
-    "question": "Les spores de Sarcocystis sont souvent visibles dans les selles sous forme de :",
+    "correctAnswer": 0,
+    "explanation": "La fusion des gamètes produit un zygote, qui se développe ensuite en ookinète."
+    },
+    {
+      "id": "malaria_lifecycle_12",
+      "axis": "lifecycle",
+      "question": "Quel stade pénètre la paroi intestinale du moustique et se développe en oocyste ?",
+      "options": [
+        "Ookinete",
+        "Zygote",
+        "Sporozoite",
+        "Gametocyte"
+      ],
+      "correctAnswer": 0,
+      "explanation": "L'ookinète mobile pénètre la paroi intestinale et forme un oocyste."
+    },
+    {
+      "id": "malaria_lifecycle_13",
+      "axis": "lifecycle",
+    "question": "Quel processus fait référence à la multiplication asexuée de Plasmodium chez l'homme ?",
     "options": [
-      "Sporocystes libres (souvent par paires)",
-      "Oocystes intacts",
-      "Mérozoïtes",
-      "Kystes"
+      "Schizogonie",
+      "Sporogonie",
+      "Gamétogonie",
+      "Fécondation"
     ],
-    "correct": 0,
-    "explanation": "La paroi de l'oocyste est très fragile et se rompt souvent dans l'intestin, libérant les deux sporocystes qui sont éliminés.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_121",
-    "question": "Le 'conoïde' est une structure spirale mobile appartenant au complexe apical de :",
+    "correctAnswer": 0,
+    "explanation": "La schizogonie est le processus de reproduction asexuée se produisant dans le foie humain et les globules rouges."
+    },
+    {
+      "id": "malaria_lifecycle_14",
+      "axis": "lifecycle",
+      "question": "Quel processus fait référence à la reproduction sexuée avec formation de sporozoïtes chez les moustiques ?",
+      "options": [
+        "Sporogony",
+        "Schizogony",
+        "Erythrocytic cycle",
+        "Hypnozoite activation"
+      ],
+      "correctAnswer": 0,
+      "explanation": "La sporogonie se produit dans le moustique et aboutit à la production de sporozoïtes."
+    },
+    {
+      "id": "malaria_lifecycle_15",
+      "axis": "lifecycle",
+      "question": "Quelle espèce de Plasmodium manque d'un stade hypnozoïte et ne rechute donc pas depuis le foie ?",
+      "options": [
+        "Plasmodium falciparum",
+        "Plasmodium vivax",
+        "Plasmodium ovale",
+        "Plasmodium vivax and ovale"
+      ],
+      "correctAnswer": 0,
+      "explanation": "P. falciparum ne forme pas d'hypnozoïtes ; la recrudescence est due à des stades sanguins persistants."
+    },
+  
+    {
+      "id": "malaria_lifecycle_16",
+      "axis": "lifecycle",
+    "question": "Quelle durée du cycle érythrocytaire est typique de Plasmodium vivax et Plasmodium falciparum ?",
     "options": [
-      "Toxoplasma et autres coccidies",
-      "Plasmodium (seulement)",
-      "Amibes",
-      "Flagellés"
+      "48 heures",
+      "72 heures",
+      "24 heures",
+      "36 heures"
     ],
-    "correct": 0,
-    "explanation": "Le conoïde est une structure en ressort qui aide le parasite à forer la membrane de la cellule hôte.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_122",
-    "question": "Le terme 'Schüffner's dots' (granulations de Schüffner) est synonyme de :",
+    "correctAnswer": 0,
+    "explanation": "P. vivax et P. falciparum ont tous deux un cycle érythrocytaire tierce (48 heures)."
+    },
+    {
+      "id": "malaria_lifecycle_17",
+      "axis": "lifecycle",
+      "question": "Quel stade est responsable de l'ensemencement des glandes salivaires du moustique ?",
+      "options": [
+        "Sporozoite",
+        "Oocyst",
+        "Ookinete",
+        "Zygote"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Les sporozoïtes libérés des oocystes migrent vers les glandes salivaires du moustique."
+    },
+    {
+      "id": "malaria_lifecycle_18",
+      "axis": "lifecycle",
+      "question": "Quel organe humain est d'abord impliqué après que les sporozoïtes entrent dans la circulation sanguine ?",
+      "options": [
+        "Liver",
+        "Spleen",
+        "Bone marrow",
+        "Lung"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Les sporozoïtes se localisent rapidement dans le foie pour initier la schizogonie exo-érythrocytaire."
+    },
+    {
+      "id": "malaria_lifecycle_19",
+      "axis": "lifecycle",
+      "question": "Quel stade du cycle de vie envahit directement les érythrocytes ?",
+      "options": [
+        "Merozoite",
+        "Sporozoite",
+        "Ookinete",
+        "Gametocyte"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Les mérozoïtes libérés des schizontes envahissent les globules rouges."
+    },
+    {
+      "id": "malaria_lifecycle_20",
+      "axis": "lifecycle",
+    "question": "Quel facteur épidémiologique détermine le plus fortement l'intensité de la transmission du paludisme ?",
     "options": [
-      "Pointillé de P. vivax/ovale",
-      "Taches de Maurer",
-      "Taches de Ziemann",
-      "Corps de Howell-Jolly"
+      "Densité et longévité des moustiques Anopheles",
+      "Densité de la population humaine",
+      "Altitude seule",
+      "Salinité de l'eau"
     ],
-    "correct": 0,
-    "explanation": "C'est le nom classique donné au pointillé rouge-rosé fin visible dans les hématies infectées par P. vivax/ovale.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_129",
-    "question": "Quelle forme de Toxoplasma est responsable de la transmission congénitale (mère-fœtus) ?",
+    "correctAnswer": 0,
+    "explanation": "La transmission dépend principalement de la densité des vecteurs, de la durée de vie et du comportement de piqûre."
+    },
+  
+    {
+      "id": "malaria_lifecycle_21",
+      "axis": "lifecycle",
+      "question": "Quelle espèce de Plasmodium est la plus associée à la transmission zoonotique en Asie du Sud-Est ?",
+      "options": [
+        "Plasmodium knowlesi",
+        "Plasmodium vivax",
+        "Plasmodium malariae",
+        "Plasmodium falciparum"
+      ],
+      "correctAnswer": 0,
+      "explanation": "P. knowlesi est un paludisme zoonotique transmis des macaques à l'homme."
+    },
+    {
+      "id": "malaria_lifecycle_22",
+      "axis": "lifecycle",
+    "question": "Quel stade de Plasmodium est haploïde ?",
     "options": [
-      "Tachyzoïte",
-      "Bradyzoïte",
+      "Mérozoïte",
+      "Zygote",
+      "Oocyste",
+      "Ookinète"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les mérozoïtes sont des formes haploïdes résultant de la schizogonie."
+    },
+    {
+      "id": "malaria_lifecycle_23",
+      "axis": "lifecycle",
+    "question": "Quel stade est diploïde dans le cycle de vie de Plasmodium ?",
+    "options": [
+      "Zygote",
       "Sporozoïte",
-      "Oocyste"
+      "Mérozoïte",
+      "Gamétocyte"
     ],
-    "correct": 0,
-    "explanation": "Le tachyzoïte est la forme circulante dans le sang capable de traverser le placenta.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_137",
-    "question": "Les 'Mitosomes' sont des organites dérivés des mitochondries trouvés chez :",
+    "correctAnswer": 0,
+    "explanation": "Le zygote est le seul stade diploïde formé après la fécondation."
+    },
+    {
+      "id": "malaria_lifecycle_24",
+      "axis": "lifecycle",
+      "question": "Quelle espèce de Plasmodium peut provoquer une recrudescence des années après l'infection initiale en raison de stades sanguins persistants ?",
+      "options": [
+        "Plasmodium malariae",
+        "Plasmodium vivax",
+        "Plasmodium ovale",
+        "Plasmodium falciparum"
+      ],
+      "correctAnswer": 0,
+      "explanation": "P. malariae peut persister à faible niveau dans le sang pendant des décennies."
+    },
+    {
+      "id": "malaria_lifecycle_25",
+      "axis": "lifecycle",
+    "question": "Quel facteur de l'hôte réduit la sévérité du paludisme en améliorant la clairance splénique des globules rouges infectés ?",
     "options": [
-      "Giardia et Entamoeba",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
+      "Trait drépanocytaire",
+      "Négativité Duffy",
+      "Surcharge en fer",
+      "Splénectomie"
     ],
-    "correct": 0,
-    "explanation": "Ces parasites anaérobies ont réduit leurs mitochondries en mitosomes, qui ne font pas de phosphorylation oxydative.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_143",
-    "question": "Identification : Oocyste rouge (Ziehl), 10 µm, sphérique. Diagnostic ?",
+    "correctAnswer": 0,
+    "explanation": "HbAS favorise l'élimination des globules rouges parasités et limite la croissance des parasites."
+    },
+  
+    {
+      "id": "malaria_lifecycle_26",
+      "axis": "lifecycle",
+      "question": "Quel stade de Plasmodium se différencie en formes mâles et femelles dans le sang humain ?",
+      "options": [
+        "Gametocyte",
+        "Merozoite",
+        "Schizont",
+        "Sporozoite"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Les gamétocytes sont les formes sexuées ingérées par les moustiques."
+    },
+    {
+      "id": "malaria_lifecycle_27",
+      "axis": "lifecycle",
+    "question": "Quel comportement alimentaire d'Anopheles est essentiel pour la transmission du paludisme ?",
     "options": [
-      "Cyclospora cayetanensis",
-      "Cryptosporidium (trop petit)",
-      "Isospora (ovale)",
-      "Sarcocystis"
+      "Repas sanguin nocturne par les femelles",
+      "Alimentation diurne par les mâles",
+      "Alimentation aquatique des larves",
+      "Alimentation sur nectar de plantes"
     ],
-    "correct": 0,
-    "explanation": "Taille 10 µm + Acido-alcoolo-résistant + Rond = Cyclospora.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_145",
-    "question": "Identification : Hématie agrandie, déformée, contours irréguliers, gros trophozoïte amiboïde. Espèce ?",
+    "correctAnswer": 0,
+    "explanation": "Seules les moustiques Anopheles femelles se nourrissent de sang la nuit et transmettent le paludisme."
+    },
+    {
+      "id": "malaria_lifecycle_28",
+      "axis": "lifecycle",
+    "question": "Quelle condition environnementale favorise le plus la reproduction d'Anopheles ?",
     "options": [
-      "Plasmodium ovale",
-      "Plasmodium vivax",
-      "Plasmodium falciparum",
-      "Plasmodium malariae"
+      "Collections d'eau douce stagnante",
+      "Rivières à courant rapide",
+      "Eaux côtières salines",
+      "Sol aride sec"
     ],
-    "correct": 0,
-    "explanation": "L'aspect 'ovale' et 'frangé' signe Plasmodium ovale.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_146",
-    "question": "Identification : Hématie normale, taches de Maurer, polyparasitisme. Espèce ?",
+    "correctAnswer": 0,
+    "explanation": "Les moustiques Anopheles se reproduisent dans les habitats d'eau douce stagnante."
+    },
+    {
+      "id": "malaria_lifecycle_29",
+      "axis": "lifecycle",
+      "question": "Quel stade est responsable de la rechute mais pas de la réinfection ?",
+      "options": [
+        "Hypnozoite",
+        "Merozoite",
+        "Sporozoite",
+        "Gametocyte"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Les hypnozoïtes restent dormants dans le foie et provoquent une rechute sans nouvelle exposition aux moustiques."
+    },
+    {
+      "id": "malaria_lifecycle_30",
+      "axis": "lifecycle",
+      "question": "Quelle espèce de Plasmodium est la moins affectée par le statut de l'antigène Duffy ?",
+      "options": [
+        "Plasmodium falciparum",
+        "Plasmodium vivax",
+        "Plasmodium knowlesi",
+        "Plasmodium ovale"
+      ],
+      "correctAnswer": 0,
+      "explanation": "P. falciparum ne dépend pas de l'antigène Duffy pour l'invasion des globules rouges."
+    },
+  
+    {
+      "id": "malaria_lifecycle_31",
+      "axis": "lifecycle",
+    "question": "Quel stade subit la méiose pendant le cycle de vie de Plasmodium ?",
     "options": [
-      "Plasmodium falciparum",
-      "Plasmodium vivax",
-      "Plasmodium ovale",
-      "Plasmodium malariae"
+      "Zygote",
+      "Gamétocyte",
+      "Mérozoïte",
+      "Sporozoïte"
     ],
-    "correct": 0,
-    "explanation": "Hématie normale + Maurer = Falciparum.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_147",
-    "question": "Identification : Intracellulaire, forme 'banane', noyau central. Stade ?",
+    "correctAnswer": 0,
+    "explanation": "La méiose se produit après la fécondation dans le zygote à l'intérieur du moustique."
+    },
+    {
+      "id": "malaria_lifecycle_32",
+      "axis": "lifecycle",
+    "question": "Quel facteur explique le plus l'absence de Plasmodium vivax dans une grande partie de l'Afrique de l'Ouest ?",
     "options": [
-      "Gamétocyte de P. falciparum",
+      "Prévalence élevée d'individus Duffy-négatifs",
+      "Manque de moustiques Anopheles",
+      "Utilisation universelle d'antipaludiques",
+      "Températures basses"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La négativité Duffy empêche l'invasion des globules rouges par P. vivax, limitant la transmission."
+    },
+    {
+      "id": "malaria_lifecycle_33",
+      "axis": "lifecycle",
+      "question": "Quel stade marque la transition de l'hôte humain à l'hôte moustique ?",
+      "options": [
+        "Gametocyte",
+        "Merozoite",
+        "Schizont",
+        "Sporozoite"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Les gamétocytes sont ingérés par le moustique lors du repas sanguin."
+    },
+    {
+      "id": "malaria_lifecycle_34",
+      "axis": "lifecycle",
+      "question": "Quelle espèce de Plasmodium provoque le plus couramment un paludisme rechutant des mois après le traitement ?",
+      "options": [
+        "Plasmodium vivax",
+        "Plasmodium falciparum",
+        "Plasmodium malariae",
+        "Plasmodium knowlesi"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Les rechutes sont dues aux hypnozoïtes dans les infections à P. vivax."
+    },
+    {
+      "id": "malaria_lifecycle_35",
+      "axis": "lifecycle",
+    "question": "Quel stade est ciblé par la thérapie à la primaquine pour prévenir la rechute ?",
+    "options": [
+      "Hypnozoïte",
+      "Mérozoïte",
+      "Gamétocyte",
+      "Schizonte"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La primaquine éradique les hypnozoïtes hépatiques dormants."
+    },
+  
+    {
+      "id": "malaria_lifecycle_36",
+      "axis": "lifecycle",
+      "question": "Quelle espèce montre à la fois la rechute et la recrudescence comme phénomènes épidémiologiques ?",
+      "options": [
+        "Plasmodium vivax",
+        "Plasmodium falciparum",
+        "Plasmodium knowlesi",
+        "Plasmodium malariae"
+      ],
+      "correctAnswer": 0,
+      "explanation": "P. vivax provoque une rechute via les hypnozoïtes et une recrudescence à partir des stades sanguins."
+    },
+    {
+      "id": "malaria_lifecycle_37",
+      "axis": "lifecycle",
+    "question": "Quel facteur influence le plus la transmission saisonnière du paludisme ?",
+    "options": [
+      "Modèles de précipitations",
+      "Immunité humaine seule",
+      "Taux de mutation des parasites",
+      "Génétique de l'altitude"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les précipitations affectent la reproduction des moustiques et l'intensité de la transmission."
+    },
+    {
+      "id": "malaria_lifecycle_38",
+      "axis": "lifecycle",
+      "question": "Quel stade du cycle de vie est responsable de l'infection d'un nouvel hôte humain ?",
+      "options": [
+        "Sporozoite",
+        "Merozoite",
+        "Gametocyte",
+        "Ookinete"
+      ],
+      "correctAnswer": 0,
+      "explanation": "Les sporozoïtes sont injectés dans l'homme lors d'une piqûre de moustique."
+    },
+    {
+      "id": "malaria_lifecycle_39",
+      "axis": "lifecycle",
+      "question": "Quelle espèce de Plasmodium peut maintenir une parasitémie de faible niveau pendant des décennies sans rechute ?",
+      "options": [
+        "Plasmodium malariae",
+        "Plasmodium vivax",
+        "Plasmodium falciparum",
+        "Plasmodium ovale"
+      ],
+      "correctAnswer": 0,
+      "explanation": "P. malariae peut persister silencieusement dans le sang pendant de nombreuses années."
+    },
+    {
+      "id": "malaria_lifecycle_40",
+      "axis": "lifecycle",
+    "question": "Quel stade relie les cycles exo-érythrocytaire et érythrocytaire ?",
+    "options": [
       "Mérozoïte",
       "Sporozoïte",
-      "Bradyzoïte"
+      "Gamétocyte",
+      "Ookinète"
     ],
-    "correct": 0,
-    "explanation": "C'est la forme pathognomonique du gamétocyte mâle ou femelle de P. falciparum.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Les mérozoïtes libérés des schizontes hépatiques initient l'infection érythrocytaire."
+    }
+];
+
+// 2. Lifecycle
+// 3. Clinical
+const clinicalQuestions = [
+  {
+    "id": "malaria_clin_1",
+    "axis": "clinical",
+    "question": "Quel est le mécanisme pathologique principal responsable du paludisme cérébral dans l'infection à Plasmodium falciparum ?",
+    "options": [
+      "Séquestration des érythrocytes parasités dans la microvascularisation cérébrale",
+      "Invasion directe des neurones par les parasites",
+      "Démyélinisation à médiation immunitaire",
+      "Rupture des schizontes cérébraux provoquant une hémorragie"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les globules rouges infectés par P. falciparum adhèrent à l'endothélium, provoquant une obstruction microvasculaire et une dysfonction cérébrale."
   },
   {
-    "id": "p_patho_6",
-    "question": "La fièvre périodique (Accès palustre) dans le paludisme correspond à :",
+    "id": "malaria_clin_2",
+    "axis": "clinical",
+    "question": "Quel critère clinique est inclus dans la définition de l'OMS du paludisme sévère ?",
     "options": [
-      "L'éclatement synchrone des schizontes et la libération des mérozoïtes",
-      "La piqûre du moustique",
-      "L'entrée dans le foie",
-      "La formation des gamètes"
+      "Altération de la conscience ou coma",
+      "Ictère léger sans anémie",
+      "Fièvre de faible grade uniquement",
+      "Thrombopénie isolée"
     ],
-    "correct": 0,
-    "explanation": "La rupture simultanée des globules rouges libère des pyrogènes et des toxines, déclenchant le frisson et la fièvre.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "L'altération de l'état mental ou le coma définit le paludisme cérébral, un critère majeur de paludisme sévère selon l'OMS."
   },
   {
-    "id": "p_patho_7",
-    "question": "Pourquoi Plasmodium falciparum est-il l'espèce la plus mortelle ?",
+    "id": "malaria_clin_3",
+    "axis": "clinical",
+    "question": "Quel est le processus pathogène le plus important conduisant à l'anémie sévère dans le paludisme ?",
     "options": [
-      "Il cause la séquestration des hématies dans les microvaisseaux (Cytoadhérence)",
-      "Il détruit le foie",
-      "Il est résistant à tout",
-      "Il infecte les leucocytes"
+      "Destruction des érythrocytes parasités et non parasités",
+      "Infiltration de la moelle osseuse par les parasites",
+      "Hémolyse auto-immune uniquement",
+      "Séquestration du fer dans les macrophages uniquement"
     ],
-    "correct": 0,
-    "explanation": "Les hématies infectées deviennent collantes (Rosettes, Cytoadhérence) et bouchent les capillaires du cerveau (Neuropaludisme).",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "Les globules rouges infectés et non infectés sont détruits, conduisant à une anémie profonde."
   },
   {
-    "id": "p_patho_8",
-    "question": "L'anémie dans le paludisme est causée par :",
+    "id": "malaria_clin_4",
+    "axis": "clinical",
+    "question": "Quelle anomalie métabolique est particulièrement associée au paludisme sévère chez les enfants ?",
     "options": [
-      "La lyse parasitaire, l'hémolyse auto-immune et la dysérythropoïèse",
-      "Une hémorragie digestive",
-      "Une carence en fer",
-      "Une toxicité médicamenteuse"
+      "Hypoglycémie",
+      "Hypernatrémie",
+      "Alcalose métabolique",
+      "Hypercalcémie"
     ],
-    "correct": 0,
-    "explanation": "C'est un mécanisme complexe : destruction directe par le parasite + destruction par la rate + production ralentie par la moelle.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "L'hypoglycémie est courante dans le paludisme pédiatrique sévère en raison de la consommation de glucose par les parasites et de la gluconéogenèse altérée."
   },
   {
-    "id": "p_patho_9",
-    "question": "L'hypnozoïte de Plasmodium vivax est responsable de :",
+    "id": "malaria_clin_5",
+    "axis": "clinical",
+    "question": "Quel mécanisme explique l'acidose lactique dans le paludisme falciparum sévère ?",
     "options": [
-      "Les rechutes tardives (reviviscence) des mois ou années plus tard",
-      "La forme cérébrale",
-      "L'insuffisance rénale",
-      "La transmission immédiate"
+      "Hypoxie tissulaire due à l'obstruction microvasculaire",
+      "Insuffisance respiratoire primaire",
+      "Acidose tubulaire rénale",
+      "Perte excessive de bicarbonate"
     ],
-    "correct": 0,
-    "explanation": "Ces formes dormantes dans le foie peuvent se réveiller longtemps après la primo-infection.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "La cytoadhérence provoque une altération de la perfusion, conduisant au métabolisme anaérobie et à l'acidose lactique."
   },
   {
-    "id": "p_patho_16",
-    "question": "Le signe de 'Winterbottom' (adénopathies cervicales postérieures) est caractéristique de :",
+    "id": "malaria_clin_6",
+    "axis": "clinical",
+    "question": "Quelle complication est classiquement associée à l'infection chronique à Plasmodium malariae ?",
     "options": [
-      "La phase lymphatico-sanguine de la Maladie du sommeil (T. brucei)",
-      "La maladie de Chagas",
-      "Le paludisme",
-      "La toxoplasmose"
+      "Syndrome néphrotique",
+      "Paludisme cérébral",
+      "Fièvre bilieuse hémoglobinurique",
+      "Syndrome de détresse respiratoire aiguë"
     ],
-    "correct": 0,
-    "explanation": "C'est un signe clinique précoce classique de la trypanosomose humaine africaine (THA).",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "Le dépôt de complexes immuns dans les reins conduit au syndrome néphrotique dans P. malariae."
   },
   {
-    "id": "p_patho_26",
-    "question": "La triade classique de l'accès palustre (Paludisme) est :",
+    "id": "malaria_clin_7",
+    "axis": "clinical",
+    "question": "La fièvre bilieuse hémoglobinurique est principalement caractérisée par quelle caractéristique clinique ?",
     "options": [
-      "Frissons - Chaleur (Fièvre) - Sueurs",
-      "Toux - Fièvre - Douleur",
-      "Diarrhée - Vomissement - Fièvre",
-      "Céphalée - Raideur - Photophobie"
+      "Hémoglobinurie due à une hémolyse intravasculaire massive",
+      "Thrombopénie sévère",
+      "Insuffisance hépatique aiguë",
+      "Œdème cérébral"
     ],
-    "correct": 0,
-    "explanation": "C'est la succession temporelle typique : Frissons intenses -> Pic fébrile (40°C) -> Sueurs profuses et défervescence.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "L'hémolyse rapide provoque des urines foncées dues à l'hémoglobine libre."
   },
   {
-    "id": "p_patho_27",
-    "question": "Une splénomégalie tropicale (grosse rate) est très évocatrice de :",
+    "id": "malaria_clin_8",
+    "axis": "clinical",
+    "question": "Quelle espèce de paludisme est la plus couramment associée à une maladie sévère pendant la grossesse ?",
     "options": [
-      "Paludisme ou Leishmaniose viscérale",
-      "Amibiase",
-      "Giardiase",
-      "Trichomonase"
-    ],
-    "correct": 0,
-    "explanation": "La rate est le cimetière des globules rouges et le lieu de réponse immune, elle grossit énormément dans ces infections sanguines.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_29",
-    "question": "Une stéatorrhée (selles grasses et flottantes) suggère une infection par :",
-    "options": [
-      "Giardia intestinalis",
-      "Entamoeba histolytica",
-      "Plasmodium",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "La malabsorption des lipides due au tapis de Giardia rend les selles graisseuses et malodorantes.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_30",
-    "question": "L'éosinophilie sanguine est-elle caractéristique des protozooses ?",
-    "options": [
-      "Non, sauf rares exceptions (Isospora, Dientamoeba)",
-      "Oui, toujours très élevée",
-      "Oui, pour le Paludisme",
-      "Oui, pour l'Amibiase"
-    ],
-    "correct": 0,
-    "explanation": "Règle d'or : L'éosinophilie est le marqueur des HELMINTHES (vers tissulaires). Les protozoaires ne causent généralement PAS d'éosinophilie.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_31",
-    "question": "Le phénomène de 'Cytoadhérence' de P. falciparum est médié par la protéine :",
-    "options": [
-      "PfEMP1 (Erythrocyte Membrane Protein 1)",
-      "Hémoglobine",
-      "Actine",
-      "Histolysine"
-    ],
-    "correct": 0,
-    "explanation": "PfEMP1 forme des 'knobs' (boutons) à la surface de l'hématie qui s'accrochent aux récepteurs endothéliaux (ICAM-1).",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_32",
-    "question": "Pourquoi l'absence d'antigène Duffy (Fy a-b-) protège-t-elle contre Plasmodium vivax ?",
-    "options": [
-      "P. vivax utilise l'antigène Duffy comme récepteur d'entrée dans l'hématie",
-      "Le parasite ne peut pas se nourrir",
-      "Le foie est résistant",
-      "Les moustiques ne piquent pas ces personnes"
-    ],
-    "correct": 0,
-    "explanation": "C'est une résistance génétique naturelle : la population noire africaine (Duffy négative) est quasi réfractaire à P. vivax.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_33",
-    "question": "Le déficit en G6PD (Favisme) confère une protection partielle contre :",
-    "options": [
-      "Le Paludisme grave",
-      "L'Amibiase",
-      "La Leishmaniose",
-      "La Trypanosomiase"
-    ],
-    "correct": 0,
-    "explanation": "Le stress oxydatif dans les hématies G6PD-déficientes empêche la bonne multiplication du Plasmodium.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_35",
-    "question": "La 'Diarrhée des voyageurs' (Turista) est souvent causée par :",
-    "options": [
-      "Giardia, Cryptosporidium ou Entamoeba",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "Bien que souvent bactérienne (E. coli), Giardia est la cause parasitaire la plus fréquente de diarrhée persistante au retour de voyage.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_36",
-    "question": "Une fièvre au retour d'un pays tropical est jusqu'à preuve du contraire :",
-    "options": [
-      "Un Paludisme",
-      "Une grippe",
-      "Une typhoïde",
-      "Une hépatite"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'urgence absolue à éliminer (Frottis/Goutte épaisse) car P. falciparum peut tuer en quelques jours.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_37",
-    "question": "Des troubles visuels (choriorétinite) chez un adulte peuvent être une réactivation de :",
-    "options": [
-      "Toxoplasmose acquise in-utero ou ancienne",
-      "Paludisme",
-      "Amibiase",
-      "Giardiase"
-    ],
-    "correct": 0,
-    "explanation": "La toxoplasmose oculaire est une cause fréquente d'uvéite postérieure et de cécité.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_42",
-    "question": "La variation antigénique (VSA) permet à Plasmodium et Trypanosoma de :",
-    "options": [
-      "Échapper au système immunitaire (anticorps)",
-      "Entrer dans la cellule",
-      "Se nourrir",
-      "Se reproduire"
-    ],
-    "correct": 0,
-    "explanation": "En changeant constamment leur manteau de surface, ils ont toujours une longueur d'avance sur la réponse anticorps de l'hôte.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_44",
-    "question": "La 'Cruzipaïne' est une enzyme majeure de virulence de :",
-    "options": [
-      "Trypanosoma cruzi",
-      "Leishmania",
-      "Plasmodium",
-      "Giardia"
-    ],
-    "correct": 0,
-    "explanation": "C'est une cystéine protéase essentielle à la survie et à l'invasion cellulaire de T. cruzi.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_46",
-    "question": "Le cycle de Toxoplasma gondii est :",
-    "options": [
-      "Hétéroxène facultatif (Chat <-> Oiseaux/Rongeurs, Homme accidentel)",
-      "Direct strict",
-      "Direct court",
-      "Identique à Plasmodium"
-    ],
-    "correct": 0,
-    "explanation": "Le chat est l'hôte définitif, mais le parasite peut se transmettre entre hôtes intermédiaires (carnivorisme) sans passer par le chat.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_48",
-    "question": "Dans le cycle de Plasmodium, la phase hépatique (pré-érythrocytaire) est :",
-    "options": [
-      "Asymptomatique (silencieuse)",
-      "Responsable de la fièvre",
-      "Responsable de l'anémie",
-      "Douloureuse"
-    ],
-    "correct": 0,
-    "explanation": "La multiplication dans le foie ne donne aucun symptôme. La maladie commence quand les parasites sortent du foie vers le sang.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_50",
-    "question": "L'auto-infestation (cycle court) est possible chez :",
-    "options": [
-      "Cryptosporidium et Giardia",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "Les oocystes de Cryptosporidium peuvent éclore directement dans l'intestin, causant une hyperinfection chronique.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_52",
-    "question": "La 'Prémunition' dans le paludisme désigne :",
-    "options": [
-      "Un état d'équilibre entre l'hôte et le parasite (protection contre les formes graves)",
-      "Une immunité stérilisante totale",
-      "Une absence d'immunité",
-      "Une vaccination"
-    ],
-    "correct": 0,
-    "explanation": "En zone endémique, les adultes sont infectés mais ne font pas de maladie grave grâce à cette immunité semi-protectrice.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_56",
-    "question": "Le 'Neuropaludisme' (Accès pernicieux) est caractérisé par :",
-    "options": [
-      "Coma, convulsions et défaillance multiviscérale",
-      "Maux de tête légers",
-      "Paralysie des jambes",
-      "Perte de la vue"
-    ],
-    "correct": 0,
-    "explanation": "C'est la forme mortelle de P. falciparum, due à l'obstruction des capillaires cérébraux par les hématies parasitées.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_62",
-    "question": "Lequel peut être transmis par transfusion sanguine ?",
-    "options": [
-      "Plasmodium, Babesia, Trypanosoma cruzi",
-      "Giardia",
-      "Entamoeba",
-      "Cryptosporidium"
-    ],
-    "correct": 0,
-    "explanation": "Tous les parasites sanguicoles peuvent être transmis par transfusion si le donneur est infecté (même asymptomatique).",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_64",
-    "question": "L'indice sporozoïtique chez le moustique mesure :",
-    "options": [
-      "Le pourcentage de moustiques ayant des sporozoïtes dans les glandes salivaires",
-      "Le nombre de larves",
-      "Le nombre d'œufs",
-      "La taille du moustique"
-    ],
-    "correct": 0,
-    "explanation": "C'est un indicateur clé de l'intensité de la transmission du paludisme dans une zone donnée.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_70",
-    "question": "L'émergence de la Cryptosporidiose dans les pays développés est liée à :",
-    "options": [
-      "Sa résistance au chlore des piscines et des réseaux d'eau",
-      "Les moustiques",
-      "La viande crue",
-      "Les voyages"
-    ],
-    "correct": 0,
-    "explanation": "Les oocystes résistent aux traitements classiques de l'eau potable, causant des épidémies massives (ex: Milwaukee 1993).",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_71",
-    "question": "Patient sidéen avec céphalées et déficit moteur focal. IRM : image en 'cocarde'. Diagnostic ?",
-    "options": [
-      "Toxoplasmose cérébrale",
-      "Paludisme",
-      "Leishmaniose",
-      "Amibiase"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'image radiologique typique de l'abcès toxoplasmique chez le VIH+.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_72",
-    "question": "Retour de Thaïlande, fièvre J7, thrombopénie, pas de paludisme. Penser à :",
-    "options": [
-      "Dengue (Virus) mais diagnostic différentiel majeur du Palu",
-      "Amibiase",
-      "Giardiase",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "En médecine tropicale, il faut savoir évoquer les virus (Dengue, Chikungunya) quand le frottis sanguin est négatif.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_75",
-    "question": "Cardiomégalie massive chez un patient bolivien. Diagnostic ?",
-    "options": [
-      "Maladie de Chagas chronique",
-      "Hypertension",
-      "Paludisme",
-      "Béri-béri"
-    ],
-    "correct": 0,
-    "explanation": "La Bolivie est une zone de haute endémie pour Chagas. La cardiomyopathie dilatée est la complication tardive classique.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_76",
-    "question": "L'Hémozoïne (Pigment) produite par Plasmodium inhibe :",
-    "options": [
-      "La fonction des macrophages (phagocytose)",
-      "La respiration",
-      "Le cœur",
-      "Les reins"
-    ],
-    "correct": 0,
-    "explanation": "L'accumulation de pigment noir dans les macrophages paralyse leur fonction immunitaire.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_77",
-    "question": "La 'Tempête cytokinique' (TNF-alpha, IL-1) est responsable de :",
-    "options": [
-      "La fièvre et du choc dans le paludisme grave",
-      "La guérison",
-      "La dormance",
-      "La transmission"
-    ],
-    "correct": 0,
-    "explanation": "La rupture des schizontes déclenche une libération massive de médiateurs inflammatoires, causant les symptômes systémiques.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_89",
-    "question": "L'immunité contre le paludisme est :",
-    "options": [
-      "Lente à acquérir, incomplète et labile (disparaît si on quitte la zone)",
-      "À vie dès la première infection",
-      "Transmise par le lait",
-      "Totale"
-    ],
-    "correct": 0,
-    "explanation": "Si un Africain immunisé vit 2 ans en Europe, il perd son immunité et peut refaire un paludisme grave en rentrant au pays.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_91",
-    "question": "Le 'signe du glaçon' (hépatomégalie qui ballotte) est recherché dans :",
-    "options": [
-      "L'ascite (mais parfois associé aux parasitoses hépatiques graves)",
-      "Le paludisme",
-      "La leishmaniose",
-      "L'amibiase"
-    ],
-    "correct": 0,
-    "explanation": "Plus spécifiquement, c'est l'ébranlement hépatique douloureux qui signe l'abcès.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_92",
-    "question": "Les douleurs épigastriques pseudo-ulcéreuses sont typiques de :",
-    "options": [
-      "Giardiase",
-      "Amibiase",
-      "Trichomonase",
-      "Paludisme"
-    ],
-    "correct": 0,
-    "explanation": "La localisation duodénale haute de Giardia imite souvent les douleurs d'ulcère gastrique.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_93",
-    "question": "La 'fièvre tierce' (J1, J3, J5...) correspond à un cycle érythrocytaire de :",
-    "options": [
-      "48 heures (P. vivax, P. ovale, P. falciparum)",
-      "72 heures (P. malariae)",
-      "24 heures (P. knowlesi)",
-      "Irrégulier"
-    ],
-    "correct": 0,
-    "explanation": "P. malariae donne une fièvre 'quarte' (72h), les autres donnent une fièvre 'tierce' (48h).",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_94",
-    "question": "La 'fièvre quarte' (J1, J4, J7...) est spécifique de :",
-    "options": [
-      "Plasmodium malariae",
-      "Plasmodium vivax",
       "Plasmodium falciparum",
+      "Plasmodium vivax",
+      "Plasmodium malariae",
       "Plasmodium ovale"
     ],
-    "correct": 0,
-    "explanation": "C'est un signe clinique classique de cette espèce moins fréquente.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "P. falciparum provoque une séquestration placentaire conduisant à des issues de grossesse défavorables."
   },
   {
-    "id": "p_patho_95",
-    "question": "Lequel provoque une anémie mégaloblastique par consommation de vitamine B12 ?",
+    "id": "malaria_clin_9",
+    "axis": "clinical",
+    "question": "Quelle est la caractéristique pathologique principale du paludisme placentaire ?",
     "options": [
-      "Diphyllobothrium latum (Ténia du poisson) - Piège helminthe !",
-      "Giardia",
-      "Plasmodium",
-      "Entamoeba"
+      "Séquestration des érythrocytes infectés dans les espaces intervilleux",
+      "Infection fœtale directe",
+      "Infarctus placentaire dû à la thrombose",
+      "Placentite auto-immune maternelle"
     ],
-    "correct": 0,
-    "explanation": "Attention aux pièges ! C'est un ver (le Bothriocéphale) qui cause ça, pas un protozoaire. Giardia cause une malabsorption globale.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "L'adhésion médiée par VAR2CSA provoque l'accumulation de globules rouges infectés dans le placenta."
   },
   {
-    "id": "p_patho_96",
-    "question": "La présence de sang dans les urines (Hématurie) en zone tropicale évoque :",
+    "id": "malaria_clin_10",
+    "axis": "clinical",
+    "question": "Quel résultat fœtal est fortement associé au paludisme pendant la grossesse ?",
     "options": [
-      "Bilharziose (Schistosoma haematobium) - Piège helminthe !",
-      "Paludisme",
-      "Amibiase",
-      "Filariose"
+      "Faible poids de naissance",
+      "Malformations congénitales",
+      "Défauts du tube neural",
+      "Polyhydramnios"
     ],
-    "correct": 0,
-    "explanation": "Encore un piège classique de diagnostic différentiel. L'hématurie = Bilharziose (Ver), pas Palu (sauf fièvre bilieuse, mais c'est de l'hémoglobine, pas du sang frais).",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "L'insuffisance placentaire conduit à un retard de croissance intra-utérin."
   },
   {
-    "id": "p_patho_98",
-    "question": "La période d'incubation du paludisme à P. falciparum est d'environ :",
+    "id": "malaria_clin_11",
+    "axis": "clinical",
+    "question": "Quelle caractéristique distingue le paludisme sévère du paludisme non compliqué ?",
     "options": [
-      "7 à 12 jours minimum",
-      "24 heures",
-      "1 mois",
-      "1 an"
+      "Preuve de dysfonctionnement d'organes vitaux",
+      "Présence de fièvre et frissons",
+      "Anémie seule",
+      "Splénomégalie"
     ],
-    "correct": 0,
-    "explanation": "C'est le temps nécessaire pour le cycle hépatique silencieux avant l'apparition des symptômes.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "Le paludisme sévère implique une défaillance d'organes tels que le cerveau, les reins ou les poumons."
   },
   {
-    "id": "p_patho_99",
-    "question": "Une thrombopénie (baisse des plaquettes) est-elle fréquente dans le paludisme ?",
+    "id": "malaria_clin_12",
+    "axis": "clinical",
+    "question": "Quel phénomène pathogène contribue à l'obstruction microvasculaire dans le paludisme falciparum ?",
     "options": [
-      "Oui, très fréquente et précoce",
-      "Non, jamais",
-      "Seulement dans les formes graves",
-      "Inverse, il y a trop de plaquettes"
+      "Cytoadhérence des érythrocytes infectés aux cellules endothéliales",
+      "Vascularite capillaire",
+      "Apoptose endothéliale",
+      "Consommation de plaquettes uniquement"
     ],
-    "correct": 0,
-    "explanation": "C'est un signe biologique d'orientation très fort aux urgences : Fièvre + Thrombopénie = Palu jusqu'à preuve du contraire.",
-    "axis": "pathogenesis"
+    "correctAnswer": 0,
+    "explanation": "L'adhésion médiée par PfEMP1 ancre les globules rouges infectés à l'endothélium vasculaire."
   },
   {
-    "id": "p_diag_1",
-    "question": "Quel est l'examen de référence pour le diagnostic du Paludisme ?",
+    "id": "malaria_clin_13",
+    "axis": "clinical",
+    "question": "Le rosetting dans le paludisme fait référence à quelle interaction ?",
     "options": [
-      "Frottis sanguin mince et Goutte épaisse (MGG)",
-      "Sérologie",
-      "Coproculture",
-      "Biopsie hépatique"
+      "Liaison des érythrocytes infectés aux érythrocytes non infectés",
+      "Fixation des parasites aux leucocytes",
+      "Agrégation des plaquettes",
+      "Agrégation des schizontes"
     ],
-    "correct": 0,
-    "explanation": "C'est le 'Gold Standard'. La goutte épaisse concentre les parasites pour la sensibilité, le frottis permet l'identification de l'espèce.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Le rosetting aggrave le flux microcirculatoire et la sévérité."
   },
   {
-    "id": "p_diag_3",
-    "question": "La coloration de référence pour les protozoaires sanguins (Plasmodium, Leishmania) est :",
+    "id": "malaria_clin_14",
+    "axis": "clinical",
+    "question": "Quelle complication du paludisme se présente avec un choc et un effondrement circulatoire périphérique ?",
     "options": [
-      "May-Grünwald Giemsa (MGG)",
-      "Gram",
-      "Ziehl-Neelsen",
-      "Bleu de méthylène"
+      "Paludisme algide",
+      "Paludisme cérébral",
+      "Fièvre bilieuse hémoglobinurique",
+      "SDRA associé au paludisme"
     ],
-    "correct": 0,
-    "explanation": "Le MGG colore le cytoplasme en bleu clair, le noyau en rouge-violet et la chromatine de manière distincte.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Le paludisme algide ressemble à un choc septique avec hypotension."
   },
   {
-    "id": "p_diag_4",
-    "question": "Quelle coloration est indispensable pour visualiser les oocystes de Cryptosporidium ?",
+    "id": "malaria_clin_15",
+    "axis": "clinical",
+    "question": "Quel groupe d'âge est à plus haut risque de paludisme sévère dans les régions endémiques ?",
     "options": [
-      "Ziehl-Neelsen modifié (Kinyoun)",
-      "MGG",
-      "Gram",
-      "Lugol"
+      "Enfants de moins de cinq ans",
+      "Adolescents",
+      "Adultes en bonne santé",
+      "Personnes âgées uniquement"
     ],
-    "correct": 0,
-    "explanation": "Cryptosporidium est 'Acido-Alcoolo-Résistant' (AAR). Il apparaît en rouge fuchsia sur fond vert/bleu.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "L'immunité partielle se développe avec l'âge ; les jeunes enfants sont les plus vulnérables."
   },
   {
-    "id": "p_diag_10",
-    "question": "Le test de Baermann est spécifique pour l'extraction de :",
+    "id": "malaria_clin_16",
+    "axis": "clinical",
+    "question": "Pourquoi l'hypoglycémie est-elle particulièrement dangereuse dans le paludisme sévère ?",
     "options": [
-      "Larves d'Anguillule (Strongyloides)",
-      "Kystes d'Amibes",
-      "Œufs d'Ascaris",
-      "Oocystes de Cryptosporidium"
+      "Elle peut précipiter des convulsions et un coma",
+      "Elle provoque une hémolyse",
+      "Elle augmente directement la parasitémie",
+      "Elle conduit à une hyperkaliémie"
     ],
-    "correct": 0,
-    "explanation": "Il utilise l'hygrotropisme et le thermotropisme des larves (elles migrent vers l'eau tiède).",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "La faible glycémie aggrave les résultats neurologiques et la mortalité."
   },
   {
-    "id": "p_diag_12",
-    "question": "Le diagnostic de la Toxoplasmose chez la femme enceinte repose sur :",
+    "id": "malaria_clin_17",
+    "axis": "clinical",
+    "question": "Quelle manifestation clinique est typique du paludisme cérébral ?",
     "options": [
-      "Le suivi mensuel de la sérologie (IgG et IgM)",
-      "L'examen des selles",
-      "L'hémoculture",
-      "Le frottis sanguin"
+      "Coma non réveillable avec convulsions",
+      "Céphalée isolée uniquement",
+      "Neuropathie périphérique",
+      "Signes méningés sans coma"
     ],
-    "correct": 0,
-    "explanation": "Le but est de détecter une séroconversion (apparition d'anticorps) signant une infection récente.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Le paludisme cérébral se présente avec un coma et souvent des convulsions répétées."
   },
   {
-    "id": "p_diag_14",
-    "question": "Les Tests de Diagnostic Rapide (TDR) du Paludisme détectent :",
+    "id": "malaria_clin_18",
+    "axis": "clinical",
+    "question": "Quelle défaillance d'organe définit la lésion rénale aiguë associée au paludisme ?",
     "options": [
-      "Des antigènes parasitaires (HRP-2, pLDH)",
-      "Des anticorps",
-      "De l'ADN",
-      "L'hémoglobine"
+      "Oligurie avec élévation de la créatinine",
+      "Protéinurie dans la plage néphrotique uniquement",
+      "Hématurie sans azotémie",
+      "Déséquilibre électrolytique seul"
     ],
-    "correct": 0,
-    "explanation": "Ce sont des tests immunochromatographiques sur bandelette, très utiles quand le microscope n'est pas disponible.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "La nécrose tubulaire aiguë due à l'hémolyse et à l'hypoperfusion provoque une IRA."
   },
   {
-    "id": "p_diag_21",
-    "question": "Quel anticoagulant faut-il utiliser pour un frottis sanguin (Paludisme) ?",
+    "id": "malaria_clin_19",
+    "axis": "clinical",
+    "question": "Quelle espèce de paludisme est la plus fortement associée à une parasitémie très élevée ?",
     "options": [
-      "EDTA (Bouchon violet)",
-      "Héparine",
-      "Citrate",
-      "Pas d'anticoagulant"
-    ],
-    "correct": 0,
-    "explanation": "L'EDTA préserve bien la morphologie cellulaire. L'héparine peut déformer les parasites.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_24",
-    "question": "Pour rechercher des oocystes de Cyclospora, il est préférable d'utiliser une technique de :",
-    "options": [
-      "Autofluorescence sous microscope UV",
-      "Culture",
-      "Agglutination",
-      "Sédimentation simple"
-    ],
-    "correct": 0,
-    "explanation": "Les oocystes de Cyclospora (et Isospora) autofluorescent en bleu sous UV, ce qui est un diagnostic très rapide.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_28",
-    "question": "Sur un frottis sanguin, les plaquettes posées sur une hématie peuvent simuler :",
-    "options": [
-      "Un trophozoïte de Plasmodium",
-      "Un leucocyte",
-      "Une bactérie",
-      "Un virus"
-    ],
-    "correct": 0,
-    "explanation": "On appelle ça l'effet 'Superposition'. L'absence de cytoplasme bleu et de pigment rouge distingue la plaquette du parasite.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_31",
-    "question": "La parasitémie (pour le Paludisme) s'exprime en :",
-    "options": [
-      "Pourcentage d'hématies parasitées (ou parasites/µL)",
-      "Nombre de croix (+)",
-      "Grammes/Litre",
-      "Positif/Négatif"
-    ],
-    "correct": 0,
-    "explanation": "C'est crucial pour le pronostic. >4-5% définit un accès grave nécessitant un traitement IV.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_33",
-    "question": "La négativation de la goutte épaisse dans le paludisme est obtenue en :",
-    "options": [
-      "2 à 3 jours sous traitement efficace",
-      "1 heure",
-      "1 mois",
-      "6 mois"
-    ],
-    "correct": 0,
-    "explanation": "La clairance parasitaire est rapide avec les dérivés de l'artémisinine.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_36",
-    "question": "La culture sur milieu NNN (Novy-MacNeal-Nicolle) est utilisée pour :",
-    "options": [
-      "Leishmania et Trypanosoma",
-      "Plasmodium",
-      "Giardia",
-      "Entamoeba"
-    ],
-    "correct": 0,
-    "explanation": "C'est un milieu diphasique au sang de lapin qui permet la multiplication des promastigotes.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_39",
-    "question": "La xénodiagnostic (utilisation du vecteur vivant) a été utilisée pour :",
-    "options": [
-      "La maladie de Chagas (Triatomes non infectés)",
-      "Le Paludisme",
-      "L'Amibiase",
-      "La Giardiase"
-    ],
-    "correct": 0,
-    "explanation": "On laisse des punaises saines piquer le patient, puis on examine l'intestin de la punaise pour voir si elle s'est infectée.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_42",
-    "question": "Le 'Trichrome de Weber' est la coloration spécifique pour :",
-    "options": [
-      "Les spores de Microsporidies",
-      "Le Paludisme",
-      "Les Amibes",
-      "La Leishmaniose"
-    ],
-    "correct": 0,
-    "explanation": "Les spores apparaissent rose-rouge avec une vacuole claire, sur un fond vert/bleu.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_45",
-    "question": "Pour voir la mobilité des Trypanosomes sanguicoles, on fait :",
-    "options": [
-      "Un examen à l'état frais (entre lame et lamelle) ou goutte épaisse non séchée",
-      "Un frottis fixé",
-      "Une biopsie",
-      "Une culture"
-    ],
-    "correct": 0,
-    "explanation": "Le mouvement frétillant des trypanosomes est très visible à faible grossissement dans le sang frais.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_46",
-    "question": "L'QBC (Quantitative Buffy Coat) est une technique pour :",
-    "options": [
-      "Le diagnostic rapide du Paludisme par fluorescence",
-      "La culture",
-      "La sérologie",
-      "La PCR"
-    ],
-    "correct": 0,
-    "explanation": "On concentre les parasites dans un tube capillaire avec un colorant fluorescent (Acridine Orange).",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_47",
-    "question": "Les automates d'hématologie peuvent-ils détecter le paludisme ?",
-    "options": [
-      "Parfois, via des anomalies des scattergrammes (populations anormales)",
-      "Oui, toujours",
-      "Non, jamais",
-      "Oui, ils identifient l'espèce"
-    ],
-    "correct": 0,
-    "explanation": "Certains automates signalent une 'alarme malaria' due à la présence d'hémozoïne modifiant la diffraction laser.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_50",
-    "question": "Quelle est la limite de détection de la goutte épaisse (microscopiste expert) ?",
-    "options": [
-      "5 à 10 parasites / µL",
-      "1000 parasites / µL",
-      "1 parasite / mL",
-      "1 parasite / L"
-    ],
-    "correct": 0,
-    "explanation": "C'est une technique très sensible, capable de détecter des parasitémies très faibles (bien mieux que le frottis : 100/µL).",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_53",
-    "question": "Le diagnostic de certitude de la Giardiase se fait par la mise en évidence de :",
-    "options": [
-      "Kystes dans les selles ou Trophozoïtes dans le liquide duodénal",
-      "Sérologie",
-      "Frottis sanguin",
-      "Hémoculture"
-    ],
-    "correct": 0,
-    "explanation": "Si les selles sont négatives, le tubage duodénal ou le 'Enterotest' (fil avalé) peut récupérer les trophozoïtes.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_54",
-    "question": "La recherche d'antigènes copro-solubles (ELISA) est très utile pour :",
-    "options": [
-      "Giardia, Cryptosporidium et Entamoeba histolytica",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "C'est une alternative rapide et sensible à la microscopie, surtout pour le dépistage de masse.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_55",
-    "question": "Une selle pâteuse jaune-ocre mousseuse est évocatrice de :",
-    "options": [
-      "Giardiase",
-      "Amibiase",
-      "Choléra",
-      "Paludisme"
-    ],
-    "correct": 0,
-    "explanation": "L'aspect graisseux et la couleur sont dus à la malabsorption des graisses.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_56",
-    "question": "Sur un frottis sanguin, la présence de 'Trophozoïtes en bague à chaton' (Ring forms) sans autre stade évoque :",
-    "options": [
-      "Plasmodium falciparum (début d'accès)",
+      "Plasmodium falciparum",
       "Plasmodium vivax",
       "Plasmodium malariae",
-      "Babesia"
+      "Plasmodium ovale"
     ],
-    "correct": 0,
-    "explanation": "P. falciparum ne montre généralement que des formes jeunes (anneaux) dans le sang périphérique, les formes âgées étant séquestrées.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "P. falciparum infecte les globules rouges de tous âges, permettant des charges parasitaires élevées."
   },
   {
-    "id": "p_diag_57",
-    "question": "La présence de gamétocytes en forme de banane signe le diagnostic de :",
+    "id": "malaria_clin_20",
+    "axis": "clinical",
+    "question": "Quelle période d'incubation est typique du paludisme à Plasmodium falciparum ?",
     "options": [
+      "7–14 jours",
+      "3–5 jours",
+      "30–60 jours",
+      "Plusieurs années"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le paludisme falciparum se présente généralement dans les deux semaines suivant l'infection."
+  },
+  {
+    "id": "malaria_clin_21",
+    "axis": "clinical",
+    "question": "Pourquoi Plasmodium vivax peut-il rechuter des mois après l'infection initiale ?",
+    "options": [
+      "Persistance d'hypnozoïtes dormants dans le foie",
+      "Parasitémie chronique de faible grade dans le sang",
+      "Réinfection répétée par les moustiques",
+      "Variation antigénique dans les érythrocytes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les hypnozoïtes se réactivent et provoquent une rechute."
+  },
+  {
+    "id": "malaria_clin_22",
+    "axis": "clinical",
+    "question": "Quelle triade de symptômes décrit classiquement la paroxysme palustre ?",
+    "options": [
+      "Frissons, fièvre et sueurs",
+      "Fièvre, éruption cutanée et arthralgie",
+      "Céphalée, vomissements et diarrhée",
+      "Anémie, ictère et œdème"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La rupture cyclique des globules rouges produit la paroxysme classique."
+  },
+  {
+    "id": "malaria_clin_23",
+    "axis": "clinical",
+    "question": "Quel facteur contribue le plus à la mortalité dans le paludisme falciparum sévère ?",
+    "options": [
+      "Dysfonctionnement multi-organes",
+      "Parasitémie de faible grade",
+      "Splénomégalie",
+      "Modèle de fièvre rechutante"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'échec combiné cérébral, rénal, métabolique et respiratoire augmente la mortalité."
+  },
+  {
+    "id": "malaria_clin_24",
+    "axis": "clinical",
+    "question": "Quelle complication respiratoire peut survenir dans le paludisme sévère ?",
+    "options": [
+      "Syndrome de détresse respiratoire aiguë",
+      "Asthme bronchique",
+      "Fibrose pulmonaire",
+      "Épanchement pleural uniquement"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La fuite capillaire et l'inflammation peuvent conduire au SDRA."
+  },
+  {
+    "id": "malaria_clin_25",
+    "axis": "clinical",
+    "question": "Quelle manifestation du paludisme est causée par le dépôt de complexes immuns ?",
+    "options": [
+      "Syndrome néphrotique",
+      "Paludisme cérébral",
+      "Paludisme algide",
+      "Fièvre bilieuse hémoglobinurique"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les complexes antigène-anticorps chroniques endommagent les glomérules."
+  },
+  {
+    "id": "malaria_clin_26",
+    "axis": "clinical",
+    "question": "Quelle découverte de laboratoire accompagne couramment le paludisme sévère ?",
+    "options": [
+      "Acidose métabolique",
+      "Leucocytose marquée",
+      "Hypercalcémie",
+      "Bicarbonate élevé"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'acidose lactique reflète l'hypoxie tissulaire."
+  },
+  {
+    "id": "malaria_clin_27",
+    "axis": "clinical",
+    "question": "Pourquoi le paludisme est-il plus sévère chez les voyageurs non immunisés ?",
+    "options": [
+      "Manque d'immunité acquise partielle",
+      "Exposition plus élevée aux moustiques",
+      "Susceptibilité génétique uniquement",
+      "Co-infection avec des bactéries"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'exposition endémique conduit à une immunité partielle absente chez les voyageurs."
+  },
+  {
+    "id": "malaria_clin_28",
+    "axis": "clinical",
+    "question": "Quel signe clinique suggère une anémie sévère dans le paludisme ?",
+    "options": [
+      "Pâleur avec hémoglobine <5 g/dL",
+      "Ictère léger uniquement",
+      "Splénomégalie sans symptômes",
+      "Thrombopénie isolée"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'OMS définit l'anémie palustre sévère par une réduction profonde de l'hémoglobine."
+  },
+  {
+    "id": "malaria_clin_29",
+    "axis": "clinical",
+    "question": "Quelle manifestation indique un mauvais pronostic dans le paludisme cérébral ?",
+    "options": [
+      "Convulsions généralisées répétées",
+      "Convulsion fébrile unique",
+      "Céphalée légère",
+      "Confusion transitoire"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les convulsions récurrentes reflètent une atteinte cérébrale sévère."
+  },
+  {
+    "id": "malaria_clin_30",
+    "axis": "clinical",
+    "question": "Quelle condition clinique est uniquement liée à une hémolyse massive dans le paludisme ?",
+    "options": [
+      "Fièvre bilieuse hémoglobinurique",
+      "Paludisme algide",
+      "Paludisme cérébral",
+      "Paludisme placentaire"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'hémoglobinurie résulte de la destruction rapide des globules rouges."
+  },
+  {
+    "id": "malaria_clin_31",
+    "axis": "clinical",
+    "question": "Quelle est la cause principale de la thrombopénie dans le paludisme ?",
+    "options": [
+      "Destruction périphérique et séquestration splénique",
+      "Suppression de la moelle osseuse uniquement",
+      "Parasitisation des plaquettes",
+      "Anticorps anti-plaquettes auto-immuns seuls"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les plaquettes sont consommées et séquestrées pendant l'infection."
+  },
+  {
+    "id": "malaria_clin_32",
+    "axis": "clinical",
+    "question": "Quelle espèce de paludisme provoque le plus souvent une infection chronique de faible grade ?",
+    "options": [
+      "Plasmodium malariae",
       "Plasmodium falciparum",
       "Plasmodium vivax",
-      "Plasmodium ovale",
-      "Plasmodium malariae"
+      "Plasmodium knowlesi"
     ],
-    "correct": 0,
-    "explanation": "C'est le signe pathognomonique de P. falciparum, aucune autre espèce n'a cette forme.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "P. malariae peut persister à faible niveau pendant des années."
   },
   {
-    "id": "p_diag_58",
-    "question": "La présence de Schizontes mûrs (Rosaces) de P. falciparum dans le sang périphérique est un signe de :",
+    "id": "malaria_clin_33",
+    "axis": "clinical",
+    "question": "Quelle caractéristique différencie le paludisme sévère de la septicémie ?",
     "options": [
-      "Gravité extrême (charge parasitaire massive dépassant la séquestration)",
-      "Bon pronostic",
-      "Guérison",
-      "Erreur de diagnostic"
+      "Démonstration de la parasitémie sur le frottis sanguin",
+      "Présence de fièvre",
+      "Hypotension",
+      "Acidose métabolique"
     ],
-    "correct": 0,
-    "explanation": "Cela signifie que la microcirculation est saturée, le pronostic vital est engagé.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "La preuve microscopique des parasites confirme le paludisme."
   },
   {
-    "id": "p_diag_59",
-    "question": "L'aspect 'hématie frangée' ou 'déchiquetée' est typique de :",
+    "id": "malaria_clin_34",
+    "axis": "clinical",
+    "question": "Pourquoi la splénomégalie est-elle courante dans le paludisme ?",
     "options": [
-      "Plasmodium ovale",
-      "Plasmodium vivax",
-      "Plasmodium falciparum",
-      "Plasmodium malariae"
+      "Clairance accrue des érythrocytes parasités",
+      "Invasion splénique directe par les parasites",
+      "Formation de granulomes",
+      "Hypertension portale"
     ],
-    "correct": 0,
-    "explanation": "C'est un critère morphologique clé pour P. ovale.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "La rate élimine les globules rouges infectés et endommagés."
   },
   {
-    "id": "p_diag_60",
-    "question": "Le seuil de détection des TDR (Tests Rapides) Paludisme est d'environ :",
+    "id": "malaria_clin_35",
+    "axis": "clinical",
+    "question": "Quelle complication liée au paludisme imite le choc septique ?",
     "options": [
-      "100 parasites / µL (moins sensible que la goutte épaisse)",
-      "1 parasite / µL",
-      "1000 parasites / µL",
-      "Identique à la PCR"
+      "Paludisme algide",
+      "Fièvre bilieuse hémoglobinurique",
+      "Paludisme cérébral",
+      "Paludisme placentaire"
     ],
-    "correct": 0,
-    "explanation": "Les TDR peuvent être faussement négatifs si la parasitémie est très faible (<100/µL).",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Le paludisme algide se présente avec une hypotension et des caractéristiques de type choc."
   },
   {
-    "id": "p_diag_63",
-    "question": "La technique de concentration 'Micro-hématocrite' (Woo) est utilisée pour :",
+    "id": "malaria_clin_36",
+    "axis": "clinical",
+    "question": "Quel groupe de patients est à plus haut risque pour le paludisme placentaire ?",
     "options": [
-      "Détecter les Trypanosomes vivants dans le sang",
-      "Le Paludisme",
-      "Les Amibes",
-      "Les Leishmanies"
+      "Primigestes",
+      "Femmes multipares",
+      "Femmes postménopausées",
+      "Adolescents de sexe masculin"
     ],
-    "correct": 0,
-    "explanation": "On centrifuge le sang dans un capillaire et on observe l'interface globule/plasma (Buffy coat) pour voir bouger les parasites.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Les premières grossesses manquent d'immunité aux parasites se liant au placenta."
   },
   {
-    "id": "p_diag_65",
-    "question": "L'intradermo-réaction de Montenegro (IDR) était utilisée pour :",
+    "id": "malaria_clin_37",
+    "axis": "clinical",
+    "question": "Quelle découverte clinique reflète la sévérité de l'hémolyse dans le paludisme ?",
     "options": [
-      "La Leishmaniose Cutanée (témoin d'immunité cellulaire)",
-      "Le Paludisme",
-      "La Toxoplasmose",
-      "L'Amibiase"
+      "Ictère avec bilirubine indirecte élevée",
+      "ALT élevée isolée",
+      "Hypoalbuminémie",
+      "Leucopénie"
     ],
-    "correct": 0,
-    "explanation": "C'est un test historique (comme le test tuberculinique) montrant l'hypersensibilité retardée.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "L'hyperbilirubinémie non conjuguée indique une hémolyse."
   },
   {
-    "id": "p_diag_69",
-    "question": "Lequel peut être diagnostiqué par une biopsie intestinale (jéjunale) ?",
+    "id": "malaria_clin_38",
+    "axis": "clinical",
+    "question": "Quel facteur augmente la susceptibilité au paludisme sévère pendant la grossesse ?",
     "options": [
-      "Giardia, Cryptosporidium, Microsporidies",
-      "Plasmodium",
-      "Trichomonas",
-      "Trypanosoma"
+      "Expression placentaire des récepteurs d'adhésion des parasites",
+      "Masse de globules rouges augmentée",
+      "Niveaux d'œstrogène plus élevés",
+      "Exposition réduite aux moustiques"
     ],
-    "correct": 0,
-    "explanation": "Si les selles sont négatives, la biopsie montre les parasites collés ou dans l'épithélium.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Les récepteurs placentaires facilitent la séquestration des globules rouges infectés."
   },
   {
-    "id": "p_diag_73",
-    "question": "Un taux de prothrombine (TP) bas dans le paludisme signe :",
+    "id": "malaria_clin_39",
+    "axis": "clinical",
+    "question": "Quelle complication du paludisme implique une fuite capillaire diffuse ?",
     "options": [
-      "Une insuffisance hépatique ou une CIVD (Coagulation Intra-Vasculaire Disséminée)",
-      "Une guérison",
-      "Une anémie",
-      "Une bonne réponse"
+      "Syndrome de détresse respiratoire aiguë",
+      "Syndrome néphrotique",
+      "Paludisme cérébral",
+      "Fièvre bilieuse hémoglobinurique"
     ],
-    "correct": 0,
-    "explanation": "C'est un critère de gravité biologique (trouble de la coagulation).",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "La dysfonction endothéliale conduit à un œdème pulmonaire."
   },
   {
-    "id": "p_diag_77",
-    "question": "Le séquençage NGS (Next Generation Sequencing) permet de :",
+    "id": "malaria_clin_40",
+    "axis": "clinical",
+    "question": "Quelle caractéristique explique le mieux la défaillance multi-organes dans le paludisme falciparum ?",
     "options": [
-      "Détecter des mutations de résistance aux antipaludéens",
-      "Voir le parasite",
-      "Compter les parasites",
-      "Soigner"
+      "Séquestration microvasculaire généralisée",
+      "Fièvre élevée seule",
+      "Invasion directe des organes",
+      "Dépôt de complexes immuns uniquement"
     ],
-    "correct": 0,
-    "explanation": "Utilisé en surveillance épidémiologique pour traquer les souches résistantes à l'artémisinine.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "La séquestration perturbe la perfusion dans plusieurs organes."
+  }
+]
+
+// 4. Diagnosis
+const diagnosisQuestions = [
+  {
+    "id": "malaria_diag_1",
+    "axis": "diagnosis",
+    "question": "Quelle méthode de laboratoire offre la sensibilité la plus élevée pour détecter une parasitémie palustre de faible niveau ?",
+    "options": [
+      "Frottis sanguin épais (goutte épaisse)",
+      "Frottis sanguin mince (frottis sanguin)",
+      "Test de diagnostic rapide",
+      "Numération sanguine périphérique"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les frottis épais concentrent les éléments sanguins, permettant la détection de densités parasitaires très faibles (jusqu'à 5 parasites/µL)."
   },
   {
-    "id": "p_diag_80",
-    "question": "La biopsie rectale peut aider au diagnostic de :",
+    "id": "malaria_diag_2",
+    "axis": "diagnosis",
+    "question": "Quel est l'avantage principal d'un frottis sanguin mince dans le diagnostic du paludisme ?",
     "options": [
-      "Amibiase (ulcères en bouton de chemise) ou Bilharziose (œufs)",
-      "Giardiase",
-      "Paludisme",
-      "Trichomonas"
+      "Identification précise de l'espèce et évaluation morphologique",
+      "Sensibilité plus élevée que le frottis épais",
+      "Détection de la parasitémie submicroscopique",
+      "Compatibilité avec l'automatisation"
     ],
-    "correct": 0,
-    "explanation": "L'anatomopathologie montre l'invasion tissulaire et l'inflammation.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Les frottis minces préservent la morphologie des globules rouges, permettant une différenciation précise des espèces."
   },
   {
-    "id": "p_diag_81",
-    "question": "Cas clinique : Diarrhée chronique, perte de poids, VIH+. EPS : oocystes roses sur fond vert (Kinyoun).",
+    "id": "malaria_diag_3",
+    "axis": "diagnosis",
+    "question": "Quel est le seuil de détection approximatif d'un frottis sanguin épais bien préparé ?",
     "options": [
-      "Cryptosporidium sp.",
-      "Isospora belli (oocystes ovales)",
-      "Cyclospora (plus gros)",
-      "Microsporidies (plus petits)"
+      "5–10 parasites par microlitre",
+      "50–100 parasites par microlitre",
+      "500 parasites par microlitre",
+      "5000 parasites par microlitre"
     ],
-    "correct": 0,
-    "explanation": "C'est le tableau typique. La taille (4-6 µm) confirmerait Cryptosporidium.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "La microscopie experte peut détecter une parasitémie aussi faible que 5 parasites/µL en utilisant des frottis épais."
   },
   {
-    "id": "p_diag_82",
-    "question": "Cas clinique : Fièvre tierce, retour d'Afrique, frottis négatif. Que faire ?",
+    "id": "malaria_diag_4",
+    "axis": "diagnosis",
+    "question": "Which antigen is most commonly targeted by rapid diagnostic tests for Plasmodium falciparum?",
     "options": [
-      "Répéter le frottis/GE 12 à 24h plus tard (le pic parasitaire a pu être manqué)",
-      "Dire au patient qu'il n'a rien",
-      "Donner des antibiotiques",
-      "Faire une radio"
+      "Histidine-rich protein 2 (HRP2)",
+      "Plasmodium lactate dehydrogenase (pLDH)",
+      "Aldolase",
+      "Circumsporozoite protein"
     ],
-    "correct": 0,
-    "explanation": "La parasitémie peut fluctuer. On ne déclare pas un palu négatif sur un seul prélèvement.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "HRP2 is specific to P. falciparum and widely used in RDTs."
   },
   {
-    "id": "p_diag_85",
-    "question": "Cas clinique : Splénomégalie massive, anémie, fièvre irrégulière. Frottis négatif. Sérologie Leishmania positive.",
+    "id": "malaria_diag_5",
+    "axis": "diagnosis",
+    "question": "Which RDT antigen can differentiate viable parasites from cleared infections?",
     "options": [
-      "Leishmaniose Viscérale (Kala-Azar)",
-      "Paludisme viscéral",
-      "Lymphome",
-      "Tuberculose"
+      "Plasmodium lactate dehydrogenase (pLDH)",
+      "Histidine-rich protein 2 (HRP2)",
+      "Aldolase",
+      "Hemozoin"
     ],
-    "correct": 0,
-    "explanation": "La sérologie est très sensible pour le Kala-Azar chez l'immunocompétent.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "pLDH reflects active parasite metabolism and disappears after parasite clearance."
   },
   {
-    "id": "p_diag_87",
-    "question": "Une erreur fréquente d'identification est de confondre :",
+    "id": "malaria_diag_6",
+    "axis": "diagnosis",
+    "question": "Why can HRP2-based RDTs remain positive after successful treatment?",
     "options": [
-      "P. vivax et P. ovale",
-      "P. falciparum et P. malariae",
-      "Giardia et Amibe",
-      "Toxoplasma et Leishmania"
+      "Persistence of circulating HRP2 antigen",
+      "Cross-reaction with host enzymes",
+      "Prozone effect",
+      "Low parasite density"
     ],
-    "correct": 0,
-    "explanation": "P. vivax et P. ovale se ressemblent beaucoup (hématies agrandies, pointillé). La forme 'frangée' d'ovale est la clé.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "HRP2 may persist in blood for weeks after parasite clearance."
   },
   {
-    "id": "p_diag_89",
-    "question": "La 'queue' du frottis sanguin est la zone idéale pour :",
+    "id": "malaria_diag_7",
+    "axis": "diagnosis",
+    "question": "What genetic phenomenon causes false-negative HRP2-based RDTs?",
     "options": [
-      "Observer la morphologie des parasites (hématies étalées une à une)",
-      "Compter les parasites",
-      "Voir les bactéries",
-      "Rien"
+      "HRP2 gene deletion in Plasmodium falciparum",
+      "Antigenic variation",
+      "Parasite dormancy",
+      "Mixed-species infection"
     ],
-    "correct": 0,
-    "explanation": "Au centre du frottis, les hématies se chevauchent, rendant la lecture difficile.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Some P. falciparum strains lack the HRP2 gene, rendering HRP2 RDTs ineffective."
   },
   {
-    "id": "p_diag_91",
-    "question": "L'intelligence artificielle (IA) en parasitologie permet de :",
+    "id": "malaria_diag_8",
+    "axis": "diagnosis",
+    "question": "Which condition can cause false-positive malaria RDT results?",
     "options": [
-      "Scanner les lames et détecter automatiquement les parasites",
-      "Remplacer les médicaments",
-      "Créer des parasites",
-      "Faire des piqûres"
+      "Rheumatoid factor presence",
+      "Severe anemia",
+      "Thrombocytopenia",
+      "Recent antimalarial therapy"
     ],
-    "correct": 0,
-    "explanation": "Des systèmes existent déjà pour le dépistage automatisé du Paludisme sur frottis numérisés.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Rheumatoid factor may nonspecifically bind test antibodies."
   },
   {
-    "id": "p_diag_92",
-    "question": "Les biocapteurs (Biosensors) pourraient permettre :",
+    "id": "malaria_diag_9",
+    "axis": "diagnosis",
+    "question": "What is the prozone effect in malaria RDTs?",
     "options": [
-      "La détection non invasive (haleine, urine) des parasites",
-      "La chirurgie",
-      "La vaccination",
-      "La culture"
+      "False-negative result due to very high antigen levels",
+      "False-positive result from antibody excess",
+      "Cross-reaction with other parasites",
+      "Low sensitivity in non-falciparum species"
     ],
-    "correct": 0,
-    "explanation": "Ex: Détection de composés volatils spécifiques du paludisme dans l'haleine.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Excess antigen interferes with antibody-antigen lattice formation."
   },
   {
-    "id": "p_diag_96",
-    "question": "Quelle technique n'utilise PAS de microscope ?",
+    "id": "malaria_diag_10",
+    "axis": "diagnosis",
+    "question": "Which diagnostic method is considered the gold standard for malaria diagnosis?",
     "options": [
-      "TDR (Test Diagnostic Rapide)",
-      "Frottis",
-      "Goutte épaisse",
-      "État frais"
+      "Microscopic examination of blood smears",
+      "Rapid diagnostic tests",
+      "PCR",
+      "QBC method"
     ],
-    "correct": 0,
-    "explanation": "C'est une lecture à l'œil nu d'une bande réactive.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "Microscopy allows detection, species identification, and parasitemia quantification."
   },
   {
-    "id": "p_diag_97",
-    "question": "Le diagnostic de la Babésiose se fait comme pour :",
+    "id": "malaria_diag_11",
+    "axis": "diagnosis",
+    "question": "Which technique uses acridine orange fluorescence to detect malaria parasites?",
     "options": [
-      "Le Paludisme (Frottis/GE)",
-      "L'Amibiase",
-      "La Leishmaniose",
-      "La Trypanosomose"
+      "Quantitative Buffy Coat (QBC)",
+      "Thin blood smear",
+      "PCR",
+      "ELISA"
     ],
-    "correct": 0,
-    "explanation": "Les piroplasmes sont intra-érythrocytaires, visibles au MGG.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "QBC highlights parasitic nucleic acids under fluorescence microscopy."
   },
   {
-    "id": "p_diag_98",
-    "question": "Leucopénie et thrombopénie sont des signes d'orientation pour :",
+    "id": "malaria_diag_12",
+    "axis": "diagnosis",
+    "question": "What is a major limitation of the QBC method?",
     "options": [
-      "Leishmanose Viscérale et Paludisme",
-      "Amibiase",
-      "Giardiase",
-      "Oxyurose"
+      "Limited species differentiation",
+      "Low sensitivity",
+      "High false-positive rate",
+      "Long turnaround time"
     ],
-    "correct": 0,
-    "explanation": "L'hypersplénisme (grosse rate) piège les cellules sanguines.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "QBC detects parasites well but does not reliably identify species."
   },
   {
-    "id": "p_diag_100",
-    "question": "L'examen parasitologique est-il une urgence ?",
+    "id": "malaria_diag_13",
+    "axis": "diagnosis",
+    "question": "Which molecular method is most sensitive for detecting submicroscopic malaria?",
     "options": [
-      "Oui, pour la recherche de Plasmodium (Paludisme)",
-      "Non, jamais",
-      "Oui, pour les oxyures",
-      "Oui, pour les kystes"
+      "PCR",
+      "LAMP",
+      "RDT",
+      "Thick blood smear"
     ],
-    "correct": 0,
-    "explanation": "Tout fiévreux au retour des tropiques est une urgence vitale. Le diagnostic doit être posé en < 2 heures.",
-    "axis": "diagnosis"
+    "correctAnswer": 0,
+    "explanation": "PCR can detect parasitemia below microscopic thresholds."
   },
   {
-    "id": "p_treat_6",
-    "question": "Les dérivés de l'Artémisinine (Artésunate, Artéméther) agissent principalement sur :",
+    "id": "malaria_diag_14",
+    "axis": "diagnosis",
+    "question": "In which scenario is PCR particularly indicated for malaria diagnosis?",
     "options": [
-      "Les formes sanguines asexuées jeunes (Anneaux) et les gamétocytes jeunes",
-      "Les formes hépatiques uniquement",
-      "Les moustiques",
-      "Le foie"
+      "Low parasitemia with negative microscopy",
+      "Severe falciparum malaria",
+      "Routine screening in endemic areas",
+      "Monitoring treatment response daily"
     ],
-    "correct": 0,
-    "explanation": "Ils ont l'action la plus rapide de tous les antipaludéens, réduisant la charge parasitaire de façon exponentielle.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "PCR is useful when microscopy and RDTs are negative but suspicion remains."
   },
   {
-    "id": "p_treat_7",
-    "question": "La Chloroquine (Nivaquine) agit en :",
+    "id": "malaria_diag_15",
+    "axis": "diagnosis",
+    "question": "What is the main advantage of LAMP over conventional PCR?",
     "options": [
-      "Empêchant la polymérisation de l'hème toxique en hémozoïne non toxique",
-      "Inhibant la synthèse d'ADN",
-      "Bloquant les ribosomes",
-      "Détruisant la membrane"
+      "Isothermal amplification without thermal cycler",
+      "Higher specificity",
+      "Lower sensitivity",
+      "Ability to quantify parasitemia"
     ],
-    "correct": 0,
-    "explanation": "Le parasite meurt intoxiqué par sa propre digestion de l'hémoglobine (accumulation d'hème libre).",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "LAMP can be performed in low-resource settings without complex equipment."
   },
   {
-    "id": "p_treat_8",
-    "question": "La Primaquine est unique car elle est active sur :",
+    "id": "malaria_diag_16",
+    "axis": "diagnosis",
+    "question": "Which hematological abnormality is most consistently seen in malaria?",
     "options": [
-      "Les hypnozoïtes hépatiques (P. vivax/ovale) et les gamétocytes matures (P. falciparum)",
-      "Les trophozoïtes sanguins",
-      "Les bactéries",
-      "Les virus"
+      "Thrombocytopenia",
+      "Leukocytosis",
+      "Polycythemia",
+      "Eosinophilia"
     ],
-    "correct": 0,
-    "explanation": "C'est le seul médicament permettant la 'cure radicale' (éviter les rechutes) de P. vivax.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Platelet consumption and splenic sequestration cause thrombocytopenia."
   },
   {
-    "id": "p_treat_9",
-    "question": "Avant de prescrire la Primaquine, il faut impérativement vérifier :",
+    "id": "malaria_diag_17",
+    "axis": "diagnosis",
+    "question": "Which anemia mechanism predominates in malaria?",
     "options": [
-      "L'absence de déficit en G6PD (Favisme)",
-      "Le groupe sanguin",
-      "La taille du patient",
-      "La tension artérielle"
+      "Hemolysis of infected and uninfected erythrocytes",
+      "Iron deficiency",
+      "Bone marrow aplasia",
+      "Vitamin B12 deficiency"
     ],
-    "correct": 0,
-    "explanation": "Chez les déficitaires en G6PD, la Primaquine provoque une hémolyse aiguë gravissime.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Both parasitized and non-parasitized RBCs are destroyed."
   },
   {
-    "id": "p_treat_11",
-    "question": "Le traitement de première intention du Paludisme simple à P. falciparum est :",
+    "id": "malaria_diag_18",
+    "axis": "diagnosis",
+    "question": "Which smear is preferred for calculating parasitemia percentage?",
     "options": [
-      "Une CTA (Combinaison Thérapeutique à base d'Artémisinine)",
-      "Chloroquine seule",
-      "Paracétamol seul",
-      "Quinine IV"
+      "Thin blood smear",
+      "Thick blood smear",
+      "QBC",
+      "RDT"
     ],
-    "correct": 0,
-    "explanation": "L'OMS recommande les combinaisons (ex: Artéméther-Luméfantrine ou Artésunate-Amodiaquine) pour éviter la résistance.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Thin smears allow counting infected RBCs relative to total RBCs."
   },
   {
-    "id": "p_treat_12",
-    "question": "Le traitement d'urgence du Paludisme Grave (Accès pernicieux) est :",
+    "id": "malaria_diag_19",
+    "axis": "diagnosis",
+    "question": "How is parasitemia typically expressed in thin blood smear analysis?",
     "options": [
-      "Artésunate IV (Intraveineux)",
-      "Quinine Per Os",
+      "Percentage of infected red blood cells",
+      "Parasites per microliter directly",
+      "Number of schizonts per field",
+      "Antigen concentration"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Thin smears quantify the proportion of infected erythrocytes."
+  },
+  {
+    "id": "malaria_diag_20",
+    "axis": "diagnosis",
+    "question": "Which method estimates parasitemia by counting parasites against leukocytes?",
+    "options": [
+      "Thick blood smear",
+      "Thin blood smear",
+      "RDT",
+      "QBC"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Parasites are counted per 200–500 WBCs in thick smears."
+  },
+  {
+    "id": "malaria_diag_21",
+    "axis": "diagnosis",
+    "question": "What assumed leukocyte count is commonly used for parasitemia calculation?",
+    "options": [
+      "8000 leukocytes per microliter",
+      "4000 leukocytes per microliter",
+      "10000 leukocytes per microliter",
+      "12000 leukocytes per microliter"
+    ],
+    "correctAnswer": 0,
+    "explanation": "WHO recommends using 8000 WBC/µL if actual count is unavailable."
+  },
+  {
+    "id": "malaria_diag_22",
+    "axis": "diagnosis",
+    "question": "Which diagnostic test can detect mixed Plasmodium infections most reliably?",
+    "options": [
+      "PCR",
+      "RDT",
+      "QBC",
+      "Thick smear alone"
+    ],
+    "correctAnswer": 0,
+    "explanation": "PCR can identify multiple species simultaneously with high sensitivity."
+  },
+  {
+    "id": "malaria_diag_23",
+    "axis": "diagnosis",
+    "question": "What is a key disadvantage of RDTs compared to microscopy?",
+    "options": [
+      "Inability to quantify parasitemia",
+      "Lower sensitivity for falciparum malaria",
+      "Longer turnaround time",
+      "Need for skilled personnel"
+    ],
+    "correctAnswer": 0,
+    "explanation": "RDTs provide qualitative results only."
+  },
+  {
+    "id": "malaria_diag_24",
+    "axis": "diagnosis",
+    "question": "Which factor most affects the sensitivity of microscopy?",
+    "options": [
+      "Skill and experience of the microscopist",
+      "Type of anticoagulant",
+      "Patient age",
+      "Time of day"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Expertise greatly influences parasite detection accuracy."
+  },
+  {
+    "id": "malaria_diag_25",
+    "axis": "diagnosis",
+    "question": "Which sample is optimal for malaria microscopy?",
+    "options": [
+      "Peripheral capillary blood",
+      "Serum sample",
+      "Plasma sample",
+      "Bone marrow aspirate"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Capillary blood contains higher parasite concentration."
+  },
+  {
+    "id": "malaria_diag_26",
+    "axis": "diagnosis",
+    "question": "Why should blood smears be examined promptly after collection?",
+    "options": [
+      "Parasite morphology deteriorates over time",
+      "Antigens degrade rapidly",
+      "DNA becomes fragmented",
+      "Platelets aggregate"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Delayed examination alters parasite morphology."
+  },
+  {
+    "id": "malaria_diag_27",
+    "axis": "diagnosis",
+    "question": "Which staining method is standard for malaria microscopy?",
+    "options": [
+      "Giemsa stain",
+      "Gram stain",
+      "Ziehl-Neelsen stain",
+      "PAS stain"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Giemsa highlights parasite nuclear and cytoplasmic features."
+  },
+  {
+    "id": "malaria_diag_28",
+    "axis": "diagnosis",
+    "question": "What is the minimum examination time recommended before declaring a smear negative?",
+    "options": [
+      "At least 100 high-power fields",
+      "10 high-power fields",
+      "30 seconds",
+      "One oil immersion field"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Adequate field examination reduces false negatives."
+  },
+  {
+    "id": "malaria_diag_29",
+    "axis": "diagnosis",
+    "question": "Which laboratory finding supports malaria diagnosis but is not specific?",
+    "options": [
+      "Thrombocytopenia",
+      "Eosinophilia",
+      "Leukemoid reaction",
+      "Hypercalcemia"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Thrombocytopenia is common but not diagnostic."
+  },
+  {
+    "id": "malaria_diag_30",
+    "axis": "diagnosis",
+    "question": "Which diagnostic approach is recommended in non-endemic settings?",
+    "options": [
+      "Microscopy combined with RDT",
+      "RDT alone",
+      "PCR alone",
+      "Serology"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Combining tests improves sensitivity and specificity."
+  },
+  {
+    "id": "malaria_diag_31",
+    "axis": "diagnosis",
+    "question": "Why is serology not useful for acute malaria diagnosis?",
+    "options": [
+      "Antibodies persist long after infection",
+      "Low sensitivity",
+      "Cross-reactivity is minimal",
+      "High cost"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Serology cannot distinguish past from current infection."
+  },
+  {
+    "id": "malaria_diag_32",
+    "axis": "diagnosis",
+    "question": "Which diagnostic method is most useful for surveillance and elimination programs?",
+    "options": [
+      "PCR-based assays",
+      "RDTs",
+      "QBC",
+      "Thin smear only"
+    ],
+    "correctAnswer": 0,
+    "explanation": "PCR detects asymptomatic low-level infections."
+  },
+  {
+    "id": "malaria_diag_33",
+    "axis": "diagnosis",
+    "question": "Which condition may lead to underestimation of parasitemia on microscopy?",
+    "options": [
+      "Sequestration of Plasmodium falciparum in microvasculature",
+      "High fever",
+      "Leukocytosis",
+      "Splenomegaly"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Sequestered parasites are absent from peripheral blood."
+  },
+  {
+    "id": "malaria_diag_34",
+    "axis": "diagnosis",
+    "question": "Which stage of Plasmodium falciparum is usually absent in peripheral blood?",
+    "options": [
+      "Mature schizonts",
+      "Ring forms",
+      "Early trophozoites",
+      "Gametocytes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Mature forms sequester in deep vascular beds."
+  },
+  {
+    "id": "malaria_diag_35",
+    "axis": "diagnosis",
+    "question": "What is the main laboratory role of repeated blood smears?",
+    "options": [
+      "Increase diagnostic sensitivity over time",
+      "Identify drug resistance",
+      "Replace PCR testing",
+      "Monitor antibody titers"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Parasitemia fluctuates, requiring repeated sampling."
+  },
+  {
+    "id": "malaria_diag_36",
+    "axis": "diagnosis",
+    "question": "Which RDT antigen is pan-Plasmodium?",
+    "options": [
+      "Aldolase",
+      "HRP2",
+      "Pf-specific pLDH",
+      "Circumsporozoite protein"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Aldolase is conserved across Plasmodium species."
+  },
+  {
+    "id": "malaria_diag_37",
+    "axis": "diagnosis",
+    "question": "What is the primary use of quantitative parasitemia assessment?",
+    "options": [
+      "Assess disease severity and prognosis",
+      "Confirm species identification",
+      "Detect relapse",
+      "Guide vector control"
+    ],
+    "correctAnswer": 0,
+    "explanation": "High parasitemia correlates with severe disease."
+  },
+  {
+    "id": "malaria_diag_38",
+    "axis": "diagnosis",
+    "question": "Which diagnostic feature suggests severe falciparum malaria?",
+    "options": [
+      "Parasitemia >5% of erythrocytes",
+      "Presence of gametocytes",
+      "Mixed infection",
+      "Low parasite density"
+    ],
+    "correctAnswer": 0,
+    "explanation": "High parasitemia is a severity marker."
+  },
+  {
+    "id": "malaria_diag_39",
+    "axis": "diagnosis",
+    "question": "Which diagnostic test is least affected by operator expertise?",
+    "options": [
+      "Rapid diagnostic test",
+      "Thin blood smear",
+      "Thick blood smear",
+      "QBC"
+    ],
+    "correctAnswer": 0,
+    "explanation": "RDTs are standardized and easy to interpret."
+  },
+  {
+    "id": "malaria_diag_40",
+    "axis": "diagnosis",
+    "question": "Which laboratory strategy is optimal for confirming malaria elimination?",
+    "options": [
+      "High-sensitivity molecular testing",
+      "Routine microscopy only",
+      "RDT screening",
+      "Serological surveys"
+    ],
+    "correctAnswer": 0,
+      "explanation": "Molecular tools detect residual transmission at very low levels."
+    }
+];
+
+// 4. Diagnosis
+// 5. Treatment
+const treatmentQuestions = [
+  {
+    "id": "palu_treat_1",
+    "axis": "treatment",
+    "question": "Quel est le traitement de première intention recommandé par l’OMS pour le paludisme simple à Plasmodium falciparum ?",
+    "options": [
+      "Combinaisons Thérapeutiques à base d’Artémisinine (CTA)",
       "Chloroquine",
+      "Quinine orale seule",
+      "Sulfadoxine-Pyriméthamine"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les CTA associent un dérivé de l’artémisinine à un partenaire à longue demi-vie pour prévenir les résistances."
+  },
+  {
+    "id": "palu_treat_2",
+    "axis": "treatment",
+    "question": "Quelle CTA est largement utilisée en première ligne dans de nombreux pays africains ?",
+    "options": [
+      "Artéméther–Luméfantrine",
+      "Artésunate–Méfloquine",
+      "Artésunate–Sulfadoxine-Pyriméthamine",
+      "Chloroquine–Primaquine"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L’association artéméther-luméfantrine est très répandue pour le paludisme non compliqué."
+  },
+  {
+    "id": "palu_treat_3",
+    "axis": "treatment",
+    "question": "Quel est le traitement de référence du paludisme grave toutes espèces confondues ?",
+    "options": [
+      "Artésunate intraveineux",
+      "Quinine intraveineuse en première intention",
+      "Artéméther oral",
+      "Chloroquine intraveineuse"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L’artésunate IV réduit significativement la mortalité par rapport à la quinine."
+  },
+  {
+    "id": "palu_treat_4",
+    "axis": "treatment",
+    "question": "Quand la quinine IV est-elle encore utilisée dans le paludisme grave ?",
+    "options": [
+      "En absence ou indisponibilité de l’artésunate",
+      "Chez tous les enfants",
+      "Chez la femme enceinte au 2e trimestre",
+      "Dans le paludisme simple"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La quinine reste une alternative si l’artésunate IV n’est pas disponible."
+  },
+  {
+    "id": "palu_treat_5",
+    "axis": "treatment",
+    "question": "Quelle est la durée habituelle d’un traitement par CTA dans le paludisme simple ?",
+    "options": [
+      "3 jours",
+      "1 jour",
+      "5 jours",
+      "7 jours"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La majorité des CTA sont administrées sur 3 jours."
+  },
+  {
+    "id": "palu_treat_6",
+    "axis": "treatment",
+    "question": "Quel médicament est indispensable pour la cure radicale de P. vivax et P. ovale ?",
+    "options": [
+      "Primaquine",
+      "Artéméther",
+      "Quinine",
+      "Luméfantrine"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La primaquine élimine les hypnozoïtes hépatiques responsables des rechutes."
+  },
+  {
+    "id": "palu_treat_7",
+    "axis": "treatment",
+    "question": "Quel test doit impérativement être réalisé avant l’administration de primaquine ?",
+    "options": [
+      "Dépistage du déficit en G6PD",
+      "Test de grossesse",
+      "Bilan hépatique",
+      "Groupage sanguin"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La primaquine peut provoquer une hémolyse sévère chez les sujets déficitaires en G6PD."
+  },
+  {
+    "id": "palu_treat_8",
+    "axis": "treatment",
+    "question": "Pourquoi la primaquine est-elle contre-indiquée chez la femme enceinte ?",
+    "options": [
+      "Risque d’hémolyse fœtale en cas de déficit G6PD",
+      "Risque tératogène majeur",
+      "Inefficacité sur les hypnozoïtes",
+      "Risque d’hypoglycémie"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le statut G6PD du fœtus est inconnu, exposant à une hémolyse grave."
+  },
+  {
+    "id": "palu_treat_9",
+    "axis": "treatment",
+    "question": "Quel est le traitement recommandé du paludisme simple chez la femme enceinte au 2e et 3e trimestre ?",
+    "options": [
+      "CTA à base d’artémisinine",
+      "Primaquine",
+      "Doxycycline",
+      "Méfloquine seule"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les CTA sont sûres et efficaces après le premier trimestre."
+  },
+  {
+    "id": "palu_treat_10",
+    "axis": "treatment",
+    "question": "Quel est le traitement recommandé du paludisme simple au 1er trimestre de la grossesse ?",
+    "options": [
+      "Quinine + Clindamycine",
+      "CTA",
+      "Primaquine",
       "Doxycycline"
     ],
-    "correct": 0,
-    "explanation": "L'Artésunate IV a prouvé sa supériorité sur la Quinine IV en termes de survie. C'est le Gold Standard actuel.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Les CTA sont évitées au 1er trimestre par précaution."
   },
   {
-    "id": "p_treat_13",
-    "question": "La Chloroquine reste le traitement de choix pour :",
+    "id": "palu_treat_11",
+    "axis": "treatment",
+    "question": "Quelle chimioprophylaxie est contre-indiquée chez la femme enceinte ?",
     "options": [
-      "P. vivax, P. ovale et P. malariae (sauf zones de résistance)",
-      "P. falciparum en Afrique",
-      "L'amibiase",
-      "La toxoplasmose"
+      "Doxycycline",
+      "Méfloquine",
+      "Atovaquone-Proguanil",
+      "Chloroquine"
     ],
-    "correct": 0,
-    "explanation": "La résistance de P. falciparum à la Chloroquine est généralisée, mais les autres espèces y restent sensibles.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La doxycycline est tératogène et contre-indiquée pendant la grossesse."
   },
   {
-    "id": "p_treat_14",
-    "question": "Quel médicament est utilisé en chimioprophylaxie pour les voyageurs en zone de résistance (Zone 3) ?",
+    "id": "palu_treat_12",
+    "axis": "treatment",
+    "question": "Quel antipaludique prophylactique est contre-indiqué chez l’enfant de moins de 8 ans ?",
     "options": [
-      "Atovaquone-Proguanil (Malarone) ou Doxycycline",
-      "Chloroquine",
-      "Aspirine",
-      "Vitamine C"
+      "Doxycycline",
+      "Méfloquine",
+      "Atovaquone-Proguanil",
+      "Chloroquine"
     ],
-    "correct": 0,
-    "explanation": "La Chloroquine ne suffit plus. La Malarone ou la Doxycycline sont efficaces.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La doxycycline expose à des anomalies dentaires et osseuses."
   },
   {
-    "id": "p_treat_18",
-    "question": "Si l'infection fœtale est confirmée (PCR amniotique positive), on remplace la Spiramycine par :",
+    "id": "palu_treat_13",
+    "axis": "treatment",
+    "question": "Quelle est la principale contre-indication de la méfloquine en prophylaxie ?",
     "options": [
-      "Pyriméthamine + Sulfadiazine",
-      "Pénicilline",
-      "Chloroquine",
-      "Rien"
+      "Antécédents psychiatriques ou neurologiques",
+      "Grossesse",
+      "Insuffisance rénale",
+      "Déficit en G6PD"
     ],
-    "correct": 0,
-    "explanation": "Il faut passer à des molécules qui traversent le placenta pour traiter le fœtus in utero.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La méfloquine peut induire des effets neuropsychiatriques sévères."
   },
   {
-    "id": "p_treat_24",
-    "question": "Le Benznidazole est utilisé pour traiter :",
+    "id": "palu_treat_14",
+    "axis": "treatment",
+    "question": "Quel est l’avantage principal de l’atovaquone-proguanil en prophylaxie du voyageur ?",
     "options": [
-      "La Maladie de Chagas (T. cruzi)",
-      "La Maladie du sommeil",
-      "Le Paludisme",
-      "L'Amibiase"
+      "Bonne tolérance et prise courte après le retour",
+      "Faible coût",
+      "Utilisation mensuelle",
+      "Efficacité sur les hypnozoïtes"
     ],
-    "correct": 0,
-    "explanation": "Il est efficace en phase aiguë, mais son efficacité diminue en phase chronique.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La prophylaxie est poursuivie seulement 7 jours après le retour."
   },
   {
-    "id": "p_treat_26",
-    "question": "Le Cotrimoxazole (Bactrim) est le traitement de choix pour :",
+    "id": "palu_treat_15",
+    "axis": "treatment",
+    "question": "Quand la chimioprophylaxie antipaludique doit-elle être débutée avant le voyage ?",
     "options": [
-      "Pneumocystose (Pneumocystis jirovecii) et Isosporose",
-      "Paludisme",
-      "Amibiase",
-      "Gale"
+      "Selon la molécule, de quelques jours à 2 semaines avant le départ",
+      "Le jour du départ uniquement",
+      "Après l’arrivée en zone endémique",
+      "Uniquement au retour"
     ],
-    "correct": 0,
-    "explanation": "Il est utilisé à forte dose en curatif et à faible dose en prophylaxie chez le VIH.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Certaines molécules comme la méfloquine nécessitent une introduction précoce."
   },
   {
-    "id": "p_treat_28",
-    "question": "L'Albendazole (anti-helminthe) est aussi efficace sur quel protozoaire ?",
+    "id": "palu_treat_16",
+    "axis": "treatment",
+    "question": "Quel traitement doit être instauré après la phase IV dans le paludisme grave ?",
     "options": [
-      "Giardia intestinalis et Microsporidies",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
+      "Relais par CTA orale complète",
+      "Arrêt de tout traitement",
+      "Primaquine immédiate",
+      "Chloroquine seule"
     ],
-    "correct": 0,
-    "explanation": "Il a une action sur le cytosquelette de Giardia et est le traitement de référence de certaines microsporidioses.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Un relais oral est indispensable pour éradiquer les parasites résiduels."
   },
   {
-    "id": "p_treat_30",
-    "question": "Le traitement de la Babésiose associe :",
+    "id": "palu_treat_17",
+    "axis": "treatment",
+    "question": "Pourquoi les monothérapies à base d’artémisinine sont-elles proscrites ?",
     "options": [
-      "Atovaquone + Azithromycine",
-      "Métronidazole",
-      "Pénicilline",
-      "Rien"
+      "Risque élevé de résistance parasitaire",
+      "Faible efficacité clinique",
+      "Toxicité cardiaque",
+      "Absence d’action schizonticide"
     ],
-    "correct": 0,
-    "explanation": "Protocole proche de celui du Paludisme, car Babesia est un hématozoaire proche.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Les monothérapies favorisent l’émergence de résistances."
   },
   {
-    "id": "p_treat_31",
-    "question": "La résistance à la Chloroquine est due à une mutation du gène :",
+    "id": "palu_treat_18",
+    "axis": "treatment",
+    "question": "Quel est l’objectif principal du traitement antipaludique ?",
     "options": [
-      "PfCRT (Plasmodium falciparum Chloroquine Resistance Transporter)",
-      "PfDHFR",
-      "PfMDR1",
-      "K13"
+      "Éliminer rapidement les parasites et prévenir les complications",
+      "Réduire uniquement la fièvre",
+      "Prévenir les piqûres de moustiques",
+      "Stimuler la réponse immunitaire"
     ],
-    "correct": 0,
-    "explanation": "Ce gène code pour une pompe qui expulse le médicament hors de la vacuole digestive du parasite.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "L’élimination parasitaire rapide réduit la mortalité et la transmission."
   },
   {
-    "id": "p_treat_32",
-    "question": "La résistance aux Artémisinines (retard de clairance) est liée au gène :",
+    "id": "palu_treat_19",
+    "axis": "treatment",
+    "question": "Quel traitement est indiqué pour bloquer la transmission du paludisme ?",
     "options": [
-      "K13 (Kelch 13)",
-      "PfCRT",
-      "PfDHPS",
-      "MDR1"
+      "Primaquine à dose gamétocytocide",
+      "Quinine",
+      "Doxycycline",
+      "Atovaquone seule"
     ],
-    "correct": 0,
-    "explanation": "Apparue en Asie du Sud-Est, c'est une menace mondiale majeure surveillée par l'OMS.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La primaquine élimine les gamétocytes de P. falciparum."
   },
   {
-    "id": "p_treat_33",
-    "question": "Le 'Cinchonisme' est un surdosage en :",
+    "id": "palu_treat_20",
+    "axis": "treatment",
+    "question": "Quelle mesure est essentielle en complément du traitement médicamenteux ?",
+    "options": [
+      "Lutte antivectorielle et moustiquaires imprégnées",
+      "Vaccination systématique",
+      "Antibiothérapie large",
+      "Corticothérapie"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La prévention des piqûres réduit la transmission."
+  },
+
+  {
+    "id": "palu_treat_21",
+    "axis": "treatment",
+    "question": "Quel antipaludique est historiquement associé au risque d’hypoglycémie en traitement du paludisme grave ?",
     "options": [
       "Quinine",
-      "Chloroquine",
-      "Artemisinine",
-      "Aspirine"
+      "Artésunate",
+      "Primaquine",
+      "Luméfantrine"
     ],
-    "correct": 0,
-    "explanation": "Bourdonnements d'oreille (acouphènes), vertiges, troubles de la vision, céphalées.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La quinine stimule la sécrétion d’insuline."
   },
   {
-    "id": "p_treat_34",
-    "question": "L'effet secondaire cardiaque redouté de l'Halofantrine (antipaludéen peu utilisé) est :",
+    "id": "palu_treat_22",
+    "axis": "treatment",
+    "question": "Quel est le traitement recommandé du paludisme simple à P. vivax en zone de résistance à la chloroquine ?",
     "options": [
-      "Allongement de l'intervalle QT (Risque de torsade de pointes)",
-      "Infarctus",
-      "Bradycardie",
-      "Hypertension"
+      "CTA + Primaquine (si G6PD normal)",
+      "Chloroquine seule",
+      "Quinine IV",
+      "Doxycycline seule"
     ],
-    "correct": 0,
-    "explanation": "Il ne doit jamais être pris avec un repas gras ou par des cardiaques.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Les CTA traitent la phase sanguine en cas de résistance."
   },
   {
-    "id": "p_treat_35",
-    "question": "Les antibiotiques de la classe des Cyclines (Doxycycline, Clindamycine) ont une action antipaludique :",
+    "id": "palu_treat_23",
+    "axis": "treatment",
+    "question": "Quel médicament prophylactique doit être poursuivi 4 semaines après le retour ?",
     "options": [
-      "Lente (Action sur l'apicoplaste)",
-      "Rapide",
-      "Immédiate",
-      "Nulle"
-    ],
-    "correct": 0,
-    "explanation": "Ils tuent le parasite lentement (\"Delayed death\"), donc jamais utilisés seuls en traitement d'urgence.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_36",
-    "question": "Quel antipaludéen est considéré comme sûr au 1er trimestre de grossesse ?",
-    "options": [
-      "La Quinine (ou Chloroquine si sensible)",
-      "La Primaquine",
-      "La Doxycycline",
-      "L'Halofantrine"
-    ],
-    "correct": 0,
-    "explanation": "La Quinine reste la référence au T1. Les ACT sont tolérés aux T2 et T3.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_39",
-    "question": "L'administration rectale (Suppositoire) d'Artémisinine est utile pour :",
-    "options": [
-      "Les enfants qui vomissent ou inconscients avant transfert à l'hôpital",
-      "Les adultes",
-      "La prévention",
-      "Le confort"
-    ],
-    "correct": 0,
-    "explanation": "C'est un traitement pré-référence recommandé par l'OMS pour sauver des vies en zone rurale.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_40",
-    "question": "La prophylaxie du paludisme chez la femme enceinte en zone endémique se fait par :",
-    "options": [
-      "TPI (Traitement Préventif Intermittent) à la Sulfadoxine-Pyriméthamine (SP)",
-      "Quinine tous les jours",
-      "Rien",
-      "Vaccin"
-    ],
-    "correct": 0,
-    "explanation": "On donne une dose curative de SP à chaque visite prénatale à partir du 2ème trimestre.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_41",
-    "question": "La chimioprophylaxie du paludisme pour les voyageurs doit être prise :",
-    "options": [
-      "Pendant le séjour et continuée 1 à 4 semaines après le retour (selon le médicament)",
-      "Juste avant de partir",
-      "Seulement si on a de la fièvre",
-      "Pendant le séjour uniquement"
-    ],
-    "correct": 0,
-    "explanation": "Il faut couvrir la phase hépatique qui peut se réveiller après le retour. (Malarone : 1 semaine après, Doxy/Méflo : 4 semaines après).",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_44",
-    "question": "La lutte antivectorielle (Moustiquaires imprégnées d'insecticide) est :",
-    "options": [
-      "Le moyen le plus efficace pour réduire la transmission du paludisme",
-      "Inutile",
-      "Dangereuse",
-      "Réservée aux hôpitaux"
-    ],
-    "correct": 0,
-    "explanation": "La MIILD (Moustiquaire Imprégnée d'Insecticide à Longue Durée) protège le dormeur et tue le moustique.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_45",
-    "question": "Le vaccin RTS,S (Mosquirix) contre le paludisme cible :",
-    "options": [
-      "Les sporozoïtes (phase pré-érythrocytaire)",
-      "Les gamètes",
-      "Les mérozoïtes",
-      "Le moustique"
-    ],
-    "correct": 0,
-    "explanation": "Il vise à empêcher l'entrée du parasite dans le foie. Son efficacité est partielle mais utile en santé publique.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_47",
-    "question": "Les inhibiteurs de protéase (VIH) interagissent avec les antipaludéens car :",
-    "options": [
-      "Ils inhibent ou induisent le cytochrome P450 (métabolisme)",
-      "Ils tuent le parasite",
-      "Ils sont acides",
-      "Ils sont sucrés"
-    ],
-    "correct": 0,
-    "explanation": "Attention aux interactions médicamenteuses complexes chez le patient co-infecté VIH/Palu.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_48",
-    "question": "Le jus de pamplemousse est déconseillé avec certains antipaludéens (ex: Artéméther) car :",
-    "options": [
-      "Il inhibe le CYP3A4 et augmente la concentration du médicament (surdosage)",
-      "Il annule l'effet",
-      "Il donne la diarrhée",
-      "Il est acide"
-    ],
-    "correct": 0,
-    "explanation": "Le pamplemousse augmente la biodisponibilité de nombreux médicaments, risquant la toxicité.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_50",
-    "question": "L'utilisation prolongée de l'hydroxychloroquine nécessite une surveillance :",
-    "options": [
-      "Ophtalmologique (Rétinopathie)",
-      "Rénale",
-      "Pulmonaire",
-      "Auditive"
-    ],
-    "correct": 0,
-    "explanation": "Elle s'accumule dans la rétine et peut causer une cécité irréversible.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_51",
-    "question": "Cas clinique : Femme enceinte, 3ème trimestre, accès palustre simple à P. falciparum. Traitement ?",
-    "options": [
-      "ACT (Artéméther-Luméfantrine) ou Artésunate-Amodiaquine",
-      "Quinine IV obligatoire",
       "Doxycycline",
+      "Atovaquone-Proguanil",
+      "Chloroquine",
       "Primaquine"
     ],
-    "correct": 0,
-    "explanation": "Au 2ème et 3ème trimestre, les ACT sont autorisés et préférés car plus efficaces et mieux tolérés que la Quinine.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La doxycycline agit uniquement sur les formes sanguines."
   },
   {
-    "id": "p_treat_52",
-    "question": "Cas clinique : Paludisme grave avec insuffisance rénale. Quelle précaution avec la Quinine ?",
+    "id": "palu_treat_24",
+    "axis": "treatment",
+    "question": "Quel est le principal effet indésirable digestif de l’artéméther-luméfantrine ?",
     "options": [
-      "Réduire la dose de 30-50% après la dose de charge (risque d'accumulation)",
-      "Augmenter la dose",
+      "Nausées et vomissements",
+      "Ulcère gastrique",
+      "Hémorragie digestive",
+      "Constipation sévère"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les troubles digestifs sont fréquents mais généralement modérés."
+  },
+  {
+    "id": "palu_treat_25",
+    "axis": "treatment",
+    "question": "Quelle stratégie est recommandée chez un patient vomissant après prise orale d’ACT ?",
+    "options": [
+      "Répéter la dose si vomissement précoce",
       "Arrêter le traitement",
-      "Donner un diurétique"
+      "Passer immédiatement à la primaquine",
+      "Attendre sans intervention"
     ],
-    "correct": 0,
-    "explanation": "La Quinine est éliminée par le rein. En cas d'insuffisance rénale, elle s'accumule et devient toxique (surdosage).",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La dose doit être reprise si elle n’a pas été absorbée."
   },
   {
-    "id": "p_treat_53",
-    "question": "Cas clinique : Patient sous méfloquine en prophylaxie qui déclare quand même un paludisme. Quel traitement curatif éviter ?",
+    "id": "palu_treat_26",
+    "axis": "treatment",
+    "question": "Quel antipaludique est contre-indiqué chez les patients épileptiques ?",
     "options": [
-      "La Méfloquine (et l'Halofantrine) à dose curative",
-      "L'Artéméther",
-      "La Malarone",
-      "La Quinine"
+      "Méfloquine",
+      "Atovaquone-Proguanil",
+      "Chloroquine",
+      "Artéméther"
     ],
-    "correct": 0,
-    "explanation": "Risque majoré d'effets secondaires neuropsychiatriques ou cardiaques par effet cumulatif. Il faut changer de classe (ex: Atovaquone-Proguanil).",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La méfloquine peut abaisser le seuil épileptogène."
   },
   {
-    "id": "p_treat_54",
-    "question": "Cas clinique : Rechutes multiples de P. vivax malgré un traitement bien conduit à la Chloroquine. Pourquoi ?",
+    "id": "palu_treat_27",
+    "axis": "treatment",
+    "question": "Quel traitement est recommandé pour le paludisme à P. falciparum chez l’enfant ?",
     "options": [
-      "Absence de traitement anti-hypnozoïte (Primaquine)",
-      "Résistance à la Chloroquine",
-      "Réinfestation",
-      "Patient menteur"
+      "CTA adaptée au poids",
+      "Chloroquine",
+      "Primaquine seule",
+      "Doxycycline"
     ],
-    "correct": 0,
-    "explanation": "La Chloroquine ne tue que les formes sanguines. Les hypnozoïtes dans le foie se réveillent périodiquement si on ne donne pas de Primaquine (ou Tafénoquine).",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Les CTA sont efficaces et sûres chez l’enfant."
   },
   {
-    "id": "p_treat_55",
-    "question": "Quelle est la particularité de la Tafénoquine par rapport à la Primaquine ?",
+    "id": "palu_treat_28",
+    "axis": "treatment",
+    "question": "Quel est le rôle principal de la chimioprophylaxie chez le voyageur ?",
     "options": [
-      "Elle se donne en dose unique (longue demi-vie) pour la cure radicale de P. vivax",
-      "Elle est moins efficace",
-      "Elle n'est pas hémolysante",
-      "Elle est IV"
+      "Prévenir les formes graves et mortelles",
+      "Empêcher toute infection",
+      "Remplacer les mesures antivectorielles",
+      "Guérir une infection latente"
     ],
-    "correct": 0,
-    "explanation": "Avantage majeur pour l'observance : une seule prise suffit contre 14 jours pour la Primaquine.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La prophylaxie réduit le risque de paludisme sévère."
   },
   {
-    "id": "p_treat_57",
-    "question": "La Suramine (Moranyl) est utilisée pour :",
+    "id": "palu_treat_29",
+    "axis": "treatment",
+    "question": "Quel antipaludique est actif sur les formes hépatiques précoces (schizonts hépatiques) ?",
     "options": [
-      "Le stade 1 (lymphatico-sanguin) de la Trypanosomose à T. brucei rhodesiense",
-      "Le stade 2",
-      "Le paludisme",
-      "L'amibiase"
+      "Atovaquone-Proguanil",
+      "Chloroquine",
+      "Quinine",
+      "Luméfantrine"
     ],
-    "correct": 0,
-    "explanation": "C'est un vieux médicament très toxique (rein, choc) réservé à la forme Est-Africaine (Rhodesiense) en phase précoce.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "L’atovaquone-proguanil agit sur les stades hépatiques précoces."
   },
   {
-    "id": "p_treat_59",
-    "question": "La Pentamidine est utilisée pour :",
+    "id": "palu_treat_30",
+    "axis": "treatment",
+    "question": "Pourquoi la chloroquine n’est-elle plus recommandée pour P. falciparum dans de nombreuses régions ?",
     "options": [
-      "Le stade 1 de la Trypanosomose (Gambiense) et la pneumocystose",
-      "Le stade 2",
-      "La leishmaniose",
-      "Le paludisme"
+      "Résistance parasitaire élevée",
+      "Toxicité hépatique",
+      "Inefficacité sur les trophozoïtes",
+      "Coût élevé"
     ],
-    "correct": 0,
-    "explanation": "Elle ne passe pas la barrière hémato-encéphalique, donc inefficace au stade neurologique de la maladie du sommeil.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La résistance de P. falciparum à la chloroquine est largement répandue."
   },
   {
-    "id": "p_treat_70",
-    "question": "L'Artémisinine est activée par :",
+    "id": "palu_treat_31",
+    "axis": "treatment",
+    "question": "Quelle est la durée classique de la cure radicale par primaquine ?",
     "options": [
-      "Le fer (Hème) issu de la digestion de l'hémoglobine",
-      "L'eau",
-      "Le sucre",
-      "L'oxygène"
+      "14 jours",
+      "3 jours",
+      "5 jours",
+      "28 jours"
     ],
-    "correct": 0,
-    "explanation": "Le pont endoperoxyde de la molécule est clivé par le fer, libérant des radicaux libres mortels pour le parasite.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La primaquine est administrée classiquement pendant 14 jours."
   },
   {
-    "id": "p_treat_71",
-    "question": "Pourquoi l'Artémisinine n'est-elle jamais utilisée en monothérapie (seule) ?",
+    "id": "palu_treat_32",
+    "axis": "treatment",
+    "question": "Quel traitement est recommandé chez un patient G6PD déficient atteint de P. vivax ?",
     "options": [
-      "Sa demi-vie est très courte (quelques heures), ce qui oblige à des traitements longs et favorise les rechutes/résistances",
-      "Elle est toxique",
-      "Elle est chère",
-      "Elle est inefficace"
+      "Traitement de la phase sanguine sans primaquine",
+      "Primaquine à dose standard",
+      "Double dose de primaquine",
+      "Doxycycline seule"
     ],
-    "correct": 0,
-    "explanation": "On l'associe à un médicament à demi-vie longue (Luméfantrine, Amodiaquine...) pour 'nettoyer' les parasites restants.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La primaquine est contre-indiquée en cas de déficit sévère en G6PD."
   },
   {
-    "id": "p_treat_77",
-    "question": "Le vaccin R21/Matrix-M est :",
+    "id": "palu_treat_33",
+    "axis": "treatment",
+    "question": "Quel est l’objectif principal des CTA associant deux molécules ?",
     "options": [
-      "Un nouveau vaccin antipaludique plus efficace que le RTS,S (OMS 2023)",
-      "Un vaccin contre l'amibe",
-      "Un vaccin contre la dengue",
-      "Un médicament"
+      "Réduire la sélection de souches résistantes",
+      "Augmenter la toxicité parasitaire",
+      "Prolonger la durée du traitement",
+      "Couvrir les infections bactériennes"
     ],
-    "correct": 0,
-    "explanation": "Il a montré une efficacité de 75% dans les essais, un espoir majeur.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "L’association limite l’émergence de résistances."
   },
   {
-    "id": "p_treat_78",
-    "question": "La 'Wolbachia' est utilisée pour :",
+    "id": "palu_treat_34",
+    "axis": "treatment",
+    "question": "Quelle molécule est utilisée en prévention intermittente du paludisme chez la femme enceinte en zone endémique ?",
     "options": [
-      "Infecter les moustiques et bloquer la transmission de virus/parasites",
-      "Vacciner les humains",
-      "Traiter l'eau",
-      "Tuer les larves"
+      "Sulfadoxine-Pyriméthamine",
+      "Chloroquine",
+      "Méfloquine",
+      "Primaquine"
     ],
-    "correct": 0,
-    "explanation": "C'est une bactérie symbiotique. Les moustiques infectés par Wolbachia transmettent moins bien la Dengue et potentiellement le Paludisme.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La prévention intermittente repose sur la sulfadoxine-pyriméthamine."
   },
   {
-    "id": "p_treat_80",
-    "question": "L'utilisation de l'Ivermectine (antiparasitaire) chez l'homme a un effet sur le paludisme car :",
+    "id": "palu_treat_35",
+    "axis": "treatment",
+    "question": "Quelle est la première mesure thérapeutique devant un paludisme grave ?",
     "options": [
-      "Elle tue les moustiques qui piquent l'homme traité (effet endectocide)",
-      "Elle tue le Plasmodium",
-      "Elle repousse les moustiques",
-      "Elle vaccine"
+      "Hospitalisation urgente et traitement IV",
+      "Traitement oral ambulatoire",
+      "Chimioprophylaxie",
+      "Surveillance simple"
     ],
-    "correct": 0,
-    "explanation": "Le sang du patient devient toxique pour le moustique, réduisant la population vectrice.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Le paludisme grave est une urgence vitale."
   },
   {
-    "id": "p_treat_81",
-    "question": "Prescription : Paludisme simple chez un adulte de 60kg. Coartem (20/120). Posologie ?",
+    "id": "palu_treat_36",
+    "axis": "treatment",
+    "question": "Quel antipaludique peut provoquer des troubles du rythme cardiaque (QT long) ?",
     "options": [
-      "4 comprimés par prise, 2 fois par jour, pendant 3 jours (Total 24 cp)",
-      "1 comprimé par jour",
-      "4 comprimés une seule fois",
-      "10 comprimés"
+      "Luméfantrine",
+      "Primaquine",
+      "Atovaquone",
+      "Doxycycline"
     ],
-    "correct": 0,
-    "explanation": "C'est le schéma standard '6 doses sur 3 jours'.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La luméfantrine peut allonger l’intervalle QT."
   },
   {
-    "id": "p_treat_84",
-    "question": "En cas de vomissements dans les 30 minutes suivant la prise d'un antipaludéen :",
+    "id": "palu_treat_37",
+    "axis": "treatment",
+    "question": "Quel est le rôle du traitement antipaludique dans la santé publique ?",
     "options": [
-      "Il faut redonner la dose complète",
-      "Ne rien faire",
-      "Donner la moitié",
-      "Attendre le lendemain"
+      "Réduire la morbidité, la mortalité et la transmission",
+      "Éradiquer les moustiques",
+      "Remplacer la prévention",
+      "Induire une immunité définitive"
     ],
-    "correct": 0,
-    "explanation": "Le médicament n'a pas été absorbé. Si vomissement entre 30min-1h, redonner demi-dose.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Le traitement participe au contrôle global du paludisme."
   },
   {
-    "id": "p_treat_85",
-    "question": "L'hypoglycémie est une complication fréquente du paludisme grave, aggravée par :",
+    "id": "palu_treat_38",
+    "axis": "treatment",
+    "question": "Quel antipaludique est contre-indiqué chez le nourrisson allaité par une mère G6PD déficiente ?",
     "options": [
-      "La Quinine (qui stimule l'insuline)",
-      "L'Artésunate",
-      "La fièvre",
-      "L'eau"
+      "Primaquine",
+      "Artéméther",
+      "Luméfantrine",
+      "Atovaquone"
     ],
-    "correct": 0,
-    "explanation": "La Quinine est un puissant insulino-sécréteur. Il faut toujours perfuser du glucosé avec la Quinine.",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "La primaquine peut induire une hémolyse chez le nourrisson."
   },
   {
-    "id": "p_treat_86",
-    "question": "L'échec thérapeutique précoce (J1-J3) dans le paludisme signifie :",
+    "id": "palu_treat_39",
+    "axis": "treatment",
+    "question": "Quel est le principal message de l’OMS concernant le traitement du paludisme ?",
     "options": [
-      "Persistance de la fièvre et des parasites, ou signes de gravité",
-      "Disparition de la fièvre",
-      "Fatigue",
-      "Faim"
+      "Diagnostic parasitologique avant traitement",
+      "Traitement empirique systématique",
+      "Utilisation exclusive de la chloroquine",
+      "Traitement prophylactique universel"
     ],
-    "correct": 0,
-    "explanation": "Cela impose le passage au traitement de 2ème intention (souvent Quinine + Clindamycine ou autre ACT).",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "Le traitement doit être guidé par un diagnostic confirmé."
   },
   {
-    "id": "p_treat_91",
-    "question": "Le traitement gratuit du paludisme est recommandé pour :",
+    "id": "palu_treat_40",
+    "axis": "treatment",
+    "question": "Quelle combinaison est recommandée en alternative en cas d’échec d’une CTA ?",
     "options": [
-      "Les enfants de moins de 5 ans et les femmes enceintes",
-      "Les touristes",
-      "Les riches",
-      "Personne"
+      "Une autre CTA avec partenaire différent",
+      "Chloroquine seule",
+      "Primaquine seule",
+      "Arrêt du traitement"
     ],
-    "correct": 0,
-    "explanation": "Ce sont les populations les plus vulnérables à la mortalité.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_92",
-    "question": "La distribution de masse de médicaments (MDA) est utilisée pour :",
-    "options": [
-      "L'Onchocercose, la Filariose lymphatique, le Trachome (Maladies Négligées)",
-      "Le Paludisme (discuté)",
-      "Le Cancer",
-      "Le Diabète"
-    ],
-    "correct": 0,
-    "explanation": "On traite tout le village une fois par an pour casser la transmission.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_93",
-    "question": "L'automédication avec des antipaludéens achetés au marché (rue) présente un risque de :",
-    "options": [
-      "Faux médicaments (contrefaçons sous-dosées sans principe actif)",
-      "Surdosage",
-      "Guérison trop rapide",
-      "Rien"
-    ],
-    "correct": 0,
-    "explanation": "Fléau majeur en Afrique/Asie. Les faux médicaments tuent et créent des résistances.",
-    "axis": "treatment"
-  }
+    "correctAnswer": 0,
+      "explanation": "Changer de combinaison limite les résistances et assure l'efficacité."
+    }
+];
+
+// Export all questions
+export const questions = [
+  ...morphologyQuestions,
+  ...lifecycleQuestions,
+  ...clinicalQuestions,
+  ...diagnosisQuestions,
+  ...treatmentQuestions
 ];

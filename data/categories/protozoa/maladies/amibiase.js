@@ -1,2202 +1,1336 @@
-// data/categories/protozoa/maladies/amibiase.js
-// Questions related to amibiase extracted from all axis files
-
-export const questions = [
+// ==========================================
+// 1. MORPHOLOGIE (20 Questions)
+// ==========================================
+const morphologyQuestions = [
   {
-    "id": "p_class_2",
-    "question": "Le Phylum des Sarcomastigophora regroupe deux sous-phylums majeurs :",
+    "id": "amibe_morph_1",
+    "axis": "morphology",
+    "question": "Quel critère morphologique de certitude distingue le trophozoïte d'Entamoeba histolytica de celui d'Entamoeba dispar ?",
     "options": [
-      "Sarcodina (Amibes) et Mastigophora (Flagellés)",
-      "Ciliophora et Apicomplexa",
-      "Sporozoa et Cnidospora",
-      "Nématodes et Cestodes"
+      "Hématophagie avec ingestion de globules rouges",
+      "Taille supérieure à 30 µm",
+      "Présence de pseudopodes courts",
+      "Noyau avec chromatine périphérique fine"
     ],
-    "correct": 0,
-    "explanation": "Ce phylum regroupe les protozoaires se déplaçant par pseudopodes (Sarcodina) ou par flagelles (Mastigophora).",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "L’ingestion de globules rouges est pathognomonique d’E. histolytica et absente chez E. dispar."
   },
   {
-    "id": "p_class_6",
-    "question": "L'ordre des Kinetoplastida inclut quels genres importants ?",
+    "id": "amibe_morph_2",
+    "axis": "morphology",
+    "question": "Quelle est la taille habituelle du trophozoïte d’Entamoeba histolytica ?",
     "options": [
-      "Trypanosoma et Leishmania",
-      "Giardia et Trichomonas",
-      "Entamoeba et Endolimax",
-      "Plasmodium et Babesia"
+      "15 à 30 µm",
+      "5 à 10 µm",
+      "30 à 60 µm",
+      "Moins de 5 µm"
     ],
-    "correct": 0,
-    "explanation": "Les Kinetoplastida se caractérisent par la présence d'un kinétoplaste (ADN mitochondrial condensé) à la base du flagelle.",
-    "axis": "classification"
+    "correctAnswer": 0,
+    "explanation": "Le trophozoïte mesure en moyenne 15 à 30 µm, avec des variations selon l’activité."
   },
   {
-    "id": "p_class_10",
-    "question": "Dientamoeba fragilis a été reclassé récemment parmi les :",
+    "id": "amibe_morph_3",
+    "axis": "morphology",
+    "question": "Quel est le nombre maximal de noyaux observé dans un kyste mûr d’Entamoeba histolytica ?",
     "options": [
-      "Flagellés (Trichomonadida)",
-      "Amibes (Entamoebidae)",
-      "Ciliés",
-      "Sporozoaires"
-    ],
-    "correct": 0,
-    "explanation": "Bien qu'il se déplace par pseudopodes (aspect amiboïde), l'analyse génétique et ultrastructurale le place parmi les flagellés trichomonadés.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_11",
-    "question": "Le genre Entamoeba appartient à la famille des :",
-    "options": [
-      "Entamoebidae",
-      "Vahlkampfiidae",
-      "Acanthamoebidae",
-      "Hartmannellidae"
-    ],
-    "correct": 0,
-    "explanation": "C'est la famille principale des amibes parasites du tube digestif.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_12",
-    "question": "Les amibes libres pathogènes ('Amphizoïques') incluent les genres :",
-    "options": [
-      "Naegleria, Acanthamoeba, Balamuthia",
-      "Entamoeba, Endolimax, Iodamoeba",
-      "Giardia, Trichomonas",
-      "Plasmodium, Babesia"
-    ],
-    "correct": 0,
-    "explanation": "Ce sont des amibes qui vivent librement dans l'environnement (eau, sol) mais peuvent parasiter l'homme accidentellement.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_13",
-    "question": "Naegleria fowleri appartient à la classe des :",
-    "options": [
-      "Heterolobosea (Amibo-flagellés)",
-      "Lobosea",
-      "Filosea",
-      "Granuloreticulosea"
-    ],
-    "correct": 0,
-    "explanation": "Elle peut alterner entre une forme amibe et une forme flagellée, d'où sa classification à part des amibes strictes.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_14",
-    "question": "Laquelle de ces amibes est considérée comme une 'Amibe non pathogène' (Commensale) ?",
-    "options": [
-      "Entamoeba coli",
-      "Entamoeba histolytica",
-      "Acanthamoeba castellanii",
-      "Naegleria fowleri"
-    ],
-    "correct": 0,
-    "explanation": "Entamoeba coli est un hôte habituel et inoffensif du gros intestin, à ne pas confondre avec E. histolytica.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_15",
-    "question": "Blastocystis hominis est actuellement classé dans le groupe des :",
-    "options": [
-      "Stramenopiles (hétérocontes)",
-      "Amibes",
-      "Levures",
-      "Flagellés"
-    ],
-    "correct": 0,
-    "explanation": "C'est une révolution taxonomique : il est plus proche des algues brunes et des diatomées que des protozoaires classiques.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_16",
-    "question": "La classe des Coccidea (Coccidies) inclut les genres :",
-    "options": [
-      "Toxoplasma, Isospora, Cryptosporidium",
-      "Plasmodium, Babesia",
-      "Entamoeba, Giardia",
-      "Leishmania, Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "Ce sont des parasites intracellulaires obligatoires de l'épithélium intestinal (sauf Toxoplasma qui est tissulaire).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_18",
-    "question": "Babesia (Piroplasmes) est phylogénétiquement très proche de :",
-    "options": [
-      "Theileria et Plasmodium",
-      "Trypanosoma",
-      "Entamoeba",
-      "Toxoplasma"
-    ],
-    "correct": 0,
-    "explanation": "Ils appartiennent tous deux aux Apicomplexa sanguicoles, bien que Babesia soit transmis par des tiques et non des moustiques.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_22",
-    "question": "Les protozoaires 'Monoxènes' (cycle direct) incluent :",
-    "options": [
-      "Entamoeba histolytica et Giardia lamblia",
-      "Plasmodium falciparum",
-      "Trypanosoma brucei",
-      "Leishmania infantum"
-    ],
-    "correct": 0,
-    "explanation": "Ils se transmettent directement d'homme à homme (ou via l'environnement) sans passer par un autre animal ou vecteur.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_25",
-    "question": "Quel parasite est une 'Zoonose' (réservoir animal important) ?",
-    "options": [
-      "Balantidium coli (Porc)",
-      "Plasmodium falciparum (Homme strict)",
-      "Entamoeba histolytica (Homme strict)",
-      "Trichomonas vaginalis (Homme strict)"
-    ],
-    "correct": 0,
-    "explanation": "Balantidium coli est un parasite habituel du porc, qui est le réservoir principal contaminant l'homme.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_27",
-    "question": "Le super-groupe 'Amoebozoa' contient :",
-    "options": [
-      "Entamoeba et Acanthamoeba",
-      "Giardia",
-      "Plasmodium",
-      "Leishmania"
-    ],
-    "correct": 0,
-    "explanation": "Ce groupe rassemble les organismes se déplaçant par pseudopodes lobés (Lobosea).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_32",
-    "question": "Le complexe 'Entamoeba histolytica / dispar / moshkovskii' regroupe des amibes :",
-    "options": [
-      "Morphologiquement identiques mais génétiquement différentes",
-      "Morphologiquement très différentes",
-      "De tailles différentes",
-      "Flagellées"
-    ],
-    "correct": 0,
-    "explanation": "On ne peut pas les distinguer au microscope optique standard, seule la biologie moléculaire ou les tests enzymatiques le peuvent.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_36",
-    "question": "Les protozoaires qui se divisent par 'Schizogonie' sont :",
-    "options": [
-      "Les Sporozoaires (ex: Plasmodium)",
-      "Les Flagellés",
-      "Les Amibes",
-      "Les Ciliés"
-    ],
-    "correct": 0,
-    "explanation": "La schizogonie est une reproduction asexuée multiple typique des Apicomplexa.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_37",
-    "question": "La 'Conjugaison' est un mode de reproduction sexuée spécifique aux :",
-    "options": [
-      "Ciliés (ex: Balantidium)",
-      "Flagellés",
-      "Amibes",
-      "Sporozoaires"
-    ],
-    "correct": 0,
-    "explanation": "Les ciliés échangent du matériel génétique (micronoyaux) via un pont cytoplasmique.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_38",
-    "question": "La 'Fission binaire longitudinale' est le mode de division des :",
-    "options": [
-      "Flagellés",
-      "Ciliés (Transversale)",
-      "Amibes (Quelconque)",
-      "Sporozoaires"
-    ],
-    "correct": 0,
-    "explanation": "Les flagellés se divisent dans le sens de la longueur (longitudinal).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_42",
-    "question": "Le terme 'Amibe' vient du grec 'amoibe' qui signifie :",
-    "options": [
-      "Changement / Transformation",
-      "Gelée",
-      "Mangeur",
-      "Invisible"
-    ],
-    "correct": 0,
-    "explanation": "Cela fait référence à leur capacité constante à changer de forme grâce aux pseudopodes.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_43",
-    "question": "Les 'Ameobo-flagellés' comme Naegleria sont un lien évolutif entre :",
-    "options": [
-      "Les amibes et les flagellés",
-      "Les amibes et les champignons",
-      "Les plantes et les animaux",
-      "Les bactéries et les virus"
-    ],
-    "correct": 0,
-    "explanation": "Leur capacité à exprimer des flagelles sous stress montre la plasticité génétique des protozoaires primitifs.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_49",
-    "question": "Les 'Hémoflagellés' incluent :",
-    "options": [
-      "Trypanosoma et Leishmania",
-      "Plasmodium et Babesia",
-      "Giardia et Trichomonas",
-      "Entamoeba"
-    ],
-    "correct": 0,
-    "explanation": "Ce sont des flagellés qui vivent dans le sang ou les tissus profonds (système réticulo-endothélial).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_58",
-    "question": "Le terme 'Apicomplexa' remplace l'ancien terme :",
-    "options": [
-      "Sporozoaires",
-      "Cnidosporidies",
-      "Amibes",
-      "Infusoires"
-    ],
-    "correct": 0,
-    "explanation": "Le terme Sporozoa est jugé obsolète car il regroupait des organismes non apparentés (comme les Microsporidies).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_59",
-    "question": "Les Coccidies intestinales incluent trois genres majeurs pathogènes pour l'homme :",
-    "options": [
-      "Cryptosporidium, Cyclospora, Cystoisospora",
-      "Giardia, Entamoeba, Trichomonas",
-      "Plasmodium, Babesia, Toxoplasma",
-      "Leishmania, Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "Ce trio forme le groupe des coccidies causant des diarrhées, souvent opportunistes.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_60",
-    "question": "Les amibes du groupe 'Limax' (ex: Naegleria, Acanthamoeba) sont appelées ainsi car :",
-    "options": [
-      "Elles se déplacent comme des limaces",
-      "Elles sont visqueuses",
-      "Elles vivent sur les limaces",
-      "Elles n'ont pas de coquille"
-    ],
-    "correct": 0,
-    "explanation": "Leur déplacement unidirectionnel et fluide rappelle celui d'une limace (Limax).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_63",
-    "question": "Lequel est un parasite 'Xénophile' (transmis par vecteur) ?",
-    "options": [
-      "Plasmodium",
-      "Giardia",
-      "Entamoeba",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "Giardia, Entamoeba et Trichomonas sont transmis directement (eau/contact). Plasmodium nécessite un vecteur.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_64",
-    "question": "Les 'Amibes libres' sont des parasites :",
-    "options": [
-      "Accidentels (Facultatifs)",
-      "Obligatoires",
-      "Permanents",
-      "Symbiotiques"
-    ],
-    "correct": 0,
-    "explanation": "Elles vivent normalement librement dans la nature et n'infectent l'homme que par accident (impasse parasitaire souvent).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_65",
-    "question": "Les parasites 'Intracellulaires obligatoires' ne peuvent vivre qu'à l'intérieur d'une cellule. Ex :",
-    "options": [
-      "Toxoplasma, Plasmodium, Leishmania",
-      "Giardia, Trichomonas",
-      "Entamoeba, Balantidium",
-      "Trypanosoma (stade sanguin)"
-    ],
-    "correct": 0,
-    "explanation": "Ils ont besoin de la machinerie cellulaire hôte pour se diviser et se cacher du système immunitaire.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_71",
-    "question": "Groupe : Flagellé sanguin transmis par piqûre. Lequel ?",
-    "options": [
-      "Trypanosoma",
-      "Giardia",
-      "Trichomonas",
-      "Entamoeba"
-    ],
-    "correct": 0,
-    "explanation": "Trypanosoma vit dans le plasma sanguin.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_73",
-    "question": "Groupe : Amibe intestinale hématophage. Laquelle ?",
-    "options": [
-      "Entamoeba histolytica",
-      "Entamoeba coli",
-      "Entamoeba hartmanni",
-      "Endolimax nana"
-    ],
-    "correct": 0,
-    "explanation": "Seule la forme histolytica est capable de manger des globules rouges (hématophagie).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_80",
-    "question": "Le super-groupe 'Opisthokonta' (Opisthocontes) regroupe :",
-    "options": [
-      "Les Animaux (Métazoaires), les Champignons et les Microsporidies",
-      "Les Plantes",
-      "Les Algues",
-      "Les Amibes"
-    ],
-    "correct": 0,
-    "explanation": "C'est pourquoi les Microsporidies (parasites) sont si difficiles à traiter : elles sont biochimiquement proches de nous (animaux) et des champignons.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_82",
-    "question": "Quel protozoaire a un cycle 'Dixène' (deux hôtes) ?",
-    "options": [
-      "Leishmania (Homme + Phlébotome)",
-      "Giardia (Homme)",
-      "Entamoeba (Homme)",
-      "Trichomonas (Homme)"
-    ],
-    "correct": 0,
-    "explanation": "Leishmania alterne obligatoirement entre un vertébré et un insecte vecteur.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_83",
-    "question": "Les amibes à thèque (Testacea) diffèrent des amibes nues par :",
-    "options": [
-      "Une coquille externe protectrice",
-      "Des flagelles",
-      "Des cils",
-      "L'absence de noyau"
-    ],
-    "correct": 0,
-    "explanation": "Elles ne sont généralement pas parasites de l'homme.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_85",
-    "question": "Lequel appartient au groupe des 'Stramenopiles' ?",
-    "options": [
-      "Blastocystis",
-      "Giardia",
-      "Entamoeba",
-      "Leishmania"
-    ],
-    "correct": 0,
-    "explanation": "Comme vu précédemment, Blastocystis est un hétéroconte (algue sans chlorophylle).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_87",
-    "question": "Les protozoaires 'Anaérobies' (ex: Entamoeba, Giardia) vivent :",
-    "options": [
-      "Sans oxygène (fermentation)",
-      "Avec beaucoup d'oxygène",
-      "Dans le sang artériel",
-      "Sur la peau"
-    ],
-    "correct": 0,
-    "explanation": "C'est pourquoi le Métronidazole (actif en anaérobiose) est le traitement de choix.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_88",
-    "question": "Quel parasite possède un 'axostyle' (squelette interne) ?",
-    "options": [
-      "Trichomonas",
-      "Entamoeba",
-      "Plasmodium",
-      "Toxoplasma"
-    ],
-    "correct": 0,
-    "explanation": "L'axostyle est la caractéristique des flagellés de l'ordre Trichomonadida.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_91",
-    "question": "Quel est le nom de la famille des amibes 'sociales' (qui s'agrègent) ?",
-    "options": [
-      "Dictyosteliidae (ex: Dictyostelium)",
-      "Entamoebidae",
-      "Acanthamoebidae",
-      "Naegleriidae"
-    ],
-    "correct": 0,
-    "explanation": "Elles forment des structures pluricellulaires temporaires (pseudoplasmodiums), modèle d'étude biologique.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_94",
-    "question": "Le genre Sappinia est une amibe libre rare caractérisée par :",
-    "options": [
-      "Deux noyaux accolés dans le trophozoïte",
-      "Un seul noyau",
-      "Des flagelles",
-      "Des cils"
-    ],
-    "correct": 0,
-    "explanation": "C'est une amibe libre très rarement pathogène pour l'homme (encéphalite).",
-    "axis": "classification"
-  },
-  {
-    "id": "p_class_99",
-    "question": "La classe des Litostomatea inclut le genre :",
-    "options": [
-      "Balantidium",
-      "Entamoeba",
-      "Giardia",
-      "Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "C'est la classe taxonomique précise de Balantidium coli.",
-    "axis": "classification"
-  },
-  {
-    "id": "p_morph_7",
-    "question": "Les corps parabasaux en forme de virgule sont caractéristiques de :",
-    "options": [
-      "Giardia intestinalis",
-      "Entamoeba histolytica",
-      "Plasmodium falciparum",
-      "Cryptosporidium"
-    ],
-    "correct": 0,
-    "explanation": "Giardia possède deux corps parabasaux médians, souvent en forme de virgule ou de marteau, visibles au centre.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_9",
-    "question": "Dientamoeba fragilis est un flagellé qui :",
-    "options": [
-      "Ne possède pas de flagelle visible",
-      "Possède 8 flagelles",
-      "Possède une membrane ondulante",
-      "Forme des kystes très résistants"
-    ],
-    "correct": 0,
-    "explanation": "Bien qu'il soit classé génétiquement parmi les flagellés, Dientamoeba fragilis se déplace par pseudopodes et n'a pas de flagelle visible.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_10",
-    "question": "Combien de noyaux possède typiquement le trophozoïte de Dientamoeba fragilis ?",
-    "options": [
-      "2 noyaux",
-      "1 noyau",
       "4 noyaux",
+      "1 noyau",
+      "2 noyaux",
       "8 noyaux"
     ],
-    "correct": 0,
-    "explanation": "Comme son nom l'indique ('Di-entamoeba'), il possède le plus souvent 2 noyaux à structure fragmentée.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Le kyste mûr d’E. histolytica contient classiquement 4 noyaux."
   },
   {
-    "id": "p_morph_21",
-    "question": "Quelle est la caractéristique nucléaire majeure d'Entamoeba histolytica ?",
+    "id": "amibe_morph_4",
+    "axis": "morphology",
+    "question": "Comment se présente la chromatine périphérique du noyau d’Entamoeba histolytica ?",
     "options": [
-      "Caryosome central punctiforme et chromatine périphérique fine",
-      "Caryosome excentrique et gros",
-      "Noyau sans chromatine périphérique",
-      "Noyau géant irrégulier"
+      "Fine et régulièrement répartie",
+      "Grossière et irrégulière",
+      "Absente",
+      "Condensée en amas"
     ],
-    "correct": 0,
-    "explanation": "Le noyau a un aspect en 'roue de charrette' : caryosome central petit et chromatine périphérique régulièrement disposée.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "La chromatine périphérique fine et régulière est typique du complexe E. histolytica/dispar."
   },
   {
-    "id": "p_morph_22",
-    "question": "Le trophozoïte d'Entamoeba coli se distingue par un cytoplasme :",
+    "id": "amibe_morph_5",
+    "axis": "morphology",
+    "question": "Quel est l’aspect du caryosome d’Entamoeba histolytica ?",
     "options": [
-      "Grossier, vacuolaire, contenant des bactéries",
-      "Fin, hyalin, contenant des hématies",
-      "Homogène sans inclusions",
-      "Rempli de cristaux"
+      "Petit et central",
+      "Volumineux et excentré",
+      "Multiple",
+      "Absent"
     ],
-    "correct": 0,
-    "explanation": "Le cytoplasme d'E. coli est 'sale', très vacuolaire et contient beaucoup de bactéries et débris, mais JAMAIS d'hématies.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Le caryosome est petit, central et discret."
   },
   {
-    "id": "p_morph_23",
-    "question": "Combien de noyaux contient le kyste mûr d'Entamoeba coli ?",
+    "id": "amibe_morph_6",
+    "axis": "morphology",
+    "question": "Quel élément cytoplasmique est typiquement observé dans les kystes immatures d’E. histolytica ?",
     "options": [
-      "8 noyaux (parfois plus)",
-      "4 noyaux",
-      "1 noyau",
-      "2 noyaux"
+      "Corps chromatoïdes à extrémités arrondies",
+      "Granulations iodophiles abondantes",
+      "Flagelles",
+      "Vacuole contractile"
     ],
-    "correct": 0,
-    "explanation": "Le kyste d'E. coli est plus grand et contient typiquement 8 noyaux (octonucléé) à maturité.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Les corps chromatoïdes en bâtonnets à extrémités arrondies sont caractéristiques."
   },
   {
-    "id": "p_morph_24",
-    "question": "Les corps chromatoïdes du kyste d'Entamoeba histolytica ont une forme de :",
+    "id": "amibe_morph_7",
+    "axis": "morphology",
+    "question": "Quel est l’aspect des pseudopodes du trophozoïte d’E. histolytica ?",
     "options": [
-      "Bâtonnets à bouts arrondis (en cigare)",
-      "Aiguilles pointues",
-      "Éclats de verre",
-      "Filaments fins"
+      "Larges, uniques et rapidement émis",
+      "Multiples et courts",
+      "Filiformes",
+      "Absents"
     ],
-    "correct": 0,
-    "explanation": "Ils sont épais, en forme de bâtonnets à extrémités arrondies (saucisse ou cigare).",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "E. histolytica présente des pseudopodes larges responsables d’une mobilité directionnelle."
   },
   {
-    "id": "p_morph_25",
-    "question": "Les corps chromatoïdes du kyste d'Entamoeba coli ont une forme de :",
+    "id": "amibe_morph_8",
+    "axis": "morphology",
+    "question": "Quelle forme parasitaire est principalement responsable de l’invasion tissulaire ?",
     "options": [
-      "Échardes ou aiguilles pointues",
-      "Bâtonnets arrondis",
-      "Sphères",
-      "Cubiques"
+      "Trophozoïte",
+      "Kyste mûr",
+      "Kyste immature",
+      "Métacyste"
     ],
-    "correct": 0,
-    "explanation": "Contrairement à E. histolytica, les corps chromatoïdes d'E. coli (si présents) ressemblent à des éclats de verre pointus.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Le trophozoïte est la forme invasive et pathogène."
   },
   {
-    "id": "p_morph_27",
-    "question": "Le noyau d'Endolimax nana se caractérise par :",
+    "id": "amibe_morph_9",
+    "axis": "morphology",
+    "question": "Quelle caractéristique permet de différencier E. histolytica d’Entamoeba coli sur frottis ?",
     "options": [
-      "Un gros caryosome irrégulier (en 'tache d'encre')",
-      "Un petit caryosome central",
-      "Une chromatine périphérique épaisse",
-      "Deux caryosomes"
+      "Nombre de noyaux du kyste",
+      "Présence de pseudopodes",
+      "Forme sphérique du kyste",
+      "Existence d’un caryosome"
     ],
-    "correct": 0,
-    "explanation": "Le caryosome est très volumineux, irrégulier et prend presque tout le noyau, sans chromatine périphérique visible.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "E. histolytica a 4 noyaux, E. coli jusqu’à 8 noyaux."
   },
   {
-    "id": "p_morph_29",
-    "question": "Quelle amibe libre peut être pathogène facultative pour l'homme ?",
+    "id": "amibe_morph_10",
+    "axis": "morphology",
+    "question": "Quel est l’aspect des corps chromatoïdes d’Entamoeba coli (diagnostic différentiel) ?",
     "options": [
-      "Naegleria fowleri",
-      "Entamoeba dispar",
-      "Entamoeba hartmanni",
-      "Endolimax nana"
+      "Extrémités effilées et irrégulières",
+      "Extrémités arrondies",
+      "Absents",
+      "Forme sphérique"
     ],
-    "correct": 0,
-    "explanation": "Naegleria fowleri est une amibe libre de l'environnement capable de causer des méningo-encéphalites gravissimes.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Les corps chromatoïdes d’E. coli ont des extrémités pointues."
   },
   {
-    "id": "p_morph_30",
-    "question": "La forme 'Minute' d'Entamoeba histolytica correspond à :",
+    "id": "amibe_morph_11",
+    "axis": "morphology",
+    "question": "Dans quel prélèvement observe-t-on le plus souvent des trophozoïtes hématophages ?",
     "options": [
-      "La forme non-hématophage (E. histolytica minuta)",
-      "La forme kystique",
-      "La forme pré-kystique",
-      "La forme invasive"
+      "Selles diarrhéiques fraîches",
+      "Selles moulées",
+      "Urines",
+      "Crachat"
     ],
-    "correct": 0,
-    "explanation": "C'est la forme commensale non pathogène qui vit dans la lumière colique sans envahir les tissus.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Les trophozoïtes fragiles sont observés surtout dans les selles liquides fraîches."
   },
   {
-    "id": "p_morph_31",
-    "question": "Entamoeba hartmanni est souvent appelée :",
+    "id": "amibe_morph_12",
+    "axis": "morphology",
+    "question": "Quel colorant met en évidence les détails nucléaires d’E. histolytica ?",
     "options": [
-      "La 'petite' Entamoeba histolytica",
-      "L'amibe géante",
-      "L'amibe flagellée",
-      "L'amibe buccale"
+      "Trichrome de Wheatley",
+      "Bleu de méthylène simple",
+      "Gram",
+      "Ziehl-Neelsen"
     ],
-    "correct": 0,
-    "explanation": "Elle ressemble morphologiquement à E. histolytica mais est beaucoup plus petite (< 10 µm pour le kyste) et non pathogène.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "La coloration trichrome permet une excellente visualisation nucléaire."
   },
   {
-    "id": "p_morph_32",
-    "question": "Quelle est la taille approximative d'un trophozoïte d'Entamoeba histolytica histolytica (forme magna) ?",
+    "id": "amibe_morph_13",
+    "axis": "morphology",
+    "question": "Quel élément n’est PAS observé dans le cytoplasme d’E. histolytica ?",
     "options": [
-      "20 à 40 µm",
-      "5 à 10 µm",
-      "60 à 100 µm",
-      "150 µm"
+      "Bactéries intracellulaires organisées",
+      "Globules rouges ingérés",
+      "Vacuoles",
+      "Granulations cytoplasmiques"
     ],
-    "correct": 0,
-    "explanation": "La forme hématophage (Magna) est grande et très mobile, mesurant généralement entre 20 et 40 µm.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "La présence organisée de bactéries est plutôt observée chez E. coli."
   },
   {
-    "id": "p_morph_33",
-    "question": "Le mouvement d'Entamoeba histolytica est décrit comme :",
+    "id": "amibe_morph_14",
+    "axis": "morphology",
+    "question": "Quelle forme parasitaire est responsable de la transmission interhumaine ?",
     "options": [
-      "Unidirectionnel et rapide (comme une limace)",
-      "Lent et hésitant",
-      "Tourbillonnant",
-      "Immobile"
+      "Kyste mûr",
+      "Trophozoïte",
+      "Forme végétative",
+      "Forme invasive"
     ],
-    "correct": 0,
-    "explanation": "Elle émet des pseudopodes hyalins de manière explosive, permettant un déplacement rapide et directionnel.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Le kyste mûr est la forme résistante et infestante."
   },
   {
-    "id": "p_morph_34",
-    "question": "Entamoeba gingivalis se trouve exclusivement dans :",
+    "id": "amibe_morph_15",
+    "axis": "morphology",
+    "question": "Quel est l’aspect du cytoplasme du trophozoïte d’E. histolytica ?",
     "options": [
-      "La cavité buccale (tartre dentaire)",
-      "Le gros intestin",
-      "Le vagin",
-      "Le sang"
+      "Différencié en ectoplasme clair et endoplasme granuleux",
+      "Uniformément homogène",
+      "Entièrement vacuolaire",
+      "Strié"
     ],
-    "correct": 0,
-    "explanation": "C'est la seule amibe de la bouche humaine. Elle ne forme pas de kystes et se transmet par la salive.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "La différenciation ectoplasme/endoplasme est typique."
   },
   {
-    "id": "p_morph_35",
-    "question": "Les cristaux de Charcot-Leyden, souvent associés à l'amibiase, proviennent de :",
+    "id": "amibe_morph_16",
+    "axis": "morphology",
+    "question": "Quel est le diamètre moyen d’un kyste d’E. histolytica ?",
     "options": [
-      "La dégradation des éosinophiles",
-      "La coque des kystes",
-      "L'alimentation",
-      "Bactéries intestinales"
+      "10 à 15 µm",
+      "2 à 5 µm",
+      "20 à 30 µm",
+      "40 µm"
     ],
-    "correct": 0,
-    "explanation": "Ce sont des cristaux en forme de double pyramide formés par la lysophospholipase des éosinophiles.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Les kystes mesurent généralement entre 10 et 15 µm."
   },
   {
-    "id": "p_morph_36",
-    "question": "Quelle amibe a un kyste avec 4 noyaux et des corps chromatoïdes, ressemblant à E. histolytica, mais non pathogène ?",
+    "id": "amibe_morph_17",
+    "axis": "morphology",
+    "question": "Quel aspect microscopique évoque une amibe non pathogène plutôt qu’E. histolytica ?",
     "options": [
-      "Entamoeba dispar",
-      "Entamoeba coli",
-      "Endolimax nana",
-      "Dientamoeba fragilis"
+      "Absence de globules rouges ingérés",
+      "Présence de pseudopodes",
+      "Mobilité amiboïde",
+      "Présence d’un noyau"
     ],
-    "correct": 0,
-    "explanation": "E. dispar est morphologiquement identique à E. histolytica au microscope, mais génétiquement différente et non pathogène.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "L’absence d’hématophagie oriente vers une amibe non pathogène."
   },
   {
-    "id": "p_morph_55",
-    "question": "L'autofluorescence bleue sous lumière UV est une propriété caractéristique de :",
+    "id": "amibe_morph_18",
+    "axis": "morphology",
+    "question": "Quelle structure est absente du kyste mûr d’E. histolytica ?",
     "options": [
-      "Cyclospora cayetanensis",
-      "Cryptosporidium hominis",
-      "Entamoeba histolytica",
-      "Giardia lamblia"
+      "Corps chromatoïdes",
+      "Noyaux",
+      "Paroi kystique",
+      "Cytoplasme"
     ],
-    "correct": 0,
-    "explanation": "La paroi de l'oocyste de Cyclospora est autofluorescente, ce qui permet un diagnostic rapide sous microscope à fluorescence.",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "Les corps chromatoïdes disparaissent dans les kystes mûrs."
   },
   {
-    "id": "p_morph_56",
-    "question": "Sarcocystis hominis forme dans les muscles (hôte intermédiaire) des :",
+    "id": "amibe_morph_19",
+    "axis": "morphology",
+    "question": "Quel est le principal piège diagnostique en microscopie des amibes intestinales ?",
     "options": [
-      "Sarcocystes (kystes tissulaires)",
-      "Oocystes",
-      "Tachyzoïtes libres",
-      "Amibes"
+      "Confusion E. histolytica / E. dispar",
+      "Confusion avec Giardia",
+      "Confusion avec Trichomonas",
+      "Confusion avec levures"
     ],
-    "correct": 0,
-    "explanation": "Les sarcocystes sont des kystes allongés, blancs, visibles parfois à l'œil nu dans les muscles (aspect en grain de riz).",
-    "axis": "morphology"
+    "correctAnswer": 0,
+    "explanation": "E. histolytica et E. dispar sont morphologiquement identiques hors hématophagie."
   },
   {
-    "id": "p_morph_74",
-    "question": "Laquelle de ces amibes a un noyau sans caryosome visible mais avec une grosse vacuole glycogénique ?",
+    "id": "amibe_morph_20",
+    "axis": "morphology",
+    "question": "Quel élément morphologique signe une activité invasive d’E. histolytica ?",
     "options": [
-      "Iodamoeba bütschlii",
-      "Entamoeba coli",
-      "Endolimax nana",
-      "Dientamoeba fragilis"
+      "Trophozoïtes hématophages",
+      "Kystes quadrinucléés",
+      "Présence de corps chromatoïdes",
+      "Multiplication nucléaire"
     ],
-    "correct": 0,
-    "explanation": "Dans le kyste, le noyau est souvent masqué ou poussé en périphérie par l'énorme vacuole iodophile.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_76",
-    "question": "Quel protozoaire possède un appareil de Golgi géant appelé 'corps parabasal' ?",
-    "options": [
-      "Les flagellés (Trichomonas, Giardia)",
-      "Les amibes",
-      "Les sporozoaires",
-      "Les ciliés"
-    ],
-    "correct": 0,
-    "explanation": "C'est une structure de soutien associée au kinétosome, très développée chez les flagellés parabasaliens.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_81",
-    "question": "La coloration de Gomori-Grocott (argentique) est utile pour visualiser les kystes de :",
-    "options": [
-      "Pneumocystis jirovecii (classé fongique mais étudié en parasito)",
-      "Giardia",
-      "Plasmodium",
-      "Entamoeba"
-    ],
-    "correct": 0,
-    "explanation": "Elle colore la paroi des kystes en noir. Pneumocystis a été reclassé comme champignon mais reste traité en parasitologie médicale.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_84",
-    "question": "Quel protozoaire intracellulaire forme une 'vacuole parasitophore' qui ne fusionne pas avec les lysosomes ?",
-    "options": [
-      "Toxoplasma gondii",
-      "Leishmania",
-      "Trypanosoma cruzi",
-      "Entamoeba"
-    ],
-    "correct": 0,
-    "explanation": "Toxoplasma modifie sa vacuole pour empêcher l'acidification et la fusion lysosomale, assurant sa survie intracellulaire.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_86",
-    "question": "Laquelle de ces formes n'est JAMAIS trouvée dans les selles ?",
-    "options": [
-      "Trophozoïte de Plasmodium",
-      "Kyste d'Entamoeba",
-      "Oocyste de Cryptosporidium",
-      "Trophozoïte de Giardia (diarrhée)"
-    ],
-    "correct": 0,
-    "explanation": "Plasmodium est un parasite sanguin strict chez l'homme, il ne passe jamais dans le tube digestif.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_87",
-    "question": "Les kystes d'Entamoeba histolytica immatures (jeunes) peuvent contenir :",
-    "options": [
-      "1 ou 2 noyaux et une grosse vacuole glycogénique",
-      "4 noyaux",
-      "8 noyaux",
-      "Aucun noyau"
-    ],
-    "correct": 0,
-    "explanation": "Avant la division nucléaire finale, le kyste jeune a 1-2 noyaux et une réserve de glycogène qui disparaît à maturité.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_89",
-    "question": "Quelle est la particularité de la mitochondrie d'Entamoeba histolytica ?",
-    "options": [
-      "Elle est absente (remplacée par des mitosomes)",
-      "Elle est géante",
-      "Elle contient le kinétoplaste",
-      "Elle est verte"
-    ],
-    "correct": 0,
-    "explanation": "E. histolytica est un anaérobie qui a perdu ses mitochondries classiques, conservant des vestiges appelés mitosomes.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_92",
-    "question": "Le diamètre d'un kyste d'Entamoeba coli (15-25 µm) est généralement :",
-    "options": [
-      "Supérieur à celui d'E. histolytica (10-15 µm)",
-      "Inférieur",
-      "Identique",
-      "Variable"
-    ],
-    "correct": 0,
-    "explanation": "E. coli est la plus grande des amibes intestinales communes, ses kystes sont nettement plus gros.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_93",
-    "question": "Quel parasite présente un 'bouton' ou 'bouchon' polaire visible sur ses oocystes (bien que rare) ?",
-    "options": [
-      "Aucun protozoaire (c'est typique des œufs d'helminthes)",
-      "Giardia",
-      "Entamoeba",
-      "Balantidium"
-    ],
-    "correct": 0,
-    "explanation": "Piège ! Les bouchons polaires sont typiques des œufs de Trichuris (helminthe), pas des protozoaires.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_98",
-    "question": "Quelle coloration met en évidence les noyaux des amibes de façon permanente ?",
-    "options": [
-      "Hématoxiline ferrique",
-      "Lugol (temporaire)",
-      "MIF",
-      "État frais"
-    ],
-    "correct": 0,
-    "explanation": "L'hématoxiline ferrique est la coloration de référence pour l'étude fine de la chromatine nucléaire des amibes.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_99",
-    "question": "Un trophozoïte avec 2 noyaux ayant chacun un gros caryosome fragmenté (en 4-8 granules) est :",
-    "options": [
-      "Dientamoeba fragilis",
-      "Giardia",
-      "Entamoeba coli",
-      "Endolimax"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'aspect typique des noyaux de Dientamoeba (caryosome fragmenté en 'motte').",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_102",
-    "question": "La transformation de Naegleria fowleri de la forme amibe à la forme flagellée se déclenche :",
-    "options": [
-      "Dans l'eau distillée ou pauvre en nutriments",
-      "Dans le sang",
-      "Dans le LCR",
-      "À 37°C"
-    ],
-    "correct": 0,
-    "explanation": "C'est un test diagnostique : mis dans l'eau distillée à 37°C, les trophozoïtes se transforment en formes flagellées piriformes en quelques heures.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_103",
-    "question": "Le kyste d'Acanthamoeba spp. possède des pores appelés :",
-    "options": [
-      "Ostifoles (ou opercules)",
-      "Micropyles",
-      "Cytopyges",
-      "Stigmates"
-    ],
-    "correct": 0,
-    "explanation": "La paroi kystique présente des pores (ostioles) par lesquels l'amibe sortira lors du désenkystement.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_104",
-    "question": "Quelle amibe libre ne forme JAMAIS de kyste dans les tissus humains ?",
-    "options": [
-      "Naegleria fowleri",
-      "Acanthamoeba spp.",
-      "Balamuthia mandrillaris",
-      "Sappinia diploidea"
-    ],
-    "correct": 0,
-    "explanation": "Chez l'homme (dans le cerveau), Naegleria fowleri ne se trouve que sous forme de trophozoïtes. On ne trouve pas de kystes dans les coupes histologiques.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_105",
-    "question": "Balamuthia mandrillaris se distingue morphologiquement par :",
-    "options": [
-      "Des trophozoïtes très grands (12-60 µm) et des kystes à triple paroi",
-      "Des flagelles",
-      "Une petite taille",
-      "Des cils"
-    ],
-    "correct": 0,
-    "explanation": "Balamuthia est une amibe libre opportuniste causant des encéphalites granulomateuses, caractérisée par des kystes à paroi épaisse (triple).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_117",
-    "question": "Blastocystis hominis possède une forme 'granulaire' qui ressemble à :",
-    "options": [
-      "La forme vacuolaire mais avec des granules dans le cytoplasme et la vacuole",
-      "Un kyste d'amibe",
-      "Une levure",
-      "Un globule blanc"
-    ],
-    "correct": 0,
-    "explanation": "La forme granulaire contient de nombreuses mitochondries et granules reproductifs, souvent observée dans les cultures anciennes.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_118",
-    "question": "Quelle cellule humaine peut être confondue avec un kyste d'Entamoeba histolytica ?",
-    "options": [
-      "Polynucléaire neutrophile (leucocyte)",
-      "Hématie",
-      "Cellule épithéliale",
-      "Macrophage"
-    ],
-    "correct": 0,
-    "explanation": "Les noyaux segmentés des polynucléaires peuvent ressembler aux 4 noyaux du kyste, d'où l'importance de la coloration (MIF/Lugol).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_119",
-    "question": "Les levures (ex: Candida) se distinguent des protozoaires par :",
-    "options": [
-      "Leur bourgeonnement et l'absence de structures internes complexes",
-      "Leur mobilité",
-      "Leur grande taille",
-      "Leur couleur verte"
-    ],
-    "correct": 0,
-    "explanation": "Les levures sont ovales, uniformes et bourgeonnent, sans noyau différencié visible comme chez les amibes.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_121",
-    "question": "Le 'conoïde' est une structure spirale mobile appartenant au complexe apical de :",
-    "options": [
-      "Toxoplasma et autres coccidies",
-      "Plasmodium (seulement)",
-      "Amibes",
-      "Flagellés"
-    ],
-    "correct": 0,
-    "explanation": "Le conoïde est une structure en ressort qui aide le parasite à forer la membrane de la cellule hôte.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_133",
-    "question": "Quelle est la taille d'une hématie (pour référence comparative) ?",
-    "options": [
-      "7 à 8 µm",
-      "2 µm",
-      "15 µm",
-      "20 µm"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'étalon de mesure en microscopie : une hématie fait ~7 µm. (Ex: trophozoïte d'E. histolytica = 3 à 4 hématies).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_134",
-    "question": "Le kyste d'Entamoeba hartmanni mesure strictement :",
-    "options": [
-      "Moins de 10 µm",
-      "Plus de 10 µm",
-      "20 µm",
-      "15 µm"
-    ],
-    "correct": 0,
-    "explanation": "C'est le critère diagnostique clé : si le kyste quadrinucléé mesure < 10 µm, c'est E. hartmanni, pas E. histolytica.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_137",
-    "question": "Les 'Mitosomes' sont des organites dérivés des mitochondries trouvés chez :",
-    "options": [
-      "Giardia et Entamoeba",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "Ces parasites anaérobies ont réduit leurs mitochondries en mitosomes, qui ne font pas de phosphorylation oxydative.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_138",
-    "question": "Le 'Glycocalyx' de surface est particulièrement épais et immunogène chez :",
-    "options": [
-      "Trypanosoma brucei (VSG)",
-      "Entamoeba",
-      "Giardia",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "La couche de VSG (Variant Surface Glycoprotein) forme un manteau dense qui protège le trypanosome du système immunitaire.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_141",
-    "question": "Identification : Kyste rond, 10-20 µm, 4 noyaux, corps chromatoïdes en cigare. Diagnostic ?",
-    "options": [
-      "Entamoeba histolytica",
-      "Entamoeba coli",
-      "Endolimax nana",
-      "Iodamoeba"
-    ],
-    "correct": 0,
-    "explanation": "C'est la description classique du kyste d'E. histolytica (ou E. dispar).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_142",
-    "question": "Identification : Kyste ovale, 8-10 µm, 4 petits noyaux (bouton), pas de corps chromatoïdes. Diagnostic ?",
-    "options": [
-      "Endolimax nana",
-      "Entamoeba hartmanni",
-      "Giardia",
-      "Chilomastix"
-    ],
-    "correct": 0,
-    "explanation": "C'est typique d'Endolimax nana (nana = nain/petit).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_144",
-    "question": "Identification : Trophozoïte en 'feuille tombante', mobile, 2 noyaux. Diagnostic ?",
-    "options": [
-      "Giardia intestinalis",
-      "Trichomonas",
-      "Chilomastix",
-      "Entamoeba"
-    ],
-    "correct": 0,
-    "explanation": "Le mouvement typique de Giardia est décrit comme une feuille morte tombant d'un arbre (falling leaf motility).",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_morph_148",
-    "question": "Identification : Amibe avec kyste uninucléé et vacuole iodophile. Diagnostic ?",
-    "options": [
-      "Iodamoeba bütschlii",
-      "Entamoeba coli",
-      "Endolimax",
-      "Naegleria"
-    ],
-    "correct": 0,
-    "explanation": "Iodamoeba est la seule à avoir cette vacuole iodophile massive persistante dans le kyste.",
-    "axis": "morphology"
-  },
-  {
-    "id": "p_patho_2",
-    "question": "La 'dysenterie amibienne' causée par Entamoeba histolytica est due à :",
-    "options": [
-      "L'invasion de la muqueuse colique et la formation d'abcès en 'bouton de chemise'",
-      "Une toxine choléra-like",
-      "La destruction des villosités du grêle",
-      "Une réaction allergique"
-    ],
-    "correct": 0,
-    "explanation": "L'amibe sécrète des enzymes protéolytiques (histolysine) qui creusent la paroi colique, créant des ulcères profonds et sanglants.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_3",
-    "question": "Quelle est la complication majeure extra-intestinale de l'amibiase ?",
-    "options": [
-      "Abcès amibien du foie",
-      "Méningite",
-      "Pneumonie",
-      "Insuffisance rénale"
-    ],
-    "correct": 0,
-    "explanation": "Les trophozoïtes peuvent passer dans le sang (veine porte) et atteindre le foie, formant un abcès purulent (pus 'chocolat').",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_5",
-    "question": "Balantidium coli produit une enzyme appelée hyaluronidase qui lui permet de :",
-    "options": [
-      "Pénétrer la muqueuse colique et causer des ulcères",
-      "Digérer les bactéries",
-      "Nager plus vite",
-      "Former des kystes"
-    ],
-    "correct": 0,
-    "explanation": "Comme E. histolytica, B. coli est invasif et peut causer des ulcérations coliques sévères.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_18",
-    "question": "Le 'Méga-œsophage' et le 'Mégacôlon' sont des complications chroniques de :",
-    "options": [
-      "La maladie de Chagas (Trypanosoma cruzi)",
-      "L'amibiase",
-      "La giardiase",
-      "La balantidiose"
-    ],
-    "correct": 0,
-    "explanation": "T. cruzi détruit les plexus nerveux autonomes (Auerbach/Meissner), entraînant une dilatation et une paralysie des organes creux.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_23",
-    "question": "La kératite à Acanthamoeba survient typiquement chez :",
-    "options": [
-      "Les porteurs de lentilles de contact (mauvaise hygiène)",
-      "Les nageurs en eau de mer",
-      "Les enfants",
-      "Les soudeurs"
-    ],
-    "correct": 0,
-    "explanation": "L'amibe contamine la lentille ou l'étui, envahit la cornée et cause un ulcère douloureux en forme d'anneau.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_24",
-    "question": "Naegleria fowleri cause une maladie foudroyante appelée :",
-    "options": [
-      "Méningo-encéphalite amibienne primitive (MEAP)",
-      "Encéphalite granulomateuse",
-      "Abcès cérébral",
-      "Méningite lymphocytaire bénigne"
-    ],
-    "correct": 0,
-    "explanation": "L'amibe remonte le nerf olfactif jusqu'au cerveau, causant une destruction rapide et presque toujours mortelle (98%) du tissu cérébral.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_27",
-    "question": "Une splénomégalie tropicale (grosse rate) est très évocatrice de :",
-    "options": [
-      "Paludisme ou Leishmaniose viscérale",
-      "Amibiase",
-      "Giardiase",
-      "Trichomonase"
-    ],
-    "correct": 0,
-    "explanation": "La rate est le cimetière des globules rouges et le lieu de réponse immune, elle grossit énormément dans ces infections sanguines.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_28",
-    "question": "Le 'syndrome dysentérique' se définit par :",
-    "options": [
-      "Des selles fréquentes, afécales, avec glaires et sang (crachats rectaux)",
-      "Une diarrhée liquide abondante",
-      "Une constipation",
-      "Des selles graisseuses"
-    ],
-    "correct": 0,
-    "explanation": "C'est le signe d'une lésion colique basse et rectale, typique de l'amibiase aiguë.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_29",
-    "question": "Une stéatorrhée (selles grasses et flottantes) suggère une infection par :",
-    "options": [
-      "Giardia intestinalis",
-      "Entamoeba histolytica",
-      "Plasmodium",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "La malabsorption des lipides due au tapis de Giardia rend les selles graisseuses et malodorantes.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_30",
-    "question": "L'éosinophilie sanguine est-elle caractéristique des protozooses ?",
-    "options": [
-      "Non, sauf rares exceptions (Isospora, Dientamoeba)",
-      "Oui, toujours très élevée",
-      "Oui, pour le Paludisme",
-      "Oui, pour l'Amibiase"
-    ],
-    "correct": 0,
-    "explanation": "Règle d'or : L'éosinophilie est le marqueur des HELMINTHES (vers tissulaires). Les protozoaires ne causent généralement PAS d'éosinophilie.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_31",
-    "question": "Le phénomène de 'Cytoadhérence' de P. falciparum est médié par la protéine :",
-    "options": [
-      "PfEMP1 (Erythrocyte Membrane Protein 1)",
-      "Hémoglobine",
-      "Actine",
-      "Histolysine"
-    ],
-    "correct": 0,
-    "explanation": "PfEMP1 forme des 'knobs' (boutons) à la surface de l'hématie qui s'accrochent aux récepteurs endothéliaux (ICAM-1).",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_33",
-    "question": "Le déficit en G6PD (Favisme) confère une protection partielle contre :",
-    "options": [
-      "Le Paludisme grave",
-      "L'Amibiase",
-      "La Leishmaniose",
-      "La Trypanosomiase"
-    ],
-    "correct": 0,
-    "explanation": "Le stress oxydatif dans les hématies G6PD-déficientes empêche la bonne multiplication du Plasmodium.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_34",
-    "question": "Les micro-ulcérations en 'coup d'ongle' à l'endoscopie sont évocatrices de :",
-    "options": [
-      "Amibiase colique",
-      "Giardiase",
-      "Maladie de Crohn",
-      "Cancer"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'aspect macroscopique débutant typique des lésions amibiennes.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_35",
-    "question": "La 'Diarrhée des voyageurs' (Turista) est souvent causée par :",
-    "options": [
-      "Giardia, Cryptosporidium ou Entamoeba",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "Bien que souvent bactérienne (E. coli), Giardia est la cause parasitaire la plus fréquente de diarrhée persistante au retour de voyage.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_37",
-    "question": "Des troubles visuels (choriorétinite) chez un adulte peuvent être une réactivation de :",
-    "options": [
-      "Toxoplasmose acquise in-utero ou ancienne",
-      "Paludisme",
-      "Amibiase",
-      "Giardiase"
-    ],
-    "correct": 0,
-    "explanation": "La toxoplasmose oculaire est une cause fréquente d'uvéite postérieure et de cécité.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_38",
-    "question": "Un prurit anal nocturne est-il un signe de protozoose ?",
-    "options": [
-      "Non, c'est typique de l'Oxyurose (Ver)",
-      "Oui, de Giardia",
-      "Oui, d'Amibe",
-      "Oui, de Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "Piège classique. Le prurit anal est le signe des Oxyures (Enterobius vermicularis), pas des protozoaires.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_39",
-    "question": "Une hépatomégalie douloureuse fébrile suggère :",
-    "options": [
-      "Un abcès amibien du foie",
-      "Un kyste hydatique (souvent indolore)",
-      "Une giardiase",
-      "Un ténia"
-    ],
-    "correct": 0,
-    "explanation": "La triade de Fontan : Fièvre + Hépatomégalie douloureuse + Ébranlement hépatique positif = Abcès Amibien.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_41",
-    "question": "La 'Gal-Lectine' d'Entamoeba histolytica sert à :",
-    "options": [
-      "Adhérer aux cellules coliques (étape clé de l'invasion)",
-      "Digérer le mucus",
-      "Tuer les bactéries",
-      "Former le kyste"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'adhésine majeure qui permet à l'amibe de s'accrocher à la muqueuse avant de la détruire.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_43",
-    "question": "L'Amoebapore est une protéine qui :",
-    "options": [
-      "Forme des trous (pores) dans la membrane des cellules cibles pour les tuer",
-      "Transporte l'eau",
-      "Sert à la respiration",
-      "Est un nutriment"
-    ],
-    "correct": 0,
-    "explanation": "C'est une toxine puissante insérée par l'amibe dans la cellule hôte pour provoquer sa lyse (cytotoxicité de contact).",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_58",
-    "question": "L'amibiase hépatique non traitée peut se compliquer de :",
-    "options": [
-      "Rupture de l'abcès dans le poumon (Vomique) ou le péritoine",
-      "Cirrhose",
-      "Cancer du foie",
-      "Hépatite virale"
-    ],
-    "correct": 0,
-    "explanation": "L'abcès peut s'ouvrir à travers le diaphragme dans la plèvre et les bronches, le patient crache alors du pus 'chocolat' (Vomique).",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_61",
-    "question": "La transmission verticale (Mère-Enfant) est majeure pour :",
-    "options": [
-      "Toxoplasma et Trypanosoma cruzi",
-      "Giardia",
-      "Entamoeba",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "Outre Toxoplasma, la maladie de Chagas congénitale est un problème de santé publique majeur en Amérique Latine.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_62",
-    "question": "Lequel peut être transmis par transfusion sanguine ?",
-    "options": [
-      "Plasmodium, Babesia, Trypanosoma cruzi",
-      "Giardia",
-      "Entamoeba",
-      "Cryptosporidium"
-    ],
-    "correct": 0,
-    "explanation": "Tous les parasites sanguicoles peuvent être transmis par transfusion si le donneur est infecté (même asymptomatique).",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_68",
-    "question": "Pourquoi l'amibiase est-elle plus fréquente en zone tropicale ?",
-    "options": [
-      "Liée au péril fécal et au manque d'hygiène/assainissement",
-      "À cause de la chaleur",
-      "À cause des moustiques",
-      "À cause des fruits"
-    ],
-    "correct": 0,
-    "explanation": "Bien que E. histolytica soit cosmopolite, la maladie est liée aux mauvaises conditions sanitaires (eau souillée).",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_71",
-    "question": "Patient sidéen avec céphalées et déficit moteur focal. IRM : image en 'cocarde'. Diagnostic ?",
-    "options": [
-      "Toxoplasmose cérébrale",
-      "Paludisme",
-      "Leishmaniose",
-      "Amibiase"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'image radiologique typique de l'abcès toxoplasmique chez le VIH+.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_72",
-    "question": "Retour de Thaïlande, fièvre J7, thrombopénie, pas de paludisme. Penser à :",
-    "options": [
-      "Dengue (Virus) mais diagnostic différentiel majeur du Palu",
-      "Amibiase",
-      "Giardiase",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "En médecine tropicale, il faut savoir évoquer les virus (Dengue, Chikungunya) quand le frottis sanguin est négatif.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_73",
-    "question": "Diarrhée glairo-sanglante sans fièvre chez un adulte jeune. Penser à :",
-    "options": [
-      "Amibiase intestinale aiguë",
-      "Choléra (eau de riz)",
-      "Giardia (graisseux)",
-      "Salmonellose (fièvre)"
-    ],
-    "correct": 0,
-    "explanation": "L'amibiase est classiquement apyrétique (sans fièvre) car l'amibe reste locale et ne stimule pas une forte réponse inflammatoire systémique au début.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_82",
-    "question": "L'effet 'Antabuse' (intolérance à l'alcool) est un effet secondaire du traitement par :",
-    "options": [
-      "Métronidazole (Flagyl) utilisé contre les protozoaires",
-      "Quinine",
-      "Pénicilline",
-      "Aspirine"
-    ],
-    "correct": 0,
-    "explanation": "Important à savoir : Interdiction formelle d'alcool pendant le traitement d'une amibiase ou giardiase.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_83",
-    "question": "Laquelle n'est PAS une zoonose ?",
-    "options": [
-      "Amibiase à E. histolytica (Homme = Réservoir principal)",
-      "Toxoplasmose",
-      "Leishmaniose",
-      "Balantidiose"
-    ],
-    "correct": 0,
-    "explanation": "Bien que des animaux puissent être infectés expérimentalement, l'homme est le réservoir naturel principal d'E. histolytica.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_91",
-    "question": "Le 'signe du glaçon' (hépatomégalie qui ballotte) est recherché dans :",
-    "options": [
-      "L'ascite (mais parfois associé aux parasitoses hépatiques graves)",
-      "Le paludisme",
-      "La leishmaniose",
-      "L'amibiase"
-    ],
-    "correct": 0,
-    "explanation": "Plus spécifiquement, c'est l'ébranlement hépatique douloureux qui signe l'abcès.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_92",
-    "question": "Les douleurs épigastriques pseudo-ulcéreuses sont typiques de :",
-    "options": [
-      "Giardiase",
-      "Amibiase",
-      "Trichomonase",
-      "Paludisme"
-    ],
-    "correct": 0,
-    "explanation": "La localisation duodénale haute de Giardia imite souvent les douleurs d'ulcère gastrique.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_95",
-    "question": "Lequel provoque une anémie mégaloblastique par consommation de vitamine B12 ?",
-    "options": [
-      "Diphyllobothrium latum (Ténia du poisson) - Piège helminthe !",
-      "Giardia",
-      "Plasmodium",
-      "Entamoeba"
-    ],
-    "correct": 0,
-    "explanation": "Attention aux pièges ! C'est un ver (le Bothriocéphale) qui cause ça, pas un protozoaire. Giardia cause une malabsorption globale.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_96",
-    "question": "La présence de sang dans les urines (Hématurie) en zone tropicale évoque :",
-    "options": [
-      "Bilharziose (Schistosoma haematobium) - Piège helminthe !",
-      "Paludisme",
-      "Amibiase",
-      "Filariose"
-    ],
-    "correct": 0,
-    "explanation": "Encore un piège classique de diagnostic différentiel. L'hématurie = Bilharziose (Ver), pas Palu (sauf fièvre bilieuse, mais c'est de l'hémoglobine, pas du sang frais).",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_patho_100",
-    "question": "Laquelle de ces affirmations sur la pathogénie est VRAIE ?",
-    "options": [
-      "Les protozoaires se multiplient chez l'hôte (charge parasitaire augmente), contrairement aux vers adultes",
-      "Les vers se multiplient indéfiniment",
-      "Les protozoaires meurent tous seuls en 2 jours",
-      "Les kystes causent la fièvre"
-    ],
-    "correct": 0,
-    "explanation": "Différence fondamentale : Un kyste d'amibe ingéré peut donner des millions d'amibes. Un œuf d'ascaris ingéré donne UN seul ver adulte.",
-    "axis": "pathogenesis"
-  },
-  {
-    "id": "p_diag_2",
-    "question": "Pour diagnostiquer une amibiase intestinale aiguë, il faut examiner les selles :",
-    "options": [
-      "À l'état frais, immédiatement après émission (chaudes)",
-      "Après 24h au frigo",
-      "Après fixation au formol",
-      "Séchées"
-    ],
-    "correct": 0,
-    "explanation": "Les trophozoïtes mobiles d'Entamoeba histolytica meurent très vite. L'examen à chaud est impératif pour voir la mobilité.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_5",
-    "question": "Le 'Scotch-Test' (Test de Graham) est utilisé pour rechercher :",
-    "options": [
-      "Les œufs d'Oxyure (Enterobius)",
-      "Les kystes de Giardia",
-      "Les amibes",
-      "Les larves d'Anguillule"
-    ],
-    "correct": 0,
-    "explanation": "Bien que ce soit un Nématode, c'est un diagnostic différentiel classique. Pour les protozoaires, on utilise l'EPS (Examen Parasitologique des Selles).",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_7",
-    "question": "Le MIF (Merthiolate-Iode-Formol) est utilisé pour :",
-    "options": [
-      "Fixer et colorer temporairement les kystes dans les selles",
-      "La culture",
-      "La sérologie",
-      "L'examen à l'état frais"
-    ],
-    "correct": 0,
-    "explanation": "L'iode colore les noyaux et le glycogène, facilitant l'identification des amibes.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_9",
-    "question": "La présence de cristaux de Charcot-Leyden dans les selles signe :",
-    "options": [
-      "Une réaction allergique/inflammatoire (dégradation des éosinophiles)",
-      "Une hémorragie",
-      "Une infection bactérienne",
-      "La présence de graisses"
-    ],
-    "correct": 0,
-    "explanation": "C'est un marqueur indirect d'une parasitose tissulaire (ex: Isospora, Amibiase, Helminthes) stimulant les éosinophiles.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_10",
-    "question": "Le test de Baermann est spécifique pour l'extraction de :",
-    "options": [
-      "Larves d'Anguillule (Strongyloides)",
-      "Kystes d'Amibes",
-      "Œufs d'Ascaris",
-      "Oocystes de Cryptosporidium"
-    ],
-    "correct": 0,
-    "explanation": "Il utilise l'hygrotropisme et le thermotropisme des larves (elles migrent vers l'eau tiède).",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_11",
-    "question": "La sérologie (Anticorps IgG) est le test de choix pour :",
-    "options": [
-      "L'amibiase hépatique (Abcès)",
-      "L'amibiase intestinale aiguë",
-      "La giardiase",
-      "Le portage sain d'amibes"
-    ],
-    "correct": 0,
-    "explanation": "Dans l'abcès, les amibes sont dans le foie, pas dans les selles. La réponse anticorps est forte et constante.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_16",
-    "question": "La PCR est supérieure à la microscopie pour :",
-    "options": [
-      "Différencier Entamoeba histolytica (pathogène) de E. dispar (non pathogène)",
-      "Compter les parasites",
-      "Voir la mobilité",
-      "C'est moins cher"
-    ],
-    "correct": 0,
-    "explanation": "Ces deux amibes sont morphologiquement identiques. Seule la PCR (ou test Ag spécifique) peut les distinguer formellement.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_18",
-    "question": "La PCR Multiplex pour les diarrhées permet de :",
-    "options": [
-      "Détecter simultanément Virus, Bactéries et Parasites (Giardia, Crypto, Entamoeba)",
-      "Traiter le patient",
-      "Voir la résistance",
-      "Remplacer le médecin"
-    ],
-    "correct": 0,
-    "explanation": "C'est une révolution diagnostique (Panel gastro-intestinal) qui donne un résultat complet en 1 heure.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_23",
-    "question": "La recherche de trophozoïtes d'amibes hématophages (E. histolytica) nécessite des selles :",
-    "options": [
-      "Glairo-sanglantes fraîchement émises",
-      "Dures et moulées",
-      "Anciennes",
-      "Noires"
-    ],
-    "correct": 0,
-    "explanation": "C'est dans les parties muqueuses et sanglantes (crachats rectaux) que se trouvent les formes actives.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_26",
-    "question": "Qu'est-ce qui peut être confondu avec un kyste d'amibe au microscope ?",
-    "options": [
-      "Leucocytes (polynucléaires) ou levures",
-      "Hématies",
-      "Bulles d'air",
-      "Fibres musculaires"
-    ],
-    "correct": 0,
-    "explanation": "Les noyaux des globules blancs ressemblent parfois aux noyaux des kystes. L'iode (MIF) aide à différencier.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_32",
-    "question": "Après traitement d'une amibiase, le contrôle des selles se fait :",
-    "options": [
-      "Quelques jours après la fin du traitement",
-      "Le lendemain",
-      "Jamais",
-      "Après 1 an"
-    ],
-    "correct": 0,
-    "explanation": "Pour vérifier l'éradication des kystes et éviter le portage asymptomatique.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_36",
-    "question": "La culture sur milieu NNN (Novy-MacNeal-Nicolle) est utilisée pour :",
-    "options": [
-      "Leishmania et Trypanosoma",
-      "Plasmodium",
-      "Giardia",
-      "Entamoeba"
-    ],
-    "correct": 0,
-    "explanation": "C'est un milieu diphasique au sang de lapin qui permet la multiplication des promastigotes.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_37",
-    "question": "La culture des amibes (Milieu de Dobell-Laidlaw) est-elle un examen de routine ?",
-    "options": [
-      "Non, réservée à la recherche ou cas difficiles",
-      "Oui, toujours",
-      "Oui, pour les kystes",
-      "Oui, aux urgences"
-    ],
-    "correct": 0,
-    "explanation": "C'est long et complexe. Le diagnostic repose sur la microscopie et la PCR.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_39",
-    "question": "La xénodiagnostic (utilisation du vecteur vivant) a été utilisée pour :",
-    "options": [
-      "La maladie de Chagas (Triatomes non infectés)",
-      "Le Paludisme",
-      "L'Amibiase",
-      "La Giardiase"
-    ],
-    "correct": 0,
-    "explanation": "On laisse des punaises saines piquer le patient, puis on examine l'intestin de la punaise pour voir si elle s'est infectée.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_40",
-    "question": "La culture de Naegleria fowleri se fait sur :",
-    "options": [
-      "Gélose non nutritive ensemencée avec des bactéries (E. coli)",
-      "Gélose au sang",
-      "Bouillon nutritif",
-      "Cellules Vero"
-    ],
-    "correct": 0,
-    "explanation": "L'amibe se nourrit des bactéries déposées sur la gélose, créant des plages de lyse visibles.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_42",
-    "question": "Le 'Trichrome de Weber' est la coloration spécifique pour :",
-    "options": [
-      "Les spores de Microsporidies",
-      "Le Paludisme",
-      "Les Amibes",
-      "La Leishmaniose"
-    ],
-    "correct": 0,
-    "explanation": "Les spores apparaissent rose-rouge avec une vacuole claire, sur un fond vert/bleu.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_44",
-    "question": "Le test à la catalase permet de différencier :",
-    "options": [
-      "Rien en protozoologie (c'est pour les bactéries)",
-      "Amibes pathogènes",
-      "Trypanosomes",
-      "Leishmania"
-    ],
-    "correct": 0,
-    "explanation": "Piège ! Les tests biochimiques classiques sont pour les bactéries. L'identification des protozoaires est morphologique.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_51",
-    "question": "La présence de kystes d'Entamoeba histolytica/dispar dans les selles signifie :",
-    "options": [
-      "Un portage sain (Minute) ou une infection non invasive",
-      "Une dysenterie amibienne aiguë",
-      "Un abcès du foie",
-      "Une mort imminente"
-    ],
-    "correct": 0,
-    "explanation": "Les kystes sont la forme de dissémination des porteurs sains. La forme pathogène aiguë est le trophozoïte hématophage.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_52",
-    "question": "Pour différencier un kyste d'Entamoeba histolytica d'un kyste d'Entamoeba coli, on regarde :",
-    "options": [
-      "Le nombre de noyaux (4 vs 8) et la forme des corps chromatoïdes",
-      "La taille seule",
-      "La couleur",
-      "La mobilité"
-    ],
-    "correct": 0,
-    "explanation": "E. histolytica = 4 noyaux max, corps chromatoïdes ronds. E. coli = 8 noyaux, corps chromatoïdes pointus.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_54",
-    "question": "La recherche d'antigènes copro-solubles (ELISA) est très utile pour :",
-    "options": [
-      "Giardia, Cryptosporidium et Entamoeba histolytica",
-      "Plasmodium",
-      "Leishmania",
-      "Trypanosoma"
-    ],
-    "correct": 0,
-    "explanation": "C'est une alternative rapide et sensible à la microscopie, surtout pour le dépistage de masse.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_55",
-    "question": "Une selle pâteuse jaune-ocre mousseuse est évocatrice de :",
-    "options": [
-      "Giardiase",
-      "Amibiase",
-      "Choléra",
-      "Paludisme"
-    ],
-    "correct": 0,
-    "explanation": "L'aspect graisseux et la couleur sont dus à la malabsorption des graisses.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_63",
-    "question": "La technique de concentration 'Micro-hématocrite' (Woo) est utilisée pour :",
-    "options": [
-      "Détecter les Trypanosomes vivants dans le sang",
-      "Le Paludisme",
-      "Les Amibes",
-      "Les Leishmanies"
-    ],
-    "correct": 0,
-    "explanation": "On centrifuge le sang dans un capillaire et on observe l'interface globule/plasma (Buffy coat) pour voir bouger les parasites.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_65",
-    "question": "L'intradermo-réaction de Montenegro (IDR) était utilisée pour :",
-    "options": [
-      "La Leishmaniose Cutanée (témoin d'immunité cellulaire)",
-      "Le Paludisme",
-      "La Toxoplasmose",
-      "L'Amibiase"
-    ],
-    "correct": 0,
-    "explanation": "C'est un test historique (comme le test tuberculinique) montrant l'hypersensibilité retardée.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_71",
-    "question": "Une sérologie amibienne négative devant un abcès du foie :",
-    "options": [
-      "Rend le diagnostic d'abcès amibien très improbable",
-      "Confirme l'abcès",
-      "Ne veut rien dire",
-      "Suggère un kyste"
-    ],
-    "correct": 0,
-    "explanation": "La sérologie est positive dans >95% des abcès amibiens. Si négative -> chercher une cause bactérienne (abcès à pyogènes).",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_74",
-    "question": "La présence de cristaux octaédriques (Oxalate de calcium) dans les selles :",
-    "options": [
-      "Est d'origine alimentaire (Légumes), sans valeur pathologique",
-      "Signe une amibiase",
-      "Signe une lithiase",
-      "Est un parasite"
-    ],
-    "correct": 0,
-    "explanation": "Artefact fréquent dû à la consommation d'épinards, tomates, oseille, etc.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_80",
-    "question": "La biopsie rectale peut aider au diagnostic de :",
-    "options": [
-      "Amibiase (ulcères en bouton de chemise) ou Bilharziose (œufs)",
-      "Giardiase",
-      "Paludisme",
-      "Trichomonas"
-    ],
-    "correct": 0,
-    "explanation": "L'anatomopathologie montre l'invasion tissulaire et l'inflammation.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_83",
-    "question": "Cas clinique : Kératite chez un porteur de lentilles. Le prélèvement doit inclure :",
-    "options": [
-      "La lentille, l'étui, le liquide de conservation et un grattage cornéen",
-      "Juste une larme",
-      "Le sang",
-      "Les selles"
-    ],
-    "correct": 0,
-    "explanation": "L'amibe (Acanthamoeba) se trouve souvent en grande quantité dans l'étui à lentilles.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_87",
-    "question": "Une erreur fréquente d'identification est de confondre :",
-    "options": [
-      "P. vivax et P. ovale",
-      "P. falciparum et P. malariae",
-      "Giardia et Amibe",
-      "Toxoplasma et Leishmania"
-    ],
-    "correct": 0,
-    "explanation": "P. vivax et P. ovale se ressemblent beaucoup (hématies agrandies, pointillé). La forme 'frangée' d'ovale est la clé.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_97",
-    "question": "Le diagnostic de la Babésiose se fait comme pour :",
-    "options": [
-      "Le Paludisme (Frottis/GE)",
-      "L'Amibiase",
-      "La Leishmaniose",
-      "La Trypanosomose"
-    ],
-    "correct": 0,
-    "explanation": "Les piroplasmes sont intra-érythrocytaires, visibles au MGG.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_98",
-    "question": "Leucopénie et thrombopénie sont des signes d'orientation pour :",
-    "options": [
-      "Leishmanose Viscérale et Paludisme",
-      "Amibiase",
-      "Giardiase",
-      "Oxyurose"
-    ],
-    "correct": 0,
-    "explanation": "L'hypersplénisme (grosse rate) piège les cellules sanguines.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_diag_99",
-    "question": "La recherche de sang occulte dans les selles est-elle spécifique des parasites ?",
-    "options": [
-      "Non, elle détecte aussi les polypes, cancers, hémorroïdes...",
-      "Oui, spécifique de l'amibe",
-      "Oui, spécifique de l'ankylostome",
-      "Non, ça ne marche pas"
-    ],
-    "correct": 0,
-    "explanation": "C'est un test de dépistage du cancer colorectal, pas un test parasitologique, mais il peut être positif en cas de parasitose invasive.",
-    "axis": "diagnosis"
-  },
-  {
-    "id": "p_treat_1",
-    "question": "Quel est le traitement de référence (1ère intention) de l'amibiase intestinale aiguë (Dysenterie) ?",
-    "options": [
-      "Métronidazole (Flagyl)",
-      "Pénicilline",
-      "Paracétamol",
-      "Albendazole"
-    ],
-    "correct": 0,
-    "explanation": "C'est un amibicide tissulaire puissant de la famille des nitro-imidazolés.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_2",
-    "question": "Après le traitement de l'amibiase aiguë par Métronidazole, il est impératif de prescrire :",
-    "options": [
-      "Un amibicide de contact (ex: Tiliquinol-Tilbroquinol) pour tuer les kystes restants",
-      "Un antibiotique",
-      "Des vitamines",
-      "Rien"
-    ],
-    "correct": 0,
-    "explanation": "Le Métronidazole est très efficace sur les trophozoïtes tissulaires mais peu sur les kystes dans la lumière intestinale (risque de rechute).",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_3",
-    "question": "Quel est l'effet 'Antabuse' associé au Métronidazole ?",
-    "options": [
-      "Intolérance violente à l'alcool (bouffées de chaleur, vomissements, tachycardie)",
-      "Somnolence",
-      "Diarrhée",
-      "Hypertension"
-    ],
-    "correct": 0,
-    "explanation": "Il bloque la dégradation de l'alcool (inhibition de l'aldéhyde déshydrogénase). L'alcool est formellement interdit pendant le traitement.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_4",
-    "question": "Le traitement de choix de la Giardiase est :",
-    "options": [
-      "Métronidazole ou Tinidazole (dose unique souvent possible)",
-      "Amoxicilline",
-      "Quinine",
-      "Ivermectine"
-    ],
-    "correct": 0,
-    "explanation": "Les nitro-imidazolés sont actifs sur les flagellés anaérobies comme Giardia et Trichomonas.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_13",
-    "question": "La Chloroquine reste le traitement de choix pour :",
-    "options": [
-      "P. vivax, P. ovale et P. malariae (sauf zones de résistance)",
-      "P. falciparum en Afrique",
-      "L'amibiase",
-      "La toxoplasmose"
-    ],
-    "correct": 0,
-    "explanation": "La résistance de P. falciparum à la Chloroquine est généralisée, mais les autres espèces y restent sensibles.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_16",
-    "question": "Le traitement de la Toxoplasmose cérébrale chez le patient VIH est :",
-    "options": [
-      "Pyriméthamine + Sulfadiazine (+ Acide Folinique)",
-      "Métronidazole",
-      "Amoxicilline",
-      "Aciclovir"
-    ],
-    "correct": 0,
-    "explanation": "C'est la combinaison synergique de référence. L'acide folinique est ajouté pour prévenir la toxicité hématologique.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_21",
-    "question": "Le traitement de référence actuel de la Leishmaniose Viscérale est :",
-    "options": [
-      "L'Amphotéricine B liposomale (Ambisome)",
-      "Antimoniés pentavalents (Glucantime)",
-      "Métronidazole",
-      "Paracétamol"
-    ],
-    "correct": 0,
-    "explanation": "L'Amphotéricine B est très efficace et moins toxique sous forme liposomale que les anciens sels d'antimoine.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_24",
-    "question": "Le Benznidazole est utilisé pour traiter :",
-    "options": [
-      "La Maladie de Chagas (T. cruzi)",
-      "La Maladie du sommeil",
-      "Le Paludisme",
-      "L'Amibiase"
-    ],
-    "correct": 0,
-    "explanation": "Il est efficace en phase aiguë, mais son efficacité diminue en phase chronique.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_26",
-    "question": "Le Cotrimoxazole (Bactrim) est le traitement de choix pour :",
-    "options": [
-      "Pneumocystose (Pneumocystis jirovecii) et Isosporose",
-      "Paludisme",
-      "Amibiase",
-      "Gale"
-    ],
-    "correct": 0,
-    "explanation": "Il est utilisé à forte dose en curatif et à faible dose en prophylaxie chez le VIH.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_30",
-    "question": "Le traitement de la Babésiose associe :",
-    "options": [
-      "Atovaquone + Azithromycine",
-      "Métronidazole",
-      "Pénicilline",
-      "Rien"
-    ],
-    "correct": 0,
-    "explanation": "Protocole proche de celui du Paludisme, car Babesia est un hématozoaire proche.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_37",
-    "question": "Le Métronidazole est-il tératogène ?",
-    "options": [
-      "Non, mais on évite si possible le 1er trimestre par précaution",
-      "Oui, toujours",
-      "Oui, mortel",
-      "On ne sait pas"
-    ],
-    "correct": 0,
-    "explanation": "Il est largement utilisé et considéré comme sûr, bien que la notice recommande la prudence en début de grossesse.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_38",
-    "question": "Chez l'enfant, la dose de Métronidazole est calculée en :",
-    "options": [
-      "mg/kg/jour",
-      "Nombre de comprimés",
-      "Cuillères",
-      "Au hasard"
-    ],
-    "correct": 0,
-    "explanation": "En pédiatrie, l'adaptation au poids est stricte (ex: 30-50 mg/kg/j pour l'amibiase).",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_57",
-    "question": "La Suramine (Moranyl) est utilisée pour :",
-    "options": [
-      "Le stade 1 (lymphatico-sanguin) de la Trypanosomose à T. brucei rhodesiense",
-      "Le stade 2",
-      "Le paludisme",
-      "L'amibiase"
-    ],
-    "correct": 0,
-    "explanation": "C'est un vieux médicament très toxique (rein, choc) réservé à la forme Est-Africaine (Rhodesiense) en phase précoce.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_61",
-    "question": "Le traitement de la Balantidiose (Balantidium coli) est :",
-    "options": [
-      "Tétracyclines ou Métronidazole",
-      "Pénicilline",
-      "Quinine",
-      "Albendazole"
-    ],
-    "correct": 0,
-    "explanation": "Les cyclines sont le traitement de choix, le métronidazole est une alternative.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_62",
-    "question": "Le traitement de la Cyclosporose (Cyclospora cayetanensis) repose sur :",
-    "options": [
-      "Cotrimoxazole (Bactrim)",
-      "Métronidazole",
-      "Albendazole",
-      "Praziquantel"
-    ],
-    "correct": 0,
-    "explanation": "Contrairement à Cryptosporidium, Cyclospora répond très bien au Bactrim.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_64",
-    "question": "Pourquoi les corticoïdes sont-ils CONTRE-INDIQUÉS dans la kératite amibienne au début ?",
-    "options": [
-      "Ils favorisent la multiplication des amibes et l'enkystement",
-      "Ils sont douloureux",
-      "Ils colorent l'œil",
-      "Ils coûtent cher"
-    ],
-    "correct": 0,
-    "explanation": "Ils peuvent aggraver dramatiquement l'infection. On ne les utilise qu'avec prudence pour réduire l'inflammation tardive.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_65",
-    "question": "Le traitement de la Blastocystose (si symptomatique) est discuté, mais on propose souvent :",
-    "options": [
-      "Métronidazole",
-      "Amoxicilline",
-      "Aspirine",
-      "Rien"
-    ],
-    "correct": 0,
-    "explanation": "Bien que son pouvoir pathogène soit débattu, le Flagyl est souvent prescrit en cas de symptômes persistants.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_73",
-    "question": "Le passage de la barrière hémato-encéphalique est excellent pour :",
-    "options": [
-      "Le Fluconazole et les 5-imidazolés (Métronidazole)",
-      "La Pentamidine",
-      "L'Amphotéricine B (faible)",
-      "La Gentamicine"
-    ],
-    "correct": 0,
-    "explanation": "C'est pourquoi le Métronidazole est efficace sur les abcès cérébraux amibiens (très rares).",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_77",
-    "question": "Le vaccin R21/Matrix-M est :",
-    "options": [
-      "Un nouveau vaccin antipaludique plus efficace que le RTS,S (OMS 2023)",
-      "Un vaccin contre l'amibe",
-      "Un vaccin contre la dengue",
-      "Un médicament"
-    ],
-    "correct": 0,
-    "explanation": "Il a montré une efficacité de 75% dans les essais, un espoir majeur.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_82",
-    "question": "Prescription : Giardiase adulte. Métronidazole (Flagyl) 500mg. Posologie ?",
-    "options": [
-      "2 à 4 comprimés (1-2g) en prise unique ou sur 3 jours",
-      "1 comprimé par semaine",
-      "10 comprimés par jour",
-      "Une injection"
-    ],
-    "correct": 0,
-    "explanation": "Le traitement court (minute) ou sur 3 jours est classique.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_87",
-    "question": "La résistance du Trichomonas au Métronidazole est :",
-    "options": [
-      "Rare mais possible (augmenter les doses ou changer pour Tinidazole)",
-      "Fréquente",
-      "Impossible",
-      "Systématique"
-    ],
-    "correct": 0,
-    "explanation": "Des souches résistantes existent, nécessitant des doses élevées.",
-    "axis": "treatment"
-  },
-  {
-    "id": "p_treat_96",
-    "question": "Quel médicament colore les urines en rouge-brun (sans gravité) ?",
-    "options": [
-      "Métronidazole (et ses métabolites)",
-      "Quinine",
-      "Doxycycline",
-      "Paracétamol"
-    ],
-    "correct": 0,
-    "explanation": "Il faut prévenir le patient pour ne pas qu'il croie pisser le sang !",
-    "axis": "treatment"
+    "correctAnswer": 0,
+    "explanation": "L’hématophagie témoigne de l’invasion de la muqueuse colique."
   }
+];
+// ==========================================
+// 2. CYCLE DE VIE (20 Questions)
+// ==========================================
+const lifecycleQuestions = [
+  {
+    "id": "amibe_cycle_1",
+    "axis": "lifecycle",
+    "question": "Quelle est la forme infestante responsable de la transmission de l'amibiase ?",
+    "options": [
+      "Kyste mûr à 4 noyaux",
+      "Trophozoïte minuta",
+      "Trophozoïte histolytica",
+      "Prékyste"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le kyste mûr tétranucléé est résistant dans le milieu extérieur et infectant par voie orale."
+  },
+  {
+    "id": "amibe_cycle_2",
+    "axis": "lifecycle",
+    "question": "Par quelle voie se fait la contamination humaine par Entamoeba histolytica ?",
+    "options": [
+      "Ingestion oro-fécale de kystes",
+      "Pénétration transcutanée",
+      "Piqûre d'insecte",
+      "Transmission sexuelle exclusive"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La transmission se fait par ingestion d'eau ou d'aliments souillés par des kystes."
+  },
+  {
+    "id": "amibe_cycle_3",
+    "axis": "lifecycle",
+    "question": "Où a lieu l'excystation du kyste d'Entamoeba histolytica ?",
+    "options": [
+      "Dans l'intestin grêle",
+      "Dans l'estomac",
+      "Dans le côlon",
+      "Dans le foie"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'excystation se produit dans l'intestin grêle sous l'effet des enzymes digestives."
+  },
+  {
+    "id": "amibe_cycle_4",
+    "axis": "lifecycle",
+    "question": "Quel est le produit final de l'excystation d'un kyste mûr ?",
+    "options": [
+      "8 trophozoïtes métacystiques",
+      "4 trophozoïtes",
+      "1 trophozoïte géant",
+      "8 kystes immatures"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Chaque noyau se divise, donnant 8 amibules métacystiques."
+  },
+  {
+    "id": "amibe_cycle_5",
+    "axis": "lifecycle",
+    "question": "Dans quel segment du tube digestif se développe principalement Entamoeba histolytica ?",
+    "options": [
+      "Côlon",
+      "Duodénum",
+      "Jéjunum",
+      "Estomac"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le côlon est le site de multiplication et de pathogénicité."
+  },
+  {
+    "id": "amibe_cycle_6",
+    "axis": "lifecycle",
+    "question": "Quelle forme correspond à l'état commensal non invasif ?",
+    "options": [
+      "Trophozoïte minuta",
+      "Trophozoïte histolytica",
+      "Kyste mûr",
+      "Forme métacystique"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La forme minuta vit dans la lumière colique sans invasion."
+  },
+  {
+    "id": "amibe_cycle_7",
+    "axis": "lifecycle",
+    "question": "Quelle transformation permet à l'amibe de survivre dans le milieu extérieur ?",
+    "options": [
+      "Encystement",
+      "Division binaire",
+      "Hématophagie",
+      "Excystation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'encystement confère une résistance aux conditions environnementales."
+  },
+  {
+    "id": "amibe_cycle_8",
+    "axis": "lifecycle",
+    "question": "Où se déroule l'encystement d'Entamoeba histolytica ?",
+    "options": [
+      "Dans le côlon",
+      "Dans l'intestin grêle",
+      "Dans le foie",
+      "Dans le sang"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'encystement se fait dans le côlon lors du transit fécal."
+  },
+  {
+    "id": "amibe_cycle_9",
+    "axis": "lifecycle",
+    "question": "Quelle forme est éliminée dans les selles moulées ?",
+    "options": [
+      "Kystes",
+      "Trophozoïtes hématophages",
+      "Amibules",
+      "Formes métacystiques"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les kystes sont éliminés dans les selles formées."
+  },
+  {
+    "id": "amibe_cycle_10",
+    "axis": "lifecycle",
+    "question": "Quelle forme est retrouvée préférentiellement dans les selles diarrhéiques ?",
+    "options": [
+      "Trophozoïtes",
+      "Kystes mûrs",
+      "Kystes immatures",
+      "Formes métacystiques"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les trophozoïtes fragiles sont observés dans les selles liquides fraîches."
+  },
+  {
+    "id": "amibe_cycle_11",
+    "axis": "lifecycle",
+    "question": "Quel mécanisme permet la dissémination extra-intestinale d'Entamoeba histolytica ?",
+    "options": [
+      "Passage hématogène des trophozoïtes",
+      "Migration des kystes",
+      "Transport lymphatique des kystes",
+      "Encystement tissulaire"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les trophozoïtes envahissent la muqueuse et passent dans la circulation portale."
+  },
+  {
+    "id": "amibe_cycle_12",
+    "axis": "lifecycle",
+    "question": "Quel organe est le plus fréquemment atteint lors de la dissémination ?",
+    "options": [
+      "Foie",
+      "Poumon",
+      "Cerveau",
+      "Rate"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le foie est atteint via la veine porte (abcès hépatique amibien)."
+  },
+  {
+    "id": "amibe_cycle_13",
+    "axis": "lifecycle",
+    "question": "Quelle étape du cycle est responsable des rechutes intestinales ?",
+    "options": [
+      "Persistance de formes luminales non traitées",
+      "Réinfection par les trophozoïtes",
+      "Transformation des kystes en trophozoïtes hépatiques",
+      "Encystement hépatique"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les formes luminales nécessitent un amœbicide de contact."
+  },
+  {
+    "id": "amibe_cycle_14",
+    "axis": "lifecycle",
+    "question": "Quel facteur favorise le passage de la forme minuta à la forme histolytica ?",
+    "options": [
+      "Déséquilibre du microbiote et immunodépression",
+      "Température élevée",
+      "Présence d'oxygène",
+      "Augmentation du transit"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'état immunitaire de l'hôte influence l'invasion."
+  },
+  {
+    "id": "amibe_cycle_15",
+    "axis": "lifecycle",
+    "question": "Quelle forme parasitaire est responsable de l'abcès hépatique amibien ?",
+    "options": [
+      "Trophozoïte histolytica",
+      "Kyste mûr",
+      "Trophozoïte minuta",
+      "Forme métacystique"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les trophozoïtes envahissent le foie et provoquent la nécrose."
+  },
+  {
+    "id": "amibe_cycle_16",
+    "axis": "lifecycle",
+    "question": "Quelle est la durée de survie approximative des kystes dans l'environnement humide ?",
+    "options": [
+      "Plusieurs semaines",
+      "Quelques heures",
+      "Moins de 24 heures",
+      "Plusieurs années"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les kystes sont très résistants dans l'eau et les sols humides."
+  },
+  {
+    "id": "amibe_cycle_17",
+    "axis": "lifecycle",
+    "question": "Quel traitement est indispensable pour interrompre le cycle de transmission ?",
+    "options": [
+      "Amœbicide de contact",
+      "Antibiothérapie large",
+      "Antifongique",
+      "Vaccination"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les formes luminales doivent être éradiquées pour éviter l'excrétion de kystes."
+  },
+  {
+    "id": "amibe_cycle_18",
+    "axis": "lifecycle",
+    "question": "Quel est le principal réservoir d'Entamoeba histolytica ?",
+    "options": [
+      "L'homme",
+      "Les bovins",
+      "Les porcs",
+      "Les insectes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'homme est le seul réservoir connu."
+  },
+  {
+    "id": "amibe_cycle_19",
+    "axis": "lifecycle",
+    "question": "Quelle étape du cycle est ciblée par les mesures d'hygiène collective ?",
+    "options": [
+      "Transmission fécale-orale des kystes",
+      "Invasion tissulaire",
+      "Excystation intestinale",
+      "Multiplication hépatique"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'assainissement empêche l'ingestion des kystes."
+  },
+  {
+    "id": "amibe_cycle_20",
+    "axis": "lifecycle",
+    "question": "Pourquoi les trophozoïtes ne sont-ils pas responsables de la transmission ?",
+    "options": [
+      "Ils sont fragiles et détruits dans le milieu extérieur",
+      "Ils ne se multiplient pas",
+      "Ils ne sont pas pathogènes",
+      "Ils ne colonisent pas l'intestin"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les trophozoïtes meurent rapidement hors de l'hôte."
+  }
+];
+// ==========================================
+// 3. CLINIQUE (20 Questions)
+// ==========================================
+const clinicalQuestions = [
+  {
+    "id": "amibe_clin_1",
+    "axis": "clinical",
+    "question": "Quelle est la triade clinique classique de l'abcès amibien du foie (Triade de Fontan) ?",
+    "options": [
+      "Fièvre, hépatomégalie douloureuse et douleur de l'hypocondre droit",
+      "Ictère, ascite et fièvre",
+      "Diarrhée glairo-sanglante, ténesme et épreintes",
+      "Vomissements, céphalées et raideur de nuque"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La triade de Fontan associe fièvre, douleur de l'hypocondre droit et hépatomégalie douloureuse."
+  },
+  {
+    "id": "amibe_clin_2",
+    "axis": "clinical",
+    "question": "Quelle est la manifestation intestinale la plus fréquente de l'amibiase invasive ?",
+    "options": [
+      "Dysenterie amibienne",
+      "Constipation chronique",
+      "Iléus paralytique",
+      "Syndrome de malabsorption"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La dysenterie amibienne est caractérisée par des selles glairo-sanglantes."
+  },
+  {
+    "id": "amibe_clin_3",
+    "axis": "clinical",
+    "question": "Quel signe clinique traduit une atteinte colique sévère dans l'amibiase ?",
+    "options": [
+      "Ténesme",
+      "Ballonnement isolé",
+      "Régurgitations",
+      "Constipation simple"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le ténesme témoigne d'une inflammation recto-sigmoïdienne marquée."
+  },
+  {
+    "id": "amibe_clin_4",
+    "axis": "clinical",
+    "question": "Quel type de selles est typiquement observé lors de la dysenterie amibienne ?",
+    "options": [
+      "Selles glairo-sanglantes pauvres en matières fécales",
+      "Selles aqueuses abondantes",
+      "Selles graisseuses",
+      "Selles noirâtres goudronneuses"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les selles contiennent mucus et sang avec peu de matières."
+  },
+  {
+    "id": "amibe_clin_5",
+    "axis": "clinical",
+    "question": "Quel organe est le plus souvent atteint lors des formes extra-intestinales ?",
+    "options": [
+      "Foie",
+      "Poumon",
+      "Cerveau",
+      "Rate"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'abcès hépatique amibien est la localisation extra-intestinale la plus fréquente."
+  },
+  {
+    "id": "amibe_clin_6",
+    "axis": "clinical",
+    "question": "Quelle complication digestive grave peut survenir dans l'amibiase colique ?",
+    "options": [
+      "Perforation colique",
+      "Appendicite aiguë",
+      "Occlusion par fécalome",
+      "Volvulus"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La nécrose colique peut entraîner une perforation."
+  },
+  {
+    "id": "amibe_clin_7",
+    "axis": "clinical",
+    "question": "Quelle population est particulièrement à risque de formes sévères d'amibiase ?",
+    "options": [
+      "Patients immunodéprimés",
+      "Adultes jeunes en bonne santé",
+      "Sportifs de haut niveau",
+      "Sujets végétariens"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'immunodépression favorise l'invasion tissulaire."
+  },
+  {
+    "id": "amibe_clin_8",
+    "axis": "clinical",
+    "question": "Quel signe clinique oriente vers une rupture d'abcès hépatique amibien ?",
+    "options": [
+      "Douleur thoracique brutale avec dyspnée",
+      "Diarrhée chronique",
+      "Ictère progressif isolé",
+      "Amaigrissement lent"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La rupture peut se faire dans la plèvre ou le poumon."
+  },
+  {
+    "id": "amibe_clin_9",
+    "axis": "clinical",
+    "question": "Quelle manifestation est typique de l'amibiase pulmonaire secondaire ?",
+    "options": [
+      "Expectoration chocolatée",
+      "Hémoptysie massive isolée",
+      "Toux sèche chronique",
+      "Syndrome grippal"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'expectoration brunâtre évoque le pus amibien."
+  },
+  {
+    "id": "amibe_clin_10",
+    "axis": "clinical",
+    "question": "Quelle complication cutanée rare est associée à l'amibiase ?",
+    "options": [
+      "Ulcérations cutanées nécrotiques",
+      "Érythème noueux",
+      "Urticaire aiguë",
+      "Psoriasis"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les lésions cutanées sont secondaires à une dissémination locale."
+  },
+  {
+    "id": "amibe_clin_11",
+    "axis": "clinical",
+    "question": "Quelle forme clinique correspond à une infestation asymptomatique ?",
+    "options": [
+      "Portage sain",
+      "Dysenterie amibienne",
+      "Abcès hépatique",
+      "Colite fulminante"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le portage sain correspond à la présence de formes luminales sans symptômes."
+  },
+  {
+    "id": "amibe_clin_12",
+    "axis": "clinical",
+    "question": "Quelle est la présentation clinique la plus fréquente de l'abcès hépatique amibien ?",
+    "options": [
+      "Fièvre prolongée avec douleur de l'hypocondre droit",
+      "Ictère obstructif franc",
+      "Diarrhée aiguë sévère",
+      "Syndrome méningé"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La fièvre et la douleur hépatique dominent le tableau."
+  },
+  {
+    "id": "amibe_clin_13",
+    "axis": "clinical",
+    "question": "Quel signe biologique accompagne fréquemment l'abcès hépatique amibien ?",
+    "options": [
+      "Hyperleucocytose avec syndrome inflammatoire",
+      "Hyperéosinophilie marquée",
+      "Anémie hémolytique isolée",
+      "Hypoglycémie sévère"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Un syndrome inflammatoire biologique est habituel."
+  },
+  {
+    "id": "amibe_clin_14",
+    "axis": "clinical",
+    "question": "Quelle complication neurologique peut survenir dans l'amibiase ?",
+    "options": [
+      "Abcès cérébral amibien",
+      "Encéphalite virale",
+      "Méningite tuberculeuse",
+      "Neuropathie périphérique"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Rare mais grave, l'abcès cérébral est lié à la dissémination hématogène."
+  },
+  {
+    "id": "amibe_clin_15",
+    "axis": "clinical",
+    "question": "Quelle évolution clinique est typique sans traitement de la dysenterie amibienne ?",
+    "options": [
+      "Chronicité avec rechutes",
+      "Guérison spontanée rapide",
+      "Transformation immédiate en abcès hépatique",
+      "Évolution toujours mortelle"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'évolution chronique est fréquente sans traitement adapté."
+  },
+  {
+    "id": "amibe_clin_16",
+    "axis": "clinical",
+    "question": "Quel signe clinique permet de distinguer l'amibiase de la dysenterie bacillaire ?",
+    "options": [
+      "Absence fréquente de fièvre élevée au début",
+      "Présence constante de fièvre élevée",
+      "Vomissements incoercibles",
+      "Déshydratation sévère rapide"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La fièvre est souvent modérée ou absente initialement."
+  },
+  {
+    "id": "amibe_clin_17",
+    "axis": "clinical",
+    "question": "Quel est le principal facteur favorisant la gravité de l'amibiase colique ?",
+    "options": [
+      "Dénutrition",
+      "Hypertension artérielle",
+      "Tabagisme",
+      "Hypercholestérolémie"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La dénutrition affaiblit les défenses immunitaires."
+  },
+  {
+    "id": "amibe_clin_18",
+    "axis": "clinical",
+    "question": "Quelle présentation clinique évoque une colite amibienne fulminante ?",
+    "options": [
+      "Douleurs abdominales sévères avec diarrhée sanglante abondante",
+      "Constipation isolée",
+      "Douleur épigastrique post-prandiale",
+      "Ballonnements modérés"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La colite fulminante est une urgence vitale."
+  },
+  {
+    "id": "amibe_clin_19",
+    "axis": "clinical",
+    "question": "Quel groupe d'âge est le plus touché par l'abcès hépatique amibien ?",
+    "options": [
+      "Adultes jeunes",
+      "Nourrissons",
+      "Personnes très âgées",
+      "Nouveau-nés"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les adultes jeunes sont les plus concernés."
+  },
+  {
+    "id": "amibe_clin_20",
+    "axis": "clinical",
+    "question": "Quel signe clinique peut accompagner une atteinte pleuro-pulmonaire amibienne ?",
+    "options": [
+      "Douleur thoracique et toux",
+      "Bradycardie isolée",
+      "Hématurie",
+      "Arthralgies migratrices"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'extension thoracique provoque douleur et signes respiratoires."
+  }
+];
+// ==========================================
+// 4. DIAGNOSTIC (20 Questions)
+// ==========================================
+const diagnosisQuestions = [
+  {
+    "id": "amibe_diag_1",
+    "axis": "diagnosis",
+    "question": "Quel est l'examen de référence pour le diagnostic d'un abcès amibien du foie ?",
+    "options": [
+      "Sérologie amibienne (ELISA ou IFI)",
+      "Coproculture",
+      "Examen parasitologique des selles",
+      "Ponction hépatique systématique"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La sérologie est positive dans plus de 95 % des amibiases hépatiques, contrairement à l'examen des selles souvent négatif."
+  },
+  {
+    "id": "amibe_diag_2",
+    "axis": "diagnosis",
+    "question": "Quel examen permet de visualiser directement les trophozoïtes d’Entamoeba histolytica ?",
+    "options": [
+      "Examen parasitologique direct des selles fraîches",
+      "Sérologie",
+      "PCR sanguine",
+      "Test respiratoire"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'examen direct des selles fraîches permet d'observer les trophozoïtes mobiles."
+  },
+  {
+    "id": "amibe_diag_3",
+    "axis": "diagnosis",
+    "question": "Quel élément microscopique est pathognomonique d’E. histolytica ?",
+    "options": [
+      "Trophozoïte contenant des hématies phagocytées",
+      "Kyste quadrinucléé",
+      "Mobilité rapide",
+      "Taille > 25 µm"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'hématophagie est le seul critère morphologique spécifique."
+  },
+  {
+    "id": "amibe_diag_4",
+    "axis": "diagnosis",
+    "question": "Pourquoi l’examen des selles peut-il être négatif lors d’un abcès hépatique amibien ?",
+    "options": [
+      "L'infection est extra-intestinale",
+      "Les trophozoïtes sont détruits par l'acide gastrique",
+      "Le parasite est uniquement sanguin",
+      "Les kystes sont absents chez l’adulte"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Dans les formes hépatiques, l'infestation intestinale peut être absente ou ancienne."
+  },
+  {
+    "id": "amibe_diag_5",
+    "axis": "diagnosis",
+    "question": "Quel examen permet de différencier E. histolytica d’E. dispar avec certitude ?",
+    "options": [
+      "PCR ou test antigénique spécifique",
+      "Examen direct des selles",
+      "Coloration trichrome",
+      "Numération formule sanguine"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les techniques moléculaires ou antigéniques sont nécessaires."
+  },
+  {
+    "id": "amibe_diag_6",
+    "axis": "diagnosis",
+    "question": "Quel est l'intérêt principal des tests antigéniques dans les selles ?",
+    "options": [
+      "Identifier spécifiquement E. histolytica",
+      "Mesurer la charge parasitaire",
+      "Remplacer l'imagerie",
+      "Évaluer la réponse au traitement"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Ils permettent une distinction rapide entre espèces pathogènes et non pathogènes."
+  },
+  {
+    "id": "amibe_diag_7",
+    "axis": "diagnosis",
+    "question": "Quel aspect est typiquement retrouvé à l’échographie d’un abcès amibien du foie ?",
+    "options": [
+      "Image hypoéchogène homogène",
+      "Multiples abcès cloisonnés",
+      "Calcifications diffuses",
+      "Aspect hyperéchogène"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'abcès amibien est classiquement unique et hypoéchogène."
+  },
+  {
+    "id": "amibe_diag_8",
+    "axis": "diagnosis",
+    "question": "Quel examen d’imagerie est le plus sensible pour détecter un abcès hépatique amibien ?",
+    "options": [
+      "Scanner abdominal",
+      "Radiographie thoracique",
+      "ASP",
+      "IRM cérébrale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le scanner permet une meilleure caractérisation que l'échographie."
+  },
+  {
+    "id": "amibe_diag_9",
+    "axis": "diagnosis",
+    "question": "Quel résultat biologique est fréquemment associé à l’abcès hépatique amibien ?",
+    "options": [
+      "Hyperleucocytose avec syndrome inflammatoire",
+      "Éosinophilie majeure",
+      "Hypoglycémie",
+      "Cytopénie globale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L’éosinophilie est rare dans l’amibiase."
+  },
+  {
+    "id": "amibe_diag_10",
+    "axis": "diagnosis",
+    "question": "Quel examen est inutile pour confirmer une amibiase invasive ?",
+    "options": [
+      "Coproculture bactérienne",
+      "Sérologie",
+      "Imagerie hépatique",
+      "PCR"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La coproculture n'a aucun intérêt pour les parasites."
+  },
+  {
+    "id": "amibe_diag_11",
+    "axis": "diagnosis",
+    "question": "Pourquoi la ponction d’un abcès hépatique amibien est-elle rarement réalisée ?",
+    "options": [
+      "Risque de complications et faible rendement parasitologique",
+      "Toujours négative",
+      "Inutile chez l’enfant",
+      "Trop coûteuse"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le pus est souvent stérile et le diagnostic est sérologique."
+  },
+  {
+    "id": "amibe_diag_12",
+    "axis": "diagnosis",
+    "question": "Quel est l’aspect macroscopique typique du pus d’un abcès amibien ?",
+    "options": [
+      "Couleur chocolat ou pâte d’anchois",
+      "Purulent verdâtre",
+      "Séreux clair",
+      "Hémorragique"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Cet aspect est évocateur mais non spécifique."
+  },
+  {
+    "id": "amibe_diag_13",
+    "axis": "diagnosis",
+    "question": "Quel examen est le plus utile dans une dysenterie amibienne aiguë ?",
+    "options": [
+      "Examen parasitologique répété des selles",
+      "Sérologie",
+      "Scanner abdominal",
+      "Hémoculture"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Des examens répétés augmentent la sensibilité."
+  },
+  {
+    "id": "amibe_diag_14",
+    "axis": "diagnosis",
+    "question": "Pourquoi faut-il examiner des selles fraîches et chaudes ?",
+    "options": [
+      "Pour observer la mobilité des trophozoïtes",
+      "Pour éviter la contamination bactérienne",
+      "Pour conserver les kystes",
+      "Pour améliorer la coloration"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La mobilité est rapidement perdue après émission."
+  },
+  {
+    "id": "amibe_diag_15",
+    "axis": "diagnosis",
+    "question": "Quel marqueur sérologique témoigne d’une infection ancienne plutôt que récente ?",
+    "options": [
+      "Persistance d’anticorps IgG",
+      "Présence d’IgM",
+      "Antigène fécal positif",
+      "PCR positive"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les IgG persistent plusieurs années."
+  },
+  {
+    "id": "amibe_diag_16",
+    "axis": "diagnosis",
+    "question": "Quelle technique est la plus sensible pour détecter une faible charge parasitaire intestinale ?",
+    "options": [
+      "PCR sur selles",
+      "Examen direct simple",
+      "Coloration à l’iode",
+      "Sérologie"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La PCR est très sensible et spécifique."
+  },
+  {
+    "id": "amibe_diag_17",
+    "axis": "diagnosis",
+    "question": "Quel est le principal intérêt de la coloration trichrome ?",
+    "options": [
+      "Améliorer la visualisation des noyaux et inclusions",
+      "Identifier l’hématophagie",
+      "Différencier E. histolytica d’E. dispar",
+      "Mesurer la charge parasitaire"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Elle améliore l'analyse morphologique."
+  },
+  {
+    "id": "amibe_diag_18",
+    "axis": "diagnosis",
+    "question": "Dans quel contexte la sérologie amibienne peut-elle être négative ?",
+    "options": [
+      "Amibiase intestinale récente",
+      "Abcès hépatique évolué",
+      "Forme grave",
+      "Chez l’adulte immunocompétent"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La sérologie est souvent négative au début des formes intestinales."
+  },
+  {
+    "id": "amibe_diag_19",
+    "axis": "diagnosis",
+    "question": "Quel examen permet le suivi de l’évolution d’un abcès hépatique amibien ?",
+    "options": [
+      "Échographie hépatique",
+      "Sérologie répétée",
+      "Examen des selles",
+      "NFS quotidienne"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'imagerie permet d'évaluer la régression."
+  },
+  {
+    "id": "amibe_diag_20",
+    "axis": "diagnosis",
+    "question": "Quel élément oriente vers une amibiase plutôt qu’une colite bactérienne ?",
+    "options": [
+      "Absence de fièvre élevée avec dysenterie",
+      "Présence de leucocytes dans les selles",
+      "Déshydratation sévère",
+      "Vomissements incoercibles"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La dysenterie amibienne peut être peu fébrile."
+  }
+];
+// ==========================================
+// 5. TRAITEMENT (20 Questions)
+// ==========================================
+const treatmentQuestions = [
+  {
+    "id": "amibe_treat_1",
+    "axis": "treatment",
+    "question": "Quel est le schéma thérapeutique complet d'une amibiase intestinale aiguë ?",
+    "options": [
+      "Amoebicide tissulaire suivi d'un amoebicide de contact",
+      "Métronidazole seul",
+      "Albendazole seul",
+      "Lopéramide seul"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le traitement doit associer un amoebicide tissulaire (formes invasives) puis un amoebicide luminal pour éviter les rechutes."
+  },
+  {
+    "id": "amibe_treat_2",
+    "axis": "treatment",
+    "question": "Quel est l'amoebicide tissulaire de référence dans l'amibiase invasive ?",
+    "options": [
+      "Métronidazole",
+      "Tiliquinol",
+      "Diloxanide furoate",
+      "Paromomycine"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le métronidazole est actif sur les trophozoïtes tissulaires."
+  },
+  {
+    "id": "amibe_treat_3",
+    "axis": "treatment",
+    "question": "Quelle est la durée habituelle du traitement par métronidazole dans l'amibiase intestinale ?",
+    "options": [
+      "7 à 10 jours",
+      "24 heures",
+      "3 jours",
+      "30 jours"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Une durée suffisante est nécessaire pour éradiquer les formes invasives."
+  },
+  {
+    "id": "amibe_treat_4",
+    "axis": "treatment",
+    "question": "Quel médicament est utilisé comme amoebicide de contact (luminal) ?",
+    "options": [
+      "Paromomycine",
+      "Métronidazole",
+      "Quinine",
+      "Albendazole"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La paromomycine agit dans la lumière intestinale sur les formes non invasives."
+  },
+  {
+    "id": "amibe_treat_5",
+    "axis": "treatment",
+    "question": "Pourquoi un amoebicide luminal est-il indispensable après le métronidazole ?",
+    "options": [
+      "Pour éliminer les kystes et prévenir les rechutes",
+      "Pour traiter l'abcès hépatique",
+      "Pour réduire les effets indésirables",
+      "Pour augmenter l'immunité"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le métronidazole n'élimine pas efficacement les formes luminales."
+  },
+  {
+    "id": "amibe_treat_6",
+    "axis": "treatment",
+    "question": "Quel est le traitement recommandé chez un porteur asymptomatique d'Entamoeba histolytica ?",
+    "options": [
+      "Amoebicide de contact seul",
+      "Métronidazole IV",
+      "Aucun traitement",
+      "Corticothérapie"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le portage doit être traité pour interrompre la transmission."
+  },
+  {
+    "id": "amibe_treat_7",
+    "axis": "treatment",
+    "question": "Quel est le traitement de première intention de l'abcès hépatique amibien non compliqué ?",
+    "options": [
+      "Métronidazole seul",
+      "Drainage chirurgical systématique",
+      "Paromomycine seule",
+      "Antibiothérapie large spectre"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le traitement médical est généralement suffisant."
+  },
+  {
+    "id": "amibe_treat_8",
+    "axis": "treatment",
+    "question": "Dans quel cas le drainage d'un abcès hépatique amibien est-il indiqué ?",
+    "options": [
+      "Risque de rupture ou échec du traitement médical",
+      "Dès le diagnostic",
+      "Toujours chez l'adulte",
+      "En cas de petite taille"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le drainage est réservé aux formes compliquées."
+  },
+  {
+    "id": "amibe_treat_9",
+    "axis": "treatment",
+    "question": "Quelle est la contre-indication majeure du métronidazole ?",
+    "options": [
+      "Consommation d'alcool",
+      "Hypertension artérielle",
+      "Diabète",
+      "Asthme"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le métronidazole provoque un effet antabuse avec l'alcool."
+  },
+  {
+    "id": "amibe_treat_10",
+    "axis": "treatment",
+    "question": "Quel effet indésirable neurologique peut survenir avec le métronidazole ?",
+    "options": [
+      "Neuropathie périphérique",
+      "Myopathie",
+      "Surdité",
+      "Convulsions fébriles"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Un traitement prolongé peut entraîner une neuropathie."
+  },
+  {
+    "id": "amibe_treat_11",
+    "axis": "treatment",
+    "question": "Quel traitement est recommandé chez la femme enceinte atteinte d'amibiase invasive ?",
+    "options": [
+      "Métronidazole après le 1er trimestre",
+      "Paromomycine IV",
+      "Aucun traitement",
+      "Albendazole"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le métronidazole est utilisable après le premier trimestre."
+  },
+  {
+    "id": "amibe_treat_12",
+    "axis": "treatment",
+    "question": "Quel médicament est préféré pendant le 1er trimestre de grossesse si un traitement est nécessaire ?",
+    "options": [
+      "Paromomycine",
+      "Métronidazole",
+      "Tinidazole",
+      "Chloroquine"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La paromomycine n'est pas absorbée et est plus sûre."
+  },
+  {
+    "id": "amibe_treat_13",
+    "axis": "treatment",
+    "question": "Pourquoi les antidiarrhéiques sont-ils contre-indiqués dans l'amibiase aiguë ?",
+    "options": [
+      "Ils favorisent la rétention des trophozoïtes",
+      "Ils aggravent la fièvre",
+      "Ils sont inefficaces",
+      "Ils détruisent la flore intestinale"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Ils augmentent le risque de complications coliques."
+  },
+  {
+    "id": "amibe_treat_14",
+    "axis": "treatment",
+    "question": "Quel traitement doit toujours être poursuivi après guérison clinique de l'abcès hépatique ?",
+    "options": [
+      "Amoebicide de contact",
+      "Antibiothérapie IV prolongée",
+      "Corticothérapie",
+      "Chimiothérapie"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les formes luminales persistent malgré la guérison clinique."
+  },
+  {
+    "id": "amibe_treat_15",
+    "axis": "treatment",
+    "question": "Quel est le rôle principal du traitement dans le portage asymptomatique ?",
+    "options": [
+      "Prévenir la transmission et les formes invasives",
+      "Soulager les douleurs",
+      "Réduire la fièvre",
+      "Éviter la malabsorption"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le porteur sain est un réservoir de kystes."
+  },
+  {
+    "id": "amibe_treat_16",
+    "axis": "treatment",
+    "question": "Quel antibiotique n'a AUCUNE indication dans l'amibiase ?",
+    "options": [
+      "Albendazole",
+      "Métronidazole",
+      "Paromomycine",
+      "Tiliquinol"
+    ],
+    "correctAnswer": 0,
+    "explanation": "L'albendazole est un antihelminthique."
+  },
+  {
+    "id": "amibe_treat_17",
+    "axis": "treatment",
+    "question": "Quel suivi est recommandé après traitement d'une amibiase intestinale ?",
+    "options": [
+      "Contrôle parasitologique des selles",
+      "Aucun suivi",
+      "Scanner abdominal systématique",
+      "Sérologie répétée"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le contrôle des selles confirme l'éradication."
+  },
+  {
+    "id": "amibe_treat_18",
+    "axis": "treatment",
+    "question": "Quel est l'objectif principal du traitement de l'amibiase ?",
+    "options": [
+      "Éradiquer les formes invasives et luminales",
+      "Soulager uniquement les symptômes",
+      "Éliminer la fièvre",
+      "Prévenir la déshydratation"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Le traitement doit être parasiticide complet."
+  },
+  {
+    "id": "amibe_treat_19",
+    "axis": "treatment",
+    "question": "Quel facteur impose une hospitalisation dans l'amibiase ?",
+    "options": [
+      "Forme grave ou complication hépatique",
+      "Portage asymptomatique",
+      "Diarrhée légère",
+      "Absence de fièvre"
+    ],
+    "correctAnswer": 0,
+    "explanation": "Les formes graves nécessitent une surveillance étroite."
+  },
+  {
+    "id": "amibe_treat_20",
+    "axis": "treatment",
+    "question": "Quelle mesure non médicamenteuse est essentielle dans la prise en charge ?",
+    "options": [
+      "Hygiène alimentaire et assainissement",
+      "Régime hyperprotéiné",
+      "Supplémentation vitaminique",
+      "Repos strict prolongé"
+    ],
+    "correctAnswer": 0,
+    "explanation": "La prévention repose sur l'hygiène et l'assainissement."
+  }
+];
+
+// ==========================================
+// EXPORT FINAL
+// ==========================================
+export const questions = [
+  ...morphologyQuestions,
+  ...lifecycleQuestions,
+  ...clinicalQuestions,
+  ...diagnosisQuestions,
+  ...treatmentQuestions
 ];
