@@ -1,1042 +1,703 @@
-export const questions = [
-  {
-    "id": "h_cest_76",
-    "question": "L'Arc 5 en immunoélectrophorèse était le signe pathognomonique de :",
-    "options": [
-      "L'Hydatidose (E. granulosus)",
-      "La Cysticercose",
-      "L'Amibiase",
-      "La Bilharziose"
-    ],
-    "correct": 0,
-    "explanation": "Test historique très spécifique, aujourd'hui remplacé par Western Blot (bandes p7, p26/28).",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_clin_15",
-    "question": "Le test de Mazzotti (provocation au diéthylcarbamazine) est utilisé avec prudence pour le diagnostic de :",
-    "options": [
-      "L'Onchocercose",
-      "La Bilharziose",
-      "L'Hydatidose",
-      "La Trichinellose"
-    ],
-    "correct": 0,
-    "explanation": "Ce test provoque une réaction allergique cutanée et systémique en tuant brutalement les microfilaires. Il est utilisé quand la recherche de microfilaires dermiques est négative mais la suspicion forte.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_18",
-    "question": "Quel est le premier signe d'appel clinique de la Bilharziose urinaire ?",
-    "options": [
-      "Hématurie macroscopique, souvent terminale",
-      "Pollakiurie nocturne",
-      "Colique néphrétique",
-      "Insuffisance rénale aiguë"
-    ],
-    "correct": 0,
-    "explanation": "L'hématurie est le signe cardinal, résultant de la traversée de la paroi vésicale par les œufs de Schistosoma haematobium.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_20",
-    "question": "Quelle espèce de Schistosome est responsable de la Bilharziose intestinale avec hépatosplénomégalie (hypertension portale) ?",
-    "options": [
-      "Schistosoma mansoni",
-      "Schistosoma haematobium",
-      "Fasciola hepatica",
-      "Taenia solium"
-    ],
-    "correct": 0,
-    "explanation": "S. mansoni (et S. japonicum) vit dans le système porte. Les œufs embolisent le foie, créant une fibrose périportale (Symmers) et une hypertension portale.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_21",
-    "question": "Quelle technique de filtration est utilisée pour rechercher les œufs de Schistosoma haematobium ?",
-    "options": [
-      "Filtration des urines sur membrane (polycarbonate/papier)",
-      "Kato-Katz",
-      "Technique de Ritchie",
-      "Baermann"
-    ],
-    "correct": 0,
-    "explanation": "On filtre généralement 10 ml d'urines (recueillies après effort entre 10h et 14h) pour retenir et compter les œufs à éperon terminal.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_22",
-    "question": "La présence de calcifications vésicales en 'coquille d'œuf' à la radiographie est évocatrice de :",
-    "options": [
-      "Bilharziose urinaire chronique",
-      "Tuberculose rénale",
-      "Lithiase urique",
-      "Hydatidose rénale"
-    ],
-    "correct": 0,
-    "explanation": "Dans les formes chroniques de bilharziose, la paroi vésicale peut se calcifier totalement, donnant cet aspect caractéristique.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_31",
-    "question": "L'aspect radiologique en 'boulet de canon' (lâcher de ballons) pulmonaire peut s'observer dans :",
-    "options": [
-      "L'Hydatidose pulmonaire multiple (ou secondaire)",
-      "L'Ascaridiose",
-      "La Bilharziose",
-      "La Distomatose"
-    ],
-    "correct": 0,
-    "explanation": "Bien que cela évoque souvent des métastases, des kystes hydatiques pulmonaires multiples peuvent donner cet aspect.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_39",
-    "question": "Le 'Prurit du nageur' (Dermatite cercarienne) est causé par :",
-    "options": [
-      "Des furcocercaires de schistosomes d'oiseaux (impasse parasitaire)",
-      "Des cercaires de Schistosoma haematobium",
-      "Des larves d'ankylostomes",
-      "Des larves de strongyloides"
-    ],
-    "correct": 0,
-    "explanation": "C'est une réaction allergique cutanée immédiate due à la pénétration de cercaires d'oiseaux qui meurent dans la peau humaine (impasse), fréquente après baignade en étang.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_4",
-    "question": "Le syndrome de 'Larva Currens' (dermatite linéaire rampante rapide) est pathognomonique de :",
-    "options": [
-      "L'Anguillulose (Strongyloides stercoralis)",
-      "L'Ankylostomose",
-      "La Bilharziose cutanée",
-      "La Dracunculose"
-    ],
-    "correct": 0,
-    "explanation": "La Larva Currens est une éruption urticarienne linéaire, serpigineuse, très prurigineuse, avançant rapidement (5-10 cm/heure), typique de la migration sous-cutanée des larves d'Anguillule lors de l'auto-infestation.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_40",
-    "question": "L'hémoptysie est un signe clinique majeur de quelles parasitoses ?",
-    "options": [
-      "Paragonimose et parfois Bilharziose ou Ascaridiose (Löffler)",
-      "Taeniase et Oxyurose",
-      "Trichocéphalose et Ankylostomose",
-      "Dracunculose et Filariose"
-    ],
-    "correct": 0,
-    "explanation": "La Paragonimose (douve du poumon) est la cause classique. Le passage transpulmonaire d'Ascaris (Löffler) peut donner des crachats hémoptoïques, tout comme l'embolie d'œufs de bilharzies.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_42",
-    "question": "Le Praziquantel est le médicament de choix pour traiter :",
-    "options": [
-      "Toutes les trématodoses (Bilharzioses, Douves) et cestodoses adultes",
-      "Les nématodoses intestinales",
-      "Les filarioses lymphatiques",
-      "Les protozoaires"
-    ],
-    "correct": 0,
-    "explanation": "Le Praziquantel est actif sur les Trématodes (sauf Fasciola hepatica où le Triclabendazole est préféré) et les Cestodes adultes. Il provoque une paralysie spastique du ver.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_47",
-    "question": "Quelle parasitose peut entraîner un cancer de la vessie (carcinome épidermoïde) à long terme ?",
-    "options": [
-      "Bilharziose urinaire (S. haematobium)",
-      "Bilharziose intestinale",
-      "Distomatose hépatique",
-      "Hydatidose"
-    ],
-    "correct": 0,
-    "explanation": "L'irritation chronique de la muqueuse vésicale par les œufs de S. haematobium est cancérigène (classé groupe 1 par le CIRC).",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_51",
-    "question": "Une hyperéosinophilie > 3 G/L chez un patient revenant d'une zone tropicale sans symptômes digestifs doit faire rechercher en priorité :",
-    "options": [
-      "Une filariose ou une bilharziose en phase d'invasion",
-      "Un paludisme",
-      "Une amibiase",
-      "Une giardiase"
-    ],
-    "correct": 0,
-    "explanation": "Les protozoaires (Paludisme, Amibes, Giardia) ne donnent PAS d'hyperéosinophilie. Une telle valeur signe une helminthiose tissulaire active.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_53",
-    "question": "La 'colique hépatique' parasitaire est typique de :",
-    "options": [
-      "Fasciola hepatica (passage cholédocien)",
-      "Schistosoma mansoni",
-      "Echinococcus granulosus (kyste sain)",
-      "Ascaris (migration)"
-    ],
-    "correct": 0,
-    "explanation": "La douve adulte vit dans les voies biliaires. Son passage ou l'obstruction qu'elle crée provoque des douleurs de type colique hépatique.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_55",
-    "question": "Le syndrome de dysenterie bilharzienne s'observe dans :",
-    "options": [
-      "Les infections à S. mansoni, S. japonicum ou S. intercalatum",
-      "L'infection à S. haematobium",
-      "La Fasciolose",
-      "L'Ankylostomose"
-    ],
-    "correct": 0,
-    "explanation": "C'est la manifestation intestinale aiguë ou chronique liée à la formation de granulomes et d'ulcérations coliques par les œufs de ces espèces.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_59",
-    "question": "La biopsie rectale (Snip rectal) est une technique diagnostique pour :",
-    "options": [
-      "La Bilharziose intestinale (recherche d'œufs dans la muqueuse)",
-      "L'Ascaridiose",
-      "L'Oxyurose",
-      "La Giardiase"
-    ],
-    "correct": 0,
-    "explanation": "On prélève un fragment de muqueuse rectale qu'on écrase entre lame et lamelle pour voir les œufs de Schistosomes piégés dans les tissus.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_64",
-    "question": "Quel est l'hôte intermédiaire indispensable au cycle des Schistosomes ?",
-    "options": [
-      "Un mollusque d'eau douce spécifique (Bulin, Planorbe...)",
-      "Un poisson",
-      "Un crustacé (Cyclops)",
-      "Une plante aquatique"
-    ],
-    "correct": 0,
-    "explanation": "Le cycle des bilharzies est hétéroxène et nécessite obligatoirement un passage par un mollusque gastéropode spécifique (ex: Bulinus pour S. haematobium).",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_66",
-    "question": "Quelle parasitose est cosmopolite et très fréquente dans les crèches/écoles en Europe ?",
-    "options": [
-      "Oxyurose",
-      "Ascaridiose",
-      "Ankylostomose",
-      "Bilharziose"
-    ],
-    "correct": 0,
-    "explanation": "L'oxyurose est l'helminthiose la plus répandue dans les pays tempérés et développés, favorisée par la vie en collectivité des enfants.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_67",
-    "question": "La Bilharziose à Schistosoma mekongi se trouve principalement en :",
-    "options": [
-      "Asie du Sud-Est (Mékong)",
-      "Afrique de l'Ouest",
-      "Amérique du Sud",
-      "Égypte"
-    ],
-    "correct": 0,
-    "explanation": "Comme son nom l'indique, elle est endémique dans le bassin du Mékong (Laos, Cambodge).",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_69",
-    "question": "Quelle parasitose a été déclarée éradiquée ou en voie d'éradication dans de nombreux pays grâce à la filtration de l'eau ?",
-    "options": [
-      "Dracunculose",
-      "Bilharziose",
-      "Paludisme",
-      "Ascaridiose"
-    ],
-    "correct": 0,
-    "explanation": "Le programme d'éradication du ver de Guinée (Carter Center / OMS) a réduit les cas mondiaux de plusieurs millions à quelques dizaines.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_73",
-    "question": "La CPRE (Cholangio-Pancréatographie Rétrograde Endoscopique) peut être diagnostique et thérapeutique pour :",
-    "options": [
-      "L'extraction d'une Fasciola hepatica ou d'un Ascaris des voies biliaires",
-      "Le traitement d'un kyste hydatique",
-      "Le diagnostic d'une bilharziose intestinale",
-      "La biopsie d'une cysticercose"
-    ],
-    "correct": 0,
-    "explanation": "La CPRE permet de visualiser l'obstruction biliaire par le ver et souvent de l'extraire à l'aide d'un ballonnet ou d'une anse.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_75",
-    "question": "L'échographie des voies urinaires est l'examen de dépistage de masse pour :",
-    "options": [
-      "La morbidité liée à Schistosoma haematobium (hydronéphrose, polypes)",
-      "La filariose lymphatique",
-      "L'hydatidose rénale",
-      "L'oxyurose"
-    ],
-    "correct": 0,
-    "explanation": "Elle permet de détecter précocement les lésions de la vessie et la dilatation des uretères (hydronéphrose) chez les populations exposées.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_82",
-    "question": "L'Ivermectine est le traitement de choix pour :",
-    "options": [
-      "L'Anguillulose et l'Onchocercose",
-      "La Bilharziose",
-      "Le Taenia",
-      "Le Kyste Hydatique"
-    ],
-    "correct": 0,
-    "explanation": "C'est un puissant anti-helminthique agissant sur les canaux chlore glutamate-dépendants, très efficace sur les nématodes et les ectoparasites.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_87",
-    "question": "Patient avec hépatomégalie kystique. La sérologie hydatique est négative. Quel diagnostic différentiel parasitaire évoquer ?",
-    "options": [
-      "Kyste amibien (Abcès)",
-      "Bilharziose hépatique",
-      "Fasciolose",
-      "Ascaridiose biliaire"
-    ],
-    "correct": 0,
-    "explanation": "L'abcès amibien du foie se présente comme une lésion liquidienne. Si l'imagerie est atypique pour l'hydatidose, l'amibiase est une option (sérologie amibienne à faire).",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_88",
-    "question": "Retour de voyage (Afrique), fièvre, céphalées, et éruption urticarienne (Kabure). 3 semaines plus tard : hyperéosinophilie. Diagnostic probable ?",
-    "options": [
-      "Bilharziose en phase d'invasion (Katayama)",
-      "Paludisme",
-      "Typhoïde",
-      "Hépatite virale"
-    ],
-    "correct": 0,
-    "explanation": "C'est la chronologie typique d'une primo-infestation à Schistosomes (Dermatite -> Latence -> Toxémie/Katayama).",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_9",
-    "question": "Quelle méthode est recommandée pour quantifier la charge parasitaire dans les bilharzioses et géohelminthiases (recommandation OMS) ?",
-    "options": [
-      "Technique de Kato-Katz",
-      "Technique de Ritchie",
-      "Technique de Willis",
-      "Examen direct simple"
-    ],
-    "correct": 0,
-    "explanation": "Le Kato-Katz est une méthode d'épaississement standardisée qui permet de calculer le nombre d'œufs par gramme de selles, indicateur crucial de l'intensité de l'infection.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_96",
-    "question": "La prophylaxie de la bilharziose repose sur :",
-    "options": [
-      "Lutte contre les mollusques et éviction des bains en eau douce",
-      "Moustiquaires imprégnées",
-      "Cuisson de la viande",
-      "Lavage des mains"
-    ],
-    "correct": 0,
-    "explanation": "C'est une maladie liée à l'eau (pénétration transcutanée des cercaires). L'assainissement et l'éducation sanitaire sont clés.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_clin_98",
-    "question": "Quelle helminthiose peut provoquer un prolapsus utérin ou vaginal dans les cas extrêmes ?",
-    "options": [
-      "La Bilharziose génitale (S. haematobium)",
-      "L'Oxyurose",
-      "L'Ascaridiose",
-      "La Filariose"
-    ],
-    "correct": 0,
-    "explanation": "Les lésions granulomateuses et la fibrose du plancher pelvien et du col utérin dans la bilharziose génitale féminine peuvent avoir des conséquences anatomiques graves.",
-    "axis": "clinical"
-  },
-  {
-    "id": "h_nema_14",
-    "question": "Les deux espèces principales d'Ankylostomes humaines sont :",
-    "options": [
-      "Ancylostoma duodenale et Necator americanus",
-      "Ascaris et Oxyure",
-      "Taenia solium et saginata",
-      "Fasciola et Schistosoma"
-    ],
-    "correct": 0,
-    "explanation": "Ce sont les deux agents de l'ankylostomose, une nématodose hématophage.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_nema_20",
-    "question": "Le syndrome de 'Larva Currens' est pathognomonique de :",
-    "options": [
-      "L'anguillulose (Strongyloïdose)",
-      "L'ascaridiose",
-      "La bilharziose",
-      "L'oxyurose"
-    ],
-    "correct": 0,
-    "explanation": "C'est une éruption cutanée serpigineuse (en serpentin) très rapide et fugace, due à la migration sous-cutanée de la larve.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_nema_69",
-    "question": "La chylurie (urines lactescentes) est une complication de :",
-    "options": [
-      "La filariose lymphatique (Wuchereria bancrofti)",
-      "La bilharziose",
-      "L'ascaridiose",
-      "L'anguillulose"
-    ],
-    "correct": 0,
-    "explanation": "Rupture des varices lymphatiques dans les voies urinaires. Les urines contiennent de la lymphe et des graisses.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_1",
-    "question": "Schistosoma haematobium est l'agent de :",
-    "options": [
-      "La bilharziose uro-génitale",
-      "La bilharziose intestinale",
-      "La douve du foie",
-      "La douve pulmonaire"
-    ],
-    "correct": 0,
-    "explanation": "Les vers adultes vivent dans les plexus veineux péri-vésicaux (autour de la vessie).",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_10",
-    "question": "La fibrose hépatique dans la bilharziose à S. mansoni est de type :",
-    "options": [
-      "Fibrose de Symmers (péri-portale, en 'tuyau de pipe')",
-      "Cirrhose alcoolique",
-      "Hépatite virale",
-      "Stéatose"
-    ],
-    "correct": 0,
-    "explanation": "Elle ne détruit pas les hépatocytes (la fonction hépatique reste longtemps normale) mais bloque la circulation portale (Hypertension Portale).",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_11",
-    "question": "Schistosoma japonicum se trouve principalement en :",
-    "options": [
-      "Asie (Chine, Philippines)",
-      "Afrique",
-      "Amérique du Sud",
-      "Europe"
-    ],
-    "correct": 0,
-    "explanation": "C'est la forme asiatique, souvent plus grave (plus d'œufs pondus).",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_13",
-    "question": "Schistosoma intercalatum est responsable de la bilharziose :",
-    "options": [
-      "Rectale",
-      "Urinaire",
-      "Hépatique",
-      "Pulmonaire"
-    ],
-    "correct": 0,
-    "explanation": "Forme africaine (Afrique Centrale) donnant des rectorragies.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_15",
-    "question": "La dermatite des nageurs ('Puce de canard') est due à :",
-    "options": [
-      "Des furcocercaires de schistosomes d'oiseaux (impasse chez l'homme)",
-      "S. mansoni",
-      "S. haematobium",
-      "Des méduses"
-    ],
-    "correct": 0,
-    "explanation": "Les larves pénètrent la peau mais meurent sur place, causant une forte démangeaison allergique.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_2",
-    "question": "Le symptôme clé (maître-symptôme) de la bilharziose urinaire est :",
-    "options": [
-      "L'hématurie (sang dans les urines), souvent terminale",
-      "La diarrhée",
-      "La toux",
-      "Le prurit"
-    ],
-    "correct": 0,
-    "explanation": "Le passage des œufs à travers la paroi de la vessie provoque des saignements à la fin de la miction.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_22",
-    "question": "Opisthorchis viverrini est un facteur de risque majeur pour :",
-    "options": [
-      "Le Cholangiocarcinome (Cancer des voies biliaires)",
-      "Le cancer du colon",
-      "L'hépatite B",
-      "La cirrhose"
-    ],
-    "correct": 0,
-    "explanation": "Classé carcinogène biologique de groupe 1 (comme S. haematobium).",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_3",
-    "question": "L'œuf de Schistosoma haematobium possède un éperon (épine) :",
-    "options": [
-      "Terminal (au bout)",
-      "Latéral",
-      "Invisible",
-      "Absent"
-    ],
-    "correct": 0,
-    "explanation": "Critère diagnostique majeur : éperon terminal apical.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_36",
-    "question": "Le médicament de référence pour TOUTES les bilharzioses est :",
-    "options": [
-      "Praziquantel (Biltricide)",
-      "Métronidazole",
-      "Albendazole",
-      "Ivermectine"
-    ],
-    "correct": 0,
-    "explanation": "Efficace en dose unique (40-60 mg/kg). C'est le pilier de la lutte mondiale.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_4",
-    "question": "L'hôte intermédiaire (mollusque) de S. haematobium est :",
-    "options": [
-      "Un Bulin (Bulinus)",
-      "Une Planorbe (Biomphalaria)",
-      "Une Limnée",
-      "Une Melania"
-    ],
-    "correct": 0,
-    "explanation": "Chaque espèce de schistosome est spécifique d'un type d'escargot d'eau douce.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_40",
-    "question": "Les corticoïdes sont utiles dans la bilharziose en phase :",
-    "options": [
-      "Aiguë (Fièvre de Katayama) pour réduire l'hypersensibilité",
-      "Chronique",
-      "Terminale",
-      "Jamais"
-    ],
-    "correct": 0,
-    "explanation": "Ils calment l'orage allergique provoqué par la migration larvaire.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_41",
-    "question": "Le diagnostic de certitude de la bilharziose urinaire se fait par :",
-    "options": [
-      "Filtration des urines de 24h ou après effort (recherche d'œufs)",
-      "Bandelette urinaire seule",
-      "Prise de sang",
-      "Scanner"
-    ],
-    "correct": 0,
-    "explanation": "L'effort physique (sauts) favorise le décrochage des œufs dans la vessie.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_42",
-    "question": "Pour la bilharziose intestinale, la technique de concentration des selles recommandée est :",
-    "options": [
-      "Kato-Katz",
-      "Baermann",
-      "Scotch-test",
-      "Culture"
-    ],
-    "correct": 0,
-    "explanation": "Permet de compter les œufs par gramme de selles (charge parasitaire).",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_46",
-    "question": "La bilharziose est liée à :",
-    "options": [
-      "L'eau douce stagnante ou à faible courant (barrages, canaux d'irrigation)",
-      "L'eau de mer",
-      "L'eau du robinet",
-      "La nourriture"
-    ],
-    "correct": 0,
-    "explanation": "Les barrages (ex: Assouan en Égypte) ont favorisé la prolifération des escargots.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_47",
-    "question": "S. haematobium est endémique en :",
-    "options": [
-      "Afrique et Moyen-Orient (Bassin méditerranéen)",
-      "Asie du Sud-Est",
-      "Amérique du Sud",
-      "Australie"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'espèce prédominante au Maghreb et en Afrique sub-saharienne.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_48",
-    "question": "S. mansoni a été introduit en Amérique (Brésil, Caraïbes) par :",
-    "options": [
-      "Le commerce des esclaves venant d'Afrique (transportant les vers)",
-      "Les oiseaux",
-      "Le vent",
-      "Les bateaux"
-    ],
-    "correct": 0,
-    "explanation": "Il a trouvé sur place des escargots compatibles (Biomphalaria).",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_5",
-    "question": "La complication à long terme redoutée de la bilharziose urinaire est :",
-    "options": [
-      "Le cancer de la vessie (Carcinome épidermoïde)",
-      "Le cancer du foie",
-      "L'insuffisance cardiaque",
-      "La cécité"
-    ],
-    "correct": 0,
-    "explanation": "L'inflammation chronique causée par les œufs piégés dans la paroi vésicale est cancérigène.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_51",
-    "question": "La biopsie rectale (Snip-test) est très utile pour le diagnostic de :",
-    "options": [
-      "Schistosoma mansoni (même si les selles sont négatives)",
-      "Schistosoma haematobium",
-      "Fasciola",
-      "Ténia"
-    ],
-    "correct": 0,
-    "explanation": "On prélève un petit morceau de muqueuse rectale, on l'écrase entre deux lames et on regarde au microscope. Très sensible.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_52",
-    "question": "L'image radiologique de 'Vessie Porcelaine' correspond à :",
-    "options": [
-      "Une calcification totale de la paroi vésicale (Schistosomiase urinaire chronique)",
-      "Une tumeur",
-      "Un calcul",
-      "Une infection aiguë"
-    ],
-    "correct": 0,
-    "explanation": "La vessie devient rigide et visible sans produit de contraste à cause des œufs calcifiés.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_53",
-    "question": "Le signe échographique pathognomonique de la fibrose de Symmers (S. mansoni) est :",
-    "options": [
-      "L'épaississement hyperéchogène des parois des branches portes (aspect de maillage)",
-      "Des kystes",
-      "Une atrophie du foie",
-      "Des calculs"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'image classique en 'tuyau de pipe' ou 'chevrotine'.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_58",
-    "question": "La neuroschistosomiase (atteinte moelle épinière ou cerveau) est due à :",
-    "options": [
-      "La migration aberrante des couples de vers ou embolie d'œufs",
-      "La méningite",
-      "Le traitement",
-      "L'eau"
-    ],
-    "correct": 0,
-    "explanation": "Peut causer une paraplégie ou une myélite transverse.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_59",
-    "question": "L'hydronéphrose (dilatation du rein) dans la bilharziose urinaire est causée par :",
-    "options": [
-      "La sténose (rétrécissement) des uretères par l'inflammation/granulomes",
-      "Le calcul rénal",
-      "Le cancer",
-      "L'infection urinaire"
-    ],
-    "correct": 0,
-    "explanation": "L'urine ne peut plus descendre vers la vessie et dilate le rein en amont.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_6",
-    "question": "Schistosoma mansoni cause :",
-    "options": [
-      "La bilharziose intestinale (et hépato-splénique)",
-      "La bilharziose urinaire",
-      "La douve",
-      "Le ténia"
-    ],
-    "correct": 0,
-    "explanation": "Les adultes vivent dans les veines mésentériques inférieures (drainant le gros intestin).",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_60",
-    "question": "La splénomégalie (grosse rate) dans la bilharziose intestinale est due à :",
-    "options": [
-      "L'hypertension portale (le sang refoule vers la rate)",
-      "L'infection de la rate",
-      "Le cancer",
-      "L'anémie"
-    ],
-    "correct": 0,
-    "explanation": "Signe classique de la bilharziose hépato-splénique avancée.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_68",
-    "question": "L'hématurie dans la bilharziose est :",
-    "options": [
-      "Capricieuse, souvent microscopique ou terminale",
-      "Toujours massive",
-      "Initiale",
-      "Douloureuse"
-    ],
-    "correct": 0,
-    "explanation": "C'est un saignement discret mais chronique qui cause l'anémie.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_7",
-    "question": "L'œuf de Schistosoma mansoni a un éperon :",
-    "options": [
-      "Latéral (sur le côté)",
-      "Terminal",
-      "Petit et courbé",
-      "Absent"
-    ],
-    "correct": 0,
-    "explanation": "L'éperon latéral bien visible est pathognomonique.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_72",
-    "question": "Le barrage de Diama (Sénégal) a provoqué :",
-    "options": [
-      "Une épidémie massive de bilharziose intestinale (S. mansoni) et urinaire",
-      "La disparition de la maladie",
-      "Une épidémie de paludisme",
-      "Rien"
-    ],
-    "correct": 0,
-    "explanation": "En dessalant l'eau du fleuve, il a permis la prolifération des escargots toute l'année.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_73",
-    "question": "En Algérie, les foyers résiduels de bilharziose urinaire (S. haematobium) étaient situés :",
-    "options": [
-      "Dans le Tassili N'Ajjer (Djanet, Ihérir)",
-      "À Alger",
-      "En Kabylie",
-      "À Oran"
-    ],
-    "correct": 0,
-    "explanation": "Zones d'oasis où l'eau stagne (Gueltas).",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_76",
-    "question": "En cas de résistance ou d'échec au Praziquantel (rare), on peut utiliser :",
-    "options": [
-      "L'Oxamniquine (pour S. mansoni uniquement)",
-      "L'Albendazole",
-      "La Pénicilline",
-      "L'Aspirine"
-    ],
-    "correct": 0,
-    "explanation": "Vieux médicament, moins utilisé aujourd'hui.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_79",
-    "question": "L'Artemether (antipaludéen) a une activité contre :",
-    "options": [
-      "Les schistosomules (formes jeunes) de Schistosoma",
-      "Les adultes",
-      "Les œufs",
-      "Les kystes"
-    ],
-    "correct": 0,
-    "explanation": "Parfois utilisé en prophylaxie chimique.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_8",
-    "question": "L'hôte intermédiaire de S. mansoni est :",
-    "options": [
-      "Une Planorbe (Biomphalaria)",
-      "Un Bulin",
-      "Une Limnée",
-      "Un Oncomelania"
-    ],
-    "correct": 0,
-    "explanation": "Escargot plat en forme de disque.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_87",
-    "question": "Piège : Peut-on trouver des œufs de S. mansoni dans les urines ?",
-    "options": [
-      "Oui, rarement, si la charge parasitaire est très élevée",
-      "Jamais",
-      "Toujours",
-      "C'est la règle"
-    ],
-    "correct": 0,
-    "explanation": "Et inversement, S. haematobium peut parfois se voir dans les selles (rectum). Mais retenez la localisation classique.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_88",
-    "question": "Piège : La consommation d'eau potable contaminée transmet-elle la bilharziose ?",
-    "options": [
-      "Non (les cercaires pénètrent la peau, elles sont détruites par l'acide gastrique si avalées)",
-      "Oui",
-      "Parfois",
-      "Seulement l'eau gazeuse"
-    ],
-    "correct": 0,
-    "explanation": "Sauf si l'eau touche les lèvres/muqueuse buccale avant d'être avalée. Le risque principal est le bain.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_9",
-    "question": "La phase d'invasion (migration larvaire) de la bilharziose s'appelle :",
-    "options": [
-      "Fièvre de Katayama (ou toxémie bilharzienne)",
-      "Fièvre jaune",
-      "Fièvre typhoïde",
-      "Paludisme"
-    ],
-    "correct": 0,
-    "explanation": "Syndrome immuno-allergique aigu (fièvre, urticaire, éosinophilie) survenant quelques semaines après le bain infectant.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_90",
-    "question": "Le test de Hémoccult (sang dans les selles) est-il positif dans la bilharziose intestinale ?",
-    "options": [
-      "Oui, souvent",
-      "Non, jamais",
-      "Uniquement dans l'urinaire",
-      "Impossible à dire"
-    ],
-    "correct": 0,
-    "explanation": "Car le passage des œufs provoque des micro-saignements.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_91",
-    "question": "Quel est le deuxième fléau parasitaire mondial après le paludisme ?",
-    "options": [
-      "La Bilharziose (Schistosomiase)",
-      "L'Amibiase",
-      "Le Ténia",
-      "La Gale"
-    ],
-    "correct": 0,
-    "explanation": "En termes d'impact socio-économique et de santé publique.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_92",
-    "question": "La prophylaxie individuelle la plus efficace contre la bilharziose est :",
-    "options": [
-      "Éviter tout contact avec l'eau douce en zone endémique (ne pas se baigner)",
-      "Boire de l'eau filtrée",
-      "Manger cuit",
-      "Se laver les mains"
-    ],
-    "correct": 0,
-    "explanation": "Le danger est dans l'eau de baignade.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_98",
-    "question": "La bilharziose génitale féminine (FGS) favorise la transmission de :",
-    "options": [
-      "Le VIH (Sida)",
-      "La grippe",
-      "Le paludisme",
-      "La typhoïde"
-    ],
-    "correct": 0,
-    "explanation": "Les lésions génitales créent une porte d'entrée pour le virus.",
-    "axis": "morphology"
-  },
-  {
-    "id": "h_trem_99",
-    "question": "Le diagnostic de la bilharziose en phase chronique repose principalement sur :",
-    "options": [
-      "La mise en évidence des œufs (Urines, Selles, Biopsie)",
-      "La fièvre",
-      "La douleur",
-      "La sérologie"
-    ],
-    "correct": 0,
-    "explanation": "La preuve directe est nécessaire quand c'est possible.",
-    "axis": "morphology"
-  },
-  {
-    "id": "life_h_27",
-    "question": "Quel est l'hôte intermédiaire spécifique de Schistosoma haematobium ?",
-    "options": [
-      "Bulinus (Le Bulin)",
-      "Biomphalaria (La Planorbe)",
-      "Oncomelania",
-      "Lymnaea"
-    ],
-    "correct": 0,
-    "explanation": "Le Bulin est le mollusque hôte intermédiaire spécifique de la bilharziose urinaire.",
-    "axis": "lifecycle"
-  },
-  {
-    "id": "life_h_28",
-    "question": "Quel est l'hôte intermédiaire spécifique de Schistosoma mansoni ?",
-    "options": [
-      "Biomphalaria (La Planorbe)",
-      "Bulinus",
-      "Oncomelania",
-      "Limnée"
-    ],
-    "correct": 0,
-    "explanation": "La Planorbe est le mollusque hôte intermédiaire spécifique de la bilharziose intestinale à S. mansoni.",
-    "axis": "lifecycle"
-  },
-  {
-    "id": "life_h_73",
-    "question": "Quelle parasitose peut se contracter en marchant pieds nus sur une plage tropicale souillée ?",
-    "options": [
-      "Larva Migrans Cutanée (Ankylostomes de chien)",
-      "Bilharziose",
-      "Filariose",
-      "Oxyurose"
-    ],
-    "correct": 0,
-    "explanation": "Les larves d'ankylostomes canins, présents dans les déjections de chiens errants sur le sable, pénètrent la peau des pieds des baigneurs.",
-    "axis": "lifecycle"
-  },
-  {
-    "id": "life_h_81",
-    "question": "L'élimination des moustiques permet de couper le cycle de :",
-    "options": [
-      "La Filariose de Bancroft",
-      "L'Onchocercose (Simulie)",
-      "La Loase (Chrysops)",
-      "La Bilharziose"
-    ],
-    "correct": 0,
-    "explanation": "La lutte antivectorielle (moustiquaires, insecticides) vise le moustique vecteur de la filariose lymphatique.",
-    "axis": "lifecycle"
-  },
-  {
-    "id": "life_h_82",
-    "question": "L'amélioration de l'hygiène fécale (latrines) ne suffit pas à interrompre la transmission de :",
-    "options": [
-      "La Filariose (transmission vectorielle)",
-      "L'Ascaridiose",
-      "L'Ankylostomose",
-      "La Bilharziose intestinale"
-    ],
-    "correct": 0,
-    "explanation": "Pour les maladies à vecteurs volants (moustiques), l'assainissement seul est insuffisant, il faut aussi contrôler le vecteur.",
-    "axis": "lifecycle"
-  },
-  {
-    "id": "life_h_83",
-    "question": "Le cycle de la Bilharziose est interrompu par :",
-    "options": [
-      "L'absence de mollusques hôtes intermédiaires (lutte molluscicide)",
-      "La vaccination des chiens",
-      "La cuisson de la viande",
-      "Le port de masque"
-    ],
-    "correct": 0,
-    "explanation": "Sans mollusque, le miracidium meurt et le cycle s'arrête. C'est une stratégie de lutte (chimique ou biologique).",
-    "axis": "lifecycle"
-  },
-  {
-    "id": "life_h_85",
-    "question": "Le péril fécal est dit 'interne' dans le cas de :",
-    "options": [
-      "L'auto-infestation à Strongyloides",
-      "L'Ascaris",
-      "L'Ankylostome",
-      "La Bilharziose"
-    ],
-    "correct": 0,
-    "explanation": "Le cycle se boucle entièrement à l'intérieur de l'hôte sans passage par l'extérieur.",
-    "axis": "lifecycle"
-  },
-  {
-    "id": "life_h_91",
-    "question": "Quel parasite pond des œufs munis d'un éperon latéral ?",
-    "options": [
-      "Schistosoma mansoni",
-      "Schistosoma haematobium (éperon terminal)",
-      "Fasciola",
-      "Ascaris"
-    ],
-    "correct": 0,
-    "explanation": "L'éperon latéral est la signature morphologique de l'œuf de S. mansoni.",
-    "axis": "lifecycle"
-  },
-  {
-    "id": "life_h_92",
-    "question": "Quel parasite pond des œufs munis d'un éperon terminal ?",
-    "options": [
-      "Schistosoma haematobium",
-      "Schistosoma mansoni",
-      "Schistosoma japonicum (éperon réduit)",
-      "Taenia"
-    ],
-    "correct": 0,
-    "explanation": "L'éperon terminal permet de reconnaître S. haematobium dans les urines.",
-    "axis": "lifecycle"
-  },
-  {
-    "id": "life_h_96",
-    "question": "La contamination par l'eau de boisson est le mode principal pour :",
-    "options": [
-      "La Dracunculose (Cyclops)",
-      "La Bilharziose (Baignade)",
-      "L'Ankylostomose (Peau)",
-      "La Filariose (Piqûre)"
-    ],
-    "correct": 0,
-    "explanation": "Boire de l'eau contenant des Cyclops est le seul moyen d'attraper le Ver de Guinée.",
-    "axis": "lifecycle"
+export const schistosomiasisMorphCycleQuestions = [
+  // =========================
+  // SCHISTOSOMIASE / BILHARZIOSE - Morphologie & Cycle de vie (30 QCM)
+  // =========================
+  {
+    id: "schisto_morph_1",
+    axis: "morphology",
+    question: "Les schistosomes présentent :",
+    options: ["Dimorphisme sexuel avec couple mâle/femelle", "Hermaphrodisme complet", "Présence de mâles uniquement", "Présence de femelles uniquement"],
+    correctAnswer: 0,
+    explanation: "Les schistosomes adultes sont dimorphes : le mâle est plus trapu et porte le sillon gynécophore pour loger la femelle."
+  },
+  {
+    id: "schisto_morph_2",
+    axis: "morphology",
+    question: "L’œuf de Schistosoma haematobium possède :",
+    options: ["Éperon terminal", "Éperon latéral", "Pas d’éperon", "Éperon central"],
+    correctAnswer: 0,
+    explanation: "S. haematobium a un éperon terminal caractéristique visible à la microscopie, pathognomonique."
+  },
+  {
+    id: "schisto_morph_3",
+    axis: "morphology",
+    question: "L’œuf de Schistosoma mansoni possède :",
+    options: ["Éperon latéral", "Éperon terminal", "Pas d’éperon", "Éperon multiple"],
+    correctAnswer: 0,
+    explanation: "S. mansoni se reconnaît par un éperon latéral proéminent, utile au diagnostic microscopique."
+  },
+  {
+    id: "schisto_morph_4",
+    axis: "morphology",
+    question: "Les femelles adultes :",
+    options: ["Se logent dans le sillon gynécophore du mâle", "Sont libres dans la veine porte uniquement", "Ne pondent pas d’œufs", "Sont plus petites que les miracidiums"],
+    correctAnswer: 0,
+    explanation: "La femelle adulte vit dans le sillon gynécophore du mâle, où elle est protégée et pond ses œufs."
+  },
+  {
+    id: "schisto_morph_5",
+    axis: "lifecycle",
+    question: "L’hôte intermédiaire des schistosomes est :",
+    options: ["Escargot d’eau douce (Bulat, Planorbe)", "Poisson", "Chien", "Moustique"],
+    correctAnswer: 0,
+    explanation: "Les œufs libérés dans l’eau éclosent en miracidiums qui infectent des escargots spécifiques, hôtes intermédiaires obligatoires."
+  },
+  {
+    id: "schisto_morph_6",
+    axis: "lifecycle",
+    question: "La pénétration de l’hôte définitif se fait par :",
+    options: ["Furcocercaires traversant la peau intacte", "Ingestion d’œufs", "Inhalation de larves", "Morsure d’insecte vecteur"],
+    correctAnswer: 0,
+    explanation: "Les furcocercaires libres nagent et pénètrent activement la peau humaine, initiant l’infection."
+  },
+  {
+    id: "schisto_morph_7",
+    axis: "lifecycle",
+    question: "Les miracidiums éclosent à partir de :",
+    options: ["Œufs dans l’eau", "Adultes dans le sang", "Larves dans le foie", "Œufs dans l’intestin"],
+    correctAnswer: 0,
+    explanation: "Les œufs excrétés dans l’eau libèrent des miracidiums qui doivent infecter un escargot pour poursuivre le cycle."
+  },
+  {
+    id: "schisto_morph_8",
+    axis: "lifecycle",
+    question: "Les furcocercaires se développent dans :",
+    options: ["L’escargot hôte intermédiaire", "Le sang humain", "Le foie de l’homme", "Le sol humide"],
+    correctAnswer: 0,
+    explanation: "Les miracidiums se transforment en sporocystes puis en furcocercaires à l’intérieur de l’escargot."
+  },
+  {
+    id: "schisto_morph_9",
+    axis: "lifecycle",
+    question: "Après pénétration cutanée, les schistosomes :",
+    options: ["Migrant par circulation veineuse vers les veines mésentériques ou vésicales", "Restent dans la peau indéfiniment", "Migrent vers les poumons uniquement", "Se transforment en œufs immédiatement"],
+    correctAnswer: 0,
+    explanation: "Les larves traversent la peau, migrent par le système circulatoire et se localisent dans les veines cibles pour maturer."
+  },
+  {
+    id: "schisto_morph_10",
+    axis: "morphology",
+    question: "Le mâle adulte :",
+    options: ["Possède un sillon gynécophore qui abrite la femelle", "Est incapable de reproduction", "Porte les œufs sur la cuticule", "Est plus petit que la femelle"],
+    correctAnswer: 0,
+    explanation: "Le mâle plus trapu contient un sillon où la femelle est logée pour pondre les œufs."
+  },
+  {
+    id: "schisto_morph_11",
+    axis: "lifecycle",
+    question: "Les œufs de S. haematobium sont excrétés par :",
+    options: ["L’urine", "Les selles", "Le sang", "La sueur"],
+    correctAnswer: 0,
+    explanation: "S. haematobium pond dans les veines vésicales, et les œufs passent dans l’urine pour contaminer l’eau."
+  },
+  {
+    id: "schisto_morph_12",
+    axis: "lifecycle",
+    question: "Les œufs de S. mansoni sont excrétés par :",
+    options: ["Les selles", "L’urine", "La bile", "Le sang uniquement"],
+    correctAnswer: 0,
+    explanation: "S. mansoni pond dans les veines mésentériques et les œufs sont éliminés par les selles."
+  },
+  {
+    id: "schisto_morph_13",
+    axis: "lifecycle",
+    question: "La maturation sexuelle se fait dans :",
+    options: ["Veines cibles de l’hôte définitif", "Le foie uniquement", "La peau", "L’escargot uniquement"],
+    correctAnswer: 0,
+    explanation: "Les adultes mâles et femelles se développent et s’accouplent dans les veines du système veineux cible (mésentériques ou vésicales)."
+  },
+  {
+    id: "schisto_morph_14",
+    axis: "lifecycle",
+    question: "La différenciation mâle/femelle se produit :",
+    options: ["Pendant le développement dans l’hôte définitif", "Dans l’escargot", "Dès la ponte de l’œuf", "Après la mort de l’hôte"],
+    correctAnswer: 0,
+    explanation: "Le dimorphisme sexuel devient visible après maturation dans les veines humaines ou animales."
+  },
+  {
+    id: "schisto_morph_15",
+    axis: "morphology",
+    question: "La longueur adulte de S. haematobium est :",
+    options: ["10 à 20 mm pour le mâle, 20 à 30 mm pour la femelle", "1 mm pour les deux sexes", "5 cm pour les deux sexes", "10 µm uniquement"],
+    correctAnswer: 0,
+    explanation: "Le mâle est plus court que la femelle, qui s’insère dans le sillon gynécophore pour la reproduction."
+  },
+  {
+    id: "schisto_morph_16",
+    axis: "morphology",
+    question: "La longueur adulte de S. mansoni est :",
+    options: ["10 à 15 mm pour le mâle, 20 à 25 mm pour la femelle", "1 mm pour les deux sexes", "50 cm pour les deux sexes", "10 µm uniquement"],
+    correctAnswer: 0,
+    explanation: "Le mâle est trapu, la femelle plus fine et allongée; le dimorphisme sexuel est prononcé."
+  },
+  {
+    id: "schisto_morph_17",
+    axis: "lifecycle",
+    question: "Les furcocercaires sont capables de :",
+    options: ["Nager activement et pénétrer la peau humaine", "Se développer directement en œufs dans le sol", "Se transformer en adultes dans les escargots", "Ne pas infecter l’homme"],
+    correctAnswer: 0,
+    explanation: "Les furcocercaires sont la forme infestante qui traverse activement la peau pour infecter l’homme."
+  },
+  {
+    id: "schisto_morph_18",
+    axis: "lifecycle",
+    question: "Les œufs doivent atteindre l’eau pour :",
+    options: ["Éclore et libérer le miracidium infectant l’escargot", "Mûrir directement dans le sang", "Se transformer en adultes dans l’homme", "Être expulsés par la peau"],
+    correctAnswer: 0,
+    explanation: "Les œufs excrétés dans l’eau sont indispensables pour que le miracidium émerge et trouve un hôte intermédiaire."
+  },
+  {
+    id: "schisto_morph_19",
+    axis: "lifecycle",
+    question: "Le développement dans l’escargot comprend :",
+    options: ["Sporocystes et production de furcocercaires", "Formation directe d’adultes", "Libération d’œufs infectieux", "Développement en kyste pulmonaire"],
+    correctAnswer: 0,
+    explanation: "Le miracidium se transforme en sporocystes dans l’escargot puis produit les furcocercaires capables de infecter l’homme."
+  },
+  {
+    id: "schisto_morph_20",
+    axis: "lifecycle",
+    question: "Les furcocercaires meurent si :",
+    options: ["Elles ne trouvent pas de peau humaine dans un temps limité", "Elles restent dans l’eau indéfiniment", "Elles infectent l’escargot", "Elles sont ingérées par le chien"],
+    correctAnswer: 0,
+    explanation: "Les furcocercaires ont une courte durée de vie libre et doivent pénétrer activement la peau d’un hôte définitif pour survivre."
+  },
+  {
+    id: "schisto_morph_21",
+    axis: "lifecycle",
+    question: "Après pénétration, les schistosomes migrent :",
+    options: ["Dans la circulation veineuse portale ou vésicale pour maturité et ponte", "Vers le foie uniquement", "Rester sous la peau", "Se transformer en œufs dans la vessie immédiatement"],
+    correctAnswer: 0,
+    explanation: "La migration se fait via la circulation pour atteindre les veines spécifiques où les adultes se reproduisent."
+  },
+  {
+    id: "schisto_morph_22",
+    axis: "lifecycle",
+    question: "Le sillon gynécophore du mâle sert à :",
+    options: ["Abriter la femelle pour la reproduction et la ponte des œufs", "Transporter les œufs vers l’urine", "Héberger les furcocercaires", "Fabriquer la membrane érectile"],
+    correctAnswer: 0,
+    explanation: "Le mâle possède un sillon dorsal qui loge la femelle adulte et facilite la ponte des œufs dans la circulation veineuse."
+  },
+  {
+    id: "schisto_morph_23",
+    axis: "morphology",
+    question: "Le sexe des schistosomes peut être identifié par :",
+    options: ["Morphologie externe et présence du sillon gynécophore", "Taille des œufs", "Position de l’éperon de l’œuf", "Aspect du miracidium uniquement"],
+    correctAnswer: 0,
+    explanation: "Le mâle est trapu avec sillon gynécophore, la femelle est plus fine et logée dans ce sillon."
+  },
+  {
+    id: "schisto_morph_24",
+    axis: "lifecycle",
+    question: "La transmission humaine nécessite :",
+    options: ["Contact avec eau douce contenant furcocercaires", "Ingestion de viande de porc", "Morsure de moustique", "Contact avec sang de chien"],
+    correctAnswer: 0,
+    explanation: "Les furcocercaires sont libérées par les escargots dans l’eau douce et pénètrent la peau humaine lors de baignade ou travail dans l’eau."
+  },
+  {
+    id: "schisto_morph_25",
+    axis: "morphology",
+    question: "S. haematobium se localise préférentiellement dans :",
+    options: ["Veines vésicales et voies urinaires", "Veines mésentériques et intestin", "Poumons", "Foie uniquement"],
+    correctAnswer: 0,
+    explanation: "S. haematobium colonise les veines de la vessie et l’urètre, provoquant hématurie et lésions urinaires."
+  },
+  {
+    id: "schisto_morph_26",
+    axis: "morphology",
+    question: "S. mansoni se localise principalement dans :",
+    options: ["Veines mésentériques du côlon", "Vessie", "Poumons", "Peau"],
+    correctAnswer: 0,
+    explanation: "S. mansoni se fixe dans les veines mésentériques et pond des œufs qui passent dans les selles."
+  },
+  {
+    id: "schisto_morph_27",
+    axis: "lifecycle",
+    question: "La ponte des œufs se fait :",
+    options: ["Après maturation sexuelle dans l’hôte définitif", "Dans l’escargot", "Dans l’eau uniquement", "Pendant migration transcutanée"],
+    correctAnswer: 0,
+    explanation: "Les œufs sont pondus par la femelle adulte dans les veines après maturation, puis excrétés."
+  },
+  {
+    id: "schisto_morph_28",
+    axis: "lifecycle",
+    question: "Le cycle complet comprend :",
+    options: ["Œuf → miracidium → escargot → furcocercaire → hôte humain → adulte", "Œuf → adulte directement dans eau", "Miracidium → adulte → œuf dans sol", "Adultes libres dans eau et sol"],
+    correctAnswer: 0,
+    explanation: "Le cycle comprend une phase dans l’escargot (hôte intermédiaire) et maturation dans l’homme (hôte définitif)."
+  },
+  {
+    id: "schisto_morph_29",
+    axis: "lifecycle",
+    question: "Les furcocercaires survivent généralement :",
+    options: ["24 à 48 heures dans l’eau douce", "Une semaine dans le sol", "Indéfiniment dans l’eau salée", "Seulement dans le foie humain"],
+    correctAnswer: 0,
+    explanation: "Ces larves libres ont une courte durée de vie et doivent pénétrer un hôte dans les 1–2 jours."
+  },
+  {
+    id: "schisto_morph_30",
+    axis: "morphology",
+    question: "La présence d’éperon terminal ou latéral est utilisée pour :",
+    options: ["Identifier l’espèce de schistosome", "Mesurer la charge parasitaire", "Évaluer la gravité clinique", "Choisir le traitement médicamenteux"],
+    correctAnswer: 0,
+    explanation: "La position de l’éperon (terminal pour haematobium, latéral pour mansoni) permet l’identification microscopique de l’espèce."
+  }
+];
+export const schistosomiasisClinicalQuestions = [
+  // =========================
+  // SCHISTOSOMIASE / BILHARZIOSE - Clinique (30 QCM)
+  // =========================
+  {
+    id: "schisto_clin_1",
+    axis: "clinical",
+    question: "La dermatite du nageur correspond à :",
+    options: ["Réaction cutanée locale lors de pénétration des furcocercaires", "Éruption généralisée après ingestion d’œufs", "Urticaire due à des œufs dans l’urine", "Éruption uniquement chez S. mansoni"],
+    correctAnswer: 0,
+    explanation: "La dermatite du nageur est une réaction inflammatoire locale à l’entrée des larves dans la peau."
+  },
+  {
+    id: "schisto_clin_2",
+    axis: "clinical",
+    question: "La fièvre de Katayama se manifeste par :",
+    options: ["Fièvre, myalgies et diarrhée dans les semaines suivant l’infection", "Hématurie terminale", "Varices œsophagiennes", "Éruption cutanée chronique"],
+    correctAnswer: 0,
+    explanation: "Elle correspond à une réaction immunitaire systémique aux schistosomes adultes et aux œufs récemment pondus."
+  },
+  {
+    id: "schisto_clin_3",
+    axis: "clinical",
+    question: "L’hématurie terminale est typique de :",
+    options: ["S. haematobium", "S. mansoni", "S. japonicum", "S. intercalatum"],
+    correctAnswer: 0,
+    explanation: "L’hématurie terminale (urines rouges en fin de miction) est caractéristique de la bilharziose urinaire due à S. haematobium."
+  },
+  {
+    id: "schisto_clin_4",
+    axis: "clinical",
+    question: "Les calcifications vésicales observées à la radiographie sont dues à :",
+    options: ["Dépôts de sels calciques autour des œufs morts", "Infection bactérienne secondaire", "Tumeurs primaires de la vessie", "Hyperparathyroïdie"],
+    correctAnswer: 0,
+    explanation: "Les œufs morts de S. haematobium peuvent se calcifier dans la paroi vésicale, visibles sur les images radiologiques."
+  },
+  {
+    id: "schisto_clin_5",
+    axis: "clinical",
+    question: "Le cancer épidermoïde vésical peut être une complication de :",
+    options: ["Bilharziose chronique urinaire", "Fièvre de Katayama", "Dermatite du nageur", "S. mansoni intestinal uniquement"],
+    correctAnswer: 0,
+    explanation: "L’inflammation chronique induite par S. haematobium favorise le développement de carcinome épidermoïde vésical."
+  },
+  {
+    id: "schisto_clin_6",
+    axis: "clinical",
+    question: "La splénomégalie est surtout observée dans :",
+    options: ["Bilharziose intestinale chronique (S. mansoni)", "Bilharziose urinaire aiguë", "Dermatite du nageur", "Fièvre de Katayama"],
+    correctAnswer: 0,
+    explanation: "L’obstruction du flux portal par des granulomes autour des œufs provoque hypertension portale et splénomégalie."
+  },
+  {
+    id: "schisto_clin_7",
+    axis: "clinical",
+    question: "Les varices œsophagiennes se développent en raison de :",
+    options: ["Hypertension portale secondaire aux œufs dans le foie", "Infection vésicale", "Éruption cutanée généralisée", "Ulcérations intestinales"],
+    correctAnswer: 0,
+    explanation: "Les granulomes autour des œufs dans les veines mésentériques entraînent obstruction et hypertension portale, causant varices œsophagiennes."
+  },
+  {
+    id: "schisto_clin_8",
+    axis: "clinical",
+    question: "La bilharziose urinaire chronique peut provoquer :",
+    options: ["Dysurie, hématurie et complications tumorales", "Fièvre de Katayama", "Diarrhée aiguë", "Éruption cutanée transitoire"],
+    correctAnswer: 0,
+    explanation: "Les œufs piégés dans la vessie provoquent inflammation, hématurie, fibrose et risque de cancer."
+  },
+  {
+    id: "schisto_clin_9",
+    axis: "clinical",
+    question: "La bilharziose intestinale se traduit souvent par :",
+    options: ["Douleurs abdominales, diarrhée et sang dans les selles", "Hématurie terminale", "Urines troubles", "Vomissements biliaires"],
+    correctAnswer: 0,
+    explanation: "Les œufs piégés dans les veines mésentériques provoquent inflammation intestinale, saignement et troubles digestifs."
+  },
+  {
+    id: "schisto_clin_10",
+    axis: "clinical",
+    question: "La phase initiale de la bilharziose correspond à :",
+    options: ["Dermatite du nageur et fièvre de Katayama", "Calcifications vésicales", "Varices œsophagiennes", "Cancer épidermoïde"],
+    correctAnswer: 0,
+    explanation: "La phase initiale survient quelques jours après pénétration et se manifeste par réaction cutanée et syndrome fébrile."
+  },
+  {
+    id: "schisto_clin_11",
+    axis: "clinical",
+    question: "La fièvre de Katayama est associée à :",
+    options: ["Éosinophilie marquée et manifestations hépato-spléniques", "Hématurie isolée", "Ulcération vésicale", "Calcifications biliaires"],
+    correctAnswer: 0,
+    explanation: "Elle reflète la réaction immunitaire systémique aux œufs et adultes récemment établis, souvent avec hyperéosinophilie."
+  },
+  {
+    id: "schisto_clin_12",
+    axis: "clinical",
+    question: "La bilharziose urinaire chronique entraîne :",
+    options: ["Fibrose de la paroi vésicale et rétrécissement urétral", "Varices intestinales", "Splénomégalie uniquement", "Dermatite chronique"],
+    correctAnswer: 0,
+    explanation: "L’inflammation chronique autour des œufs conduit à fibrose et complications obstructives urinaires."
+  },
+  {
+    id: "schisto_clin_13",
+    axis: "clinical",
+    question: "L’hypertension portale dans la bilharziose intestinale est due à :",
+    options: ["Granulomes autour des œufs dans les veines portales", "Hématurie répétée", "Infection bactérienne secondaire", "Dermatite du nageur sévère"],
+    correctAnswer: 0,
+    explanation: "Les œufs bloqués dans les veines mésentériques induisent granulomes et obstruction du flux portal, causant hypertension."
+  },
+  {
+    id: "schisto_clin_14",
+    axis: "clinical",
+    question: "Les hémorragies digestives liées à la bilharziose intestinale sont principalement :",
+    options: ["Due à des varices œsophagiennes et rectales", "Hématurie terminale", "Calcifications vésicales", "Éruption cutanée sévère"],
+    correctAnswer: 0,
+    explanation: "La dilatation des veines œsophagiennes ou rectales due à hypertension portale peut provoquer des hémorragies digestives."
+  },
+  {
+    id: "schisto_clin_15",
+    axis: "clinical",
+    question: "La calcification vésicale se voit sur :",
+    options: ["Radiographie abdominale standard", "Échographie pulmonaire", "IRM cérébrale", "Test sérologique uniquement"],
+    correctAnswer: 0,
+    explanation: "Les dépôts calciques autour des œufs morts de S. haematobium sont visibles sur radiographies abdominales."
+  },
+  {
+    id: "schisto_clin_16",
+    axis: "clinical",
+    question: "Les manifestations hépato-spléniques dans S. mansoni comprennent :",
+    options: ["Hépatomégalie, splénomégalie, hypertension portale", "Hématurie terminale", "Ulcérations vésicales", "Dermatite du nageur uniquement"],
+    correctAnswer: 0,
+    explanation: "Les granulomes et fibrose autour des œufs dans le foie provoquent hypertrophie du foie et de la rate et hypertension portale."
+  },
+  {
+    id: "schisto_clin_17",
+    axis: "clinical",
+    question: "La bilharziose urinaire peut évoluer vers :",
+    options: ["Cancer épidermoïde vésical", "Cancer colique", "Cirrhose biliaire", "Érythème chronique"],
+    correctAnswer: 0,
+    explanation: "L’inflammation chronique induite par S. haematobium favorise le développement de carcinome épidermoïde de la vessie."
+  },
+  {
+    id: "schisto_clin_18",
+    axis: "clinical",
+    question: "Les varices œsophagiennes apparaissent :",
+    options: ["Dans la bilharziose intestinale chronique due à S. mansoni", "Dans la bilharziose urinaire aiguë", "Après dermatite du nageur", "Après fièvre de Katayama uniquement"],
+    correctAnswer: 0,
+    explanation: "L’obstruction veineuse portale par granulomes autour des œufs entraîne varices œsophagiennes."
+  },
+  {
+    id: "schisto_clin_19",
+    axis: "clinical",
+    question: "La phase aiguë peut inclure :",
+    options: ["Fièvre, éosinophilie et myalgies", "Hématurie terminale uniquement", "Calcifications vésicales", "Cancer vésical"],
+    correctAnswer: 0,
+    explanation: "La phase aiguë ou syndrome de Katayama se manifeste par signes généraux et immunologiques peu après infection."
+  },
+  {
+    id: "schisto_clin_20",
+    axis: "clinical",
+    question: "Les symptômes urinaires incluent :",
+    options: ["Hématurie, dysurie et pollakiurie", "Toux et expectoration", "Diarrhée sanglante", "Myalgies diffuses uniquement"],
+    correctAnswer: 0,
+    explanation: "Les œufs dans les veines vésicales provoquent inflammation et saignement, entraînant ces symptômes."
+  },
+  {
+    id: "schisto_clin_21",
+    axis: "clinical",
+    question: "La phase chronique intestinale peut inclure :",
+    options: ["Diarrhée chronique, douleurs abdominales, anémie", "Hématurie terminale", "Fièvre de Katayama", "Éruption cutanée transitoire"],
+    correctAnswer: 0,
+    explanation: "Les œufs piégés dans le système mésentérique provoquent inflammation chronique et symptômes digestifs prolongés."
+  },
+  {
+    id: "schisto_clin_22",
+    axis: "clinical",
+    question: "La calcification vésicale est souvent :",
+    options: ["Asymptomatique mais visible radiologiquement", "Toujours douloureuse", "Toujours hémorragique", "Associée à fièvre élevée"],
+    correctAnswer: 0,
+    explanation: "Les calcifications peuvent ne pas causer de symptômes mais sont détectables à l’imagerie."
+  },
+  {
+    id: "schisto_clin_23",
+    axis: "clinical",
+    question: "Les complications sévères de S. mansoni incluent :",
+    options: ["Hypertension portale et varices œsophagiennes", "Hématurie terminale", "Cancer de la vessie", "Dermatite du nageur persistante"],
+    correctAnswer: 0,
+    explanation: "Les œufs bloqués dans les veines mésentériques causent fibrose hépatique et hypertension portale, pouvant provoquer varices et hémorragies."
+  },
+  {
+    id: "schisto_clin_24",
+    axis: "clinical",
+    question: "Le risque principal de fièvre de Katayama est :",
+    options: ["Syndrome inflammatoire intense et éosinophilie élevée", "Calcifications vésicales", "Hématurie terminale uniquement", "Varices œsophagiennes"],
+    correctAnswer: 0,
+    explanation: "Le syndrome aigu reflète la réponse immunitaire à la ponte des œufs et à la migration des schistosomes."
+  },
+  {
+    id: "schisto_clin_25",
+    axis: "clinical",
+    question: "Les manifestations cutanées initiales apparaissent :",
+    options: ["Quelques heures à jours après pénétration des larves", "Après plusieurs années", "Uniquement après exposition alimentaire", "Uniquement avec S. mansoni adulte"],
+    correctAnswer: 0,
+    explanation: "Les furcocercaires provoquent une réaction cutanée rapide à leur entrée dans la peau."
+  },
+  {
+    id: "schisto_clin_26",
+    axis: "clinical",
+    question: "La fibrose hépatique dans S. mansoni peut entraîner :",
+    options: ["Splénomégalie et hypertension portale", "Hématurie terminale", "Calcifications vésicales", "Dermatite chronique"],
+    correctAnswer: 0,
+    explanation: "La fibrose des voies portales due aux œufs bloque le flux sanguin, provoquant hypertrophie splénique et complications."
+  },
+  {
+    id: "schisto_clin_27",
+    axis: "clinical",
+    question: "Les complications urinaires chroniques incluent :",
+    options: ["Rétrécissements urétraux et cystites chroniques", "Varices œsophagiennes", "Hypertension portale", "Splénomégalie uniquement"],
+    correctAnswer: 0,
+    explanation: "L’inflammation chronique autour des œufs dans la vessie provoque fibrose, rétrécissements et risque d’infections secondaires."
+  },
+  {
+    id: "schisto_clin_28",
+    axis: "clinical",
+    question: "La phase aiguë peut inclure :",
+    options: ["Myalgies, fièvre, toux et éosinophilie", "Hématurie terminale uniquement", "Calcifications vésicales", "Varices œsophagiennes uniquement"],
+    correctAnswer: 0,
+    explanation: "La réaction systémique initiale aux schistosomes adultes et œufs inclut symptômes généraux et signes respiratoires parfois."
+  },
+  {
+    id: "schisto_clin_29",
+    axis: "clinical",
+    question: "Les symptômes urinaires sont aggravés par :",
+    options: ["Chronicité de l’infection et dépôt d’œufs dans la paroi vésicale", "Fièvre de Katayama", "Dermatite du nageur", "Hypertension portale uniquement"],
+    correctAnswer: 0,
+    explanation: "L’accumulation d’œufs dans la paroi vésicale au fil du temps aggrave hématurie et dysurie."
+  },
+  {
+    id: "schisto_clin_30",
+    axis: "clinical",
+    question: "Les signes intestinaux graves de bilharziose chronique incluent :",
+    options: ["Hémorragies digestives, varices, splénomégalie", "Hématurie terminale uniquement", "Dermatite transitoire", "Fièvre de Katayama"],
+    correctAnswer: 0,
+    explanation: "L’obstruction veineuse par granulomes autour des œufs dans l’intestin provoque hypertension portale, varices et saignements digestifs."
+  }
+];
+export const schistosomiasisDiagTreatQuestions = [
+  // =========================
+  // SCHISTOSOMIASE / BILHARZIOSE - Diagnostic & Traitement (25 QCM)
+  // =========================
+  {
+    id: "schisto_diag_1",
+    axis: "diagnosis",
+    question: "Le diagnostic urinaire de S. haematobium repose sur :",
+    options: ["Filtration des urines pour recherche d’œufs", "Examen coprologique standard", "Sérologie ELISA uniquement", "Imagerie abdominale"],
+    correctAnswer: 0,
+    explanation: "La filtration des urines permet de concentrer les œufs de S. haematobium, souvent associés à hématurie microscopique."
+  },
+  {
+    id: "schisto_diag_2",
+    axis: "diagnosis",
+    question: "L’examen de référence pour S. mansoni est :",
+    options: ["Kato-Katz sur selles", "Filtration des urines", "Sérologie ELISA uniquement", "Radiographie abdominale"],
+    correctAnswer: 0,
+    explanation: "Le Kato-Katz est une technique quantitative standard pour détecter et compter les œufs de S. mansoni dans les selles."
+  },
+  {
+    id: "schisto_diag_3",
+    axis: "diagnosis",
+    question: "L’hématurie microscopique est :",
+    options: ["Signe fréquent de bilharziose urinaire", "Toujours visible à l’œil nu", "Pathognomonique de S. mansoni", "Rarement liée aux schistosomes"],
+    correctAnswer: 0,
+    explanation: "La présence d’œufs dans la vessie provoque souvent une hématurie microscopique détectable par tests urinaires."
+  },
+  {
+    id: "schisto_diag_4",
+    axis: "diagnosis",
+    question: "La technique Kato-Katz permet :",
+    options: ["Quantification des œufs dans les selles", "Filtration des urines", "Détection sérologique des anticorps", "Observation des adultes dans la vessie"],
+    correctAnswer: 0,
+    explanation: "Le Kato-Katz utilise un template de selles pour compter le nombre d’œufs, utile pour diagnostic et suivi."
+  },
+  {
+    id: "schisto_diag_5",
+    axis: "diagnosis",
+    question: "Pour S. haematobium, la collecte des urines est optimale :",
+    options: ["Entre 10h et 14h, en fin de miction", "Au réveil uniquement", "Pendant la nuit", "N’importe quel moment sans précision"],
+    correctAnswer: 0,
+    explanation: "Les œufs sont plus nombreux dans les urines terminales et en milieu de journée, ce qui augmente la sensibilité de la filtration."
+  },
+  {
+    id: "schisto_diag_6",
+    axis: "diagnosis",
+    question: "Pour augmenter la sensibilité du Kato-Katz, on peut :",
+    options: ["Répéter l’examen sur plusieurs jours consécutifs", "Faire un seul test urinaire", "Se baser sur les symptômes uniquement", "Utiliser radiographie abdominale"],
+    correctAnswer: 0,
+    explanation: "La variabilité de ponte des œufs nécessite plusieurs échantillons pour éviter les faux négatifs."
+  },
+  {
+    id: "schisto_diag_7",
+    axis: "diagnosis",
+    question: "La sérologie ELISA pour schistosomes est utile pour :",
+    options: ["Détecter une infection récente ou passée, surtout en zone faible prévalence", "Quantifier le nombre d’œufs dans les selles", "Filtrer les urines", "Voir les kystes hépatiques"],
+    correctAnswer: 0,
+    explanation: "La sérologie permet d’identifier l’exposition, mais ne remplace pas la détection directe des œufs pour confirmation."
+  },
+  {
+    id: "schisto_diag_8",
+    axis: "diagnosis",
+    question: "Un test de bandelette urinaire peut détecter :",
+    options: ["Hématurie microscopique liée à S. haematobium", "Œufs dans les selles", "Anticorps anti-S. mansoni", "Adultes dans la vessie"],
+    correctAnswer: 0,
+    explanation: "Les bandelettes urinaires détectent la présence de sang, souvent associé à œufs de S. haematobium."
+  },
+  {
+    id: "schisto_diag_9",
+    axis: "diagnosis",
+    question: "Le diagnostic parasitologique de la bilharziose repose sur :",
+    options: ["Identification des œufs dans selles ou urines selon l’espèce", "Imagerie abdominale", "Fièvre et myalgies uniquement", "Sérologie ELISA obligatoire"],
+    correctAnswer: 0,
+    explanation: "La détection directe des œufs reste la méthode de référence pour confirmer l’infection."
+  },
+  {
+    id: "schisto_diag_10",
+    axis: "diagnosis",
+    question: "L’imagerie n’est utile que pour :",
+    options: ["Évaluer complications et gravité (fibrose, calcifications)", "Diagnostiquer les œufs", "Détecter fièvre de Katayama", "Filtrer les urines"],
+    correctAnswer: 0,
+    explanation: "L’imagerie ne détecte pas les œufs mais permet de visualiser lésions hépatiques, spléniques ou vésicales."
+  },
+  {
+    id: "schisto_treat_1",
+    axis: "treatment",
+    question: "Le traitement de choix de la bilharziose est :",
+    options: ["Praziquantel en dose unique de 40 mg/kg", "Albendazole", "Mebendazole", "Ivermectine"],
+    correctAnswer: 0,
+    explanation: "Le praziquantel est actif contre tous les stades adultes et recommandé en dose unique de 40 mg/kg."
+  },
+  {
+    id: "schisto_treat_2",
+    axis: "treatment",
+    question: "La dose unique de praziquantel doit être :",
+    options: ["40 mg/kg", "10 mg/kg", "100 mg/kg", "20 mg/kg"],
+    correctAnswer: 0,
+    explanation: "La dose standard efficace pour tuer les schistosomes adultes est 40 mg/kg en une seule prise."
+  },
+  {
+    id: "schisto_treat_3",
+    axis: "treatment",
+    question: "Le praziquantel agit en :",
+    options: ["Augmentant la perméabilité calcique des vers adultes, provoquant paralysie et mort", "Inhibant la synthèse de la chitine", "Bloquant le transport de glucose dans les œufs", "Neutralisant les anticorps"],
+    correctAnswer: 0,
+    explanation: "Le praziquantel provoque une contraction musculaire et détachement des vers adultes par perturbation calcique."
+  },
+  {
+    id: "schisto_treat_4",
+    axis: "treatment",
+    question: "Le traitement peut être répété si :",
+    options: ["Réinfection ou forte charge parasitaire", "Présence d’hématurie uniquement", "Dermatite du nageur", "Fièvre de Katayama disparaît seule"],
+    correctAnswer: 0,
+    explanation: "En zones endémiques, la réinfection est fréquente et une seconde dose peut être nécessaire."
+  },
+  {
+    id: "schisto_treat_5",
+    axis: "treatment",
+    question: "Les effets secondaires du praziquantel sont :",
+    options: ["Douleurs abdominales, céphalées, nausées", "Aucune réaction", "Hémorragie sévère", "Urticaire uniquement"],
+    correctAnswer: 0,
+    explanation: "Les effets sont transitoires et liés à la mort des vers adultes et à la réaction immunitaire."
+  },
+  {
+    id: "schisto_treat_6",
+    axis: "treatment",
+    question: "Le suivi post-traitement repose sur :",
+    options: ["Contrôle parasitologique des œufs dans urines ou selles après 4 à 6 semaines", "Sérologie immédiate", "Radiographie seule", "Évaluation cutanée uniquement"],
+    correctAnswer: 0,
+    explanation: "Les œufs peuvent encore être excrétés temporairement; le contrôle parasitologique permet de confirmer l’efficacité."
+  },
+  {
+    id: "schisto_treat_7",
+    axis: "treatment",
+    question: "En cas de bilharziose urinaire chronique, le traitement doit :",
+    options: ["Éradiquer les adultes et prévenir les complications urinaires", "Ne pas être administré", "Se limiter à antihistaminiques", "Se limiter à antibiotiques"],
+    correctAnswer: 0,
+    explanation: "Praziquantel cible les vers adultes et aide à réduire la progression vers fibrose et cancer vésical."
+  },
+  {
+    id: "schisto_diag_11",
+    axis: "diagnosis",
+    question: "La sensibilité du Kato-Katz augmente si :",
+    options: ["On effectue plusieurs lames à partir de selles différentes", "On ne fait qu’une seule lame", "On examine uniquement les urines", "On attend 6 mois après infection"],
+    correctAnswer: 0,
+    explanation: "La ponte des œufs varie d’un jour à l’autre; plusieurs lames augmentent la détection."
+  },
+  {
+    id: "schisto_diag_12",
+    axis: "diagnosis",
+    question: "Le test de bandelette urinaire est utile pour :",
+    options: ["Détection rapide d’hématurie liée à S. haematobium", "Compter les œufs", "Évaluer la fibrose hépatique", "Sérologie anticorps"],
+    correctAnswer: 0,
+    explanation: "C’est un test rapide pour détecter la présence de sang, indicateur indirect d’infection urinaire."
+  },
+  {
+    id: "schisto_treat_8",
+    axis: "treatment",
+    question: "Le traitement de S. mansoni avec praziquantel est efficace contre :",
+    options: ["Les adultes dans le système veineux mésentérique", "Les œufs dans l’eau", "Les miracidiums", "Les furcocercaires dans l’escargot"],
+    correctAnswer: 0,
+    explanation: "Le praziquantel tue les vers adultes, interrompant la ponte d’œufs dans les veines mésentériques."
+  },
+  {
+    id: "schisto_treat_9",
+    axis: "treatment",
+    question: "La prévention repose sur :",
+    options: ["Éviter contact avec eau douce infestée", "Vaccination annuelle", "Filtration de l’air", "Ingestion de praziquantel préventif"],
+    correctAnswer: 0,
+    explanation: "La prévention repose sur la limitation de l’exposition aux eaux infestées contenant les furcocercaires."
+  },
+  {
+    id: "schisto_treat_10",
+    axis: "treatment",
+    question: "Le traitement de masse dans les zones endémiques utilise :",
+    options: ["Praziquantel administré à toute la population à risque", "Albendazole seul", "Ivermectine seule", "Antibiotiques"],
+    correctAnswer: 0,
+    explanation: "La stratégie de santé publique consiste à traiter toutes les personnes exposées pour réduire la transmission."
+  },
+  {
+    id: "schisto_treat_11",
+    axis: "treatment",
+    question: "Le praziquantel est généralement administré :",
+    options: ["Oral, dose unique", "Intraveineux", "Topique", "Inhalé"],
+    correctAnswer: 0,
+    explanation: "Le praziquantel se prend par voie orale et agit sur les vers adultes dans le système veineux."
+  },
+  {
+    id: "schisto_diag_13",
+    axis: "diagnosis",
+    question: "Les œufs dans l’urine peuvent être visualisés par :",
+    options: ["Microscopie après filtration", "Radiographie", "Échographie", "IRM"],
+    correctAnswer: 0,
+    explanation: "La filtration concentre les œufs dans un filtre, permettant leur observation microscopique."
+  },
+  {
+    id: "schisto_diag_14",
+    axis: "diagnosis",
+    question: "Les examens parasitologiques sont indispensables car :",
+    options: ["La sérologie seule ne permet pas de confirmer l’infection active", "Les symptômes sont toujours suffisants", "L’imagerie détecte les œufs", "L’urine bandelette est toujours pathognomonique"],
+    correctAnswer: 0,
+    explanation: "La sérologie peut détecter exposition passée, mais la confirmation nécessite la détection des œufs."
+  },
+  {
+    id: "schisto_treat_12",
+    axis: "treatment",
+    question: "Le praziquantel est efficace sur :",
+    options: ["Tous les stades adultes mais pas les œufs", "Les œufs uniquement", "Les miracidiums uniquement", "Les furcocercaires dans l’eau"],
+    correctAnswer: 0,
+    explanation: "Le praziquantel tue les vers adultes ; les œufs déjà pondus ne sont pas affectés."
   }
 ];

@@ -1,691 +1,655 @@
-export const questions = [
+export const filarioMorphCycleQuestions = [
+  // =========================
+  // MORPHOLOGIE & CYCLE DE VIE FILARIOSES (30 questions)
+  // =========================
   {
-    "id": "h_clin_11",
-    "question": "Quel signe clinique est évocateur de la Loase (Filariose à Loa loa) ?",
-    "options": [
-      "Œdème de Calabar (fugace et migrateur)",
-      "Éléphantiasis du scrotum",
-      "Nodules onchocerquiens",
-      "Cécité des rivières"
-    ],
-    "correct": 0,
-    "explanation": "L'œdème de Calabar est un angio-œdème allergique, fugace, migrateur et prurigineux, typique de la Loase, apparaissant souvent aux membres supérieurs ou au visage.",
-    "axis": "clinical"
+    id: "fil_morph_1",
+    axis: "morphology",
+    question: "Le vecteur principal de Wuchereria bancrofti est :",
+    options: ["Moustique (Culex, Anopheles, Aedes)", "Chrysops", "Simulie", "Tique"],
+    correctAnswer: 0,
+    explanation: "Wuchereria bancrofti est transmis par des moustiques, qui inoculent les larves filariformes lors de la piqûre."
   },
   {
-    "id": "h_clin_12",
-    "question": "Quelle est la particularité du prélèvement sanguin pour rechercher les microfilaires de Wuchereria bancrofti ?",
-    "options": [
-      "Prélèvement nocturne (périodicité nocturne)",
-      "Prélèvement diurne (périodicité diurne)",
-      "Prélèvement à midi pile",
-      "Indifférent (apériodique)"
-    ],
-    "correct": 0,
-    "explanation": "Les microfilaires de Wuchereria bancrofti présentent une périodicité nocturne stricte dans le sang périphérique. Le prélèvement doit être fait entre 22h et 2h du matin.",
-    "axis": "clinical"
+    id: "fil_morph_2",
+    axis: "morphology",
+    question: "Le vecteur de Loa loa est :",
+    options: ["Mouche Chrysops (tabanide)", "Moustique", "Simulie", "Tique de forêt"],
+    correctAnswer: 0,
+    explanation: "Loa loa est transmis par les mouches Chrysops qui injectent les larves lors de piqûres diurnes."
   },
   {
-    "id": "h_clin_13",
-    "question": "Quel est le signe majeur de la phase d'état de la Filariose Lymphatique ?",
-    "options": [
-      "Lymphœdème chronique (Éléphantiasis)",
-      "Hématurie",
-      "Diarrhée chronique",
-      "Prurit anal"
-    ],
-    "correct": 0,
-    "explanation": "L'obstruction des vaisseaux lymphatiques par les vers adultes entraîne un lymphœdème chronique qui peut évoluer vers un éléphantiasis (membres inférieurs, scrotum, sein).",
-    "axis": "clinical"
+    id: "fil_morph_3",
+    axis: "morphology",
+    question: "Le vecteur de Onchocerca volvulus est :",
+    options: ["Mouche noire Simulie", "Moustique", "Chrysops", "Puces"],
+    correctAnswer: 0,
+    explanation: "Onchocerca volvulus est transmis par les mouches noires (Simulies) qui injectent les larves filariformes dans la peau."
   },
   {
-    "id": "h_clin_14",
-    "question": "La cécité est une complication grave de quelle helminthiose ?",
-    "options": [
-      "Onchocercose (Onchocerca volvulus)",
-      "Loase",
-      "Dracunculose",
-      "Filariose lymphatique"
-    ],
-    "correct": 0,
-    "explanation": "L'Onchocercose est appelée 'Cécité des rivières'. Les microfilaires migrent dans l'œil et provoquent une kératite sclérosante et une choriorétinite menant à la cécité.",
-    "axis": "clinical"
+    id: "fil_morph_4",
+    axis: "morphology",
+    question: "Les microfilaires de Wuchereria et Loa loa sont :",
+    options: ["Entourées d’une gaine", "Sans gaine", "Segmentées", "Cubiques"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires de Wuchereria et Loa sont enveloppées dans une gaine protéique visible au microscope."
   },
   {
-    "id": "h_clin_15",
-    "question": "Le test de Mazzotti (provocation au diéthylcarbamazine) est utilisé avec prudence pour le diagnostic de :",
-    "options": [
-      "L'Onchocercose",
-      "La Bilharziose",
-      "L'Hydatidose",
-      "La Trichinellose"
-    ],
-    "correct": 0,
-    "explanation": "Ce test provoque une réaction allergique cutanée et systémique en tuant brutalement les microfilaires. Il est utilisé quand la recherche de microfilaires dermiques est négative mais la suspicion forte.",
-    "axis": "clinical"
+    id: "fil_morph_5",
+    axis: "morphology",
+    question: "Les microfilaires d’Onchocerca volvulus sont :",
+    options: ["Sans gaine", "Avec gaine", "Segmentées", "Cubiques"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires d’Onchocerca sont dépourvues de gaine et se trouvent dans la peau plutôt que dans le sang."
   },
   {
-    "id": "h_clin_40",
-    "question": "L'hémoptysie est un signe clinique majeur de quelles parasitoses ?",
-    "options": [
-      "Paragonimose et parfois Bilharziose ou Ascaridiose (Löffler)",
-      "Taeniase et Oxyurose",
-      "Trichocéphalose et Ankylostomose",
-      "Dracunculose et Filariose"
-    ],
-    "correct": 0,
-    "explanation": "La Paragonimose (douve du poumon) est la cause classique. Le passage transpulmonaire d'Ascaris (Löffler) peut donner des crachats hémoptoïques, tout comme l'embolie d'œufs de bilharzies.",
-    "axis": "clinical"
+    id: "fil_morph_6",
+    axis: "morphology",
+    question: "La périodicité nocturne est typique de :",
+    options: ["Wuchereria bancrofti", "Loa loa", "Onchocerca volvulus", "Brugia malayi"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires de Wuchereria bancrofti circulent préférentiellement la nuit, synchronisées avec l’activité des moustiques."
   },
   {
-    "id": "h_clin_42",
-    "question": "Le Praziquantel est le médicament de choix pour traiter :",
-    "options": [
-      "Toutes les trématodoses (Bilharzioses, Douves) et cestodoses adultes",
-      "Les nématodoses intestinales",
-      "Les filarioses lymphatiques",
-      "Les protozoaires"
-    ],
-    "correct": 0,
-    "explanation": "Le Praziquantel est actif sur les Trématodes (sauf Fasciola hepatica où le Triclabendazole est préféré) et les Cestodes adultes. Il provoque une paralysie spastique du ver.",
-    "axis": "clinical"
+    id: "fil_morph_7",
+    axis: "morphology",
+    question: "La périodicité diurne est typique de :",
+    options: ["Loa loa", "Wuchereria bancrofti", "Onchocerca volvulus", "Brugia timori"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires de Loa loa circulent principalement le jour, correspondant aux heures d’activité des Chrysops."
   },
   {
-    "id": "h_clin_46",
-    "question": "Le signe de Romana (œdème bi-palpébral unilatéral) est caractéristique de :",
-    "options": [
-      "La Maladie de Chagas (Trypanosomose américaine) - (Note: Protozoaire mais confusion fréquente)",
-      "La Trichinellose",
-      "La Filariose de Bancroft",
-      "La Loase"
-    ],
-    "correct": 0,
-    "explanation": "Bien que ce soit un protozoaire, c'est un diagnostic différentiel important des œdèmes faciaux parasitaires (comme dans la Trichinellose ou la Loase). Dans la Trichinellose, l'œdème est bilatéral.",
-    "axis": "clinical"
+    id: "fil_morph_8",
+    axis: "morphology",
+    question: "La microfilarémie d’Onchocerca est :",
+    options: ["Aperiodique, présente dans la peau", "Nocturne", "Diurne", "Intermittente uniquement la nuit"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires d’Onchocerca sont non périodiques et se localisent dans le tissu cutané, non dans le sang."
   },
   {
-    "id": "h_clin_50",
-    "question": "L'extraction du ver par enroulement progressif sur un bâtonnet est le traitement traditionnel de :",
-    "options": [
-      "La Dracunculose",
-      "La Filariose lymphatique",
-      "L'Onchocercose",
-      "L'Oxyurose"
-    ],
-    "correct": 0,
-    "explanation": "C'est le traitement millénaire du Ver de Guinée (Dracunculus medinensis) lorsqu'il émerge à la peau pour pondre.",
-    "axis": "clinical"
+    id: "fil_morph_9",
+    axis: "morphology",
+    question: "Les adultes de Wuchereria vivent principalement :",
+    options: ["Dans les ganglions lymphatiques et les vaisseaux lymphatiques", "Dans le foie", "Sous la peau", "Dans le sang uniquement"],
+    correctAnswer: 0,
+    explanation: "Les adultes s’installent dans les ganglions et vaisseaux lymphatiques, causant lymphœdème et éléphantiasis."
   },
   {
-    "id": "h_clin_51",
-    "question": "Une hyperéosinophilie > 3 G/L chez un patient revenant d'une zone tropicale sans symptômes digestifs doit faire rechercher en priorité :",
-    "options": [
-      "Une filariose ou une bilharziose en phase d'invasion",
-      "Un paludisme",
-      "Une amibiase",
-      "Une giardiase"
-    ],
-    "correct": 0,
-    "explanation": "Les protozoaires (Paludisme, Amibes, Giardia) ne donnent PAS d'hyperéosinophilie. Une telle valeur signe une helminthiose tissulaire active.",
-    "axis": "clinical"
+    id: "fil_morph_10",
+    axis: "morphology",
+    question: "Les adultes de Loa loa se trouvent :",
+    options: ["Sous la peau et dans le subconjonctif", "Dans le foie", "Dans les ganglions lymphatiques", "Dans le sang uniquement"],
+    correctAnswer: 0,
+    explanation: "Loa loa adulte migre dans le tissu sous-cutané et parfois dans la conjonctive, provoquant œdème et déplacement visible."
   },
   {
-    "id": "h_clin_54",
-    "question": "Quelle parasitose donne des calcifications musculaires visibles à la radio des années après l'infestation ?",
-    "options": [
-      "La Cysticercose et la Dracunculose (ver calcifié)",
-      "La Trichinellose (kystes microscopiques)",
-      "L'Onchocercose",
-      "La Filariose lymphatique"
-    ],
-    "correct": 0,
-    "explanation": "Les cysticerques morts se calcifient et deviennent visibles (grains de riz) dans les muscles. Le ver de Guinée mort se calcifie aussi en un long cordon.",
-    "axis": "clinical"
+    id: "fil_morph_11",
+    axis: "morphology",
+    question: "Les adultes d’Onchocerca se localisent :",
+    options: ["Dans les nodules sous-cutanés", "Dans le foie", "Dans les ganglions lymphatiques", "Dans le sang uniquement"],
+    correctAnswer: 0,
+    explanation: "Les adultes d’Onchocerca forment des nodules sous-cutanés contenant les femelles et mâles, source des microfilaires."
   },
   {
-    "id": "h_clin_60",
-    "question": "La biopsie cutanée exsangue (Snip cutané) est le 'Gold Standard' pour :",
-    "options": [
-      "L'Onchocercose (recherche de microfilaires dermiques)",
-      "La Leishmaniose",
-      "La Dracunculose",
-      "La Loase"
-    ],
-    "correct": 0,
-    "explanation": "On prélève un petit copeau de peau (sans faire saigner) qu'on immerge dans du sérum physiologie : les microfilaires d'Onchocerca sortent et nagent dans le liquide.",
-    "axis": "clinical"
+    id: "fil_morph_12",
+    axis: "morphology",
+    question: "Les microfilaires de Wuchereria bancrofti circulent principalement dans le sang :",
+    options: ["La nuit", "Le jour", "Aperioodiquement dans la peau", "Tout le temps avec régularité absolue"],
+    correctAnswer: 0,
+    explanation: "Cette périodicité nocturne coïncide avec la piqûre des moustiques vecteurs et maximise la transmission."
   },
   {
-    "id": "h_clin_61",
-    "question": "La transmission de la Wuchereria bancrofti se fait par piqûre de :",
-    "options": [
-      "Moustiques (Culex, Anophèle, Aedes)",
-      "Mouches Tsé-tsé",
-      "Simulies",
-      "Chrysops"
-    ],
-    "correct": 0,
-    "explanation": "Ce sont des moustiques (Culicidés) qui transmettent les larves infestantes L3 de la filaire lymphatique.",
-    "axis": "clinical"
+    id: "fil_morph_13",
+    axis: "morphology",
+    question: "La microfilarémie diurne est adaptée à :",
+    options: ["Loa loa et vecteur Chrysops actif le jour", "Wuchereria bancrofti et moustique nocturne", "Onchocerca et Simulie nocturne", "Toutes les filarioses simultanément"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires de Loa loa circulent de jour pour coïncider avec l’activité diurne de Chrysops, permettant la transmission."
   },
   {
-    "id": "h_clin_62",
-    "question": "La transmission de l'Onchocercose se fait par :",
-    "options": [
-      "Simulie (Mouche noire)",
-      "Moustique",
-      "Taon (Chrysops)",
-      "Punaise réduve"
-    ],
-    "correct": 0,
-    "explanation": "La Simulie (Simulium damnosum) est le vecteur. Elle vit près des rivières à courant rapide, d'où le nom de 'Cécité des rivières'.",
-    "axis": "clinical"
+    id: "fil_morph_14",
+    axis: "morphology",
+    question: "La gaine des microfilaires sert principalement à :",
+    options: ["Protection contre les défenses de l’hôte et identification diagnostique", "Nager activement dans le sang", "Transmettre des bactéries", "Stocker des nutriments"],
+    correctAnswer: 0,
+    explanation: "La gaine est une structure membranaire qui protège la larve et facilite l’identification microscopique."
   },
   {
-    "id": "h_clin_63",
-    "question": "La Loase est transmise par :",
-    "options": [
-      "Chrysops (Mouche rouge ou Taon)",
-      "Simulie",
-      "Moustique",
-      "Glossine"
-    ],
-    "correct": 0,
-    "explanation": "Le Chrysops est un taon diurne forestier qui transmet la Loa loa.",
-    "axis": "clinical"
+    id: "fil_morph_15",
+    axis: "morphology",
+    question: "La période d’incubation des larves filariformes dans le vecteur est :",
+    options: ["1–3 semaines selon température et espèce", "24 heures uniquement", "6 mois", "1 an"],
+    correctAnswer: 0,
+    explanation: "Les larves nécessitent un développement dans le vecteur, généralement 1–3 semaines avant d’être infectantes pour l’homme."
   },
   {
-    "id": "h_clin_68",
-    "question": "La 'ceinture de la Loase' se situe exclusivement en :",
-    "options": [
-      "Afrique Centrale forestière",
-      "Asie du Sud-Est",
-      "Amérique Latine",
-      "Afrique du Nord"
-    ],
-    "correct": 0,
-    "explanation": "La Loase est strictement limitée aux zones de forêt dense d'Afrique Centrale et de l'Ouest.",
-    "axis": "clinical"
+    id: "fil_morph_16",
+    axis: "morphology",
+    question: "Le rôle du vecteur est :",
+    options: ["Inoculer les larves filariformes à l’hôte humain", "Ingérer les microfilaires sans transmission", "Transport passif des œufs", "Détruire les larves adultes"],
+    correctAnswer: 0,
+    explanation: "Le vecteur prend un repas sanguin et inocule les larves filariformes dans la peau humaine pour compléter le cycle."
   },
   {
-    "id": "h_clin_75",
-    "question": "L'échographie des voies urinaires est l'examen de dépistage de masse pour :",
-    "options": [
-      "La morbidité liée à Schistosoma haematobium (hydronéphrose, polypes)",
-      "La filariose lymphatique",
-      "L'hydatidose rénale",
-      "L'oxyurose"
-    ],
-    "correct": 0,
-    "explanation": "Elle permet de détecter précocement les lésions de la vessie et la dilatation des uretères (hydronéphrose) chez les populations exposées.",
-    "axis": "clinical"
+    id: "fil_morph_17",
+    axis: "morphology",
+    question: "La localisation des microfilaires de Loa loa est :",
+    options: ["Dans le sang périphérique diurne", "Dans les ganglions lymphatiques nocturnes", "Sous la peau aperiodique", "Dans les nodules uniquement"],
+    correctAnswer: 0,
+    explanation: "Loa loa microfilaires sont dans le sang périphérique le jour, synchronisés avec l’activité de Chrysops."
   },
   {
-    "id": "h_clin_77",
-    "question": "Le mécanisme de l'éléphantiasis dans la filariose lymphatique est :",
-    "options": [
-      "Obstruction mécanique et inflammatoire des vaisseaux lymphatiques",
-      "Compression veineuse",
-      "Insuffisance cardiaque",
-      "Hypoprotidémie"
-    ],
-    "correct": 0,
-    "explanation": "Les filaires adultes vivent dans les lymphatiques, causant une dilatation, une dysfonction valvulaire et une fibrose, bloquant le retour lymphatique.",
-    "axis": "clinical"
+    id: "fil_morph_18",
+    axis: "morphology",
+    question: "Les microfilaires d’Onchocerca sont prélevées pour diagnostic par :",
+    options: ["Biopsie cutanée ou nappes cutanées", "Ponction sanguine nocturne", "Urine matinale", "LCR uniquement"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires résidant dans le derme sont détectables par biopsie cutanée ou nappes de peau, pas dans le sang."
   },
   {
-    "id": "h_clin_82",
-    "question": "L'Ivermectine est le traitement de choix pour :",
-    "options": [
-      "L'Anguillulose et l'Onchocercose",
-      "La Bilharziose",
-      "Le Taenia",
-      "Le Kyste Hydatique"
-    ],
-    "correct": 0,
-    "explanation": "C'est un puissant anti-helminthique agissant sur les canaux chlore glutamate-dépendants, très efficace sur les nématodes et les ectoparasites.",
-    "axis": "clinical"
+    id: "fil_morph_19",
+    axis: "morphology",
+    question: "Wuchereria bancrofti peut provoquer :",
+    options: ["Lymphœdème et éléphantiasis", "Cécité", "Prurit intense cutané", "Prolapsus rectal"],
+    correctAnswer: 0,
+    explanation: "La fixation des adultes dans les vaisseaux lymphatiques cause obstruction et éléphantiasis caractéristique."
   },
   {
-    "id": "h_clin_89",
-    "question": "Patient présentant des nodules sous-cutanés indolores sur les crêtes iliaques et une kératite ponctuée. Diagnostic ?",
-    "options": [
-      "Onchocercose",
-      "Loase",
-      "Dracunculose",
-      "Cysticercose cutanée"
-    ],
-    "correct": 0,
-    "explanation": "Les onchocercomes (nodules contenant les adultes) siègent sur les plans osseux. L'atteinte oculaire associée confirme l'onchocercose.",
-    "axis": "clinical"
+    id: "fil_morph_20",
+    axis: "morphology",
+    question: "Loa loa adulte peut être visible :",
+    options: ["Sous la conjonctive ou dans tissus sous-cutanés", "Dans le sang uniquement", "Dans le foie", "Dans les ganglions lymphatiques uniquement"],
+    correctAnswer: 0,
+    explanation: "Les adultes migrent sous la peau ou dans le subconjonctif, provoquant gonflements transitoires et mouvement visible."
   },
   {
-    "id": "h_clin_94",
-    "question": "Les taches de Bitot et la xérophtalmie sont-elles des signes de parasitose ?",
-    "options": [
-      "Non, ce sont des signes de carence en Vitamine A, parfois aggravée par des parasitoses (Ascaris/Giardia)",
-      "Oui, c'est pathognomonique de l'Onchocercose",
-      "Oui, de la Loase",
-      "Non, c'est une allergie"
-    ],
-    "correct": 0,
-    "explanation": "Les helminthioses intestinales massives (Ascaris) peuvent détourner les nutriments et aggraver une malnutrition, révélant une avitaminose A, mais ce n'est pas une atteinte parasitaire directe de l'œil.",
-    "axis": "clinical"
+    id: "fil_morph_21",
+    axis: "morphology",
+    question: "Onchocerca adulte forme :",
+    options: ["Nodules sous-cutanés contenant mâles et femelles", "Se loge dans le foie", "Réside dans les poumons", "Vit dans le sang uniquement"],
+    correctAnswer: 0,
+    explanation: "Les nodules abritent les adultes et permettent la production continue de microfilaires cutanés."
   },
   {
-    "id": "h_clin_98",
-    "question": "Quelle helminthiose peut provoquer un prolapsus utérin ou vaginal dans les cas extrêmes ?",
-    "options": [
-      "La Bilharziose génitale (S. haematobium)",
-      "L'Oxyurose",
-      "L'Ascaridiose",
-      "La Filariose"
-    ],
-    "correct": 0,
-    "explanation": "Les lésions granulomateuses et la fibrose du plancher pelvien et du col utérin dans la bilharziose génitale féminine peuvent avoir des conséquences anatomiques graves.",
-    "axis": "clinical"
+    id: "fil_morph_22",
+    axis: "morphology",
+    question: "La périodicité nocturne de Wuchereria est un exemple de :",
+    options: ["Synchronisation hôte-vecteur", "Migration tissulaire", "Réponse immunitaire", "Effet de température uniquement"],
+    correctAnswer: 0,
+    explanation: "Cette synchronisation assure que les microfilaires sont disponibles lorsque les moustiques piquent, optimisant la transmission."
   },
   {
-    "id": "h_clin_99",
-    "question": "La périodicité des microfilaires de Loa loa est :",
-    "options": [
-      "Diurne (10h-15h)",
-      "Nocturne (22h-02h)",
-      "Apériodique",
-      "Vespérale"
-    ],
-    "correct": 0,
-    "explanation": "Contrairement à W. bancrofti (nocturne), Loa loa circule dans le sang périphérique le jour, adapté à l'activité de son vecteur (Chrysops).",
-    "axis": "clinical"
+    id: "fil_morph_23",
+    axis: "morphology",
+    question: "La périodicité diurne de Loa loa correspond à :",
+    options: ["Activité de Chrysops pendant la journée", "Activité nocturne des moustiques", "Périodicité aléatoire", "Migration dans ganglions lymphatiques"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires circulent le jour pour coïncider avec le vecteur Chrysops actif en journée."
   },
   {
-    "id": "h_nema_24",
-    "question": "Wuchereria bancrofti est l'agent de :",
-    "options": [
-      "La filariose lymphatique (Éléphantiasis)",
-      "L'onchocercose",
-      "La loase",
-      "La dracunculose"
-    ],
-    "correct": 0,
-    "explanation": "Les adultes vivent dans les vaisseaux lymphatiques, bloquant la circulation et causant des œdèmes monstrueux.",
-    "axis": "morphology"
+    id: "fil_morph_24",
+    axis: "morphology",
+    question: "La microfilarémie aperiodique est observée chez :",
+    options: ["Onchocerca volvulus", "Wuchereria bancrofti", "Loa loa", "Brugia malayi"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires d’Onchocerca ne présentent pas de périodicité et résident dans le derme plutôt que le sang."
   },
   {
-    "id": "h_nema_25",
-    "question": "Loa loa est aussi appelé :",
-    "options": [
-      "Le ver africain de l'œil",
-      "Le ver de Guinée",
-      "Le ver solitaire",
-      "Le ver du cœur"
-    ],
-    "correct": 0,
-    "explanation": "L'adulte migre sous la peau et traverse parfois la conjonctive de l'œil de manière visible et spectaculaire.",
-    "axis": "morphology"
+    id: "fil_morph_25",
+    axis: "morphology",
+    question: "Les microfilaires avec gaine peuvent être identifiées par :",
+    options: ["Coloration Giemsa et observation microscopique", "Culture bactérienne", "Sérologie IgG", "Radiographie"],
+    correctAnswer: 0,
+    explanation: "La gaine est visible au microscope après coloration, permettant la différenciation entre espèces filariennes."
   },
   {
-    "id": "h_nema_26",
-    "question": "L'Onchocercose (Cécité des rivières) est transmise par :",
-    "options": [
-      "La simulie (mouche noire)",
-      "Le moustique",
-      "Le taon (Chrysops)",
-      "La tique"
-    ],
-    "correct": 0,
-    "explanation": "La simulie se reproduit dans les rivières à courant rapide, d'où le nom de la maladie.",
-    "axis": "morphology"
+    id: "fil_morph_26",
+    axis: "morphology",
+    question: "Le rôle des vecteurs dans les filarioses est :",
+    options: ["Assurer le développement des larves filariformes et transmission à l’homme", "Transport passif des œufs seulement", "Détruire les microfilaires", "Sécréter des toxines antiparasitaires"],
+    correctAnswer: 0,
+    explanation: "Les vecteurs permettent la maturation des larves filariformes et leur inoculation lors de la piqûre."
   },
   {
-    "id": "h_nema_28",
-    "question": "Les microfilaires de Loa loa ont une périodicité :",
-    "options": [
-      "Diurne (présentes dans le sang le jour)",
-      "Nocturne",
-      "Constante",
-      "Absente"
-    ],
-    "correct": 0,
-    "explanation": "Elles apparaissent dans le sang périphérique vers midi (10h-14h), synchronisées avec l'activité du vecteur (Chrysops).",
-    "axis": "morphology"
+    id: "fil_morph_27",
+    axis: "morphology",
+    question: "Les adultes filariens femelles produisent :",
+    options: ["Microfilaires circulantes ou cutanées selon l’espèce", "Œufs embryonnés excrétés directement", "Larves rhabditoïdes", "Cystes hépatiques"],
+    correctAnswer: 0,
+    explanation: "Les femelles adultes libèrent des microfilaires dans le sang ou la peau, qui sont le stade infectant pour le vecteur."
   },
   {
-    "id": "h_nema_39",
-    "question": "Quelle filaire provoque des œdèmes transitoires appelés 'Œdèmes de Calabar' ?",
-    "options": [
-      "Loa loa",
-      "Wuchereria bancrofti",
-      "Onchocerca volvulus",
-      "Mansonella"
-    ],
-    "correct": 0,
-    "explanation": "C'est une réaction allergique locale au passage du ver adulte sous la peau, typique de la Loase.",
-    "axis": "morphology"
+    id: "fil_morph_28",
+    axis: "morphology",
+    question: "La localisation tissulaire des microfilaires influence :",
+    options: ["Le type de vecteur et la périodicité", "La couleur des vers", "La taille des adultes", "Le développement des œufs"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires circulantes ou cutanées sont adaptées à l’alimentation du vecteur et déterminent la périodicité."
   },
   {
-    "id": "h_nema_40",
-    "question": "Le vecteur de Wuchereria bancrofti (Filariose lymphatique) est :",
-    "options": [
-      "Le moustique (Culex, Anophèle, Aedes)",
-      "La simulie",
-      "Le taon",
-      "La tique"
-    ],
-    "correct": 0,
-    "explanation": "La transmission se fait par piqûre de moustique (souvent Culex quinquefasciatus en ville).",
-    "axis": "morphology"
+    id: "fil_morph_29",
+    axis: "morphology",
+    question: "La gaine des microfilaires peut être visualisée par :",
+    options: ["Coloration spécifique (Giemsa) et observation microscopique", "Radiographie", "Sérologie", "Biopsie hépatique"],
+    correctAnswer: 0,
+    explanation: "La gaine est visible après coloration microscopique, essentielle pour différencier Wuchereria et Loa des autres filaires."
   },
   {
-    "id": "h_nema_44",
-    "question": "L'Onchocerca volvulus adulte vit dans :",
-    "options": [
-      "Des nodules sous-cutanés (Onchocercomes)",
-      "Le sang",
-      "L'intestin",
-      "Le foie"
-    ],
-    "correct": 0,
-    "explanation": "Les vers adultes s'enroulent en pelotes dans des kystes fibreux sous la peau.",
-    "axis": "morphology"
+    id: "fil_morph_30",
+    axis: "morphology",
+    question: "La synchronisation de la microfilarémie avec le vecteur assure :",
+    options: ["Efficacité maximale de transmission", "Mort immédiate des vers", "Formation de kystes dans le foie", "Réaction immunitaire immédiate"],
+    correctAnswer: 0,
+    explanation: "La période de circulation des microfilaires coïncide avec l’activité du vecteur, maximisant la transmission."
+  }
+];
+export const filarioClinicalQuestions = [
+  // =========================
+  // CLINIQUE FILARIOSES (20 questions)
+  // =========================
+  {
+    id: "fil_clin_1",
+    axis: "clinical",
+    question: "Quelle est la manifestation chronique typique de Wuchereria bancrofti ?",
+    options: ["Éléphantiasis des membres ou des organes génitaux", "Œdème de Calabar", "Nodules sous-cutanés", "Gale filarienne"],
+    correctAnswer: 0,
+    explanation: "L’éléphantiasis résulte de l’obstruction chronique des vaisseaux lymphatiques par les adultes, provoquant un gonflement permanent des membres ou des organes génitaux."
   },
   {
-    "id": "h_nema_45",
-    "question": "Le test de Mazzotti (réaction allergique au Diéthylcarbamazine) aide au diagnostic de :",
-    "options": [
-      "L'Onchocercose",
-      "L'Ascaridiose",
-      "L'Amibiase",
-      "Le Paludisme"
-    ],
-    "correct": 0,
-    "explanation": "La lyse brutale des microfilaires cutanées provoque un prurit féroce, confirmant le diagnostic (test risqué, rarement fait).",
-    "axis": "morphology"
+    id: "fil_clin_2",
+    axis: "clinical",
+    question: "Lymphangite aiguë liée à Wuchereria se caractérise par :",
+    options: ["Fièvre, douleur et inflammation des voies lymphatiques", "Œdème fugace du bras", "Formation de nodules sous-cutanés", "Cécité subaiguë"],
+    correctAnswer: 0,
+    explanation: "La lymphangite aiguë est due à l’inflammation des vaisseaux lymphatiques par l’activité des adultes et réactions immunitaires."
   },
   {
-    "id": "h_nema_52",
-    "question": "L'Ivermectine est le traitement de choix pour :",
-    "options": [
-      "L'Anguillulose (Strongyloides) et l'Onchocercose",
-      "Le Ténia",
-      "L'Amibiase",
-      "Le Paludisme"
-    ],
-    "correct": 0,
-    "explanation": "Elle paralyse les muscles des nématodes et des arthropodes (gale) en agissant sur les canaux chlore glutamate-dépendants.",
-    "axis": "morphology"
+    id: "fil_clin_3",
+    axis: "clinical",
+    question: "La chylurie associée à Wuchereria se traduit par :",
+    options: ["Urines laiteuses contenant de la lymphe", "Diarrhée sanglante", "Gonflement fugace des paupières", "Prurit intense"],
+    correctAnswer: 0,
+    explanation: "L’obstruction lymphatique et fistule vésicale provoque un passage de la lymphe dans les voies urinaires, donnant une urine blanchâtre."
   },
   {
-    "id": "h_nema_53",
-    "question": "Pourquoi la Diéthylcarbamazine (DEC) est-elle contre-indiquée dans l'Onchocercose ?",
-    "options": [
-      "Risque de réaction de Mazzotti sévère et de lésions oculaires irréversibles",
-      "Elle ne marche pas",
-      "Elle est toxique pour le foie",
-      "Elle coûte trop cher"
-    ],
-    "correct": 0,
-    "explanation": "La lyse brutale des microfilaires dans l'œil peut rendre aveugle. On utilise l'Ivermectine qui est plus douce.",
-    "axis": "morphology"
+    id: "fil_clin_4",
+    axis: "clinical",
+    question: "L’œdème de Calabar est caractéristique de :",
+    options: ["Loa loa", "Wuchereria", "Onchocerca", "Brugia malayi"],
+    correctAnswer: 0,
+    explanation: "L’œdème de Calabar est un gonflement fugace et prurigineux des tissus sous-cutanés, typique de Loa loa."
   },
   {
-    "id": "h_nema_68",
-    "question": "Le vecteur de Loa loa (Chrysops) est attiré par :",
-    "options": [
-      "Le mouvement et la fumée (feux de bois)",
-      "La lumière",
-      "L'eau",
-      "Le sucre"
-    ],
-    "correct": 0,
-    "explanation": "Il pique le jour, à l'extérieur, dans les zones forestières.",
-    "axis": "morphology"
+    id: "fil_clin_5",
+    axis: "clinical",
+    question: "Le passage d’un adulte sous la conjonctive est typique de :",
+    options: ["Loa loa", "Wuchereria", "Onchocerca", "Brugia timori"],
+    correctAnswer: 0,
+    explanation: "La migration d’un ver adulte sous la conjonctive provoque irritation et gêne visuelle, caractéristique de Loa loa."
   },
   {
-    "id": "h_nema_69",
-    "question": "La chylurie (urines lactescentes) est une complication de :",
-    "options": [
-      "La filariose lymphatique (Wuchereria bancrofti)",
-      "La bilharziose",
-      "L'ascaridiose",
-      "L'anguillulose"
-    ],
-    "correct": 0,
-    "explanation": "Rupture des varices lymphatiques dans les voies urinaires. Les urines contiennent de la lymphe et des graisses.",
-    "axis": "morphology"
+    id: "fil_clin_6",
+    axis: "clinical",
+    question: "Les nodules sous-cutanés (onchocercomes) sont typiques de :",
+    options: ["Onchocerca volvulus", "Loa loa", "Wuchereria", "Brugia malayi"],
+    correctAnswer: 0,
+    explanation: "Les adultes d’Onchocerca se localisent dans le tissu sous-cutané et forment des nodules palpables contenant les femelles et mâles."
   },
   {
-    "id": "h_nema_70",
-    "question": "La prophylaxie de masse de la filariose lymphatique associe :",
-    "options": [
-      "Ivermectine + Albendazole (ou DEC + Albendazole)",
-      "Chloroquine",
-      "Pénicilline",
-      "Rien"
-    ],
-    "correct": 0,
-    "explanation": "Une prise annuelle suffit pour réduire la microfilarémie et stopper la transmission.",
-    "axis": "morphology"
+    id: "fil_clin_7",
+    axis: "clinical",
+    question: "Les lésions oculaires pouvant mener à cécité sont causées par :",
+    options: ["Onchocerca volvulus", "Wuchereria", "Loa loa", "Brugia malayi"],
+    correctAnswer: 0,
+    explanation: "La migration des microfilaires d’Onchocerca dans la cornée et la rétine provoque inflammation chronique et cécité progressive."
   },
   {
-    "id": "h_nema_73",
-    "question": "Cas clinique : Retour du Mali, œdème du visage fugace et prurit, éosinophilie élevée.",
-    "options": [
-      "Loase (Filariose à Loa loa)",
-      "Paludisme",
-      "Allergie alimentaire",
-      "Coup de soleil"
-    ],
-    "correct": 0,
-    "explanation": "Les œdèmes de Calabar sont typiques. Il faut chercher les microfilaires dans le sang à midi.",
-    "axis": "morphology"
+    id: "fil_clin_8",
+    axis: "clinical",
+    question: "La gale filarienne est observée dans :",
+    options: ["Onchocerca volvulus", "Wuchereria", "Loa loa", "Brugia malayi"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires d’Onchocerca dans la peau provoquent prurit intense, excoriations et lésions cutanées, appelée gale filarienne."
   },
   {
-    "id": "h_nema_77",
-    "question": "La Simulie (Vecteur de l'Onchocercose) pond ses œufs :",
-    "options": [
-      "Sur les plantes immergées dans les cours d'eau rapides et oxygénés",
-      "Dans l'eau stagnante",
-      "Dans la terre",
-      "Sur les animaux"
-    ],
-    "correct": 0,
-    "explanation": "C'est pourquoi on traite les rivières pour éliminer les larves.",
-    "axis": "morphology"
+    id: "fil_clin_9",
+    axis: "clinical",
+    question: "Lymphœdème et éléphantiasis évoluent souvent après :",
+    options: ["Infections répétées et obstruction lymphatique chronique", "Passage fugace du ver sous la peau", "Nodules onchocercomes", "Œdème de Calabar"],
+    correctAnswer: 0,
+    explanation: "La répétition des infections et la réponse inflammatoire chronique causent une obstruction durable, menant à éléphantiasis."
   },
   {
-    "id": "h_nema_78",
-    "question": "Le cycle de Wuchereria bancrofti implique :",
-    "options": [
-      "L'homme comme réservoir principal",
-      "Le singe",
-      "Le chien",
-      "L'oiseau"
-    ],
-    "correct": 0,
-    "explanation": "C'est une anthroponose stricte (pas de réservoir animal), ce qui rend son éradication théoriquement possible.",
-    "axis": "morphology"
+    id: "fil_clin_10",
+    axis: "clinical",
+    question: "La manifestation cutanée fugace, prurigineuse et mobile correspond à :",
+    options: ["Œdème de Calabar (Loa loa)", "Lymphangite (Wuchereria)", "Onchocercome", "Éléphantiasis avancé"],
+    correctAnswer: 0,
+    explanation: "L’œdème de Calabar est transitoire, migratoire et souvent associé à prurit intense, typique de Loa loa."
   },
   {
-    "id": "h_nema_81",
-    "question": "L'éléphantiasis (Filariose) est dû à :",
-    "options": [
-      "L'obstruction lymphatique chronique et la surinfection bactérienne",
-      "Un bouchon de vers",
-      "Une tumeur",
-      "Un excès d'eau"
-    ],
-    "correct": 0,
-    "explanation": "Le lymphœdème chronique entraîne une hypertrophie cutanée et sous-cutanée irréversible.",
-    "axis": "morphology"
+    id: "fil_clin_11",
+    axis: "clinical",
+    question: "Les nodules sous-cutanés d’Onchocerca contiennent :",
+    options: ["Adultes mâles et femelles", "Microfilaires uniquement", "Œufs embryonnés", "Larves rhabditoïdes"],
+    correctAnswer: 0,
+    explanation: "Ces nodules abritent les adultes et permettent la production continue de microfilaires cutanés."
   },
   {
-    "id": "h_nema_90",
-    "question": "Les microfilaires de Wuchereria bancrofti sont :",
-    "options": [
-      "À gaine, avec des noyaux ne allant pas jusqu'au bout de la queue",
-      "Sans gaine",
-      "À noyaux terminaux",
-      "Très petites"
-    ],
-    "correct": 0,
-    "explanation": "La présence de la gaine et la disposition des noyaux caudaux permettent l'identification de l'espèce.",
-    "axis": "morphology"
+    id: "fil_clin_12",
+    axis: "clinical",
+    question: "La cécité onchocerquienne résulte de :",
+    options: ["Inflammation cornéenne et rétinienne causée par microfilaires", "Blocage lymphatique", "Œdème de Calabar", "Prolapsus rectal"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires d’Onchocerca provoquent une réaction inflammatoire dans l’œil, entraînant cataractes et cécité progressive."
   },
   {
-    "id": "h_nema_93",
-    "question": "L'éosinophilie tropicale pulmonaire est une forme allergique de :",
-    "options": [
-      "Filariose lymphatique",
-      "Ascaridiose",
-      "Tuberculose",
-      "Asthme"
-    ],
-    "correct": 0,
-    "explanation": "Réaction d'hypersensibilité aux microfilaires dans les poumons.",
-    "axis": "morphology"
+    id: "fil_clin_13",
+    axis: "clinical",
+    question: "La chylurie est une complication de :",
+    options: ["Wuchereria bancrofti", "Loa loa", "Onchocerca", "Brugia malayi"],
+    correctAnswer: 0,
+    explanation: "Le passage de la lymphe dans les voies urinaires provoque une urine laiteuse, caractéristique des filarioses lymphatiques."
   },
   {
-    "id": "life_h_15",
-    "question": "La Filariose de Bancroft (Wuchereria bancrofti) a pour vecteur :",
-    "options": [
-      "Un moustique (Culex, Anophèle, Aedes)",
-      "Une mouche",
-      "Une tique",
-      "Une puce"
-    ],
-    "correct": 0,
-    "explanation": "C'est une filariose transmise par des moustiques culicidés à activité nocturne.",
-    "axis": "lifecycle"
+    id: "fil_clin_14",
+    axis: "clinical",
+    question: "Les oedèmes fugaces migrateurs sont typiques de :",
+    options: ["Loa loa", "Wuchereria", "Onchocerca", "Brugia timori"],
+    correctAnswer: 0,
+    explanation: "Loa loa provoque des œdèmes transitoires et mobiles appelés œdèmes de Calabar."
   },
   {
-    "id": "life_h_16",
-    "question": "Le vecteur de la Loase (Loa loa) est :",
-    "options": [
-      "Le Chrysops (Taon rouge)",
-      "La Simulie",
-      "Le Moustique",
-      "Le Glossine"
-    ],
-    "correct": 0,
-    "explanation": "Le Chrysops est un gros taon diurne qui vit dans la canopée des forêts d'Afrique centrale.",
-    "axis": "lifecycle"
+    id: "fil_clin_15",
+    axis: "clinical",
+    question: "Les nodules palpables sont souvent situés :",
+    options: ["Sur le tronc, bras et jambes", "Dans les ganglions lymphatiques uniquement", "Sous la conjonctive", "Dans les poumons"],
+    correctAnswer: 0,
+    explanation: "Les nodules onchocercomes apparaissent surtout dans le tissu sous-cutané du tronc et des membres, correspondant à la localisation des adultes."
   },
   {
-    "id": "life_h_17",
-    "question": "Où vivent les adultes de l'Onchocerca volvulus (Onchocercose) ?",
-    "options": [
-      "Dans des nodules sous-cutanés (Onchocercomes)",
-      "Dans les lymphatiques",
-      "Dans le sang",
-      "Dans l'intestin"
-    ],
-    "correct": 0,
-    "explanation": "Les adultes s'enkystent dans des nodules fibreux sous la peau. Seules les microfilaires circulent dans le derme.",
-    "axis": "lifecycle"
+    id: "fil_clin_16",
+    axis: "clinical",
+    question: "L’éléphantiasis des organes génitaux est spécifique de :",
+    options: ["Wuchereria bancrofti", "Loa loa", "Onchocerca volvulus", "Brugia malayi"],
+    correctAnswer: 0,
+    explanation: "L’obstruction lymphatique par les adultes entraîne un gonflement chronique du scrotum ou vulve."
   },
   {
-    "id": "life_h_63",
-    "question": "Quelle est la longévité des microfilaires de Loa loa dans le sang ?",
-    "options": [
-      "Plusieurs années (jusqu'à 15-17 ans)",
-      "Quelques jours",
-      "1 mois",
-      "24 heures"
-    ],
-    "correct": 0,
-    "explanation": "Les filaires sont des parasites à très longue vie, ce qui explique la chronicité des symptômes.",
-    "axis": "lifecycle"
+    id: "fil_clin_17",
+    axis: "clinical",
+    question: "Le passage visible d’un ver sous la conjonctive provoque :",
+    options: ["Douleur, irritation et mouvement observé (Loa loa)", "Inflammation lymphatique", "Prurit onchocerquien", "Éléphantiasis distal"],
+    correctAnswer: 0,
+    explanation: "Loa loa adulte migre parfois sous la conjonctive, entraînant irritation locale et visibilité du ver."
   },
   {
-    "id": "life_h_69",
-    "question": "La spécificité parasitaire (sténoxénie) est très forte pour :",
-    "options": [
-      "Le choix de l'hôte intermédiaire mollusque (Schistosomes)",
-      "L'hôte définitif de la toxocarose",
-      "Le vecteur de la Loase",
-      "L'hôte de l'anguillule"
-    ],
-    "correct": 0,
-    "explanation": "Chaque espèce de Schistosome ne peut infecter qu'une espèce précise de mollusque. L'absence de ce mollusque dans une région empêche le cycle.",
-    "axis": "lifecycle"
+    id: "fil_clin_18",
+    axis: "clinical",
+    question: "Les lésions cutanées de Onchocerca incluent :",
+    options: ["Prurit intense, excoriations et atrophie cutanée", "Lymphœdème et éléphantiasis", "Œdème fugace", "Cystes hépatiques"],
+    correctAnswer: 0,
+    explanation: "La présence de microfilaires dans le derme provoque un prurit intense, des excoriations et une atrophie de la peau."
   },
   {
-    "id": "life_h_73",
-    "question": "Quelle parasitose peut se contracter en marchant pieds nus sur une plage tropicale souillée ?",
-    "options": [
-      "Larva Migrans Cutanée (Ankylostomes de chien)",
-      "Bilharziose",
-      "Filariose",
-      "Oxyurose"
-    ],
-    "correct": 0,
-    "explanation": "Les larves d'ankylostomes canins, présents dans les déjections de chiens errants sur le sable, pénètrent la peau des pieds des baigneurs.",
-    "axis": "lifecycle"
+    id: "fil_clin_19",
+    axis: "clinical",
+    question: "La fièvre et douleur aiguë des ganglions lymphatiques est associée à :",
+    options: ["Lymphangite Wuchereria", "Œdème de Calabar", "Onchocercome", "Prolapsus rectal"],
+    correctAnswer: 0,
+    explanation: "Les attaques aiguës de lymphangite se manifestent par douleur, chaleur et fièvre locale lors de l’inflammation des vaisseaux lymphatiques infectés."
   },
   {
-    "id": "life_h_81",
-    "question": "L'élimination des moustiques permet de couper le cycle de :",
-    "options": [
-      "La Filariose de Bancroft",
-      "L'Onchocercose (Simulie)",
-      "La Loase (Chrysops)",
-      "La Bilharziose"
-    ],
-    "correct": 0,
-    "explanation": "La lutte antivectorielle (moustiquaires, insecticides) vise le moustique vecteur de la filariose lymphatique.",
-    "axis": "lifecycle"
+    id: "fil_clin_20",
+    axis: "clinical",
+    question: "Le prurit cutané et les lésions excoriées sont liés à :",
+    options: ["Microfilaires Onchocerca dans le derme", "Lymphœdème Wuchereria", "Œdème de Calabar", "Chylurie"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires cutanées provoquent un prurit intense et les patients se grattent, entraînant excoriations et lésions secondaires."
+  }
+];
+export const filarioDiagTreatQuestions = [
+  // =========================
+  // DIAGNOSTIC & TRAITEMENT FILARIOSES (30 questions)
+  // =========================
+  {
+    id: "fil_diag_1",
+    axis: "diagnosis",
+    question: "Le diagnostic de Wuchereria bancrofti repose principalement sur :",
+    options: ["Examen d’une goutte de sang épaisse nocturne", "Sérologie IgM spécifique", "Biopsie cutanée", "Radiographie thoracique"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires de Wuchereria sont présentes dans le sang nocturne; la goutte épaisse permet leur visualisation et identification."
   },
   {
-    "id": "life_h_82",
-    "question": "L'amélioration de l'hygiène fécale (latrines) ne suffit pas à interrompre la transmission de :",
-    "options": [
-      "La Filariose (transmission vectorielle)",
-      "L'Ascaridiose",
-      "L'Ankylostomose",
-      "La Bilharziose intestinale"
-    ],
-    "correct": 0,
-    "explanation": "Pour les maladies à vecteurs volants (moustiques), l'assainissement seul est insuffisant, il faut aussi contrôler le vecteur.",
-    "axis": "lifecycle"
+    id: "fil_diag_2",
+    axis: "diagnosis",
+    question: "Pour Loa loa, la détection des microfilaires se fait idéalement :",
+    options: ["Dans le sang périphérique en journée", "Biopsie hépatique", "Urine matinale", "LCR"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires de Loa loa sont diurnes; la goutte épaisse ou frottis sanguin en journée permet leur identification."
   },
   {
-    "id": "life_h_96",
-    "question": "La contamination par l'eau de boisson est le mode principal pour :",
-    "options": [
-      "La Dracunculose (Cyclops)",
-      "La Bilharziose (Baignade)",
-      "L'Ankylostomose (Peau)",
-      "La Filariose (Piqûre)"
-    ],
-    "correct": 0,
-    "explanation": "Boire de l'eau contenant des Cyclops est le seul moyen d'attraper le Ver de Guinée.",
-    "axis": "lifecycle"
+    id: "fil_diag_3",
+    axis: "diagnosis",
+    question: "Le diagnostic d’Onchocerca volvulus repose sur :",
+    options: ["Snip-test cutané avec incubation des microfilaires", "Goutte épaisse sanguine", "Sérologie IgG uniquement", "Urine stérile"],
+    correctAnswer: 0,
+    explanation: "Onchocerca microfilaires sont cutanées; le snip-test consiste à inciser la peau, incubant l’échantillon pour observer les microfilaires migrantes."
   },
   {
-    "id": "life_h_97",
-    "question": "Le cycle de la Loase est favorisé par :",
-    "options": [
-      "L'écosystème forestier humide",
-      "Le désert",
-      "La haute montagne",
-      "Les villes"
-    ],
-    "correct": 0,
-    "explanation": "Le vecteur Chrysops vit dans les forêts galeries équatoriales.",
-    "axis": "lifecycle"
+    id: "fil_diag_4",
+    axis: "diagnosis",
+    question: "La goutte épaisse doit être réalisée :",
+    options: ["En fonction de la périodicité du parasite (nocturne pour Wuchereria, diurne pour Loa)", "À tout moment sans considération", "Uniquement le matin", "Uniquement sur enfants symptomatiques"],
+    correctAnswer: 0,
+    explanation: "La microfilarémie varie selon l’espèce; respecter la périodicité optimise la détection."
   },
   {
-    "id": "life_h_98",
-    "question": "Quelle est la durée de la phase pré-patente (incubation) de la Filariose lymphatique ?",
-    "options": [
-      "Très longue (plusieurs mois à années)",
-      "Quelques jours",
-      "1 semaine",
-      "24 heures"
-    ],
-    "correct": 0,
-    "explanation": "Les symptômes chroniques (éléphantiasis) apparaissent souvent des années après l'infestation initiale.",
-    "axis": "lifecycle"
+    id: "fil_diag_5",
+    axis: "diagnosis",
+    question: "La sérologie n’est pas le test de première intention car :",
+    options: ["Ne différencie pas les infections actives des anciennes", "Elle est toujours négative", "Elle nécessite biopsie hépatique", "Elle provoque l’éléphantiasis"],
+    correctAnswer: 0,
+    explanation: "La sérologie détecte anticorps mais ne distingue pas infection active; l’examen direct reste essentiel."
+  },
+  {
+    id: "fil_diag_6",
+    axis: "diagnosis",
+    question: "Le snip-test consiste à :",
+    options: ["Prendre un petit morceau de peau pour observer la sortie des microfilaires", "Prendre une goutte de sang", "Prendre un échantillon urinaire", "Prendre une biopsie ganglionnaire"],
+    correctAnswer: 0,
+    explanation: "Cette technique spécifique à Onchocerca permet de mettre en évidence les microfilaires cutanées en incubation."
+  },
+  {
+    id: "fil_diag_7",
+    axis: "diagnosis",
+    question: "La sensibilité du snip-test peut être augmentée par :",
+    options: ["Incuber la peau prélevée dans du milieu physiologique et observer la migration", "Biopsie hépatique", "Frottis sanguin nocturne", "Sérologie IgM uniquement"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires migrent hors du tissu incubé, facilitant la visualisation et le diagnostic."
+  },
+  {
+    id: "fil_diag_8",
+    axis: "diagnosis",
+    question: "La détection de microfilaires dans le sang peut échouer si :",
+    options: ["La goutte épaisse est réalisée hors de la période de circulation", "Le patient est asymptomatique", "Les nodules sont palpables", "Le patient a œdème de Calabar"],
+    correctAnswer: 0,
+    explanation: "Le respect de la périodicité circadienne est crucial pour Wuchereria et Loa; sinon le test peut être faussement négatif."
+  },
+  {
+    id: "fil_diag_9",
+    axis: "diagnosis",
+    question: "Pour confirmer l’infection d’Onchocerca, on peut également :",
+    options: ["Identifier microfilaires dans un snip-test ou nodules excisés", "Faire une goutte épaisse nocturne", "Sérologie IgM", "Analyse urinaire"],
+    correctAnswer: 0,
+    explanation: "Les microfilaires cutanées ou adultes dans nodules confirment le diagnostic, la goutte épaisse n’est pas utile ici."
+  },
+  {
+    id: "fil_diag_10",
+    axis: "diagnosis",
+    question: "La confirmation parasitologique est essentielle car :",
+    options: ["Les traitements ont des effets secondaires graves et doivent être justifiés", "Les patients asymptomatiques ne nécessitent jamais de traitement", "La sérologie est toujours suffisante", "La radiographie est inutile"],
+    correctAnswer: 0,
+    explanation: "Les traitements tels que DEC ou ivermectine peuvent provoquer lyse massive et réactions sévères; confirmation parasitologique est donc obligatoire."
+  },
+  {
+    id: "fil_treat_11",
+    axis: "treatment",
+    question: "Le traitement de choix de Wuchereria et Loa est :",
+    options: ["Diéthylcarbamazine (DEC)", "Ivermectine seule", "Albendazole", "Mebendazole"],
+    correctAnswer: 0,
+    explanation: "DEC est efficace sur microfilaires et adultes; il est utilisé pour Wuchereria et Loa loa."
+  },
+  {
+    id: "fil_treat_12",
+    axis: "treatment",
+    question: "Un effet secondaire majeur du DEC est :",
+    options: ["Réaction de lyse massive des microfilaires pouvant provoquer fièvre et hypotension", "Prurit cutané léger", "Nausées isolées", "Céphalées transitoires uniquement"],
+    correctAnswer: 0,
+    explanation: "La lyse rapide des microfilaires entraîne libération d’antigènes et réaction inflammatoire systémique; une surveillance est nécessaire."
+  },
+  {
+    id: "fil_treat_13",
+    axis: "treatment",
+    question: "Ivermectine est le traitement de choix pour :",
+    options: ["Onchocerca volvulus", "Wuchereria bancrofti", "Loa loa", "Brugia malayi"],
+    correctAnswer: 0,
+    explanation: "Ivermectine agit principalement sur les microfilaires d’Onchocerca, réduisant le prurit et la microfilarémie."
+  },
+  {
+    id: "fil_treat_14",
+    axis: "treatment",
+    question: "Avant traitement par DEC chez Loa loa, il faut :",
+    options: ["Évaluer la charge microfilaire pour prévenir les complications graves", "Administrer directement sans contrôle", "Prescrire corticoïdes uniquement", "Faire snip-test cutané"],
+    correctAnswer: 0,
+    explanation: "Une charge microfilaire élevée expose à réactions graves; évaluation préalable est indispensable."
+  },
+  {
+    id: "fil_treat_15",
+    axis: "treatment",
+    question: "La dose standard de DEC pour Wuchereria est :",
+    options: ["6 mg/kg/j pendant 12 jours", "400 µg/kg en dose unique", "Albendazole 400 mg/j", "Ivermectine 150 µg/kg unique"],
+    correctAnswer: 0,
+    explanation: "Le protocole standard DEC pour lymphatic filariasis est 6 mg/kg/j sur 12 jours pour éradiquer les microfilaires et adultes."
+  },
+  {
+    id: "fil_treat_16",
+    axis: "treatment",
+    question: "La dose d’Ivermectine pour Onchocerca est :",
+    options: ["150 µg/kg dose unique, parfois répétée tous les 6 à 12 mois", "6 mg/kg/j 12 jours", "400 mg/j Albendazole", "50 µg/kg DEC"],
+    correctAnswer: 0,
+    explanation: "Ivermectine est administrée à 150 µg/kg dose unique pour tuer les microfilaires et limiter complications oculaires."
+  },
+  {
+    id: "fil_treat_17",
+    axis: "treatment",
+    question: "Le traitement de DEC doit être surveillé car :",
+    options: ["Risque de choc et réactions sévères liées à lyse microfilaire", "Pas d’effets secondaires", "Seulement prurit mineur", "Effets uniquement chez enfants"],
+    correctAnswer: 0,
+    explanation: "La lyse massive des microfilaires peut entraîner fièvre, hypotension et parfois choc, surtout dans Loa loa à forte charge."
+  },
+  {
+    id: "fil_treat_18",
+    axis: "treatment",
+    question: "L’ivermectine est préférée à DEC pour Onchocerca car :",
+    options: ["Elle agit sur microfilaires cutanées et évite réactions graves liées aux adultes", "Elle élimine tous les adultes immédiatement", "Elle n’a aucun effet secondaire", "Elle est efficace par voie topique uniquement"],
+    correctAnswer: 0,
+    explanation: "Ivermectine réduit la microfilarémie et les symptômes cutanés, avec moins de réactions graves que DEC sur adultes."
+  },
+  {
+    id: "fil_treat_19",
+    axis: "treatment",
+    question: "DEC est contre-indiqué :",
+    options: ["En cas de forte microfilaraémie de Loa loa sans surveillance hospitalière", "Chez tous les patients asymptomatiques", "Chez Onchocerca uniquement", "Chez enfants de moins de 1 an uniquement"],
+    correctAnswer: 0,
+    explanation: "Chez Loa loa à forte charge, DEC peut provoquer lyse massive et réactions graves; administration hospitalière ou alternative est nécessaire."
+  },
+  {
+    id: "fil_treat_20",
+    axis: "treatment",
+    question: "Le traitement combiné pour Wuchereria peut inclure :",
+    options: ["DEC + Albendazole pour renforcer effet sur adultes et microfilaires", "Ivermectine seule", "Antibiotiques systémiques", "Corticoïdes uniquement"],
+    correctAnswer: 0,
+    explanation: "La combinaison DEC et Albendazole augmente l’efficacité sur adultes et microfilaires, améliorant l’éradication."
+  },
+  {
+    id: "fil_treat_21",
+    axis: "treatment",
+    question: "Chez Onchocerca, la chirurgie des nodules peut :",
+    options: ["Éliminer les adultes et réduire microfilaires locales", "Remplacer DEC", "Traiter éléphantiasis", "Éradiquer Loa loa"],
+    correctAnswer: 0,
+    explanation: "L’excision des nodules supprime les adultes et limite la production locale de microfilaires."
+  },
+  {
+    id: "fil_treat_22",
+    axis: "treatment",
+    question: "La surveillance après traitement à DEC inclut :",
+    options: ["Contrôle microfilaire et signes cliniques de réaction inflammatoire", "Radiographie pulmonaire", "Biopsie hépatique", "Sérologie uniquement"],
+    correctAnswer: 0,
+    explanation: "Il est nécessaire de surveiller la réduction des microfilaires et la survenue d’effets secondaires graves."
+  },
+  {
+    id: "fil_treat_23",
+    axis: "treatment",
+    question: "Ivermectine peut être répétée tous les :",
+    options: ["6 à 12 mois pour Onchocerca afin de maintenir faible microfilarémie", "12 heures", "1 semaine", "Tous les 10 ans"],
+    correctAnswer: 0,
+    explanation: "Le traitement répétitif permet de contrôler la microfilaraémie et prévenir cécité et prurit."
+  },
+  {
+    id: "fil_treat_24",
+    axis: "treatment",
+    question: "DEC agit sur :",
+    options: ["Microfilaires et adultes de Wuchereria et Loa", "Microfilaires uniquement d’Onchocerca", "Œufs de Trichuris", "Larves rhabditoïdes de Strongyloides"],
+    correctAnswer: 0,
+    explanation: "DEC est actif sur les microfilaires et les adultes de Wuchereria et Loa, mais pas sur Onchocerca."
+  },
+  {
+    id: "fil_treat_25",
+    axis: "treatment",
+    question: "Ivermectine n’élimine pas :",
+    options: ["Les adultes d’Onchocerca", "Les microfilaires cutanées", "Le prurit", "Les nodules excisés"],
+    correctAnswer: 0,
+    explanation: "Ivermectine agit sur les microfilaires mais n’élimine pas les adultes; les nodules persistent et peuvent nécessiter chirurgie."
+  },
+  {
+    id: "fil_treat_26",
+    axis: "treatment",
+    question: "La combinaison DEC + Albendazole est utilisée pour :",
+    options: ["Eradication complète des adultes et microfilaires de lymphatiques", "Onchocerca uniquement", "Loa loa sans risque", "Éviter l’éléphantiasis déjà installé"],
+    correctAnswer: 0,
+    explanation: "La combinaison améliore l’efficacité thérapeutique sur adultes et microfilaires de Wuchereria, réduisant la transmission."
+  },
+  {
+    id: "fil_treat_27",
+    axis: "treatment",
+    question: "La surveillance des réactions post-DEC inclut :",
+    options: ["Fièvre, hypotension, urticaire et douleurs musculaires", "Radiographie thoracique systématique", "Contrôle biologique du foie uniquement", "IRM cérébrale"],
+    correctAnswer: 0,
+    explanation: "La lyse des microfilaires peut provoquer des symptômes systémiques; une surveillance clinique est essentielle."
+  },
+  {
+    id: "fil_treat_28",
+    axis: "treatment",
+    question: "Chez Loa loa à forte charge, on privilégie :",
+    options: ["Ivermectine fractionnée ou albendazole avant DEC", "DEC immédiatement à dose standard", "Chirurgie uniquement", "Corticoïdes seuls"],
+    correctAnswer: 0,
+    explanation: "Pour éviter réactions graves, la charge microfilaire doit être réduite progressivement avant DEC."
+  },
+  {
+    id: "fil_treat_29",
+    axis: "treatment",
+    question: "Le prurit et lésions cutanées d’Onchocerca sont soulagés par :",
+    options: ["Ivermectine", "DEC seul", "Albendazole", "Mebendazole"],
+    correctAnswer: 0,
+    explanation: "Ivermectine réduit le nombre de microfilaires cutanés, diminuant prurit et lésion cutanée."
+  },
+  {
+    id: "fil_treat_30",
+    axis: "treatment",
+    question: "Le traitement préventif en zones endémiques inclut :",
+    options: ["Distribution d’Ivermectine annuelle pour Onchocerca et DEC + Albendazole pour lymphatique", "Corticoïdes à large échelle", "Vaccination systématique", "Antibiotiques prophylactiques"],
+    correctAnswer: 0,
+    explanation: "Les programmes de masse utilisent ivermectine pour Onchocerca et DEC+Albendazole pour lymphatique afin de réduire transmission et morbidité."
   }
 ];

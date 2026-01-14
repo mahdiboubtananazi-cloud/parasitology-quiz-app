@@ -1,704 +1,495 @@
-export const questions = [
+export const echinococcosisMorphCycleQuestions = [
+  // =========================
+  // ÉCHINOCOCCOSE (Kyste Hydatique) - Morphologie & Cycle de vie (20 QCM)
+  // =========================
   {
-    "id": "h_cest_19",
-    "question": "L'hôte définitif d'Echinococcus granulosus (le ver adulte) est :",
-    "options": [
-      "Le Chien",
-      "Le Mouton",
-      "L'Homme",
-      "Le Bœuf"
-    ],
-    "correct": 0,
-    "explanation": "Le chien héberge les minuscules vers adultes dans son intestin et sème les œufs.",
-    "axis": "morphology"
+    id: "echino_morph_1",
+    axis: "morphology",
+    question: "L'hôte définitif de l'Echinococcus granulosus est :",
+    options: ["Chien", "Mouton", "Humain", "Porc"],
+    correctAnswer: 0,
+    explanation: "Le chien est l’hôte définitif où le parasite adulte s’installe dans l’intestin grêle et produit des œufs."
   },
   {
-    "id": "h_cest_20",
-    "question": "L'hôte intermédiaire habituel (kyste hydatique) est :",
-    "options": [
-      "Le Mouton (Ovin)",
-      "Le Chien",
-      "Le Renard",
-      "Le Poisson"
-    ],
-    "correct": 0,
-    "explanation": "Le cycle se fait entre le chien (qui mange les viscères) et le mouton (qui mange l'herbe souillée).",
-    "axis": "morphology"
+    id: "echino_morph_2",
+    axis: "lifecycle",
+    question: "L'hôte intermédiaire naturel est :",
+    options: ["Mouton", "Chien", "Humain", "Porc"],
+    correctAnswer: 0,
+    explanation: "Le mouton ingère les œufs et les larves se développent en kystes hydatiques dans ses tissus."
   },
   {
-    "id": "h_cest_21",
-    "question": "Chez l'homme (impasse parasitaire), la larve forme :",
-    "options": [
-      "Un Kyste Hydatique (souvent Foie ou Poumon)",
-      "Un ver adulte intestinal",
-      "Une calcification cérébrale",
-      "Une anémie"
-    ],
-    "correct": 0,
-    "explanation": "C'est une tumeur liquide sous tension contenant des milliers de larves (sable hydatique).",
-    "axis": "morphology"
+    id: "echino_morph_3",
+    axis: "lifecycle",
+    question: "L'homme est :",
+    options: ["Hôte accidentel", "Hôte définitif", "Hôte intermédiaire normal", "Vecteur obligatoire"],
+    correctAnswer: 0,
+    explanation: "L’homme peut être infecté accidentellement par ingestion d’œufs, mais il n’entre pas dans le cycle naturel."
   },
   {
-    "id": "h_cest_22",
-    "question": "La rupture d'un kyste hydatique est redoutée car elle provoque :",
-    "options": [
-      "Un choc anaphylactique mortel et une dissémination secondaire (hydatidose multiple)",
-      "Une guérison spontanée",
-      "Une fièvre légère",
-      "Une diarrhée"
-    ],
-    "correct": 0,
-    "explanation": "Le liquide hydatique est hautement allergène.",
-    "axis": "morphology"
+    id: "echino_morph_4",
+    axis: "morphology",
+    question: "La structure interne du kyste hydatique comprend :",
+    options: ["Membrane proligère contenant des protoscolices", "Cuticule externe seule", "Œufs dans le sang", "Larves libres dans le foie"],
+    correctAnswer: 0,
+    explanation: "La membrane proligère produit des protoscolices (sable hydatique) capables d’infecter l’hôte définitif."
   },
   {
-    "id": "h_cest_23",
-    "question": "Le traitement curatif de référence du kyste hydatique est :",
-    "options": [
-      "La chirurgie (exérèse du kyste sans le rompre) ou PAIR",
-      "Le Praziquantel seul",
-      "L'Albendazole seul (rarement suffisant)",
-      "La radiothérapie"
-    ],
-    "correct": 0,
-    "explanation": "L'Albendazole est donné en encadrement de la chirurgie pour éviter les récidives.",
-    "axis": "morphology"
+    id: "echino_morph_5",
+    axis: "morphology",
+    question: "Le kyste hydatique est entouré par :",
+    options: ["Une cuticule résistante et une membrane germinative interne", "Épiderme et derme", "Intestin grêle du chien", "Œufs libres dans le foie"],
+    correctAnswer: 0,
+    explanation: "La cuticule est la couche externe résistante, et la membrane germinative interne produit les protoscolices."
   },
   {
-    "id": "h_cest_24",
-    "question": "L'Echinococcose alvéolaire est transmise par :",
-    "options": [
-      "Les renards (via baies sauvages souillées)",
-      "Les chiens domestiques",
-      "Les chats",
-      "Les oiseaux"
-    ],
-    "correct": 0,
-    "explanation": "C'est une maladie grave de l'hémisphère nord, liée au cycle sylvatique (Renard-Campagnol).",
-    "axis": "morphology"
+    id: "echino_morph_6",
+    axis: "morphology",
+    question: "Le sable hydatique correspond à :",
+    options: ["Protoscolices libres dans le liquide du kyste", "Œufs dans le chien", "Adultes dans l’intestin", "Larves dans le mouton uniquement"],
+    correctAnswer: 0,
+    explanation: "Le sable hydatique contient les protoscolices qui peuvent infecter l’hôte définitif s’ils sont ingérés."
   },
   {
-    "id": "h_cest_25",
-    "question": "La lésion hépatique de l'Echinococcose alvéolaire ressemble à :",
-    "options": [
-      "Un cancer du foie (tumeur infiltrante mal délimitée)",
-      "Un kyste liquidien simple",
-      "Un abcès",
-      "Une cirrhose"
-    ],
-    "correct": 0,
-    "explanation": "On l'appelle 'Cancer parasitaire' car elle envahit et détruit le foie sans limite nette.",
-    "axis": "morphology"
+    id: "echino_morph_7",
+    axis: "lifecycle",
+    question: "La contamination du chien se fait par :",
+    options: ["Ingestion de tissus de mouton contenant protoscolices", "Contact cutané avec mouton", "Œufs dans l’eau", "Morsure d’insecte vecteur"],
+    correctAnswer: 0,
+    explanation: "Le chien ingère les organes infectés par les protoscolices qui se développent en vers adultes dans l’intestin."
   },
   {
-    "id": "h_cest_26",
-    "question": "Le pronostic de l'Echinococcose alvéolaire sans traitement est :",
-    "options": [
-      "Mortel à 100%",
-      "Bénin",
-      "Guérison spontanée",
-      "Stable"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'une des parasitoses les plus létales si non traitée par chirurgie radicale + Albendazole à vie.",
-    "axis": "morphology"
+    id: "echino_morph_8",
+    axis: "lifecycle",
+    question: "La contamination humaine se fait par :",
+    options: ["Ingestion d’œufs provenant des excréments de chien", "Contact direct avec mouton", "Morsure de moustique", "Ingestion de viande de porc crue"],
+    correctAnswer: 0,
+    explanation: "Les œufs excrétés par le chien peuvent être ingérés accidentellement par l’homme, causant kystes hydatiques."
   },
   {
-    "id": "h_cest_42",
-    "question": "La prophylaxie de l'Hydatidose implique de :",
-    "options": [
-      "Ne pas donner de viscères crus aux chiens et vermifuger les chiens",
-      "Tuer les moutons",
-      "Ne pas manger de viande",
-      "Se laver les mains"
-    ],
-    "correct": 0,
-    "explanation": "Casser le cycle en empêchant le chien de s'infecter.",
-    "axis": "morphology"
+    id: "echino_morph_9",
+    axis: "lifecycle",
+    question: "Après ingestion d’œufs, les larves :",
+    options: ["Percutent la paroi intestinale et migrent vers le foie ou les poumons", "Restent dans l’intestin sans migration", "Se développent dans le chien uniquement", "Reste sous la peau uniquement"],
+    correctAnswer: 0,
+    explanation: "Les larves traversent la muqueuse intestinale et se localisent préférentiellement dans le foie et les poumons pour former des kystes."
   },
   {
-    "id": "h_cest_44",
-    "question": "Coenurose (Cénurose) est causée par la larve de :",
-    "options": [
-      "Taenia multiceps",
-      "Taenia solium",
-      "Echinococcus",
-      "Ascaris"
-    ],
-    "correct": 0,
-    "explanation": "Parasite du mouton qui donne le 'Tournis' (symptômes neurologiques), rare chez l'homme.",
-    "axis": "morphology"
+    id: "echino_morph_10",
+    axis: "morphology",
+    question: "Le protoscolex est capable de :",
+    options: ["Donner naissance à l’adulte dans l’intestin du chien", "Se transformer en kyste dans le foie humain", "Produire des œufs directement", "Se multiplier dans le sang"],
+    correctAnswer: 0,
+    explanation: "Les protoscolices, lorsqu’ingérés par le chien, se développent en vers adultes produisant des œufs."
   },
   {
-    "id": "h_cest_45",
-    "question": "Le kyste hydatique pulmonaire a la particularité de :",
-    "options": [
-      "Pouvoir s'ouvrir dans les bronches (Vomique hydatique : liquide salé + peaux de raisin)",
-      "Être toujours silencieux",
-      "Ne jamais grossir",
-      "Être dur"
-    ],
-    "correct": 0,
-    "explanation": "Le patient crache les membranes du kyste, signe pathognomonique.",
-    "axis": "morphology"
+    id: "echino_morph_11",
+    axis: "morphology",
+    question: "La membrane proligère est :",
+    options: ["La couche interne du kyste qui produit les protoscolices", "Une couche externe résistante", "Une capsule digestive", "Un tissu hépatique infecté"],
+    correctAnswer: 0,
+    explanation: "La membrane proligère tapisse l’intérieur du kyste et produit des protoscolices capables d’infecter le chien."
   },
   {
-    "id": "h_cest_46",
-    "question": "Le signe du 'décollement de membrane' (Nénuphar) à la radio pulmonaire signe :",
-    "options": [
-      "Un kyste hydatique fissuré",
-      "Un cancer",
-      "Une tuberculose",
-      "Une pneumonie"
-    ],
-    "correct": 0,
-    "explanation": "L'air pénètre entre la membrane du kyste et la coque, créant une image flottante.",
-    "axis": "morphology"
+    id: "echino_morph_12",
+    axis: "lifecycle",
+    question: "La croissance du kyste hydatique humain est :",
+    options: ["Lente et progressive, sur plusieurs années", "Rapide en quelques jours", "Instantanée après ingestion", "Limitée aux intestins uniquement"],
+    correctAnswer: 0,
+    explanation: "Les kystes humains se développent lentement dans les tissus, pouvant atteindre plusieurs centimètres voire plus."
   },
   {
-    "id": "h_cest_47",
-    "question": "L'examen parasitologique des selles est-il utile pour le Kyste Hydatique ?",
-    "options": [
-      "Non, jamais (c'est une impasse parasitaire, pas de ponte)",
-      "Oui, toujours",
-      "Parfois",
-      "Pour le chien seulement"
-    ],
-    "correct": 0,
-    "explanation": "Il n'y a pas de vers adultes dans l'intestin de l'homme, donc pas d'œufs dans ses selles.",
-    "axis": "morphology"
+    id: "echino_morph_13",
+    axis: "lifecycle",
+    question: "Les kystes hydatiques humains se localisent préférentiellement dans :",
+    options: ["Foie, poumons, parfois cerveau ou os", "Intestin grêle", "Estomac uniquement", "Peau uniquement"],
+    correctAnswer: 0,
+    explanation: "Le foie est le site le plus fréquent, suivi des poumons; d’autres organes peuvent être atteints de façon moins fréquente."
   },
   {
-    "id": "h_cest_49",
-    "question": "Un kyste hydatique calcifié (CE5) est généralement :",
-    "options": [
-      "Mort et inactif (Surveillance simple)",
-      "Très dangereux",
-      "À opérer d'urgence",
-      "Infectieux"
-    ],
-    "correct": 0,
-    "explanation": "C'est l'évolution naturelle vers la guérison spontanée.",
-    "axis": "morphology"
+    id: "echino_morph_14",
+    axis: "morphology",
+    question: "Les kystes hydatiques contiennent :",
+    options: ["Liquide clair ou jaune et protoscolices (sable hydatique)", "Sang et mucus", "Larves libres dans l’intestin", "Œufs de ténia"],
+    correctAnswer: 0,
+    explanation: "Le liquide kystique contient des protoscolices et peut former du sable hydatique en suspension."
   },
   {
-    "id": "h_cest_59",
-    "question": "L'auto-infestation endogène est possible avec :",
-    "options": [
-      "Taenia solium et Hymenolepis nana",
-      "Taenia saginata",
-      "Diphyllobothrium",
-      "Echinococcus"
-    ],
-    "correct": 0,
-    "explanation": "Si des anneaux de T. solium remontent vers l'estomac (vomissements), les œufs sont libérés et causent une cysticercose massive.",
-    "axis": "morphology"
+    id: "echino_morph_15",
+    axis: "lifecycle",
+    question: "L’élimination du parasite adulte chez le chien se fait par :",
+    options: ["Perte naturelle des segments contenant œufs", "Formation de kystes dans le foie", "Migration vers les poumons", "Sécrétion biliaire"],
+    correctAnswer: 0,
+    explanation: "Les segments de l’adulte sédentaire dans l’intestin du chien libèrent des œufs qui contaminent l’environnement."
   },
   {
-    "id": "h_cest_60",
-    "question": "La larve plérocercoïde est le stade infectant de :",
-    "options": [
-      "Diphyllobothrium latum (dans le poisson)",
-      "Taenia",
-      "Echinococcus",
-      "Hymenolepis"
-    ],
-    "correct": 0,
-    "explanation": "C'est une larve blanche non enkystée dans la chair du poisson.",
-    "axis": "morphology"
+    id: "echino_morph_16",
+    axis: "lifecycle",
+    question: "Les œufs dans l’environnement restent infectieux :",
+    options: ["Plusieurs semaines à mois selon conditions", "Quelques heures seulement", "Toujours inactifs", "Uniquement dans l’intestin du chien"],
+    correctAnswer: 0,
+    explanation: "Les œufs sont résistants et peuvent survivre plusieurs semaines à mois dans le sol ou l’eau avant ingestion."
   },
   {
-    "id": "h_cest_62",
-    "question": "Cas clinique : Éleveur de moutons avec masse hépatique kystique cloisonnée ('nid d'abeille'). Sérologie hydatique négative. Diagnostic ?",
-    "options": [
-      "Echinococcose Alvéolaire (E. multilocularis) si zone endémique, ou Kyste hydatique atypique",
-      "Cancer",
-      "Abcès",
-      "Hématome"
-    ],
-    "correct": 0,
-    "explanation": "Attention : E. multilocularis donne des images d'infiltration tumorale ou alvéolaire, pas un kyste unique rond.",
-    "axis": "morphology"
+    id: "echino_morph_17",
+    axis: "morphology",
+    question: "Le kyste hydatique peut contenir combien de protoscolices :",
+    options: ["Des centaines à des milliers", "Seulement un ou deux", "Uniquement des œufs", "Adultes"],
+    correctAnswer: 0,
+    explanation: "Chaque kyste produit un grand nombre de protoscolices pouvant infecter un chien en cas d’ingestion."
   },
   {
-    "id": "h_cest_66",
-    "question": "La technique PAIR pour le kyste hydatique signifie :",
-    "options": [
-      "Ponction, Aspiration, Injection (alcool/salé), Ré-aspiration",
-      "Ponction, Analyse, Incision, Retrait",
-      "Pas d'Action Immédiate Requise",
-      "Prise d'Albendazole Intense Rapide"
-    ],
-    "correct": 0,
-    "explanation": "Alternative à la chirurgie pour les kystes inopérables ou simples (CE1), sous guidage échographique.",
-    "axis": "morphology"
+    id: "echino_morph_18",
+    axis: "lifecycle",
+    question: "La drépanisation du cycle repose sur :",
+    options: ["La relation chien-mouton, l’homme étant un hôte accidentel", "Contact humain direct uniquement", "Transmission vectorielle par insecte", "Contamination par aliments végétaux uniquement"],
+    correctAnswer: 0,
+    explanation: "Le cycle naturel se fait entre chien et mouton, l’homme se contaminant accidentellement."
   },
   {
-    "id": "h_cest_70",
-    "question": "Quelle chirurgie est formellement contre-indiquée dans l'Echinococcose alvéolaire ?",
-    "options": [
-      "La ponction simple diagnostique (risque d'essaimage métastatique)",
-      "L'hépatectomie",
-      "La greffe",
-      "L'exérèse"
-    ],
-    "correct": 0,
-    "explanation": "On ne ponctionne jamais une tumeur hépatique suspecte d'être parasitaire sans précautions extrêmes.",
-    "axis": "morphology"
+    id: "echino_morph_19",
+    axis: "morphology",
+    question: "La rupture spontanée du kyste peut provoquer :",
+    options: ["Réaction anaphylactique sévère et dissémination des protoscolices", "Diarrhée", "Éruption cutanée légère", "Éléphantiasis"],
+    correctAnswer: 0,
+    explanation: "La rupture libère les protoscolices dans les tissus, pouvant déclencher choc anaphylactique ou formation de kystes secondaires."
   },
   {
-    "id": "h_cest_72",
-    "question": "En France, la majorité des cas de Ténia sont dus à :",
-    "options": [
-      "Taenia saginata (Bœuf)",
-      "Taenia solium",
-      "Hymenolepis",
-      "Echinococcus"
-    ],
-    "correct": 0,
-    "explanation": "Le contrôle vétérinaire du porc est très strict, rendant T. solium exceptionnel. T. saginata persiste à cause de la mode du bœuf saignant.",
-    "axis": "morphology"
+    id: "echino_morph_20",
+    axis: "lifecycle",
+    question: "La prévention de l’échinococcose repose sur :",
+    options: ["Désinfection des chiens et contrôle sanitaire du bétail", "Vaccination humaine", "Filtration de l’eau uniquement", "Antibiothérapie systématique"],
+    correctAnswer: 0,
+    explanation: "Empêcher que le chien ingère viscères de mouton infectés et contrôler les chiens domestiques rompt le cycle."
+  }
+];
+export const echinococcosisClinicalQuestions = [
+  // =========================
+  // ÉCHINOCOCCOSE - Clinique (20 QCM)
+  // =========================
+  {
+    id: "echino_clin_1",
+    axis: "clinical",
+    question: "Le kyste hydatique hépatique peut se manifester par :",
+    options: ["Hépatomégalie et douleur abdominale", "Prurit anal", "Crises épileptiques", "Éléphantiasis"],
+    correctAnswer: 0,
+    explanation: "La croissance du kyste dans le foie provoque augmentation du volume hépatique et douleur abdominale localisée."
   },
   {
-    "id": "h_cest_73",
-    "question": "L'abattage clandestin (sans contrôle vétérinaire) est le facteur de risque majeur pour :",
-    "options": [
-      "L'Hydatidose et la Cysticercose",
-      "L'Oxyurose",
-      "L'Ascaridiose",
-      "Le Paludisme"
-    ],
-    "correct": 0,
-    "explanation": "Donner les abats infestés aux chiens perpétue le cycle de l'hydatidose.",
-    "axis": "morphology"
+    id: "echino_clin_2",
+    axis: "clinical",
+    question: "Une complication fréquente du kyste hépatique est :",
+    options: ["Rupture biliaire avec ictère et coliques", "Éruption cutanée", "Diarrhée sanglante", "Épilepsie tardive"],
+    correctAnswer: 0,
+    explanation: "La rupture dans les voies biliaires entraîne cholestase, coliques et risque d’infection biliaire."
   },
   {
-    "id": "h_cest_75",
-    "question": "Le cycle sylvatique de l'Echinococcose implique souvent le couple :",
-    "options": [
-      "Renard - Campagnol",
-      "Chien - Mouton",
-      "Loup - Cerf",
-      "Chat - Souris"
-    ],
-    "correct": 0,
-    "explanation": "Le campagnol est l'hôte intermédiaire qui mange les œufs laissés par le renard.",
-    "axis": "morphology"
+    id: "echino_clin_3",
+    axis: "clinical",
+    question: "Une infection secondaire du kyste hépatique peut provoquer :",
+    options: ["Fièvre, douleur et septicémie", "Vomissements de liquide clair", "Crises convulsives", "Ulceration cutanée"],
+    correctAnswer: 0,
+    explanation: "L’infection bactérienne secondaire d’un kyste hydatique hépatique entraîne un syndrome infectieux sévère."
   },
   {
-    "id": "h_cest_76",
-    "question": "L'Arc 5 en immunoélectrophorèse était le signe pathognomonique de :",
-    "options": [
-      "L'Hydatidose (E. granulosus)",
-      "La Cysticercose",
-      "L'Amibiase",
-      "La Bilharziose"
-    ],
-    "correct": 0,
-    "explanation": "Test historique très spécifique, aujourd'hui remplacé par Western Blot (bandes p7, p26/28).",
-    "axis": "morphology"
+    id: "echino_clin_4",
+    axis: "clinical",
+    question: "Le kyste pulmonaire peut se manifester par :",
+    options: ["Vomique avec rejet de liquide clair et membranes", "Prurit anal", "Diarrhée sanglante", "Myalgies diffuses"],
+    correctAnswer: 0,
+    explanation: "La rupture du kyste pulmonaire dans les bronches provoque l’expulsion du liquide hydatique, souvent décrit comme eau de roche."
   },
   {
-    "id": "h_cest_85",
-    "question": "Echinococcus vogeli cause :",
-    "options": [
-      "L'Hydatidose polykystique (Amérique du Sud)",
-      "L'alvéolaire",
-      "Le kyste simple",
-      "Rien"
-    ],
-    "correct": 0,
-    "explanation": "Forme rare néotropicale.",
-    "axis": "morphology"
+    id: "echino_clin_5",
+    axis: "clinical",
+    question: "La rupture spontanée d’un kyste peut entraîner :",
+    options: ["Choc anaphylactique", "Diarrhée", "Éruption cutanée légère", "Myalgies diffuses"],
+    correctAnswer: 0,
+    explanation: "La libération brutale du liquide hydatique dans le sang peut provoquer une réaction allergique sévère et un choc anaphylactique."
   },
   {
-    "id": "h_cest_87",
-    "question": "La 'membrane proligère' du kyste hydatique est :",
-    "options": [
-      "La couche interne germinative qui produit les vésicules filles et le liquide",
-      "La coque externe",
-      "La capsule fibreuse du foie",
-      "Inerte"
-    ],
-    "correct": 0,
-    "explanation": "C'est la partie vivante et active du kyste qu'il faut détruire.",
-    "axis": "morphology"
+    id: "echino_clin_6",
+    axis: "clinical",
+    question: "Les signes respiratoires liés au kyste pulmonaire incluent :",
+    options: ["Toux, hémoptysie et gêne respiratoire", "Prurit anal", "Vomissements biliaires", "Éruption cutanée"],
+    correctAnswer: 0,
+    explanation: "Le kyste pulmonaire peut comprimer les bronches ou se rompre, provoquant toux, expectorations sanglantes ou liquide hydatique."
   },
   {
-    "id": "h_cest_90",
-    "question": "L'adventice (Péricyste) du kyste hydatique appartient à :",
-    "options": [
-      "L'hôte (réaction inflammatoire fibreuse du foie)",
-      "Au parasite",
-      "Aux deux",
-      "À personne"
-    ],
-    "correct": 0,
-    "explanation": "Le chirurgien peut passer dans le plan de clivage entre l'adventice et le kyste.",
-    "axis": "morphology"
+    id: "echino_clin_7",
+    axis: "clinical",
+    question: "Une hépatomégalie due à l’échinococcose peut être :",
+    options: ["Indolore ou légèrement douloureuse", "Toujours douloureuse et fébrile", "Accompagnée d’éruption cutanée", "Toujours asymptomatique"],
+    correctAnswer: 0,
+    explanation: "La croissance lente des kystes hépatique peut passer inaperçue ou provoquer douleur diffuse légère."
   },
   {
-    "id": "h_cest_93",
-    "question": "L'homme est hôte définitif pour :",
-    "options": [
-      "T. saginata, T. solium, D. latum",
-      "Echinococcus",
-      "Cysticercus",
-      "Coenurus"
-    ],
-    "correct": 0,
-    "explanation": "Il héberge le ver adulte sexué.",
-    "axis": "morphology"
+    id: "echino_clin_8",
+    axis: "clinical",
+    question: "L’infection bactérienne secondaire d’un kyste hydatique est suspectée devant :",
+    options: ["Fièvre, douleurs localisées et CRP élevée", "Diarrhée sanglante", "Prurit anal", "Céphalées isolées"],
+    correctAnswer: 0,
+    explanation: "L’infection secondaire provoque des signes généraux et locaux d’inflammation et de septicémie."
   },
   {
-    "id": "h_cest_94",
-    "question": "L'homme est hôte intermédiaire accidentel pour :",
-    "options": [
-      "Echinococcus (Kyste) et T. solium (Cysticercose)",
-      "T. saginata",
-      "D. latum",
-      "Ascaris"
-    ],
-    "correct": 0,
-    "explanation": "Il héberge la forme larvaire asexuée.",
-    "axis": "morphology"
+    id: "echino_clin_9",
+    axis: "clinical",
+    question: "Les vomiques d’un kyste pulmonaire correspondent à :",
+    options: ["Rejet de liquide clair avec membranes hydatiques", "Sang dans les selles", "Écoulement nasal purulent", "Sécrétion urinaire"],
+    correctAnswer: 0,
+    explanation: "La rupture du kyste dans les voies respiratoires entraîne expulsion de liquide hydatique et de membranes (sable hydatique)."
   },
   {
-    "id": "h_clin_15",
-    "question": "Le test de Mazzotti (provocation au diéthylcarbamazine) est utilisé avec prudence pour le diagnostic de :",
-    "options": [
-      "L'Onchocercose",
-      "La Bilharziose",
-      "L'Hydatidose",
-      "La Trichinellose"
-    ],
-    "correct": 0,
-    "explanation": "Ce test provoque une réaction allergique cutanée et systémique en tuant brutalement les microfilaires. Il est utilisé quand la recherche de microfilaires dermiques est négative mais la suspicion forte.",
-    "axis": "clinical"
+    id: "echino_clin_10",
+    axis: "clinical",
+    question: "La rupture traumatique d’un kyste hépatique peut provoquer :",
+    options: ["Choc anaphylactique et dissémination secondaire", "Fièvre isolée", "Diarrhée sanglante", "Ulceration cutanée"],
+    correctAnswer: 0,
+    explanation: "Le contenu hydatique libéré dans la cavité péritonéale peut déclencher une réaction allergique sévère et propagation secondaire."
   },
   {
-    "id": "h_clin_22",
-    "question": "La présence de calcifications vésicales en 'coquille d'œuf' à la radiographie est évocatrice de :",
-    "options": [
-      "Bilharziose urinaire chronique",
-      "Tuberculose rénale",
-      "Lithiase urique",
-      "Hydatidose rénale"
-    ],
-    "correct": 0,
-    "explanation": "Dans les formes chroniques de bilharziose, la paroi vésicale peut se calcifier totalement, donnant cet aspect caractéristique.",
-    "axis": "clinical"
+    id: "echino_clin_11",
+    axis: "clinical",
+    question: "Les signes généraux d’un kyste infecté incluent :",
+    options: ["Fièvre, malaise et leucocytose", "Crises convulsives", "Diarrhée aiguë", "Prurit anal intense"],
+    correctAnswer: 0,
+    explanation: "La surinfection d’un kyste hydatique se traduit par un syndrome infectieux systémique."
   },
   {
-    "id": "h_clin_28",
-    "question": "L'anémie macrocytaire mégaloblastique par carence en vitamine B12 est une complication rare de :",
-    "options": [
-      "Bothriocéphalose (Diphyllobothrium latum)",
-      "Taeniase",
-      "Hymenolepiase",
-      "Hydatidose"
-    ],
-    "correct": 0,
-    "explanation": "Le Bothriocéphale consomme avidement la vitamine B12 dans l'intestin, pouvant entraîner une anémie de type Biermer.",
-    "axis": "clinical"
+    id: "echino_clin_12",
+    axis: "clinical",
+    question: "La localisation hépatique est la plus fréquente car :",
+    options: ["Le foie est le premier filtre sanguin après absorption intestinale", "Le foie est plus exposé aux chiens", "Le foie produit des œufs", "Le foie est riche en protoscolices"],
+    correctAnswer: 0,
+    explanation: "Les larves ingérées passent par le système porte et s’arrêtent préférentiellement dans le foie pour former un kyste."
   },
   {
-    "id": "h_clin_3",
-    "question": "Parmi ces parasitoses, laquelle entraîne l'hyperéosinophilie la plus massive et persistante ?",
-    "options": [
-      "Toxocarose (Larva Migrans Viscérale)",
-      "Oxyurose",
-      "Taeniase à T. saginata",
-      "Kyste hydatique sain"
-    ],
-    "correct": 0,
-    "explanation": "La Toxocarose est une impasse parasitaire chez l'homme. Les larves errantes dans les tissus provoquent une réaction immuno-allergique majeure avec une hyperéosinophilie pouvant dépasser 10-20 G/L.",
-    "axis": "clinical"
+    id: "echino_clin_13",
+    axis: "clinical",
+    question: "Le kyste pulmonaire peut rester asymptomatique longtemps car :",
+    options: ["Croissance lente et espace pulmonaire tolérant", "Toujours cause toux immédiate", "Toujours provoque choc anaphylactique", "Toujours hémoptysie immédiate"],
+    correctAnswer: 0,
+    explanation: "Les kystes pulmonaires se développent lentement et peuvent rester silencieux jusqu’à complication ou rupture."
   },
   {
-    "id": "h_clin_30",
-    "question": "Quel est le risque majeur lors de la ponction ou de la rupture chirurgicale d'un kyste hydatique ?",
-    "options": [
-      "Choc anaphylactique et dissémination secondaire (hydatidose secondaire)",
-      "Hémorragie massive",
-      "Surinfection bactérienne",
-      "Insuffisance hépatique aiguë"
-    ],
-    "correct": 0,
-    "explanation": "Le liquide hydatique est hautement antigénique (risque de choc) et contient des protoscolex fertiles qui peuvent se greffer ailleurs dans le péritoine (échinococcose secondaire).",
-    "axis": "clinical"
+    id: "echino_clin_14",
+    axis: "clinical",
+    question: "Une rupture biliaire du kyste hépatique peut entraîner :",
+    options: ["Ictère, douleur et cholangite", "Diarrhée sanglante", "Toux avec liquide clair", "Prurit anal"],
+    correctAnswer: 0,
+    explanation: "Le kyste peut communiquer avec les voies biliaires, entraînant ictère obstructif et risques infectieux."
   },
   {
-    "id": "h_clin_31",
-    "question": "L'aspect radiologique en 'boulet de canon' (lâcher de ballons) pulmonaire peut s'observer dans :",
-    "options": [
-      "L'Hydatidose pulmonaire multiple (ou secondaire)",
-      "L'Ascaridiose",
-      "La Bilharziose",
-      "La Distomatose"
-    ],
-    "correct": 0,
-    "explanation": "Bien que cela évoque souvent des métastases, des kystes hydatiques pulmonaires multiples peuvent donner cet aspect.",
-    "axis": "clinical"
+    id: "echino_clin_15",
+    axis: "clinical",
+    question: "Un choc anaphylactique lié à un kyste hydatique est :",
+    options: ["Urgence vitale nécessitant réanimation immédiate", "Symptôme bénin auto-résolutif", "Toujours associé à diarrhée", "Toujours associé à convulsions"],
+    correctAnswer: 0,
+    explanation: "La libération brutale du liquide hydatique dans la circulation peut provoquer hypotension sévère et choc anaphylactique."
   },
   {
-    "id": "h_clin_35",
-    "question": "Le signe du 'nénuphar' (membrane flottante) à l'imagerie est pathognomonique de :",
-    "options": [
-      "Un kyste hydatique avec décollement de la membrane proligère",
-      "Un abcès amibien",
-      "Un kyste biliaire simple",
-      "Une tumeur nécrosée"
-    ],
-    "correct": 0,
-    "explanation": "Lorsque la pression intracystique baisse ou qu'il y a une fissure, la membrane proligère se décolle et flotte dans le liquide, donnant cet aspect caractéristique.",
-    "axis": "clinical"
+    id: "echino_clin_16",
+    axis: "clinical",
+    question: "Les complications possibles du kyste pulmonaire incluent :",
+    options: ["Infection secondaire, hémorragie et pneumothorax", "Diarrhée sanglante", "Ulceration cutanée", "Myalgies diffuses"],
+    correctAnswer: 0,
+    explanation: "La rupture ou infection du kyste pulmonaire peut entraîner complications respiratoires graves."
   },
   {
-    "id": "h_clin_47",
-    "question": "Quelle parasitose peut entraîner un cancer de la vessie (carcinome épidermoïde) à long terme ?",
-    "options": [
-      "Bilharziose urinaire (S. haematobium)",
-      "Bilharziose intestinale",
-      "Distomatose hépatique",
-      "Hydatidose"
-    ],
-    "correct": 0,
-    "explanation": "L'irritation chronique de la muqueuse vésicale par les œufs de S. haematobium est cancérigène (classé groupe 1 par le CIRC).",
-    "axis": "clinical"
+    id: "echino_clin_17",
+    axis: "clinical",
+    question: "Le diagnostic clinique repose sur :",
+    options: ["Suspicion devant masse hépatique ou symptômes respiratoires", "Observation directe des anneaux intestinaux", "Scotch-test anal", "Hyperéosinophilie isolée"],
+    correctAnswer: 0,
+    explanation: "Les signes cliniques associés à kystes hépatiques ou pulmonaires orientent vers échinococcose."
   },
   {
-    "id": "h_clin_48",
-    "question": "Le traitement chirurgical PAIR (Ponction-Aspiration-Injection-Réaspiration) concerne :",
-    "options": [
-      "Le Kyste Hydatique du foie",
-      "L'abcès amibien",
-      "La Neurocysticercose",
-      "L'ascaridiose biliaire"
-    ],
-    "correct": 0,
-    "explanation": "C'est une alternative à la chirurgie classique pour certains types de kystes hydatiques (Types I et II), sous guidage échographique.",
-    "axis": "clinical"
+    id: "echino_clin_18",
+    axis: "clinical",
+    question: "Le liquide hydatique rejeté lors du vomique pulmonaire est :",
+    options: ["Clair et contenant membranes et protoscolices", "Sang pur", "Mucus purulent", "Liquide biliaire"],
+    correctAnswer: 0,
+    explanation: "Le liquide hydatique contient protoscolices et membranes, souvent décrit comme eau de roche."
   },
   {
-    "id": "h_clin_49",
-    "question": "Quelle helminthiose est associée à la consommation de poisson cru ou mal cuit ?",
-    "options": [
-      "Bothriocéphalose",
-      "Taeniase",
-      "Hydatidose",
-      "Ascaridiose"
-    ],
-    "correct": 0,
-    "explanation": "Le Bothriocéphale (Diphyllobothrium latum) se transmet par l'ingestion de poissons d'eau douce parasités par des larves plérocercoïdes.",
-    "axis": "clinical"
+    id: "echino_clin_19",
+    axis: "clinical",
+    question: "La douleur abdominale d’un kyste hépatique est souvent :",
+    options: ["Localisée à l’hypochondre droit et modérée", "Diffuse et intense dès le début", "Toujours associée à diarrhée", "Toujours accompagnée de vomissements biliaires"],
+    correctAnswer: 0,
+    explanation: "La croissance du kyste provoque une gêne ou douleur localisée, souvent modérée au début."
   },
   {
-    "id": "h_clin_53",
-    "question": "La 'colique hépatique' parasitaire est typique de :",
-    "options": [
-      "Fasciola hepatica (passage cholédocien)",
-      "Schistosoma mansoni",
-      "Echinococcus granulosus (kyste sain)",
-      "Ascaris (migration)"
-    ],
-    "correct": 0,
-    "explanation": "La douve adulte vit dans les voies biliaires. Son passage ou l'obstruction qu'elle crée provoque des douleurs de type colique hépatique.",
-    "axis": "clinical"
+    id: "echino_clin_20",
+    axis: "clinical",
+    question: "Les signes cliniques alertant sur rupture du kyste hydatique sont :",
+    options: ["Douleur brutale, hypotension, urticaire et choc", "Éruption cutanée localisée uniquement", "Fièvre isolée", "Diarrhée légère"],
+    correctAnswer: 0,
+    explanation: "La rupture libère le contenu hydatique, provoquant réaction allergique sévère et urgence vitale."
+  }
+];
+export const echinococcosisDiagTreatQuestions = [
+  // =========================
+  // ÉCHINOCOCCOSE - Diagnostic & Traitement (20 QCM)
+  // =========================
+  {
+    id: "echino_dt_1",
+    axis: "diagnosis",
+    question: "La classification échographique de Gharbi permet de :",
+    options: ["Classer les kystes hydatiques de type I à V selon aspect échographique", "Identifier les protoscolices au microscope", "Compter les œufs dans le sang", "Déterminer la charge en albendazole"],
+    correctAnswer: 0,
+    explanation: "La classification de Gharbi décrit cinq types de kystes hydatiques sur échographie, facilitant le choix thérapeutique."
   },
   {
-    "id": "h_clin_70",
-    "question": "L'hydatidose est particulièrement fréquente dans les régions :",
-    "options": [
-      "D'élevage ovin (moutons) avec présence de chiens de berger",
-      "De culture intensive du riz",
-      "De pêche en eau douce",
-      "De forêt équatoriale"
-    ],
-    "correct": 0,
-    "explanation": "Le cycle domestique Chien-Mouton entretient l'endémie, notamment au Maghreb, en Amérique du Sud et en Australie.",
-    "axis": "clinical"
+    id: "echino_dt_2",
+    axis: "diagnosis",
+    question: "Un aspect échographique de membrane flottante correspond à :",
+    options: ["Kyste hydatique avec décollement de la membrane germinative", "Tumeur hépatique solide", "Kyste simple sans membrane", "Abcès bactérien purulent"],
+    correctAnswer: 0,
+    explanation: "La membrane flottante correspond au détachement de la membrane germinative interne dans le liquide kystique, caractéristique d’un kyste hydatique."
   },
   {
-    "id": "h_clin_72",
-    "question": "Quel aspect échographique définit un kyste hydatique de type III (Classification de Gharbi) ?",
-    "options": [
-      "Kyste à aspect hétérogène, multivésiculaire (en nid d'abeille)",
-      "Kyste liquidien pur",
-      "Kyste calcifié",
-      "Kyste avec membrane décollée"
-    ],
-    "correct": 0,
-    "explanation": "Le Type III correspond à un kyste fertile contenant de multiples vésicules filles, donnant un aspect cloisonné ou en nid d'abeille.",
-    "axis": "clinical"
+    id: "echino_dt_3",
+    axis: "diagnosis",
+    question: "La sérologie historique de Capron Arc 5 détectait :",
+    options: ["Anticorps dirigés contre l’antigène hydatique", "Protoscolices dans le sang", "Adultes dans l’intestin", "Œufs dans les selles"],
+    correctAnswer: 0,
+    explanation: "L’arc 5 de Capron est un antigène spécifique de l’E. granulosus utilisé dans les tests immunologiques anciens."
   },
   {
-    "id": "h_clin_73",
-    "question": "La CPRE (Cholangio-Pancréatographie Rétrograde Endoscopique) peut être diagnostique et thérapeutique pour :",
-    "options": [
-      "L'extraction d'une Fasciola hepatica ou d'un Ascaris des voies biliaires",
-      "Le traitement d'un kyste hydatique",
-      "Le diagnostic d'une bilharziose intestinale",
-      "La biopsie d'une cysticercose"
-    ],
-    "correct": 0,
-    "explanation": "La CPRE permet de visualiser l'obstruction biliaire par le ver et souvent de l'extraire à l'aide d'un ballonnet ou d'une anse.",
-    "axis": "clinical"
+    id: "echino_dt_4",
+    axis: "diagnosis",
+    question: "Les tests sérologiques modernes incluent :",
+    options: ["ELISA et Western blot pour anticorps anti-hydatiques", "Observation directe des proglottis", "Scotch-test", "PCR sanguine pour ténia uniquement"],
+    correctAnswer: 0,
+    explanation: "ELISA et Western blot détectent les anticorps anti-protéines hydatiques, confirmant l’infection chez l’homme."
   },
   {
-    "id": "h_clin_75",
-    "question": "L'échographie des voies urinaires est l'examen de dépistage de masse pour :",
-    "options": [
-      "La morbidité liée à Schistosoma haematobium (hydronéphrose, polypes)",
-      "La filariose lymphatique",
-      "L'hydatidose rénale",
-      "L'oxyurose"
-    ],
-    "correct": 0,
-    "explanation": "Elle permet de détecter précocement les lésions de la vessie et la dilatation des uretères (hydronéphrose) chez les populations exposées.",
-    "axis": "clinical"
+    id: "echino_dt_5",
+    axis: "diagnosis",
+    question: "La combinaison diagnostic imagerie + sérologie permet de :",
+    options: ["Confirmer la présence et la viabilité des kystes", "Observer les œufs dans le foie", "Éliminer les protoscolices", "Prévenir les complications respiratoires"],
+    correctAnswer: 0,
+    explanation: "L’imagerie localise et caractérise le kyste, la sérologie confirme l’infection et guide le traitement."
   },
   {
-    "id": "h_clin_82",
-    "question": "L'Ivermectine est le traitement de choix pour :",
-    "options": [
-      "L'Anguillulose et l'Onchocercose",
-      "La Bilharziose",
-      "Le Taenia",
-      "Le Kyste Hydatique"
-    ],
-    "correct": 0,
-    "explanation": "C'est un puissant anti-helminthique agissant sur les canaux chlore glutamate-dépendants, très efficace sur les nématodes et les ectoparasites.",
-    "axis": "clinical"
+    id: "echino_dt_6",
+    axis: "treatment",
+    question: "Le traitement de choix pour kyste hydatique accessible et symptomatique est :",
+    options: ["Chirurgie (kystectomie) complète", "Albendazole seul", "Ivermectine", "Diéthylcarbamazine"],
+    correctAnswer: 0,
+    explanation: "La chirurgie reste la méthode la plus efficace pour retirer complètement le kyste et éviter récidive ou rupture."
   },
   {
-    "id": "h_clin_87",
-    "question": "Patient avec hépatomégalie kystique. La sérologie hydatique est négative. Quel diagnostic différentiel parasitaire évoquer ?",
-    "options": [
-      "Kyste amibien (Abcès)",
-      "Bilharziose hépatique",
-      "Fasciolose",
-      "Ascaridiose biliaire"
-    ],
-    "correct": 0,
-    "explanation": "L'abcès amibien du foie se présente comme une lésion liquidienne. Si l'imagerie est atypique pour l'hydatidose, l'amibiase est une option (sérologie amibienne à faire).",
-    "axis": "clinical"
+    id: "echino_dt_7",
+    axis: "treatment",
+    question: "La technique PAIR consiste en :",
+    options: ["Ponction, Aspiration, Injection de produit scolicide, Réaspiration", "Excision chirurgicale complète", "Traitement par Albendazole uniquement", "Observation sans intervention"],
+    correctAnswer: 0,
+    explanation: "Le PAIR est une alternative mini-invasive à la chirurgie classique, surtout pour kystes hépatiques de types I et II."
   },
   {
-    "id": "h_clin_95",
-    "question": "Quelle forme parasitaire est infestante pour l'homme dans le cas de l'Hydatidose ?",
-    "options": [
-      "L'œuf embryonné (embryophore) éliminé par le chien",
-      "Le kyste hydatique",
-      "Le protoscolex",
-      "L'adulte"
-    ],
-    "correct": 0,
-    "explanation": "L'homme se contamine accidentellement (hôte intermédiaire accidentel) en ingérant les œufs de T. échinocoque présents sur le pelage du chien ou dans l'environnement.",
-    "axis": "clinical"
+    id: "echino_dt_8",
+    axis: "treatment",
+    question: "L’Albendazole est utilisé pour :",
+    options: ["Réduire la taille du kyste et tuer les protoscolices", "Augmenter la croissance du kyste", "Induire la rupture du kyste", "Prévenir les crises convulsives"],
+    correctAnswer: 0,
+    explanation: "Albendazole est antiparasitaire, administré avant et après intervention pour réduire viabilité des protoscolices et risque de dissémination."
   },
   {
-    "id": "h_clin_97",
-    "question": "Le signe de la 'glace pilée' à l'échographie hépatique évoque :",
-    "options": [
-      "Une échinococcose alvéolaire",
-      "Un kyste hydatique multivésiculaire",
-      "Un abcès amibien",
-      "Une cirrhose"
-    ],
-    "correct": 0,
-    "explanation": "Ce signe (ou aspect de grêle) est classique de l'échinococcose alvéolaire, traduisant les micro-vésicules et calcifications.",
-    "axis": "clinical"
+    id: "echino_dt_9",
+    axis: "treatment",
+    question: "La chirurgie d’un kyste hydatique doit être :",
+    options: ["Prudente pour éviter rupture et choc anaphylactique", "Rapide et agressive sans précaution", "Évitée systématiquement", "Remplacée par corticoïdes uniquement"],
+    correctAnswer: 0,
+    explanation: "La manipulation doit prévenir la libération de liquide hydatique afin d’éviter choc anaphylactique et dissémination secondaire."
   },
   {
-    "id": "h_nema_32",
-    "question": "Toxocara canis chez l'homme est responsable du syndrome de :",
-    "options": [
-      "Larva migrans viscérale",
-      "Larva migrans cutanée",
-      "Kyste hydatique",
-      "Cénurose"
-    ],
-    "correct": 0,
-    "explanation": "L'homme ingère des œufs de chien, les larves éclosent et errent dans les organes (foie, œil) sans jamais devenir adultes.",
-    "axis": "morphology"
+    id: "echino_dt_10",
+    axis: "diagnosis",
+    question: "La sérologie peut rester positive après traitement car :",
+    options: ["Les anticorps persistent plusieurs mois à années", "Les protoscolices sont éliminés immédiatement", "L’imagerie devient toujours normale", "Le kyste est détruit instantanément"],
+    correctAnswer: 0,
+    explanation: "La persistance des anticorps reflète l’exposition immunitaire prolongée et ne signifie pas toujours infection active."
   },
   {
-    "id": "life_h_3",
-    "question": "Quelle est la définition d'une impasse parasitaire ?",
-    "options": [
-      "Le parasite infecte un hôte inhabituel et ne peut pas achever son cycle",
-      "Le parasite tue son hôte immédiatement",
-      "Le parasite reste latent sans symptômes",
-      "Le cycle s'arrête faute de partenaire sexuel"
-    ],
-    "correct": 0,
-    "explanation": "L'impasse parasitaire survient quand le parasite pénètre chez un hôte non spécifique. Il ne peut pas évoluer en adulte et finit par mourir (ex: Larva migrans, Hydatidose humaine).",
-    "axis": "lifecycle"
+    id: "echino_dt_11",
+    axis: "diagnosis",
+    question: "Le type I de la classification de Gharbi correspond à :",
+    options: ["Kyste homogène anéchogène", "Kyste multi-vésiculaire avec membranes flottantes", "Kyste calcifié", "Kyste solide non hydatique"],
+    correctAnswer: 0,
+    explanation: "Le type I est un kyste simple et liquide homogène, généralement jeune et non compliqué."
   },
   {
-    "id": "life_h_48",
-    "question": "Quel est l'hôte définitif (HD) principal d'Echinococcus granulosus ?",
-    "options": [
-      "Le Chien",
-      "Le Mouton",
-      "L'Homme",
-      "Le Renard"
-    ],
-    "correct": 0,
-    "explanation": "Le chien héberge le ver adulte (très petit, quelques mm) dans son intestin. Il s'infeste en mangeant des viscères de mouton kystiques.",
-    "axis": "lifecycle"
+    id: "echino_dt_12",
+    axis: "diagnosis",
+    question: "Le type IV de Gharbi correspond à :",
+    options: ["Kyste hétérogène avec aspect pseudo-solide", "Kyste liquide homogène", "Kyste multi-vésiculaire avec membranes flottantes", "Kyste calcifié"],
+    correctAnswer: 0,
+    explanation: "Le type IV est difficile à différencier d’une tumeur hépatique car le kyste est hétérogène et pseudo-solide."
   },
   {
-    "id": "life_h_49",
-    "question": "Quel est l'hôte intermédiaire (HI) habituel d'Echinococcus granulosus ?",
-    "options": [
-      "Le Mouton (Herbivores)",
-      "Le Chien",
-      "Le Loup",
-      "Le Chat"
-    ],
-    "correct": 0,
-    "explanation": "Le mouton ingère les œufs sur l'herbe souillée par les fèces du chien. Il développe la forme larvaire (kyste hydatique) dans ses viscères.",
-    "axis": "lifecycle"
+    id: "echino_dt_13",
+    axis: "treatment",
+    question: "Le PAIR est particulièrement indiqué pour :",
+    options: ["Kystes liquides (type I et II) non calcifiés et accessibles", "Kystes calcifiés", "Kystes pulmonaires uniquement", "Tous les kystes sans distinction"],
+    correctAnswer: 0,
+    explanation: "Les kystes liquides sont les meilleurs candidats au PAIR; calcifiés ou complexes nécessitent chirurgie."
   },
   {
-    "id": "life_h_50",
-    "question": "Quelle est la place de l'homme dans le cycle de l'Hydatidose ?",
-    "options": [
-      "Hôte intermédiaire accidentel en impasse parasitaire",
-      "Hôte définitif",
-      "Vecteur",
-      "Hôte paraténique"
-    ],
-    "correct": 0,
-    "explanation": "L'homme prend la place du mouton en ingérant accidentellement des œufs (caresses au chien, aliments souillés). Mais le cycle s'arrête car l'homme n'est pas mangé par le chien.",
-    "axis": "lifecycle"
+    id: "echino_dt_14",
+    axis: "treatment",
+    question: "Albendazole est administré généralement :",
+    options: ["Avant et après intervention chirurgicale ou PAIR", "Uniquement après chirurgie", "Seulement en cas de kyste pulmonaire", "À dose unique préventive"],
+    correctAnswer: 0,
+    explanation: "Le traitement pré- et post-opératoire diminue viabilité des protoscolices et risque de récidive."
   },
   {
-    "id": "life_h_51",
-    "question": "Quel est le mode de contamination de l'homme par l'Hydatidose ?",
-    "options": [
-      "Ingestion d'embryophores (œufs) par mains sales ou aliments souillés",
-      "Consommation de foie de mouton mal cuit",
-      "Piqûre de tique",
-      "Pénétration cutanée"
-    ],
-    "correct": 0,
-    "explanation": "Attention au piège : manger du foie kystique ne donne PAS l'hydatidose (la larve meurt dans l'estomac). Il faut avaler l'ŒUF venant du chien pour développer un kyste.",
-    "axis": "lifecycle"
+    id: "echino_dt_15",
+    axis: "diagnosis",
+    question: "Un aspect échographique de membranes flottantes correspond à quel type de Gharbi :",
+    options: ["Type II (kyste avec membranes détachées)", "Type I", "Type III", "Type V"],
+    correctAnswer: 0,
+    explanation: "Type II montre le décollement de la membrane proligère à l’intérieur du kyste, donnant aspect flottant."
   },
   {
-    "id": "life_h_78",
-    "question": "Quel parasite est transmis par la consommation de viande de porc ?",
-    "options": [
-      "Taenia solium et Trichinella spiralis",
-      "Taenia saginata",
-      "Fasciola hepatica",
-      "Echinococcus"
-    ],
-    "correct": 0,
-    "explanation": "Le porc est l'hôte intermédiaire de T. solium et le réservoir de Trichinella.",
-    "axis": "lifecycle"
+    id: "echino_dt_16",
+    axis: "diagnosis",
+    question: "Le Western blot permet de :",
+    options: ["Confirmer la séropositivité spécifique aux antigènes hydatiques", "Observer les protoscolices", "Visualiser le kyste sur échographie", "Mesurer la taille du foie"],
+    correctAnswer: 0,
+    explanation: "Western blot détecte anticorps dirigés contre des antigènes spécifiques du parasite, confirmant l’infection."
+  },
+  {
+    id: "echino_dt_17",
+    axis: "treatment",
+    question: "La chirurgie conservatrice consiste à :",
+    options: ["Retirer le kyste tout en préservant le parenchyme hépatique", "Détruire le kyste par injection chimique uniquement", "Observation sans intervention", "Résection du foie entier"],
+    correctAnswer: 0,
+    explanation: "La kystectomie conservatrice enlève le kyste tout en préservant au maximum le tissu hépatique sain."
+  },
+  {
+    id: "echino_dt_18",
+    axis: "treatment",
+    question: "Le risque principal de la chirurgie hydatique est :",
+    options: ["Rupture du kyste et choc anaphylactique", "Hémorragie digestive", "Infarctus pulmonaire", "Infection urinaire"],
+    correctAnswer: 0,
+    explanation: "La manipulation du kyste peut libérer le liquide hydatique et provoquer une réaction allergique sévère ou dissémination secondaire."
+  },
+  {
+    id: "echino_dt_19",
+    axis: "diagnosis",
+    question: "La confirmation de viabilité d’un kyste peut se faire par :",
+    options: ["Visualisation de protoscolices mobiles sur échographie ou après ponction", "Sérologie seule", "TDM cérébral", "Observation des œufs dans les selles"],
+    correctAnswer: 0,
+    explanation: "La mobilité des protoscolices indique que le kyste est actif et viable, guidant le choix thérapeutique."
+  },
+  {
+    id: "echino_dt_20",
+    axis: "treatment",
+    question: "La prévention de récidive après PAIR ou chirurgie repose sur :",
+    options: ["Albendazole et suivi échographique régulier", "Vaccination obligatoire", "Antibiotiques à large spectre", "Corticoïdes uniquement"],
+    correctAnswer: 0,
+    explanation: "Albendazole réduit la viabilité des protoscolices résiduels et le suivi échographique permet détection précoce de récidive."
   }
 ];

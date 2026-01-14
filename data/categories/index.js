@@ -1,5 +1,5 @@
 ﻿// data/categories/index.js
-// 🌐 The Master Hub: Disease-Centric Data Structure (v3.2 - Stable)
+// 🌐 The Master Hub: All Parasites & Techniques (v4.0 - Final Worms)
 
 // ==========================================
 // 1. PROTOZOA IMPORTS
@@ -14,7 +14,7 @@ import { questions as coccidies } from './protozoa/maladies/coccidies';
 import { questions as trichomonase } from './protozoa/maladies/trichomonase';
 
 // ==========================================
-// 2. HELMINTHS IMPORTS
+// 2. HELMINTHS IMPORTS (UPDATED WITH NEW FILES)
 // ==========================================
 import { questions as ascaridiose } from './helminths/maladies/ascaridiose';
 import { questions as oxyurose } from './helminths/maladies/oxyurose';
@@ -26,6 +26,11 @@ import { questions as schistosomiase } from './helminths/maladies/schistosomiase
 import { questions as teniase } from './helminths/maladies/teniase';
 import { questions as echinococcose } from './helminths/maladies/echinococcose';
 import { questions as fasciolose } from './helminths/maladies/fasciolose';
+// 👇 NEW ADDITIONS (الجدد)
+import { questions as trichinellose } from './helminths/maladies/trichinellose';
+import { questions as dracunculose } from './helminths/maladies/dracunculose';
+import { questions as hymenolepiase } from './helminths/maladies/hymenolepiase';
+import { questions as diphyllobothriase } from './helminths/maladies/diphyllobothriase';
 
 // ==========================================
 // 3. ARTHROPODS IMPORTS
@@ -37,9 +42,8 @@ import { questions as moustiques } from './arthropods/maladies/moustiques_vecteu
 import { questions as myiases } from './arthropods/maladies/myiases';
 
 // ==========================================
-// 4. TECHNIQUES (LABO) IMPORTS - ✅ CORRECTED
+// 4. TECHNIQUES IMPORTS
 // ==========================================
-// هنا كان الخطأ: نستورد 'questions' ونسميها حسب التقنية
 import { questions as prelevements } from './techniques/prelevements';
 import { questions as coprologie } from './techniques/coprologie';
 import { questions as hematologie } from './techniques/hematologie';
@@ -47,7 +51,7 @@ import { questions as colorations } from './techniques/colorations';
 import { questions as immuno } from './techniques/immuno_moleculaire';
 
 // ==========================================
-// EXPORTS: STRUCTURED BY DISEASE / MODULE
+// EXPORTS
 // ==========================================
 
 // 1. PROTOZOA
@@ -73,7 +77,7 @@ export const protozoaLabels = {
   trichomonase: "Trichomonase"
 };
 
-// 2. HELMINTHS
+// 2. HELMINTHS (UPDATED LIST)
 export const helminthsQuestions = {
   ascaridiose: { name: "Ascaridiose", data: ascaridiose },
   oxyurose: { name: "Oxyurose", data: oxyurose },
@@ -85,6 +89,11 @@ export const helminthsQuestions = {
   teniase: { name: "Téniase & Cysticercose", data: teniase },
   echinococcose: { name: "Échinococcose", data: echinococcose },
   fasciolose: { name: "Fasciolose", data: fasciolose },
+  // 👇 NEW
+  trichinellose: { name: "Trichinellose", data: trichinellose },
+  dracunculose: { name: "Dracunculose", data: dracunculose },
+  hymenolepiase: { name: "Hyménolépiase", data: hymenolepiase },
+  diphyllobothriase: { name: "Diphyllobothriase", data: diphyllobothriase },
 };
 
 export const helminthsLabels = {
@@ -97,7 +106,12 @@ export const helminthsLabels = {
   schistosomiase: "Schistosomiase",
   teniase: "Téniase",
   echinococcose: "Échinococcose",
-  fasciolose: "Fasciolose"
+  fasciolose: "Fasciolose",
+  // 👇 NEW
+  trichinellose: "Trichinellose (Viande)",
+  dracunculose: "Dracunculose (Ver de Guinée)",
+  hymenolepiase: "Hyménolépiase (H. nana)",
+  diphyllobothriase: "Bothriocéphalose (Poisson)",
 };
 
 // 3. ARTHROPODS
@@ -117,8 +131,7 @@ export const arthropodsLabels = {
   myiases: "Myiases"
 };
 
-// 4. TECHNIQUES (Updated to match New Structure)
-// ✅ تم تحديث هذا القسم ليطابق الهيكلة الجديدة
+// 4. TECHNIQUES
 export const microscopyQuestions = {
   prelevements: { name: "Prélèvements", data: prelevements },
   coprologie: { name: "Coprologie", data: coprologie },
@@ -135,20 +148,15 @@ export const microscopyLabels = {
   immuno: "Immuno & Moléculaire"
 };
 
-// ==========================================
-// UTILITY: Get Stats per Axis
-// ==========================================
+// Utility
 export const getTotalQuestions = (categoryObj) => {
   let total = 0;
   if (!categoryObj) return 0;
   
   Object.values(categoryObj).forEach(module => {
-    // If it's the new structure { name: "...", data: [...] }
     if (module.data && Array.isArray(module.data)) {
       total += module.data.length;
-    } 
-    // If it's the old structure (Direct array like microscopy)
-    else if (Array.isArray(module)) {
+    } else if (Array.isArray(module)) {
       total += module.length;
     }
   });
