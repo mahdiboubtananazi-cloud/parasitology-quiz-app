@@ -1,4 +1,4 @@
-export const trichoMorphCycleQuestions = [
+export const questions = [
   // =========================
   // MORPHOLOGIE & CYCLE DE VIE (15 questions)
   // =========================
@@ -129,9 +129,7 @@ export const trichoMorphCycleQuestions = [
     options: ["Migration tissulaire systémique", "Diarrhée légère", "Anémie en cas d’infestation massive", "Prurit anal"],
     correctAnswer: 0,
     explanation: "Contrairement aux nématodes migrateurs, Trichuris reste dans le cæcum et colon proximal, sans migration systémique."
-  }
-];
-export const trichoClinicalDiagTreatQuestions = [
+  },
   // =========================
   // CLINICAL (10 questions)
   // =========================

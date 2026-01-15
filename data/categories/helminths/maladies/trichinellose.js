@@ -1,4 +1,4 @@
-export const trichinelloseMorphCycleQuestions = [
+export const questions = [
     // =========================
     // MORPHOLOGIE & CYCLE DE VIE TRICHINELLOSE (15 questions)
     // =========================
@@ -121,9 +121,7 @@ export const trichinelloseMorphCycleQuestions = [
       options: ["Reproduction et encystement des larves sans nécessité d’hôte intermédiaire", "Transmission uniquement par insecte", "Production d’œufs dans le sang", "Migration vers le foie pour maturation"],
       correctAnswer: 0,
       explanation: "Le cycle auto-hétéroxène signifie que l’hôte unique permet maturation des adultes dans l’intestin et encystement des larves dans les muscles."
-    }
-  ];
-  export const trichinelloseClinicalDiagTreatQuestions = [
+    },
     // =========================
     // CLINIQUE, DIAGNOSTIC & TRAITEMENT TRICHINELLOSE (25 questions)
     // =========================

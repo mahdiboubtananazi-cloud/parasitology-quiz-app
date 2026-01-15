@@ -1,4 +1,4 @@
-export const echinococcosisMorphCycleQuestions = [
+export const questions = [
   // =========================
   // ÉCHINOCOCCOSE (Kyste Hydatique) - Morphologie & Cycle de vie (20 QCM)
   // =========================
@@ -161,9 +161,7 @@ export const echinococcosisMorphCycleQuestions = [
     options: ["Désinfection des chiens et contrôle sanitaire du bétail", "Vaccination humaine", "Filtration de l’eau uniquement", "Antibiothérapie systématique"],
     correctAnswer: 0,
     explanation: "Empêcher que le chien ingère viscères de mouton infectés et contrôler les chiens domestiques rompt le cycle."
-  }
-];
-export const echinococcosisClinicalQuestions = [
+  },
   // =========================
   // ÉCHINOCOCCOSE - Clinique (20 QCM)
   // =========================
@@ -326,9 +324,7 @@ export const echinococcosisClinicalQuestions = [
     options: ["Douleur brutale, hypotension, urticaire et choc", "Éruption cutanée localisée uniquement", "Fièvre isolée", "Diarrhée légère"],
     correctAnswer: 0,
     explanation: "La rupture libère le contenu hydatique, provoquant réaction allergique sévère et urgence vitale."
-  }
-];
-export const echinococcosisDiagTreatQuestions = [
+  },
   // =========================
   // ÉCHINOCOCCOSE - Diagnostic & Traitement (20 QCM)
   // =========================

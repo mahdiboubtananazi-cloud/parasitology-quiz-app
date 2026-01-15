@@ -1,4 +1,4 @@
-export const hymenolepiasisQuestions = [
+export const questions = [
     // =========================
     // HYMÉNOLÉPIASE - Morphologie, Cycle, Clinique & Traitement (30 QCM)
     // =========================

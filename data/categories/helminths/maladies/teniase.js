@@ -1,4 +1,4 @@
-export const teniaMorphCycleQuestions = [
+export const questions = [
   // =========================
   // TÉNIASE & CYSTICERCOSE (20 questions)
   // =========================
@@ -161,9 +161,7 @@ export const teniaMorphCycleQuestions = [
     options: ["Hygiène et cuisson complète de la viande de porc", "Filtration de l’eau uniquement", "Vaccination", "Traitement systématique des bœufs uniquement"],
     correctAnswer: 0,
     explanation: "La cuisson complète du porc et bonnes pratiques d’hygiène limitent la transmission des œufs et larves humaines."
-  }
-];
-export const teniaClinicalDiagTreatQuestions = [
+  },
   // =========================
   // TÉNIASE & CYSTICERCOSE (CLINIQUE, DIAGNOSTIC, TRAITEMENT) - 30 QCM
   // =========================

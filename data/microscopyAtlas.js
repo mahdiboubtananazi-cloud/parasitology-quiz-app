@@ -1,10 +1,10 @@
 // data/microscopyAtlas.js
-// 🧬 The Ultimate Parasitology Diagnostic Database
-// تغطية كاملة: Nematodes, Cestodes, Trematodes, Protozoa (All Stages), Artifacts
+// 🧬 The Ultimate Parasitology Diagnostic Database (v2.0)
+// Matched with your current ASSETS folder structure
 
 export const microscopyAtlas = [
   // ==========================================================
-  // 1. NEMATODES (الديدان الخيطية)
+  // 1. HELMINTHS - NEMATODES
   // ==========================================================
   {
     id: 'nem_1',
@@ -62,7 +62,7 @@ export const microscopyAtlas = [
     difficulty: 'Medium'
   },
   {
-    id: 'nem_6', // New Larva
+    id: 'nem_6',
     parasiteName: 'Strongyloides stercoralis (Larva)',
     family: 'Nematodes',
     image: require('../assets/images/microscopy/helminths/nematodes/strongy_larva.jpg'),
@@ -74,7 +74,7 @@ export const microscopyAtlas = [
   },
 
   // ==========================================================
-  // 2. CESTODES (الديدان الشريطية)
+  // 2. HELMINTHS - CESTODES
   // ==========================================================
   {
     id: 'ces_1',
@@ -111,7 +111,7 @@ export const microscopyAtlas = [
   },
 
   // ==========================================================
-  // 3. TREMATODES (المثقوبات)
+  // 3. HELMINTHS - TREMATODES
   // ==========================================================
   {
     id: 'trem_1',
@@ -148,7 +148,7 @@ export const microscopyAtlas = [
   },
 
   // ==========================================================
-  // 4. PROTOZOA - AMOEBAE (الأميبا)
+  // 4. PROTOZOA - AMOEBAE
   // ==========================================================
   {
     id: 'proto_am_1',
@@ -185,7 +185,7 @@ export const microscopyAtlas = [
   },
 
   // ==========================================================
-  // 5. PROTOZOA - FLAGELLATES & OTHERS
+  // 5. PROTOZOA - FLAGELLATES & CILIATES
   // ==========================================================
   {
     id: 'proto_fl_1',
@@ -231,9 +231,20 @@ export const microscopyAtlas = [
     options: ['Balantidium coli (Cyst)', 'Entamoeba coli', 'Ascaris lumbricoides', 'Fasciola hepatica'],
     difficulty: 'Medium'
   },
+  {
+    id: 'proto_cil_2',
+    parasiteName: 'Balantidium coli (Trophozoite)',
+    family: 'Protozoa',
+    image: require('../assets/images/microscopy/protozoa/ciliates/bal_troph.jpg'),
+    size: '50-200 µm',
+    technique: 'Wet Mount',
+    clue: 'Immense, cilié, macronoyau en haricot, cytostome visible.',
+    options: ['Balantidium coli (Troph)', 'Entamoeba histolytica', 'Giardia lamblia', 'Paramecium'],
+    difficulty: 'Medium'
+  },
 
   // ==========================================================
-  // 6. COCCIDIA & BLOOD (أوالي خاصة)
+  // 6. COCCIDIA & BLOOD PROTOZOA
   // ==========================================================
   {
     id: 'proto_coc_1',
@@ -247,6 +258,17 @@ export const microscopyAtlas = [
     difficulty: 'Hard'
   },
   {
+    id: 'proto_coc_2',
+    parasiteName: 'Cyclospora cayetanensis',
+    family: 'Protozoa',
+    image: require('../assets/images/microscopy/protozoa/coccidia/cyclo_af.jpg'),
+    size: '8-10 µm',
+    technique: 'Modified Ziehl-Neelsen',
+    clue: 'Plus grand que Cryptosporidium, coloration variable (certains ne prennent pas le colorant).',
+    options: ['Cyclospora cayetanensis', 'Cryptosporidium spp.', 'Isospora belli', 'Blastocystis hominis'],
+    difficulty: 'Hard'
+  },
+  {
     id: 'proto_bld_1',
     parasiteName: 'Plasmodium falciparum (Rings)',
     family: 'Protozoa',
@@ -257,9 +279,20 @@ export const microscopyAtlas = [
     options: ['Plasmodium falciparum', 'Plasmodium vivax', 'Babesia spp.', 'Trypanosoma brucei'],
     difficulty: 'Hard'
   },
+  {
+    id: 'proto_bld_2',
+    parasiteName: 'Plasmodium falciparum (Gametocyte)',
+    family: 'Protozoa',
+    image: require('../assets/images/microscopy/protozoa/blood/malaria_gamet.jpg'),
+    size: '10-15 µm',
+    technique: 'Giemsa Stain',
+    clue: 'Forme en croissant (banane) caractéristique. Pathognomonique.',
+    options: ['P. falciparum (Gametocyte)', 'P. vivax (Gametocyte)', 'Trypanosoma brucei', 'Leishmania donovani'],
+    difficulty: 'Medium'
+  },
 
   // ==========================================================
-  // 7. ARTIFACTS (الشوائب والأفخاخ - هام جداً!)
+  // 7. ARTIFACTS (الشوائب والأفخاخ)
   // ==========================================================
   {
     id: 'art_1',
@@ -270,7 +303,7 @@ export const microscopyAtlas = [
     technique: 'Wet Mount',
     clue: 'Ressemble à un œuf de Taenia/Ascaris, mais paroi irrégulière et sans structure interne claire.',
     options: ['Pollen Grain (Artifact)', 'Taenia spp.', 'Ascaris lumbricoides', 'Hymenolepis nana'],
-    difficulty: 'Tricky' // تصنيف جديد للمصائد
+    difficulty: 'Tricky'
   },
   {
     id: 'art_2',
@@ -293,5 +326,16 @@ export const microscopyAtlas = [
     clue: 'Ressemble à un kyste amibien, mais noyaux polymorphes irréguliers, pas de corps chromatoïde.',
     options: ['White Blood Cells (Artifact)', 'Entamoeba histolytica', 'Entamoeba coli', 'Endolimax nana'],
     difficulty: 'Hard'
+  },
+  {
+    id: 'art_4',
+    parasiteName: 'Starch Granule (Artifact)',
+    family: 'Artifacts',
+    image: require('../assets/images/microscopy/artifacts/starch.jpg'),
+    size: 'Variable',
+    technique: 'Iodine Stain',
+    clue: 'Coloration bleu-noir très intense au Lugol (Amidon). Pas de noyaux.',
+    options: ['Starch Granule (Artifact)', 'Entamoeba cyst', 'Giardia cyst', 'Chilomastix'],
+    difficulty: 'Tricky'
   }
 ];

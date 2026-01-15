@@ -1,4 +1,4 @@
-export const schistosomiasisMorphCycleQuestions = [
+export const questions = [
   // =========================
   // SCHISTOSOMIASE / BILHARZIOSE - Morphologie & Cycle de vie (30 QCM)
   // =========================
@@ -241,9 +241,7 @@ export const schistosomiasisMorphCycleQuestions = [
     options: ["Identifier l’espèce de schistosome", "Mesurer la charge parasitaire", "Évaluer la gravité clinique", "Choisir le traitement médicamenteux"],
     correctAnswer: 0,
     explanation: "La position de l’éperon (terminal pour haematobium, latéral pour mansoni) permet l’identification microscopique de l’espèce."
-  }
-];
-export const schistosomiasisClinicalQuestions = [
+  },
   // =========================
   // SCHISTOSOMIASE / BILHARZIOSE - Clinique (30 QCM)
   // =========================
@@ -486,9 +484,7 @@ export const schistosomiasisClinicalQuestions = [
     options: ["Hémorragies digestives, varices, splénomégalie", "Hématurie terminale uniquement", "Dermatite transitoire", "Fièvre de Katayama"],
     correctAnswer: 0,
     explanation: "L’obstruction veineuse par granulomes autour des œufs dans l’intestin provoque hypertension portale, varices et saignements digestifs."
-  }
-];
-export const schistosomiasisDiagTreatQuestions = [
+  },
   // =========================
   // SCHISTOSOMIASE / BILHARZIOSE - Diagnostic & Traitement (25 QCM)
   // =========================

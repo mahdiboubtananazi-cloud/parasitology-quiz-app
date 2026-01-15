@@ -1,6 +1,108 @@
-export const questionsPart2 = [
+// data/categories/techniques/prelevements.js
+
+export const questions = [
   // =========================
-  // PRÉLÈVEMENTS - SELLES & TRANSPORT (6)
+  // PARTIE 1 : BASES & CONSERVATEURS
+  // =========================
+  {
+    id: "tech_prec_1",
+    axis: "prelevement",
+    question: "Le MIF (Méthanol, Iodure, Formol) est utilisé pour :",
+    options: ["Conserver les œufs et kystes tout en permettant coloration", "Conserver uniquement les larves vivantes", "Fixer les frottis sanguins uniquement", "Neutraliser les parasites et tuer toutes bactéries"],
+    correctAnswer: 0,
+    explanation: "Le MIF préserve la morphologie des œufs et kystes pour examen microscopique et tolère certaines colorations."
+  },
+  {
+    id: "tech_prec_2",
+    axis: "prelevement",
+    question: "Le Formol 10 % est particulièrement utile pour :",
+    options: ["Fixer et conserver les échantillons sur le long terme", "Maintenir la viabilité des protozoaires", "Favoriser la motilité des larves", "Réduire les spores bactériennes uniquement"],
+    correctAnswer: 0,
+    explanation: "Le formol fixe efficacement les structures parasitaires mais ne conserve pas la motilité."
+  },
+  {
+    id: "tech_prec_3",
+    axis: "prelevement",
+    question: "Le PVA (Polyvinyl Alcohol) est utilisé pour :",
+    options: ["Préparer des frottis permanents pour protozoaires", "Conserver uniquement les œufs d’helminthes", "Transporter le sang infecté par filaires", "Désinfecter le matériel de laboratoire"],
+    correctAnswer: 0,
+    explanation: "Le PVA permet la fixation et coloration de protozoaires dans des frottis permanents."
+  },
+  {
+    id: "tech_prec_4",
+    axis: "prelevement",
+    question: "Le SAF (Sodium Acétate - Acide acétique - Formol) est adapté pour :",
+    options: ["Conserver à long terme les protozoaires et kystes", "Conserver uniquement les larves d’Ascaris", "Préparer des cultures bactériennes", "Neutraliser les toxines virales"],
+    correctAnswer: 0,
+    explanation: "Le SAF stabilise les kystes et protozoaires pour examen différé."
+  },
+  {
+    id: "tech_prec_5",
+    axis: "prelevement",
+    question: "Quelle est la limite principale du MIF ?",
+    options: ["Ne conserve pas la motilité des trophozoïtes", "Ne fixe pas les œufs d’helminthes", "Détruit tous les protozoaires", "Provoque une coloration artificielle des larves"],
+    correctAnswer: 0,
+    explanation: "Le MIF conserve la morphologie mais tue les parasites, rendant les trophozoïtes immobiles."
+  },
+  {
+    id: "tech_prec_6",
+    axis: "prelevement",
+    question: "Quelle est la limite du Formol 10 % ?",
+    options: ["Impossible de colorer certains protozoaires correctement", "Ne fixe pas les œufs d’helminthes", "Tue les bactéries uniquement", "Favorise la multiplication des parasites"],
+    correctAnswer: 0,
+    explanation: "Le formol fixe bien mais peut interférer avec la qualité de certaines colorations permanentes (Trichrome)."
+  },
+  {
+    id: "tech_repeat_1",
+    axis: "prelevement",
+    question: "Pour diagnostiquer Giardia et Entamoeba, la règle des 3 selles consiste à :",
+    options: ["Examiner trois prélèvements consécutifs à intervalle de 24-48h", "Examiner une seule selle", "Faire un prélèvement sanguin", "Utiliser uniquement la coproculture"],
+    correctAnswer: 0,
+    explanation: "Les protozoaires sont excrétés de façon intermittente (phase muette), donc la répétition augmente la sensibilité."
+  },
+  {
+    id: "tech_repeat_2",
+    axis: "prelevement",
+    question: "Le délai optimal entre les trois prélèvements de selles est :",
+    options: ["2 à 3 jours", "1 heure", "Une semaine", "Un mois"],
+    correctAnswer: 0,
+    explanation: "Cet intervalle permet de couvrir les variations d'excrétion kystique."
+  },
+  {
+    id: "tech_blood_1",
+    axis: "biologie",
+    question: "Wuchereria bancrofti présente une microfilaraémie maximale :",
+    options: ["La nuit (entre 22h et 2h)", "Le jour (entre 10h et 14h)", "Au lever du soleil", "En permanence (Aperiodique)"],
+    correctAnswer: 0,
+    explanation: "La périodicité nocturne correspond à l'activité des moustiques vecteurs (Culex/Anophèles)."
+  },
+  {
+    id: "tech_blood_2",
+    axis: "biologie",
+    question: "Loa loa présente une microfilaraémie maximale :",
+    options: ["Le jour (entre 10h et 14h)", "La nuit", "Au coucher du soleil", "En permanence"],
+    correctAnswer: 0,
+    explanation: "La périodicité diurne correspond à l'activité du vecteur Chrysops (taon)."
+  },
+  {
+    id: "tech_safety_1",
+    axis: "prelevement",
+    question: "Lors de la manipulation de selles fraîches, le risque biologique principal est :",
+    options: ["Ingestion accidentelle de kystes/œufs infectants", "Inhalation d'aérosols", "Piqûre accidentelle", "Irradiation"],
+    correctAnswer: 0,
+    explanation: "Le péril fécal (mains sales portée à la bouche) est le risque majeur au laboratoire de parasito."
+  },
+  {
+    id: "tech_safety_2",
+    axis: "prelevement",
+    question: "Pourquoi l'usage de gants est-il obligatoire en parasitologie ?",
+    options: ["Pour éviter la contamination cutanée et manuportée", "Pour garder les mains propres", "Pour éviter de tacher les documents", "Pour protéger les parasites"],
+    correctAnswer: 0,
+    explanation: "Les gants sont la barrière primaire contre les agents biologiques infectieux."
+  },
+
+  // =========================
+  // PARTIE 2 : TRANSPORT & ERREURS (Votre ajout)
   // =========================
   {
     id: "prelevement_1",
@@ -50,10 +152,6 @@ export const questionsPart2 = [
     correctAnswer: 0,
     explanation: "La Javel à la bonne concentration et le temps de contact adéquat détruisent les agents pathogènes et limitent le risque biologique."
   },
-
-  // =========================
-  // BIOLOGIE - SANG & SÉCURITÉ (7)
-  // =========================
   {
     id: "biologie_1",
     axis: "biologie",
@@ -110,10 +208,6 @@ export const questionsPart2 = [
     correctAnswer: 0,
     explanation: "Les pipettes automatiques réduisent l’exposition directe aux échantillons infectieux."
   },
-
-  // =========================
-  // ERREURS COURANTES & QUALITÉ (7)
-  // =========================
   {
     id: "prelevement_7",
     axis: "prelevement",

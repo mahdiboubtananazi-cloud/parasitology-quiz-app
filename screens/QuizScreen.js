@@ -2,7 +2,7 @@
 import { View, Text } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-// 👇 1. الاستيراد من ملف الفهرس الجديد (تأكدنا من صحته سابقاً)
+// 👇 1. الاستيراد من ملف الفهرس
 import { 
   protozoaQuestions, 
   protozoaLabels, 
@@ -26,24 +26,23 @@ import useQuizLogic from './QuizScreen_hooks/useQuizLogic';
 import useQuizAnimations from './QuizScreen_hooks/useQuizAnimations';
 import { styles } from './QuizScreen_styles/styles';
 
-// 🎨 خريطة ألوان وتسميات للمحاور (تم تحديثها لتشمل التقنيات الجديدة)
+// 🎨 خريطة ألوان وتسميات للمحاور
 const AXIS_CONFIG = {
-  // المحاور الأساسية للأمراض
-  morphology: { label: "Morphologie", color: "#3b82f6" }, // Blue
-  lifecycle: { label: "Cycle de Vie", color: "#10b981" }, // Green
-  clinical: { label: "Clinique", color: "#f59e0b" },     // Orange
-  diagnosis: { label: "Diagnostic", color: "#8b5cf6" },  // Purple
-  treatment: { label: "Traitement", color: "#ef4444" },  // Red
+  // المحاور الأساسية
+  morphology: { label: "Morphologie", color: "#3b82f6" }, 
+  lifecycle: { label: "Cycle de Vie", color: "#10b981" }, 
+  clinical: { label: "Clinique", color: "#f59e0b" },     
+  diagnosis: { label: "Diagnostic", color: "#8b5cf6" },  
+  treatment: { label: "Traitement", color: "#ef4444" },  
   
-  // المحاور الجديدة للتقنيات (Techniques) 🧪
-  prelevement: { label: "Prélèvement", color: "#0891b2" }, // Cyan
-  technique: { label: "Technique", color: "#4f46e5" },    // Indigo
-  concentration: { label: "Concentration", color: "#be185d" }, // Pink
-  coloration: { label: "Coloration", color: "#9333ea" },   // Purple Strong
-  immuno: { label: "Immuno/Moléc.", color: "#ea580c" },    // Dark Orange
+  // محاور التقنيات
+  prelevement: { label: "Prélèvement", color: "#0891b2" },
+  technique: { label: "Technique", color: "#4f46e5" },    
+  concentration: { label: "Concentration", color: "#be185d" }, 
+  coloration: { label: "Coloration", color: "#9333ea" },   
+  immuno: { label: "Immuno/Moléc.", color: "#ea580c" },    
   biologie: { label: "Biologie", color: "#06b6d4" },
   
-  // Fallbacks
   classification: { label: "Classification", color: "#64748b" },
   default: { label: "Général", color: "#64748b" }
 };
@@ -51,8 +50,8 @@ const AXIS_CONFIG = {
 export default function QuizScreen({ route, navigation }) {
   const { categoryId, categoryName } = route?.params || {};
 
-  // 👇 2. اختيار البيانات
-  const { allQuestionsData, currentLabels } = useMemo(() => {
+  // 👇 2. اختيار البيانات + بناء المجموعات (Groups) للفلتر
+  const { allQuestionsData, currentLabels, topicGroups } = useMemo(() => {
     let data = protozoaQuestions;
     let labels = protozoaLabels;
 
@@ -67,55 +66,65 @@ export default function QuizScreen({ route, navigation }) {
       labels = microscopyLabels;
     }
 
-    return { allQuestionsData: data, currentLabels: labels };
+    // 🔥 بناء هيكل المجموعات للفلتر الذكي
+    // النتيجة: { "Nématodes": ["ascaris", "oxyure"], "Cestodes": [...] }
+    const groups = {};
+    Object.keys(data).forEach(key => {
+      const module = data[key];
+      // إذا كان الموديول يحتوي على خاصية 'group' نستخدمها، وإلا نضعه في 'Autres'
+      // ملاحظة: حالياً لم نضف 'group' في index.js، لذا سيظهرون في مجموعة واحدة أو مسطحين.
+      // لكي يعمل التجميع، يجب تحديث index.js لاحقاً.
+      // الكود هنا مرن: إذا لم يجد group، سيعمل الفلتر كقائمة مسطحة (Flat) كما في السابق.
+      
+      const groupName = module.group || "Général"; // Default group
+      
+      if (!groups[groupName]) groups[groupName] = [];
+      groups[groupName].push(key);
+    });
+
+    // إذا كانت كل العناصر في "Général"، نلغي التجميع ونعود للقائمة المسطحة (أجمل)
+    const finalGroups = Object.keys(groups).length > 1 ? groups : null;
+
+    return { 
+      allQuestionsData: data, 
+      currentLabels: labels,
+      topicGroups: finalGroups 
+    };
   }, [categoryId]);
 
-  // 🔥 3. المحول الذكي (تم إصلاحه ليدعم الإجابات بدقة) 🔥
+  // 🔥 3. المحول الذكي
   const convertToQuestions = useCallback((data) => {
     const questions = [];
 
     Object.keys(data).forEach(key => {
       const module = data[key]; 
       
-      // التعامل مع الهيكل الجديد { name: "...", data: [...] }
-      // (وهذا يشمل الآن التقنيات أيضاً)
       if (module.data && Array.isArray(module.data)) {
         module.data.forEach(q => {
-          
-          // ✅ FIX: تحديد الإجابة الصحيحة بذكاء (يدعم correctAnswer و correct)
           const correctIndexOriginal = (q.correctAnswer !== undefined) 
                                        ? q.correctAnswer 
                                        : (q.correct !== undefined ? q.correct : 0);
 
           const correctOptionText = q.options[correctIndexOriginal];
 
-          // حماية من الأخطاء في البيانات
-          if (!correctOptionText) {
-             console.warn(`Skipping question ${q.id}: Invalid correct index.`);
-             return;
-          }
+          if (!correctOptionText) return;
 
-          // خلط الخيارات
           const shuffledOptions = [...q.options].sort(() => Math.random() - 0.5);
-          
-          // إيجاد المكان الجديد للإجابة الصحيحة
           const newCorrectIndex = shuffledOptions.indexOf(correctOptionText);
 
           questions.push({
             ...q,
             id: q.id || Math.random().toString(),
-            topic: key, // مفتاح الفلتر (مثلاً: paludisme, coprologie)
-            diseaseName: module.name, // الاسم الظاهر (Paludisme, Coprologie)
-            axisConfig: AXIS_CONFIG[q.axis] || AXIS_CONFIG.default, // لون الشارة
+            topic: key, 
+            diseaseName: module.name, 
+            axisConfig: AXIS_CONFIG[q.axis] || AXIS_CONFIG.default,
             options: shuffledOptions,
             correctAnswer: newCorrectIndex,
-            // ضمان وجود النصوص
             question: q.question,
             explanation: q.explanation
           });
         });
       } 
-      // التعامل مع الهيكل القديم (احتياط)
       else if (Array.isArray(module)) {
         module.forEach(q => {
           const correctIndexOriginal = (q.correctAnswer !== undefined) ? q.correctAnswer : q.correct;
@@ -135,11 +144,9 @@ export default function QuizScreen({ route, navigation }) {
       }
     });
 
-    // خلط ترتيب الأسئلة النهائي
     return questions.sort(() => Math.random() - 0.5);
     
   }, [currentLabels]); 
-  // 🔥 نهاية المحول 🔥
 
   const animations = useQuizAnimations(0, false, false, 30, false);
 
@@ -251,6 +258,7 @@ export default function QuizScreen({ route, navigation }) {
           selectedFilters={logic.selectedFilters}
           onApplyFilters={logic.handleApplyFilters}
           topicLabels={currentLabels}
+          topicGroups={topicGroups} // 🔥 تمرير المجموعات للفلتر
         />
       </SafeAreaView>
     );
@@ -316,6 +324,7 @@ export default function QuizScreen({ route, navigation }) {
         selectedFilters={logic.selectedFilters}
         onApplyFilters={logic.handleApplyFilters}
         topicLabels={currentLabels} 
+        topicGroups={topicGroups} // 🔥 وتمريرها هنا أيضاً
       />
     </SafeAreaView>
   );

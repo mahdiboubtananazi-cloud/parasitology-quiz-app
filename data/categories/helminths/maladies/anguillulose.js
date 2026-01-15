@@ -1,4 +1,4 @@
-export const strongyQuestions = [
+export const questions = [
   // =========================
   // MORPHOLOGY & LIFECYCLE (20 questions)
   // =========================
@@ -145,9 +145,7 @@ export const strongyQuestions = [
     options: ["Morphologie et capacité infectante", "Taille seulement", "Couleur uniquement", "Présence d’opercule"],
     correctAnswer: 0,
     explanation: "Les larves filariformes sont allongées et infectantes, tandis que les rhabditoïdes sont plus courtes et non infectantes."
-  }
-];
-export const strongyClinicalQuestions = [
+  },
   // =========================
   // CLINICAL (20 questions)
   // =========================
@@ -310,9 +308,7 @@ export const strongyClinicalQuestions = [
     options: ["Patients sous immunosuppresseurs ou HTLV-1", "Enfants en bonne santé", "Personnes vaccinées contre la grippe", "Individus hypertendus uniquement"],
     correctAnswer: 0,
     explanation: "Les immunodéprimés sont à haut risque d’hyperinfection et de complications graves nécessitant une prise en charge urgente."
-  }
-];
-export const strongyDiagTreatQuestions = [
+  },
   // =========================
   // DIAGNOSTIC (10 questions)
   // =========================

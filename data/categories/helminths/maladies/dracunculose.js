@@ -1,4 +1,4 @@
-export const dracunculoseQuestions = [
+export const questions = [
     // =========================
     // DRACUNCULOSE (25 questions)
     // =========================

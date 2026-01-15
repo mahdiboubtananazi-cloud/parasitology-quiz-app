@@ -1,4 +1,4 @@
-export const fascioliasisMorphCycleQuestions = [
+export const questions = [
   // =========================
   // FASCIOLOSE - Morphologie & Cycle de vie (20 QCM)
   // =========================
@@ -161,9 +161,7 @@ export const fascioliasisMorphCycleQuestions = [
     options: ["Éviter la consommation de plantes aquatiques crues contaminées", "Filtration des urines", "Éviter les piqûres de moustiques", "Cuisson insuffisante du porc uniquement"],
     correctAnswer: 0,
     explanation: "La consommation de cresson ou autres plantes aquatiques crues est la principale voie d’infection humaine."
-  }
-];
-export const fascioliasisClinDiagTreatQuestions = [
+  },
   // =========================
   // FASCIOLOSE - Clinique, Diagnostic & Traitement (25 QCM)
   // =========================

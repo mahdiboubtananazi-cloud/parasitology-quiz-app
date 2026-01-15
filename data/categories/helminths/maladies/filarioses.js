@@ -1,4 +1,4 @@
-export const filarioMorphCycleQuestions = [
+export const questions = [
   // =========================
   // MORPHOLOGIE & CYCLE DE VIE FILARIOSES (30 questions)
   // =========================
@@ -241,9 +241,7 @@ export const filarioMorphCycleQuestions = [
     options: ["Efficacité maximale de transmission", "Mort immédiate des vers", "Formation de kystes dans le foie", "Réaction immunitaire immédiate"],
     correctAnswer: 0,
     explanation: "La période de circulation des microfilaires coïncide avec l’activité du vecteur, maximisant la transmission."
-  }
-];
-export const filarioClinicalQuestions = [
+  },
   // =========================
   // CLINIQUE FILARIOSES (20 questions)
   // =========================
@@ -406,9 +404,7 @@ export const filarioClinicalQuestions = [
     options: ["Microfilaires Onchocerca dans le derme", "Lymphœdème Wuchereria", "Œdème de Calabar", "Chylurie"],
     correctAnswer: 0,
     explanation: "Les microfilaires cutanées provoquent un prurit intense et les patients se grattent, entraînant excoriations et lésions secondaires."
-  }
-];
-export const filarioDiagTreatQuestions = [
+  },
   // =========================
   // DIAGNOSTIC & TRAITEMENT FILARIOSES (30 questions)
   // =========================

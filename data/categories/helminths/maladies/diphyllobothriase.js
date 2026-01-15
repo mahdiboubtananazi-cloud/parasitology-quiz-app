@@ -1,4 +1,4 @@
-export const diphyllobothriasisQuestions = [
+export const questions = [
     // =========================
     // DIPHYLLOBOTHRIASIS - Morphologie, Cycle, Clinique & Traitement (30 QCM)
     // =========================
