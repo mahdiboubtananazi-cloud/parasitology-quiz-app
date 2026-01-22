@@ -1,11 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Platform } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Feather } from '@expo/vector-icons'; // استخدام Feather للأناقة
 
 // --- Import Screens ---
-// تأكد من صحة المسارات في مشروعك
 import HomeScreen from '../screens/home/HomeScreen';
 import QuizScreen from '../screens/QuizScreen';
 import DiagnosticScreen from '../screens/DiagnosticScreen';
@@ -14,76 +13,80 @@ import ProposScreen from '../screens/ProposScreen';
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-// 🎨 الألوان الاحترافية (Medical Theme)
 const COLORS = {
-  primary: '#0f172a', // Dark Navy
-  accent: '#3b82f6',  // Bright Blue (Action)
-  inactive: '#94a3b8', // Slate Gray
-  bg: '#f8fafc',      // Very Light Gray for App Background
+  primary: '#0f172a', 
+  active: '#0f766e',  // Teal (Medical & Modern)
+  inactive: '#94a3b8',
   white: '#ffffff',
-  shadow: '#000000',
+  bg: '#F8FAFC',      // لون الخلفية (مهم لحدود الزر العائم)
 };
 
-// --- 1. Tab Bar (الشريط السفلي العائم) ---
+// زر مركزي مخصص (Custom Floating Button)
+const CenterButton = ({ onPress }) => (
+  <TouchableOpacity
+    style={styles.centerButtonContainer}
+    onPress={onPress}
+    activeOpacity={0.9}
+  >
+    <View style={styles.centerButton}>
+      <MaterialCommunityIcons name="microscope" size={32} color="#fff" />
+    </View>
+  </TouchableOpacity>
+);
+
 function HomeTabs() {
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
-        tabBarShowLabel: false, // إخفاء التسميات لتصميم أنظف
+        tabBarShowLabel: false, // تصميم بدون نصوص (Minimalist)
         tabBarStyle: styles.tabBar,
-        tabBarHideOnKeyboard: true, // إخفاء الشريط عند الكتابة
+        tabBarHideOnKeyboard: true,
       }}
     >
-      {/* Tab 1: Home */}
+      {/* Tab 1: Accueil (Dashboard Style) */}
       <Tab.Screen
         name="HomeTab"
         component={HomeScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
-              <Ionicons 
-                name={focused ? "grid" : "grid-outline"} 
+            <View style={[styles.iconContainer, focused && styles.activeIconBg]}>
+              <MaterialCommunityIcons 
+                name={focused ? "view-dashboard" : "view-dashboard-outline"} 
                 size={26} 
-                color={focused ? COLORS.primary : COLORS.inactive} 
+                color={focused ? COLORS.active : COLORS.inactive} 
               />
             </View>
           ),
         }}
       />
 
-      {/* Tab 2: Quick Action (الزر العائم المركزي) */}
+      {/* Tab 2: Labo-Vision (Center Action) */}
       <Tab.Screen
-        name="QuickPlay"
-        component={View} // مكون وهمي
+        name="LaboVision"
+        component={View} 
         listeners={({ navigation }) => ({
           tabPress: (e) => {
-            e.preventDefault(); // منع فتح التبويب
-            navigation.navigate('Quiz'); // فتح الكويز مباشرة
+            e.preventDefault(); 
+            navigation.navigate('Diagnostic'); // فتح المختبر
           },
         })}
         options={{
-          tabBarIcon: ({ focused }) => (
-            <View style={styles.centerButtonContainer}>
-              <View style={styles.centerButton}>
-                <MaterialCommunityIcons name="brain" size={32} color="#fff" />
-              </View>
-            </View>
-          ),
+          tabBarButton: (props) => <CenterButton {...props} />,
         }}
       />
 
-      {/* Tab 3: Propos */}
+      {/* Tab 3: À Propos (Reference Style) */}
       <Tab.Screen
         name="ProposTab"
         component={ProposScreen}
         options={{
           tabBarIcon: ({ focused }) => (
-            <View style={{ alignItems: 'center', justifyContent: 'center', top: 10 }}>
-              <Ionicons 
-                name={focused ? "book" : "book-outline"} 
-                size={26} 
-                color={focused ? COLORS.primary : COLORS.inactive} 
+            <View style={[styles.iconContainer, focused && styles.activeIconBg]}>
+              <Feather 
+                name="book-open" 
+                size={24} 
+                color={focused ? COLORS.active : COLORS.inactive} 
               />
             </View>
           ),
@@ -93,18 +96,35 @@ function HomeTabs() {
   );
 }
 
-// --- 2. Root Stack (الملاحة الرئيسية) ---
+// --- Root Stack Navigator ---
 export default function AppNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {/* الشاشات الرئيسية مع الشريط السفلي */}
       <Stack.Screen name="Main" component={HomeTabs} />
       
-      {/* الشاشات الكاملة (تغطي الشريط السفلي) */}
+      {/* Screens covering tabs */}
       <Stack.Screen 
         name="Diagnostic" 
         component={DiagnosticScreen} 
-        options={{ presentation: 'card', animationEnabled: true }}
+        options={{ 
+          presentation: 'card', 
+          animationEnabled: true,
+          // حركة دخول سلسة من اليمين (iOS Style)
+          cardStyleInterpolator: ({ current, layouts }) => {
+            return {
+              cardStyle: {
+                transform: [
+                  {
+                    translateX: current.progress.interpolate({
+                      inputRange: [0, 1],
+                      outputRange: [layouts.screen.width, 0],
+                    }),
+                  },
+                ],
+              },
+            };
+          },
+        }}
       />
       <Stack.Screen 
         name="Quiz" 
@@ -115,55 +135,59 @@ export default function AppNavigator() {
   );
 }
 
-// --- 3. Styles (التصميم الجديد) ---
+// --- Modern Styles ---
 const styles = StyleSheet.create({
   tabBar: {
     position: 'absolute',
-    bottom: 25, // ارتفاع عن الحافة السفلية
+    bottom: 25, 
     left: 20,
     right: 20,
     height: 70,
     backgroundColor: COLORS.white,
-    borderRadius: 20, // زوايا دائرية
-    borderTopWidth: 0, // إزالة الخط العلوي الافتراضي
+    borderRadius: 24, // زوايا أكثر نعومة
+    borderTopWidth: 0, 
     
-    // الظلال (Shadows) - تعطي تأثير الطفو
-    shadowColor: COLORS.shadow,
-    shadowOffset: {
-      width: 0,
-      height: 10,
-    },
-    shadowOpacity: 0.1, // ظل ناعم
-    shadowRadius: 10,
-    elevation: 10, // للأندرويد
+    // Premium Shadow (Soft Glow)
+    shadowColor: "#004643",
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.08, 
+    shadowRadius: 20,
+    elevation: 10,
   },
   
-  // حاوية الزر المركزي
+  iconContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 48,
+    height: 48,
+    borderRadius: 18,
+  },
+  activeIconBg: {
+    backgroundColor: '#F0FDFA', // خلفية ناعمة جداً عند التفعيل
+  },
+
   centerButtonContainer: {
-    position: 'absolute',
-    top: -30, // يرفع الزر ليخرج نصفه خارج الشريط
-    alignItems: 'center',
+    top: -25, // طفو للأعلى
     justifyContent: 'center',
+    alignItems: 'center',
   },
-  
-  // الدائرة الملونة نفسها
   centerButton: {
-    width: 65,
-    height: 65,
-    borderRadius: 32.5,
-    backgroundColor: COLORS.accent,
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    backgroundColor: '#0F766E', // لون طبي مميز
     justifyContent: 'center',
     alignItems: 'center',
     
-    // خدعة الحدود: لون الحدود نفس لون خلفية التطبيق ليعطي إيحاء "بالقطع"
-    borderWidth: 5,
-    borderColor: '#f2f2f2', // ⚠️ هام: غير هذا اللون ليطابق خلفية الـ HomeScreen تماماً
+    // حدود وهمية لدمج الزر مع الخلفية
+    borderWidth: 4,
+    borderColor: COLORS.bg, 
     
-    // ظلال للزر نفسه
-    shadowColor: COLORS.accent,
-    shadowOffset: { width: 0, height: 5 },
-    shadowOpacity: 0.4,
-    shadowRadius: 5,
-    elevation: 6,
+    // ظل داخلي للزر
+    shadowColor: "#0F766E",
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.3,
+    shadowRadius: 12,
+    elevation: 8,
   },
 });

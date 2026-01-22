@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Animated, ActivityIndicator } from 'react-native';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'; // استخدام المكتبات الموجودة
+import { View, Text, TouchableOpacity, StyleSheet, Animated, ActivityIndicator, Dimensions } from 'react-native';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+
+const { width } = Dimensions.get('window');
 
 export default function ProgressModal({ 
   visible, 
@@ -15,8 +17,8 @@ export default function ProgressModal({
     if (visible && !loading) {
       Animated.timing(progressAnim, {
         toValue: data?.percentage || 0,
-        duration: 1000,
-        delay: 200,
+        duration: 1200, // Slightly slower for elegance
+        delay: 100,
         useNativeDriver: false
       }).start();
     } else {
@@ -39,104 +41,105 @@ export default function ProgressModal({
       >
         <Animated.View 
           style={[
-            styles.modalInnerContent,
+            styles.cardContainer,
             {
-              transform: [{
-                scale: animation.interpolate({
-                  inputRange: [0, 1],
-                  outputRange: [0.95, 1]
-                })
-              }],
+              transform: [{ scale: animation.interpolate({ inputRange: [0, 1], outputRange: [0.9, 1] }) }],
               opacity: animation
             }
           ]}
         >
-          {/* Header */}
+          {/* Header with Pattern */}
           <View style={styles.header}>
-            <View style={styles.headerTitleContainer}>
-               <Text style={styles.headerEyebrow}>RAPPORT D'APPRENTISSAGE</Text>
-               <Text style={styles.headerTitle}>Statistiques Globales</Text>
+            <View style={styles.headerPattern}>
+               <MaterialCommunityIcons name="microscope" size={120} color="rgba(255,255,255,0.05)" style={styles.bgIcon} />
             </View>
-            <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-              <Ionicons name="close" size={20} color="#374151" />
-            </TouchableOpacity>
+            <View style={styles.headerContent}>
+               <View>
+                 <Text style={styles.headerEyebrow}>ANALYSE DE PERFORMANCE</Text>
+                 <Text style={styles.headerTitle}>Votre Progression</Text>
+               </View>
+               <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+                 <Ionicons name="close" size={20} color="#fff" />
+               </TouchableOpacity>
+            </View>
           </View>
           
           {loading ? (
             <View style={styles.loadingContainer}>
-              <ActivityIndicator size="small" color="#0F766E" />
-              <Text style={styles.loadingText}>Analyse des données...</Text>
+              <ActivityIndicator size="large" color="#004643" />
+              <Text style={styles.loadingText}>Calcul des données...</Text>
             </View>
           ) : (
-            <View style={styles.contentContainer}>
+            <View style={styles.body}>
               
-              {/* Main Score */}
-              <View style={styles.scoreOverview}>
-                <View style={styles.scoreCircle}>
-                  <Text style={styles.scoreBigNumber}>{data?.percentage || 0}%</Text>
-                  <Text style={styles.scoreLabel}>Précision</Text>
+              {/* Main Score Hero */}
+              <View style={styles.heroSection}>
+                <View style={styles.ringContainer}>
+                   {/* Background Ring */}
+                   <View style={styles.ringBg} />
+                   {/* Value */}
+                   <View style={styles.ringInner}>
+                      <Text style={styles.heroNumber}>{data?.percentage || 0}<Text style={styles.percent}>%</Text></Text>
+                      <Text style={styles.heroLabel}>MAÎTRISE</Text>
+                   </View>
                 </View>
-                <View style={styles.scoreContext}>
-                  <Text style={styles.contextTitle}>Performance Générale</Text>
-                  <Text style={styles.contextDesc}>
-                    Basé sur {data?.answered || 0} questions répondues au total.
-                  </Text>
-                </View>
-              </View>
-
-              {/* Data Grid */}
-              <View style={styles.statsGrid}>
-                {/* Total Answered */}
-                <View style={styles.statBox}>
-                  <View style={[styles.iconBadge, { backgroundColor: '#E0F2FE' }]}>
-                    <Ionicons name="stats-chart" size={18} color="#0284C7" />
-                  </View>
-                  <Text style={styles.boxValue}>{data?.answered || 0}</Text>
-                  <Text style={styles.boxLabel}>Questions</Text>
-                </View>
-
-                {/* Correct Answers */}
-                <View style={styles.statBox}>
-                  <View style={[styles.iconBadge, { backgroundColor: '#DCFCE7' }]}>
-                    <Ionicons name="checkmark-circle" size={18} color="#16A34A" />
-                  </View>
-                  <Text style={styles.boxValue}>{data?.correct || 0}</Text>
-                  <Text style={styles.boxLabel}>Correctes</Text>
-                </View>
-
-                {/* Efficiency Rate (Level) */}
-                <View style={styles.statBox}>
-                  <View style={[styles.iconBadge, { backgroundColor: '#FEF3C7' }]}>
-                    <MaterialCommunityIcons name="lightning-bolt" size={18} color="#D97706" />
-                  </View>
-                  <Text style={styles.boxValue}>{(data?.percentage || 0) >= 80 ? 'A' : (data?.percentage || 0) >= 50 ? 'B' : 'C'}</Text>
-                  <Text style={styles.boxLabel}>Niveau</Text>
+                <View style={styles.heroTextContainer}>
+                   <Text style={styles.heroTitleText}>Niveau Actuel</Text>
+                   <Text style={styles.heroDesc}>
+                     Vous avez complété {data?.answered || 0} exercices avec succès. Continuez ainsi !
+                   </Text>
                 </View>
               </View>
 
-              {/* Progress Bar */}
-              <View style={styles.progressSection}>
-                <View style={styles.progressLabels}>
-                   <Text style={styles.progressTitle}>Taux de Complétion</Text>
-                   <Text style={styles.progressValue}>{data?.percentage || 0}/100</Text>
+              {/* Stats Grid */}
+              <View style={styles.grid}>
+                {/* Total */}
+                <View style={styles.gridItem}>
+                   <View style={[styles.iconBox, {backgroundColor: '#e0f2fe'}]}>
+                      <Ionicons name="layers" size={20} color="#0284c7" />
+                   </View>
+                   <Text style={styles.gridValue}>{data?.answered || 0}</Text>
+                   <Text style={styles.gridLabel}>Total</Text>
                 </View>
-                <View style={styles.track}>
-                   <Animated.View 
-                     style={[
-                       styles.fill, 
-                       { 
-                         width: progressAnim.interpolate({
-                           inputRange: [0, 100],
-                           outputRange: ['0%', '100%']
-                         }) 
-                       }
-                     ]} 
-                   />
+
+                {/* Correct */}
+                <View style={styles.gridItem}>
+                   <View style={[styles.iconBox, {backgroundColor: '#dcfce7'}]}>
+                      <Ionicons name="checkmark-done" size={20} color="#16a34a" />
+                   </View>
+                   <Text style={styles.gridValue}>{data?.correct || 0}</Text>
+                   <Text style={styles.gridLabel}>Correct</Text>
+                </View>
+
+                {/* Rank */}
+                <View style={styles.gridItem}>
+                   <View style={[styles.iconBox, {backgroundColor: '#fef3c7'}]}>
+                      <MaterialCommunityIcons name="star" size={20} color="#d97706" />
+                   </View>
+                   <Text style={styles.gridValue}>{(data?.percentage || 0) >= 80 ? 'A+' : (data?.percentage || 0) >= 50 ? 'B' : 'C'}</Text>
+                   <Text style={styles.gridLabel}>Rang</Text>
                 </View>
               </View>
 
-              <TouchableOpacity style={styles.actionButton} onPress={onClose}>
-                <Text style={styles.actionButtonText}>FERMER LE RAPPORT</Text>
+              {/* Animated Bar */}
+              <View style={styles.barContainer}>
+                 <View style={styles.barHeader}>
+                    <Text style={styles.barTitle}>Objectif Quotidien</Text>
+                    <Text style={styles.barValue}>{data?.percentage || 0}/100</Text>
+                 </View>
+                 <View style={styles.track}>
+                    <Animated.View 
+                      style={[
+                        styles.fill, 
+                        { width: progressAnim.interpolate({ inputRange: [0, 100], outputRange: ['0%', '100%'] }) }
+                      ]} 
+                    />
+                 </View>
+              </View>
+
+              <TouchableOpacity style={styles.btn} onPress={onClose} activeOpacity={0.9}>
+                <Text style={styles.btnText}>Continuer l'entraînement</Text>
+                <Ionicons name="arrow-forward" size={18} color="#fff" />
               </TouchableOpacity>
 
             </View>
@@ -150,67 +153,72 @@ export default function ProgressModal({
 const styles = StyleSheet.create({
   modalOverlay: {
     position: 'absolute', top: 0, bottom: 0, left: 0, right: 0,
-    backgroundColor: 'rgba(17, 24, 39, 0.6)',
-    justifyContent: 'center', alignItems: 'center', padding: 16, zIndex: 1000,
+    backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(5px)', // Blur works on some versions
+    justifyContent: 'center', alignItems: 'center', padding: 20, zIndex: 999,
   },
-  modalContent: { width: '100%', maxWidth: 380 },
-  modalInnerContent: {
-    backgroundColor: '#FFFFFF', borderRadius: 16, overflow: 'hidden',
-    shadowColor: '#000', shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.2, shadowRadius: 20, elevation: 10,
-  },
+  modalContent: { width: '100%', maxWidth: 360 },
   
-  // Header
+  cardContainer: {
+    backgroundColor: '#fff', borderRadius: 24, overflow: 'hidden',
+    shadowColor: '#000', shadowOffset: {width: 0, height: 20},
+    shadowOpacity: 0.25, shadowRadius: 25, elevation: 15,
+  },
+
+  // Header Style (Medical Dark Green)
   header: {
-    flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start',
-    padding: 20, borderBottomWidth: 1, borderBottomColor: '#F3F4F6',
-    backgroundColor: '#FAFAFA',
+    backgroundColor: '#004643', padding: 24, position: 'relative', overflow: 'hidden',
   },
-  headerEyebrow: {
-    fontSize: 10, fontWeight: '700', color: '#6B7280', textTransform: 'uppercase', letterSpacing: 1, marginBottom: 4,
+  headerPattern: { position: 'absolute', right: -20, top: -20 },
+  bgIcon: { transform: [{rotate: '15deg'}] },
+  headerContent: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
+  headerEyebrow: { color: '#ccfbf1', fontSize: 10, fontWeight: '700', letterSpacing: 1.2, marginBottom: 6 },
+  headerTitle: { color: '#fff', fontSize: 22, fontWeight: '800' },
+  closeButton: { padding: 6, backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 12 },
+
+  loadingContainer: { padding: 50, alignItems: 'center' },
+  loadingText: { marginTop: 12, color: '#64748b', fontSize: 14, fontWeight: '500' },
+
+  body: { padding: 24 },
+
+  // Hero Section
+  heroSection: { flexDirection: 'row', alignItems: 'center', marginBottom: 30, gap: 20 },
+  ringContainer: { width: 84, height: 84, justifyContent: 'center', alignItems: 'center' },
+  ringBg: { 
+    position: 'absolute', width: '100%', height: '100%', borderRadius: 42, 
+    borderWidth: 6, borderColor: '#f0fdfa' 
   },
-  headerTitle: { fontSize: 18, fontWeight: '800', color: '#111827' },
-  closeButton: { padding: 4, backgroundColor: '#F3F4F6', borderRadius: 20 },
-
-  loadingContainer: { padding: 40, alignItems: 'center' },
-  loadingText: { marginTop: 10, fontSize: 13, color: '#6B7280' },
-
-  contentContainer: { padding: 24 },
-
-  // Overview Section
-  scoreOverview: { flexDirection: 'row', alignItems: 'center', gap: 20, marginBottom: 30 },
-  scoreCircle: {
-    width: 80, height: 80, borderRadius: 40, borderWidth: 4, borderColor: '#0F766E',
-    justifyContent: 'center', alignItems: 'center', backgroundColor: '#F0FDFA',
-  },
-  scoreBigNumber: { fontSize: 20, fontWeight: '900', color: '#0F766E' },
-  scoreLabel: { fontSize: 9, fontWeight: '600', color: '#0F766E', textTransform: 'uppercase' },
+  ringInner: { alignItems: 'center' },
+  heroNumber: { fontSize: 24, fontWeight: '900', color: '#004643' },
+  percent: { fontSize: 14, fontWeight: '700' },
+  heroLabel: { fontSize: 8, fontWeight: '800', color: '#0f766e', marginTop: 2 },
   
-  scoreContext: { flex: 1 },
-  contextTitle: { fontSize: 16, fontWeight: '700', color: '#374151', marginBottom: 4 },
-  contextDesc: { fontSize: 13, color: '#6B7280', lineHeight: 18 },
+  heroTextContainer: { flex: 1 },
+  heroTitleText: { fontSize: 16, fontWeight: '800', color: '#1e293b', marginBottom: 4 },
+  heroDesc: { fontSize: 13, color: '#64748b', lineHeight: 18 },
 
-  // Grid Stats
-  statsGrid: { flexDirection: 'row', gap: 12, marginBottom: 30 },
-  statBox: {
-    flex: 1, backgroundColor: '#F9FAFB', borderRadius: 12, padding: 12,
-    alignItems: 'center', borderWidth: 1, borderColor: '#F3F4F6',
+  // Grid
+  grid: { flexDirection: 'row', gap: 12, marginBottom: 30 },
+  gridItem: { 
+    flex: 1, backgroundColor: '#f8fafc', padding: 12, borderRadius: 16, 
+    alignItems: 'center', borderWidth: 1, borderColor: '#e2e8f0' 
   },
-  iconBadge: { width: 32, height: 32, borderRadius: 16, justifyContent: 'center', alignItems: 'center', marginBottom: 8 },
-  boxValue: { fontSize: 18, fontWeight: '800', color: '#1F2937' },
-  boxLabel: { fontSize: 10, color: '#6B7280', fontWeight: '600', textTransform: 'uppercase', marginTop: 2 },
+  iconBox: { width: 36, height: 36, borderRadius: 12, justifyContent: 'center', alignItems: 'center', marginBottom: 8 },
+  gridValue: { fontSize: 16, fontWeight: '800', color: '#0f172a' },
+  gridLabel: { fontSize: 10, fontWeight: '600', color: '#64748b', marginTop: 2, textTransform: 'uppercase' },
 
   // Progress Bar
-  progressSection: { marginBottom: 24 },
-  progressLabels: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
-  progressTitle: { fontSize: 13, fontWeight: '600', color: '#374151' },
-  progressValue: { fontSize: 13, fontWeight: '700', color: '#0F766E' },
-  track: { height: 8, backgroundColor: '#F3F4F6', borderRadius: 4, overflow: 'hidden' },
-  fill: { height: '100%', backgroundColor: '#0F766E', borderRadius: 4 },
+  barContainer: { marginBottom: 24 },
+  barHeader: { flexDirection: 'row', justifyContent: 'space-between', marginBottom: 8 },
+  barTitle: { fontSize: 12, fontWeight: '700', color: '#334155' },
+  barValue: { fontSize: 12, fontWeight: '700', color: '#004643' },
+  track: { height: 10, backgroundColor: '#f1f5f9', borderRadius: 5, overflow: 'hidden' },
+  fill: { height: '100%', backgroundColor: '#004643', borderRadius: 5 },
 
   // Button
-  actionButton: {
-    backgroundColor: '#1F2937', paddingVertical: 14, borderRadius: 10, alignItems: 'center',
+  btn: {
+    backgroundColor: '#004643', paddingVertical: 16, borderRadius: 16,
+    flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: 8,
+    shadowColor: '#004643', shadowOffset: {width: 0, height: 4}, shadowOpacity: 0.3, shadowRadius: 8, elevation: 5
   },
-  actionButtonText: { color: '#FFFFFF', fontSize: 13, fontWeight: '700', letterSpacing: 0.5 },
+  btnText: { color: '#fff', fontSize: 14, fontWeight: '700' },
 });

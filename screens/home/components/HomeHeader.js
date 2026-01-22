@@ -1,22 +1,29 @@
-import React, { useEffect, useRef } from 'react';
-import { View, Text, StyleSheet, Animated, ImageBackground, Dimensions } from 'react-native';
+import React, { useRef, useEffect } from 'react';
+import { View, Text, StyleSheet, Animated, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { MaterialCommunityIcons, FontAwesome5 } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
 export default function HomeHeader({ fadeAnim, translateYAnim }) {
-  // أنيميشن بسيط لحركة "التنفس" للخلايا في الخلفية
-  const pulseAnim = useRef(new Animated.Value(1)).current;
+  
+  // أنيميشن دوران بطيء للرمز
+  const spinAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
     Animated.loop(
-      Animated.sequence([
-        Animated.timing(pulseAnim, { toValue: 1.1, duration: 3000, useNativeDriver: true }),
-        Animated.timing(pulseAnim, { toValue: 1, duration: 3000, useNativeDriver: true }),
-      ])
+      Animated.timing(spinAnim, {
+        toValue: 1,
+        duration: 15000,
+        useNativeDriver: true,
+      })
     ).start();
   }, []);
+
+  const spin = spinAnim.interpolate({
+    inputRange: [0, 1],
+    outputRange: ['0deg', '360deg'],
+  });
 
   return (
     <Animated.View 
@@ -25,50 +32,36 @@ export default function HomeHeader({ fadeAnim, translateYAnim }) {
         { opacity: fadeAnim, transform: [{ translateY: translateYAnim }] }
       ]}
     >
-      {/* الخلفية العضوية المتدرجة (أخضر/أزرق علمي) */}
       <LinearGradient
-        colors={['#0f766e', '#0e7490', '#1e293b']} // Teal -> Cyan -> Dark
+        colors={['#0F766E', '#134E4A']} 
         start={{ x: 0, y: 0 }}
         end={{ x: 1, y: 1 }}
         style={styles.gradient}
       >
-        {/* خلايا عائمة في الخلفية (Cells) */}
-        <Animated.View style={[styles.cell, styles.cell1, { transform: [{ scale: pulseAnim }] }]} />
-        <Animated.View style={[styles.cell, styles.cell2, { transform: [{ scale: pulseAnim }] }]} />
-        
-        {/* أيقونات علمية شفافة جداً للملمس */}
-        <MaterialCommunityIcons name="bacteria-outline" size={100} color="rgba(255,255,255,0.05)" style={styles.bgIcon1} />
-        <FontAwesome5 name="dna" size={80} color="rgba(255,255,255,0.05)" style={styles.bgIcon2} />
+        <View style={styles.row}>
+          <View style={styles.textContainer}>
+            <Text style={styles.welcome}>Bienvenue sur</Text>
+            
+            <View style={styles.titleBox}>
+              <Text style={styles.para}>Para</Text>
+              <Text style={styles.sys}>Sys</Text>
+              {/* نقطة خضراء صغيرة كزخرفة */}
+              <View style={styles.dot} />
+            </View>
 
-        {/* المحتوى الرئيسي */}
-        <View style={styles.contentRow}>
-          <View style={styles.textColumn}>
-             <View style={styles.badge}>
-               <Text style={styles.badgeText}>PARASITOLOGIE CLINIQUE</Text>
-             </View>
-             
-             <Text style={styles.mainTitle}>
-               Explorez le <Text style={styles.highlight}>Micro-Monde</Text>
-             </Text>
-             
-             <Text style={styles.subTitle}>
-               Quiz, Atlas & Diagnostic en un seul endroit.
-             </Text>
+            <Text style={styles.sub}>Parasitologie Systématique</Text>
           </View>
 
-          {/* أيقونة المجهر الكبيرة والبارزة */}
-          <View style={styles.heroIconContainer}>
-             <View style={styles.microscopeCircle}>
-                <MaterialCommunityIcons name="microscope" size={42} color="#0e7490" />
-             </View>
-          </View>
+          {/* رمز بسيط (Biohazard ناعم أو Virus Shape) يمثل علم الأحياء الدقيقة */}
+          <Animated.View style={{ transform: [{ rotate: spin }] }}>
+             <MaterialCommunityIcons name="bacteria-outline" size={60} color="rgba(255,255,255,0.15)" />
+          </Animated.View>
         </View>
-
       </LinearGradient>
 
-      {/* المنحنى السفلي (Wave) - يقطع الشكل المربع الممل */}
-      <View style={styles.curveContainer}>
-         <View style={styles.curve} />
+      {/* الموجة السفلية (أقصر) */}
+      <View style={styles.waveContainer}>
+        <View style={styles.wave} />
       </View>
     </Animated.View>
   );
@@ -76,118 +69,82 @@ export default function HomeHeader({ fadeAnim, translateYAnim }) {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    marginBottom: 10,
-    backgroundColor: '#f8fafc', // لون خلفية الشاشة لتندمج الموجة
-    elevation: 5,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 10,
+    marginBottom: 10, // مسافة أقل
+    backgroundColor: 'transparent',
+    overflow: 'hidden',
   },
   gradient: {
-    paddingTop: 60,
+    paddingTop: 60, // تقليل المساحة العلوية
+    paddingBottom: 40, // تقليل المساحة السفلية
     paddingHorizontal: 24,
-    paddingBottom: 50, // مساحة للموجة السفلية
-    position: 'relative',
-    overflow: 'hidden',
-    borderBottomLeftRadius: 0, 
-    borderBottomRightRadius: 0,
   },
   
-  // Floating Cells (Organic Feel)
-  cell: {
-    position: 'absolute',
-    borderRadius: 999,
-    backgroundColor: 'rgba(255,255,255,0.1)',
-  },
-  cell1: {
-    width: 200,
-    height: 200,
-    top: -50,
-    right: -50,
-  },
-  cell2: {
-    width: 120,
-    height: 120,
-    bottom: 20,
-    left: -20,
-    backgroundColor: 'rgba(255,255,255,0.05)',
-  },
-  bgIcon1: { position: 'absolute', top: 40, right: 20, transform: [{rotate: '45deg'}] },
-  bgIcon2: { position: 'absolute', bottom: 30, left: 40, transform: [{rotate: '-15deg'}] },
-
-  // Content Layout
-  contentRow: {
+  row: {
     flexDirection: 'row',
-    alignItems: 'center',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  textColumn: {
+
+  textContainer: {
     flex: 1,
-    paddingRight: 10,
   },
-  badge: {
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    paddingHorizontal: 10,
-    paddingVertical: 4,
-    borderRadius: 8,
-    alignSelf: 'flex-start',
-    marginBottom: 12,
-  },
-  badgeText: {
-    color: '#ccfbf1',
-    fontSize: 10,
+
+  welcome: {
+    color: '#5EEAD4',
+    fontSize: 12,
     fontWeight: '700',
-    letterSpacing: 0.5,
+    textTransform: 'uppercase',
+    letterSpacing: 1,
+    marginBottom: 4,
   },
-  mainTitle: {
-    fontSize: 28,
-    fontWeight: '800',
-    color: '#fff',
-    lineHeight: 34,
+
+  // زخرفة الاسم (Para باللون الأبيض، Sys بلون مميز)
+  titleBox: {
+    flexDirection: 'row',
+    alignItems: 'baseline',
+  },
+  para: {
+    fontSize: 36,
+    fontWeight: '900',
+    color: '#ffffff',
+    letterSpacing: -1,
+  },
+  sys: {
+    fontSize: 36,
+    fontWeight: '300', // خط أنحف للتميز
+    color: '#99F6E4', // لون فاتح
+    fontStyle: 'italic',
+  },
+  dot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#34D399',
+    marginLeft: 4,
     marginBottom: 8,
   },
-  highlight: {
-    color: '#67e8f9', // Cyan Bright
-  },
-  subTitle: {
+
+  sub: {
     fontSize: 14,
-    color: '#cbd5e1',
-    lineHeight: 20,
+    color: '#CCFBF1',
+    marginTop: 4,
+    opacity: 0.8,
   },
 
-  // Hero Icon (The Focal Point)
-  heroIconContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
+  // الموجة
+  waveContainer: {
+    marginTop: -25, // سحب أكثر للأعلى
+    height: 25,
+    backgroundColor: 'transparent',
+    zIndex: 5,
   },
-  microscopeCircle: {
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 8,
-  },
-
-  // The Bottom Wave Curve
-  curveContainer: {
-    height: 20,
-    backgroundColor: '#1e293b', // نفس لون نهاية التدرج
-    overflow: 'hidden',
-  },
-  curve: {
-    backgroundColor: '#f8fafc', // لون الصفحة الرئيسية
-    height: 40,
-    width: width * 1.2, // أوسع من الشاشة
+  wave: {
+    backgroundColor: '#f8fafc',
+    height: 100,
+    width: width,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
     position: 'absolute',
     top: 0,
-    left: -width * 0.1,
-    borderTopLeftRadius: width, // القوس السحري
-    borderTopRightRadius: width,
   },
 });

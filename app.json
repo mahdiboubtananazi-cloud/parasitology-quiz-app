@@ -1,9 +1,36 @@
 {
   "expo": {
-    "name": "Parasitology Quiz",
-    "slug": "parasitology-quiz",
+    "name": "ParaSys",
+    "slug": "parasys",
+    "version": "4.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/icon.png", 
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
     "android": {
-      "package": "com.mahdib.parasitologyquiz"
+      "package": "com.mahdib.parasitologyquiz",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/foreground.png",
+        "backgroundImage": "./assets/background.png"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "your-project-id-here"
+      }
     }
   }
 }

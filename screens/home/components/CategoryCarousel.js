@@ -10,7 +10,7 @@ import {
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const { width: screenWidth } = Dimensions.get('window');
-const ITEM_WIDTH = screenWidth * 0.75; // عرض أوسع قليلاً للراحة
+const ITEM_WIDTH = screenWidth * 0.75; 
 const SPACING = 12;
 const SNAP_INTERVAL = ITEM_WIDTH + SPACING; 
 
@@ -64,7 +64,7 @@ export default function CategoryCarousel({
 
           const opacity = scrollX.interpolate({
             inputRange,
-            outputRange: [0.7, 1, 0.7],
+            outputRange: [0.6, 1, 0.6], // جعل البطاقات الجانبية أكثر شفافية للتركيز
             extrapolate: 'clamp'
           });
 
@@ -74,23 +74,32 @@ export default function CategoryCarousel({
                 width: ITEM_WIDTH,
                 marginRight: index === categories.length - 1 ? 0 : SPACING,
                 transform: [{ scale }],
-                opacity
+                opacity // تطبيق الشفافية
               }}
             >
               <TouchableOpacity 
                 activeOpacity={0.9}
                 onPress={() => onCategoryPress(item)}
-                style={[styles.card, { borderColor: item.color + '40' }]}
+                style={[styles.card, { borderColor: item.color + '30' }]}
               >
                 {/* Background Tint */}
-                <View style={[styles.cardBg, { backgroundColor: item.color + '08' }]} />
+                <View style={[styles.cardBg, { backgroundColor: item.color + '05' }]} />
+
+                {/* ✨ NEW: Decoration Icon */}
+                <View style={styles.decorIcon}>
+                  <MaterialCommunityIcons 
+                    name={item.iconName} 
+                    size={150} 
+                    color={item.color} 
+                  />
+                </View>
 
                 <View style={styles.cardContent}>
                   {/* Icon Section */}
                   <View style={[styles.iconContainer, { backgroundColor: item.color + '15' }]}>
                     <MaterialCommunityIcons 
                       name={item.iconName} 
-                      size={42} 
+                      size={36} 
                       color={item.color} 
                     />
                   </View>
@@ -98,7 +107,7 @@ export default function CategoryCarousel({
                   {/* Text Section */}
                   <View style={styles.textWrapper}>
                     <Text style={styles.cardTitle}>{item.name}</Text>
-                    <Text style={styles.cardDesc} numberOfLines={2}>
+                    <Text style={styles.cardDesc} numberOfLines={3}>
                       {item.description}
                     </Text>
                   </View>
@@ -108,7 +117,7 @@ export default function CategoryCarousel({
                     <Text style={[styles.actionText, { color: item.color }]}>
                       {item.buttonLabel || 'Commencer'}
                     </Text>
-                    <View style={[styles.arrowCircle, { backgroundColor: item.color + '20' }]}>
+                    <View style={[styles.arrowCircle, { backgroundColor: item.color + '15' }]}>
                       <Ionicons name="arrow-forward" size={18} color={item.color} />
                     </View>
                   </View>
@@ -124,7 +133,7 @@ export default function CategoryCarousel({
 
 const styles = StyleSheet.create({
   carouselContainer: {
-    marginBottom: 25,
+    marginBottom: 20, // تقليل الهامش السفلي قليلاً
   },
   headerContainer: {
     paddingHorizontal: 24,
@@ -132,29 +141,38 @@ const styles = StyleSheet.create({
   },
   sectionTitle: {
     fontSize: 20,
-    fontWeight: '700',
-    color: '#1e293b',
+    fontWeight: '800', // خط أعرض
+    color: '#0f172a',
     letterSpacing: -0.5,
   },
   sectionSubtitle: {
     fontSize: 13,
     color: '#64748b',
     marginTop: 2,
+    fontWeight: '500',
   },
   card: {
-    height: 240, // Reduced height for cleaner look
-    borderRadius: 20,
+    height: 230,
+    borderRadius: 24, // زوايا أنعم
     backgroundColor: '#fff',
-    borderWidth: 1.5,
+    borderWidth: 1, // حدود أنحف وأرقى
     overflow: 'hidden',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08, // Subtle shadow
-    shadowRadius: 10,
-    elevation: 4,
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.1, 
+    shadowRadius: 12,
+    elevation: 6,
   },
   cardBg: {
     ...StyleSheet.absoluteFillObject,
+  },
+  // ✨ NEW: Decoration Style
+  decorIcon: {
+    position: 'absolute',
+    right: -30,
+    bottom: -30,
+    opacity: 0.05, // شفاف جداً
+    transform: [{ rotate: '-15deg' }],
   },
   cardContent: {
     flex: 1,
@@ -162,28 +180,30 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   iconContainer: {
-    width: 64,
-    height: 64,
-    borderRadius: 32,
+    width: 56, // أصغر قليلاً
+    height: 56,
+    borderRadius: 18, // شكل Squircle
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 10,
-    alignSelf: 'flex-start', // Icon aligned left
+    alignSelf: 'flex-start',
   },
   textWrapper: {
     flex: 1,
     justifyContent: 'center',
   },
   cardTitle: {
-    fontSize: 22,
-    fontWeight: '800',
+    fontSize: 24,
+    fontWeight: '900',
     color: '#1e293b',
     marginBottom: 6,
+    letterSpacing: -0.5,
   },
   cardDesc: {
     fontSize: 14,
     color: '#64748b',
     lineHeight: 20,
+    fontWeight: '500',
   },
   actionRow: {
     flexDirection: 'row',
@@ -193,15 +213,15 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
   },
   actionText: {
-    fontWeight: '700',
-    fontSize: 14,
+    fontWeight: '800',
+    fontSize: 13,
     textTransform: 'uppercase',
-    letterSpacing: 0.5,
+    letterSpacing: 1,
   },
   arrowCircle: {
     width: 32,
     height: 32,
-    borderRadius: 16,
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center',
   }

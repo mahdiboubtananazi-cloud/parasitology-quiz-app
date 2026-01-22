@@ -34,22 +34,22 @@ export default function ProposScreen() {
     {
       icon: 'library',
       title: 'Banque Massive',
-      description: `Plus de ${totalQ} QCM révisés par des experts.`,
+      description: `Plus de ${totalQ} QCM experts pour préparer vos examens.`,
     },
     {
       icon: 'image',
-      title: 'Atlas Labo-Vision',
-      description: `${totalImages} images microscopiques haute définition (Sources CDC).`,
+      title: 'Labo-Vision',
+      description: `${totalImages} images HD classées (Sources CDC).`,
     },
     {
       icon: 'school',
-      title: 'Pédagogie 5-Axes',
-      description: "Apprentissage structuré : Morphologie, Cycle, Clinique, Diagnostic, Traitement.",
+      title: 'Méthode 5-Axes',
+      description: "Apprentissage complet : Morphologie, Cycle, Clinique, Diagnostic, Traitement.",
     },
     {
       icon: 'stats-chart',
-      title: 'Coach Intelligent',
-      description: 'Analyse des points faibles et conseils personnalisés.',
+      title: 'Coach Virtuel',
+      description: 'Détection automatique de vos points faibles.',
     },
   ];
 
@@ -57,7 +57,7 @@ export default function ProposScreen() {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
         
-        {/* Header Minimaliste */}
+        {/* Header */}
         <View style={styles.header}>
           <Text style={styles.headerTitle}>À Propos</Text>
           <View style={styles.versionBadge}>
@@ -65,22 +65,36 @@ export default function ProposScreen() {
           </View>
         </View>
 
-        {/* Intro Card (Design Original) */}
+        {/* Intro Card (Pasteur Edition) */}
         <Animated.View style={[styles.introCard, { opacity: fadeAnim, transform: [{ translateY: slideAnim }] }]}>
           <View style={styles.logoRow}>
-            <Ionicons name="medical" size={32} color="#004643" />
-            <Text style={styles.introTitle}>ParaQuiz</Text>
+            {/* الشعار المربع */}
+            <View style={styles.brandBox}>
+               <Text style={styles.brandText}>P</Text>
+            </View>
+            <View>
+               <Text style={styles.introTitle}>ParaSys</Text>
+               <Text style={styles.introTagline}>L'Excellence Médicale</Text>
+            </View>
           </View>
-          <Text style={styles.introSubtitle}>L'Atlas de Poche du Biologiste</Text>
+          
           <Text style={styles.introText}>
-            Une application dédiée aux étudiants en Biologie, Médecine et Pharmacie pour maîtriser la Parasitologie Médicale.
+            Conçu pour transformer la complexité biologique en réflexe diagnostique. 
+            L'outil de référence pour les étudiants et internes en Biologie, Médecine et Pharmacie.
           </Text>
-          <Text style={styles.introQuote}>"La science est un pont vers l'excellence."</Text>
+
+          <View style={styles.quoteBox}>
+             <MaterialCommunityIcons name="format-quote-open" size={24} color="#004643" style={{marginBottom: 4}} />
+             <Text style={styles.introQuote}>
+               "Le hasard ne favorise que les esprits préparés."
+             </Text>
+             <Text style={styles.quoteAuthor}>— Louis Pasteur</Text>
+          </View>
         </Animated.View>
 
         {/* Features Section */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Contenu & Fonctionnalités</Text>
+          <Text style={styles.sectionTitle}>Contenu & Outils</Text>
           <View style={styles.featuresGrid}>
             {features.map((feature, index) => (
               <Animated.View key={index} style={styles.featureCard}>
@@ -98,13 +112,13 @@ export default function ProposScreen() {
 
         {/* Sources & Crédits */}
         <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Sources & Crédits</Text>
+          <Text style={styles.sectionTitle}>Sources Scientifiques</Text>
           <TouchableOpacity style={styles.sourceCard} onPress={handleCDC}>
             <MaterialCommunityIcons name="microscope" size={24} color="#004643" />
             <View style={{flex:1, marginLeft: 12}}>
-              <Text style={styles.sourceTitle}>Imagerie Médicale</Text>
+              <Text style={styles.sourceTitle}>Imagerie de Référence</Text>
               <Text style={styles.sourceDesc}>
-                Les images microscopiques proviennent principalement de la bibliothèque DPDx du CDC (Centers for Disease Control and Prevention).
+                Basé sur la bibliothèque DPDx du CDC (Centers for Disease Control), la référence mondiale en parasitologie.
               </Text>
             </View>
             <Ionicons name="open-outline" size={20} color="#64748b" />
@@ -119,13 +133,13 @@ export default function ProposScreen() {
               <Ionicons name="mail" size={20} color="#fff" />
             </View>
             <View>
-              <Text style={styles.contactLabel}>Envoyer un email au développeur</Text>
+              <Text style={styles.contactLabel}>Contacter le développeur</Text>
               <Text style={styles.contactEmail}>mehdi.boubetana@gmail.com</Text>
             </View>
           </TouchableOpacity>
         </View>
 
-        {/* Footer Clean */}
+        {/* Footer */}
         <View style={styles.footer}>
           <Text style={styles.footerText}>Algérie 🇩🇿 • 2025</Text>
           <Text style={styles.footerSubText}>Développé avec passion pour la science.</Text>
@@ -154,7 +168,7 @@ const styles = StyleSheet.create({
   versionBadge: { backgroundColor: '#E6F0ED', paddingHorizontal: 10, paddingVertical: 4, borderRadius: 8 },
   versionText: { color: '#004643', fontWeight: '700', fontSize: 12 },
 
-  // Intro Card (Classic Style)
+  // Intro Card (Pasteur Style)
   introCard: {
     backgroundColor: '#FFFFFF',
     borderRadius: 20,
@@ -169,11 +183,49 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     elevation: 3,
   },
-  logoRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginBottom: 8, gap: 10 },
-  introTitle: { fontSize: 28, fontWeight: '900', color: '#004643' },
-  introSubtitle: { fontSize: 14, color: '#004643', fontWeight: '600', textAlign: 'center', marginBottom: 16, textTransform: 'uppercase', letterSpacing: 1 },
-  introText: { fontSize: 15, color: '#475569', lineHeight: 24, textAlign: 'center', fontWeight: '500' },
-  introQuote: { fontSize: 13, color: '#004643', marginTop: 20, fontStyle: 'italic', textAlign: 'center', opacity: 0.8 },
+  logoRow: { flexDirection: 'row', alignItems: 'center', marginBottom: 16 },
+  brandBox: {
+    width: 42,
+    height: 42,
+    backgroundColor: '#004643',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 14,
+  },
+  brandText: { color: '#fff', fontSize: 26, fontWeight: '900' },
+  introTitle: { fontSize: 24, fontWeight: '900', color: '#004643', lineHeight: 24 },
+  introTagline: { fontSize: 12, color: '#64748b', fontWeight: '600', textTransform: 'uppercase', letterSpacing: 1 },
+  
+  introText: { 
+    fontSize: 15, 
+    color: '#334155', 
+    lineHeight: 22, 
+    marginBottom: 20,
+    fontWeight: '400',
+  },
+  quoteBox: {
+    backgroundColor: '#F0FDFA',
+    padding: 16,
+    borderRadius: 12,
+    borderLeftWidth: 4,
+    borderLeftColor: '#004643',
+  },
+  introQuote: { 
+    fontSize: 14, 
+    color: '#004643', 
+    fontStyle: 'italic', 
+    fontWeight: '600',
+    lineHeight: 20,
+  },
+  quoteAuthor: {
+    fontSize: 11,
+    color: '#64748b',
+    textAlign: 'right',
+    marginTop: 8,
+    fontWeight: '700',
+    textTransform: 'uppercase',
+  },
 
   section: { paddingHorizontal: 16, marginBottom: 25 },
   sectionTitle: { fontSize: 18, fontWeight: '800', color: '#004643', marginBottom: 12, marginLeft: 4 },
