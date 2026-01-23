@@ -20,7 +20,7 @@
     "android": {
       "package": "com.mahdib.parasitologyquiz",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/foreground.png",
+        "foregroundImage": "./assets/icon.png",
         "backgroundImage": "./assets/background.png"
       }
     },
